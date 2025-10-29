@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 222 47% 5%;
+    --foreground: 48 100% 96%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 48 100% 96%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 48 100% 96%;
+
+    --primary: 45 100% 51%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 48 100% 96%;
+
+    --muted: 222 47% 15%;
+    --muted-foreground: 48 20% 70%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 48 100% 96%;
+
+    --border: 45 40% 20%;
+    --input: 222 47% 15%;
+    --ring: 45 100% 51%;
+
+    --radius: 0.5rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(45 100% 51%) 0%, hsl(38 92% 50%) 100%);
+    --gradient-secondary: linear-gradient(180deg, hsl(222 47% 5%) 0%, hsl(222 47% 8%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(222 47% 8% / 0.8) 0%, hsl(222 47% 12% / 0.4) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 51%) 0%, hsl(38 92% 50%) 50%, hsl(32 88% 45%) 100%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(45 100% 51% / 0.15) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(38 92% 50% / 0.15) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(45 100% 51% / 0.1) 0px, transparent 50%);
+    
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --prediction-yes: 142 76% 36%;
+    --prediction-no: 0 72% 51%;
+
+    --glow-primary: 0 0 60px hsl(45 100% 51% / 0.4), 0 0 100px hsl(45 100% 51% / 0.2);
+    --glow-accent: 0 0 40px hsl(38 92% 50% / 0.3);
+    --glow-card: 0 4px 24px hsl(45 100% 51% / 0.15);
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 48 100% 96%;
+    --sidebar-primary: 45 100% 51%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 222 47% 15%;
+    --sidebar-accent-foreground: 48 100% 96%;
+    --sidebar-border: 45 40% 20%;
+    --sidebar-ring: 45 100% 51%;
+  }
+
+  .dark {
+    --background: 222 47% 5%;
+    --foreground: 48 100% 96%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 48 100% 96%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 48 100% 96%;
+
+    --primary: 45 100% 51%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 48 100% 96%;
+
+    --muted: 222 47% 15%;
+    --muted-foreground: 48 20% 70%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 48 100% 96%;
+
+    --border: 45 40% 20%;
+    --input: 222 47% 15%;
+    --ring: 45 100% 51%;
+    
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 48 100% 96%;
+    --sidebar-primary: 45 100% 51%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 222 47% 15%;
+    --sidebar-accent-foreground: 48 100% 96%;
+    --sidebar-border: 45 40% 20%;
+    --sidebar-ring: 45 100% 51%;
+  }
+}
+
+@layer utilities {
+  .hexagon-pattern {
+    background-image: 
+      linear-gradient(30deg, hsl(45 100% 51% / 0.05) 12%, transparent 12.5%, transparent 87%, hsl(45 100% 51% / 0.05) 87.5%, hsl(45 100% 51% / 0.05)),
+      linear-gradient(150deg, hsl(45 100% 51% / 0.05) 12%, transparent 12.5%, transparent 87%, hsl(45 100% 51% / 0.05) 87.5%, hsl(45 100% 51% / 0.05)),
+      linear-gradient(30deg, hsl(45 100% 51% / 0.05) 12%, transparent 12.5%, transparent 87%, hsl(45 100% 51% / 0.05) 87.5%, hsl(45 100% 51% / 0.05)),
+      linear-gradient(150deg, hsl(45 100% 51% / 0.05) 12%, transparent 12.5%, transparent 87%, hsl(45 100% 51% / 0.05) 87.5%, hsl(45 100% 51% / 0.05));
+    background-size: 80px 140px;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
