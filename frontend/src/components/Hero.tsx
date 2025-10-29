@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Brain, TrendingUp, Hexagon } from "lucide-react";
+import { ArrowRight, TrendingUp, Hexagon } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/bnb-hero-bg.jpg";
 
 const Hero = () => {
@@ -41,15 +42,19 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-slide-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
-            <Button size="lg" className="gap-2 bg-gradient-gold hover:shadow-glow-primary transition-all relative overflow-hidden group hover:scale-105 duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <span className="relative text-primary-foreground font-semibold">Start Predicting</span>
-              <ArrowRight className="w-4 h-4 relative group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button size="lg" variant="outline" className="gap-2 border-primary/40 hover:border-primary hover:bg-primary/10 transition-all hover:scale-105 duration-300">
-              <TrendingUp className="w-4 h-4" />
-              Explore Markets
-            </Button>
+            <Link to="/markets">
+              <Button size="lg" className="gap-2 bg-gradient-gold hover:shadow-glow-primary transition-all relative overflow-hidden group hover:scale-105 duration-300">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <span className="relative text-primary-foreground font-semibold">Start Predicting</span>
+                <ArrowRight className="w-4 h-4 relative group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link to="/markets">
+              <Button size="lg" variant="outline" className="gap-2 border-primary/40 hover:border-primary hover:bg-primary/10 transition-all hover:scale-105 duration-300">
+                <TrendingUp className="w-4 h-4" />
+                Explore Markets
+              </Button>
+            </Link>
           </div>
 
           {/* Stats - Enhanced and Distinct */}

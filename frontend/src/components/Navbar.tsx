@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Brain, Wallet, Menu, Hexagon } from "lucide-react";
+import { Wallet, Menu, Hexagon } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,29 +11,32 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2 group cursor-pointer">
+          <Link to="/" className="flex items-center gap-2 group cursor-pointer">
             <div className="w-8 h-8 rounded-lg bg-gradient-gold flex items-center justify-center shadow-glow-accent group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
               <Hexagon className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold bg-gradient-gold bg-clip-text text-transparent">
               OracleX
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#markets" className="text-foreground hover:text-primary transition-colors font-medium">
+            <Link to="/markets" className="text-foreground hover:text-primary transition-colors font-medium">
               Markets
-            </a>
-            <a href="#create" className="text-foreground hover:text-primary transition-colors font-medium">
-              Create
-            </a>
-            <a href="#leaderboard" className="text-foreground hover:text-primary transition-colors font-medium">
+            </Link>
+            <Link to="/portfolio" className="text-foreground hover:text-primary transition-colors font-medium">
+              Portfolio
+            </Link>
+            <Link to="/governance" className="text-foreground hover:text-primary transition-colors font-medium">
+              Governance
+            </Link>
+            <Link to="/leaderboard" className="text-foreground hover:text-primary transition-colors font-medium">
               Leaderboard
-            </a>
-            <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors font-medium">
-              How It Works
-            </a>
+            </Link>
+            <Link to="/staking" className="text-foreground hover:text-primary transition-colors font-medium">
+              Staking
+            </Link>
           </div>
 
           {/* CTA */}
@@ -56,18 +60,21 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden py-4 space-y-4 border-t border-border">
-            <a href="#markets" className="block text-foreground hover:text-primary transition-colors font-medium">
+            <Link to="/markets" className="block text-foreground hover:text-primary transition-colors font-medium">
               Markets
-            </a>
-            <a href="#create" className="block text-foreground hover:text-primary transition-colors font-medium">
-              Create
-            </a>
-            <a href="#leaderboard" className="block text-foreground hover:text-primary transition-colors font-medium">
+            </Link>
+            <Link to="/portfolio" className="block text-foreground hover:text-primary transition-colors font-medium">
+              Portfolio
+            </Link>
+            <Link to="/governance" className="block text-foreground hover:text-primary transition-colors font-medium">
+              Governance
+            </Link>
+            <Link to="/leaderboard" className="block text-foreground hover:text-primary transition-colors font-medium">
               Leaderboard
-            </a>
-            <a href="#how-it-works" className="block text-foreground hover:text-primary transition-colors font-medium">
-              How It Works
-            </a>
+            </Link>
+            <Link to="/staking" className="block text-foreground hover:text-primary transition-colors font-medium">
+              Staking
+            </Link>
             <div className="pt-4 space-y-2">
               <Button variant="ghost" className="w-full hover:text-primary">
                 Sign In

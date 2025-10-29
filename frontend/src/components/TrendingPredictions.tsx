@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Users, Clock, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const predictions = [
   {
@@ -51,19 +52,21 @@ const TrendingPredictions = () => {
             </h2>
             <p className="text-muted-foreground">Most active markets right now</p>
           </div>
-          <Button variant="outline" className="gap-2 border-primary/40 hover:border-primary hover:shadow-glow-accent transition-all">
-            View All
-            <ArrowRight className="w-4 h-4" />
-          </Button>
+          <Link to="/markets">
+            <Button variant="outline" className="gap-2 border-primary/40 hover:border-primary hover:shadow-glow-accent transition-all">
+              View All
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
           {predictions.map((prediction, index) => (
-            <Card 
-              key={prediction.id}
-              className="bg-gradient-card backdrop-blur-sm border-primary/30 hover:border-primary hover:shadow-glow-card transition-all duration-300 group cursor-pointer relative overflow-hidden animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
-            >
+            <Link key={prediction.id} to="/markets">
+              <Card 
+                className="bg-gradient-card backdrop-blur-sm border-primary/30 hover:border-primary hover:shadow-glow-card transition-all duration-300 group cursor-pointer relative overflow-hidden animate-slide-up"
+                style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
+              >
               {/* Shimmer Effect on Hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
@@ -130,6 +133,7 @@ const TrendingPredictions = () => {
                 </Button>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       </div>
