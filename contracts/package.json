@@ -1,0 +1,35 @@
+{
+  "name": "@oraclex/contracts",
+  "version": "1.0.0",
+  "description": "OracleX Smart Contracts",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "deploy:testnet": "hardhat deploy --network bsc-testnet",
+    "deploy:mainnet": "hardhat deploy --network bsc-mainnet",
+    "verify": "hardhat verify --network bsc-testnet",
+    "lint": "solhint contracts/**/*.sol",
+    "clean": "hardhat clean"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0",
+    "@openzeppelin/contracts-upgradeable": "^5.0.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "hardhat": "^2.19.0",
+    "hardhat-deploy": "^0.11.45",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solidity-coverage": "^0.8.5",
+    "solhint": "^4.0.0",
+    "typechain": "^8.3.2",
+    "ethers": "^6.8.1",
+    "chai": "^4.3.10",
+    "@types/chai": "^4.3.6",
+    "@types/mocha": "^10.0.3"
+  }
+}

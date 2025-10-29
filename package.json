@@ -1,0 +1,52 @@
+{
+  "name": "@oraclex/monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OracleX - AI-Powered Prediction Markets on BNB Chain",
+  "workspaces": [
+    "frontend",
+    "backend", 
+    "ai-oracle",
+    "contracts",
+    "shared"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:packages",
+    "install:packages": "npm install --workspaces",
+    "dev:all": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:ai-oracle\"",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend", 
+    "dev:ai-oracle": "npm run dev --workspace=ai-oracle",
+    "build:all": "npm run build --workspaces",
+    "test:all": "npm run test --workspaces",
+    "lint:all": "npm run lint --workspaces",
+    "clean": "npm run clean --workspaces && rm -rf node_modules",
+    "deploy:contracts": "npm run deploy --workspace=contracts",
+    "deploy:frontend": "npm run deploy --workspace=frontend",
+    "deploy:backend": "npm run deploy --workspace=backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "prediction-markets",
+    "ai-oracle", 
+    "web3",
+    "bnb-chain",
+    "defi",
+    "blockchain",
+    "artificial-intelligence"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdussalam-mustapha/OracleX.git"
+  },
+  "author": "OracleX Team",
+  "license": "MIT"
+}
