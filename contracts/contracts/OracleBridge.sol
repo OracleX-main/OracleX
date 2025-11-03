@@ -111,25 +111,32 @@ contract OracleBridge is Ownable, ReentrancyGuard {
      */
     function _tryFinalizeResolution(uint256 marketId) internal {
         address[] memory voters = marketOracles[marketId];
-        mapping(bytes32 => uint256) storage votes;
         bytes32[] memory outcomes = new bytes32[](voters.length);
+        uint256[] memory voteCounts = new uint256[](voters.length);
         uint256 uniqueCount = 0;
         
         // Count votes for each outcome
         for (uint256 i = 0; i < voters.length; i++) {
             bytes32 vote = oracleVotes[marketId][voters[i]];
-            votes[vote] += oracles[voters[i]].reputation;
             
-            // Track unique outcomes
+            // Find if this outcome already exists
             bool found = false;
+            uint256 outcomeIndex = 0;
             for (uint256 j = 0; j < uniqueCount; j++) {
                 if (outcomes[j] == vote) {
                     found = true;
+                    outcomeIndex = j;
                     break;
                 }
             }
-            if (!found) {
+            
+            if (found) {
+                // Add reputation to existing outcome
+                voteCounts[outcomeIndex] += oracles[voters[i]].reputation;
+            } else {
+                // Add new outcome
                 outcomes[uniqueCount] = vote;
+                voteCounts[uniqueCount] = oracles[voters[i]].reputation;
                 uniqueCount++;
             }
         }
@@ -140,7 +147,7 @@ contract OracleBridge is Ownable, ReentrancyGuard {
         uint256 totalVotes = 0;
         
         for (uint256 i = 0; i < uniqueCount; i++) {
-            uint256 voteCount = votes[outcomes[i]];
+            uint256 voteCount = voteCounts[i];
             totalVotes += voteCount;
             if (voteCount > maxVotes) {
                 maxVotes = voteCount;

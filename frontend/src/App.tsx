@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { WalletProvider } from "@/contexts/WalletContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Markets from "./pages/Markets";
@@ -22,29 +24,31 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/markets" element={<Markets />} />
-          <Route path="/markets/:id" element={<MarketDetails />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/create-market" element={<CreateMarket />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/staking" element={<Staking />} />
-          <Route path="/governance" element={<Governance />} />
-          <Route path="/disputes" element={<Disputes />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/tokenomics" element={<Tokenomics />} />
-          <Route path="/docs" element={<Documentation />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <WalletProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/tokenomics" element={<Tokenomics />} />
+            <Route path="/docs" element={<Documentation />} />
+            <Route path="/markets" element={<ProtectedRoute><Markets /></ProtectedRoute>} />
+            <Route path="/markets/:id" element={<ProtectedRoute><MarketDetails /></ProtectedRoute>} />
+            <Route path="/portfolio" element={<ProtectedRoute><Portfolio /></ProtectedRoute>} />
+            <Route path="/create-market" element={<ProtectedRoute><CreateMarket /></ProtectedRoute>} />
+            <Route path="/leaderboard" element={<ProtectedRoute><Leaderboard /></ProtectedRoute>} />
+            <Route path="/staking" element={<ProtectedRoute><Staking /></ProtectedRoute>} />
+            <Route path="/governance" element={<ProtectedRoute><Governance /></ProtectedRoute>} />
+            <Route path="/disputes" element={<ProtectedRoute><Disputes /></ProtectedRoute>} />
+            <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </WalletProvider>
   </QueryClientProvider>
 );
 

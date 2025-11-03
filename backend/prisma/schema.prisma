@@ -1,0 +1,187 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id              String    @id @default(cuid())
+  walletAddress   String    @unique
+  username        String?   @unique
+  email           String?   @unique
+  bio             String?
+  avatar          String?
+  reputation      Int       @default(0)
+  totalStaked     Decimal   @default(0)
+  totalWinnings   Decimal   @default(0)
+  isVerified      Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // Relations
+  createdMarkets  Market[]  @relation("MarketCreator")
+  predictions     Prediction[]
+  transactions    Transaction[]
+  followers       Follow[]  @relation("Follower")
+  following       Follow[]  @relation("Following")
+  
+  @@map("users")
+}
+
+model Market {
+  id              String      @id @default(cuid())
+  title           String
+  description     String
+  category        String
+  subcategory     String?
+  endDate         DateTime
+  resolutionDate  DateTime?
+  creatorId       String
+  totalStaked     Decimal     @default(0)
+  totalVolume     Decimal     @default(0)
+  status          String      @default("ACTIVE") // MarketStatus
+  outcome         String?
+  confidence      Float?
+  metadata        String?     // JSON stored as string
+  contractAddress String?
+  isVerified      Boolean     @default(false)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  
+  // Relations
+  creator         User        @relation("MarketCreator", fields: [creatorId], references: [id])
+  predictions     Prediction[]
+  outcomes        Outcome[]
+  resolutions     Resolution[]
+  analytics       MarketAnalytics[]
+  
+  @@map("markets")
+}
+
+model Outcome {
+  id          String    @id @default(cuid())
+  marketId    String
+  name        String
+  probability Float     @default(0.5)
+  totalStaked Decimal   @default(0)
+  isWinning   Boolean?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relations
+  market      Market    @relation(fields: [marketId], references: [id], onDelete: Cascade)
+  predictions Prediction[]
+  
+  @@map("outcomes")
+}
+
+model Prediction {
+  id          String      @id @default(cuid())
+  userId      String
+  marketId    String
+  outcomeId   String
+  amount      Decimal
+  odds        Float
+  potential   Decimal
+  status      String      @default("ACTIVE") // PredictionStatus
+  txHash      String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  // Relations
+  user        User        @relation(fields: [userId], references: [id])
+  market      Market      @relation(fields: [marketId], references: [id], onDelete: Cascade)
+  outcome     Outcome     @relation(fields: [outcomeId], references: [id], onDelete: Cascade)
+  
+  @@map("predictions")
+}
+
+model Resolution {
+  id              String      @id @default(cuid())
+  marketId        String
+  resolvedBy      String
+  outcome         String
+  confidence      Float
+  evidence        String?     // JSON stored as string
+  aiConsensus     String?     // JSON stored as string
+  humanVerified   Boolean     @default(false)
+  challengePeriod DateTime?
+  status          String      @default("PENDING") // ResolutionStatus
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  
+  // Relations
+  market          Market      @relation(fields: [marketId], references: [id], onDelete: Cascade)
+  
+  @@map("resolutions")
+}
+
+model Transaction {
+  id          String          @id @default(cuid())
+  userId      String
+  type        String          // TransactionType
+  amount      Decimal
+  currency    String
+  txHash      String          @unique
+  blockNumber Int?
+  status      String          @default("PENDING") // TransactionStatus
+  metadata    String?         // JSON stored as string
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  
+  // Relations
+  user        User            @relation(fields: [userId], references: [id])
+  
+  @@map("transactions")
+}
+
+model Follow {
+  id          String    @id @default(cuid())
+  followerId  String
+  followingId String
+  createdAt   DateTime  @default(now())
+  
+  // Relations
+  follower    User      @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User      @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+  
+  @@unique([followerId, followingId])
+  @@map("follows")
+}
+
+model MarketAnalytics {
+  id              String    @id @default(cuid())
+  marketId        String
+  date            DateTime  @default(now())
+  totalVolume     Decimal   @default(0)
+  totalStaked     Decimal   @default(0)
+  uniqueUsers     Int       @default(0)
+  avgPrediction   Float?
+  volatility      Float?
+  momentum        Float?
+  sentiment       Float?
+  metadata        String?     // JSON stored as string
+  
+  // Relations
+  market          Market    @relation(fields: [marketId], references: [id], onDelete: Cascade)
+  
+  @@map("market_analytics")
+}
+
+model OracleEvent {
+  id          String      @id @default(cuid())
+  eventType   String
+  marketId    String?
+  data        String      // JSON stored as string
+  confidence  Float?
+  processed   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+
+  @@map("oracle_events")
+}

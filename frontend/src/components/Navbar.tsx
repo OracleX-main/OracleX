@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Wallet, Menu, Hexagon } from "lucide-react";
+import { Menu, Hexagon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import WalletButton from "./WalletButton";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,11 +42,7 @@ const Navbar = () => {
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button className="gap-2 bg-gradient-gold hover:shadow-glow-primary transition-all relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <Wallet className="w-4 h-4 relative z-10" />
-              <span className="relative z-10 text-primary-foreground font-medium">Connect Wallet</span>
-            </Button>
+            <WalletButton />
           </div>
 
           {/* Mobile Menu Button */}
@@ -79,10 +76,7 @@ const Navbar = () => {
               <Button variant="ghost" className="w-full hover:text-primary">
                 Sign In
               </Button>
-              <Button className="w-full gap-2 bg-gradient-gold hover:shadow-glow-primary transition-all">
-                <Wallet className="w-4 h-4" />
-                <span className="text-primary-foreground font-medium">Connect Wallet</span>
-              </Button>
+              <WalletButton variant="mobile" className="w-full" />
             </div>
           </div>
         )}
