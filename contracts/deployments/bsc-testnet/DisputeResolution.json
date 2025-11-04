@@ -1,0 +1,1247 @@
+{
+  "address": "0x5fd54e5e037939C93fAC248E39459b168d741502",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_orxToken",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_stakingContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_minimumDisputeBond",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_votingPeriod",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_quorumThreshold",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "disputeId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "market",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "disputer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "disputedOutcome",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "proposedOutcome",
+          "type": "uint256"
+        }
+      ],
+      "name": "DisputeOpened",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "disputeId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "upheld",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "finalOutcome",
+          "type": "uint256"
+        }
+      ],
+      "name": "DisputeResolved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "disputeId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalRewards",
+          "type": "uint256"
+        }
+      ],
+      "name": "RewardsDistributed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "disputeId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum DisputeResolution.VoteChoice",
+          "name": "choice",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "votingPower",
+          "type": "uint256"
+        }
+      ],
+      "name": "VoteCast",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_voter",
+          "type": "address"
+        }
+      ],
+      "name": "canVote",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeId",
+          "type": "uint256"
+        }
+      ],
+      "name": "claimVotingReward",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "disputeCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "disputeVoters",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "disputes",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "market",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "disputer",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "disputedOutcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "proposedOutcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "disputeBond",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "createdAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "votingEndsAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum DisputeResolution.DisputeStatus",
+          "name": "status",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "upholdVotes",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "overturnVotes",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalVotingPower",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "resolved",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "finalOutcome",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "emergencyWithdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeId",
+          "type": "uint256"
+        }
+      ],
+      "name": "finalizeDispute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getActiveDisputes",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getDispute",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "market",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "disputer",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "disputedOutcome",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "proposedOutcome",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "reason",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "disputeBond",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "votingEndsAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum DisputeResolution.DisputeStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "upholdVotes",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "overturnVotes",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalVotingPower",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "resolved",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "finalOutcome",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct DisputeResolution.Dispute",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getDisputeVoters",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTotalDisputes",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_voter",
+          "type": "address"
+        }
+      ],
+      "name": "getVote",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "enum DisputeResolution.VoteChoice",
+              "name": "choice",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "votingPower",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "claimed",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct DisputeResolution.Vote",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minimumDisputeBond",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minimumVotingPower",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_disputedOutcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_proposedOutcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_reason",
+          "type": "string"
+        }
+      ],
+      "name": "openDispute",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "orxToken",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "quorumThreshold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stakingContract",
+      "outputs": [
+        {
+          "internalType": "contract StakingContract",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_minimumDisputeBond",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_votingPeriod",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_quorumThreshold",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_minimumVotingPower",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateParameters",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum DisputeResolution.VoteChoice",
+          "name": "_choice",
+          "type": "uint8"
+        }
+      ],
+      "name": "voteOnDispute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "votes",
+      "outputs": [
+        {
+          "internalType": "enum DisputeResolution.VoteChoice",
+          "name": "choice",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "votingPower",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "claimed",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "votingPeriod",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x709c70ed0f2c0037f1b22359d575e80b6fd337d381532bfcd8168a1f41131d62",
+  "receipt": {
+    "to": null,
+    "from": "0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df",
+    "contractAddress": "0x5fd54e5e037939C93fAC248E39459b168d741502",
+    "transactionIndex": 0,
+    "gasUsed": "2663988",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000800080000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000080001000000000000000000000000080000000000020000000000000000000800000000000000000000000000000000400000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000020000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xd80c7d6464acad97dd81a195df6d76353921928c70e26fd7e85ee7ee06969801",
+    "transactionHash": "0x709c70ed0f2c0037f1b22359d575e80b6fd337d381532bfcd8168a1f41131d62",
+    "logs": [
+      {
+        "transactionIndex": 0,
+        "blockNumber": 71157743,
+        "transactionHash": "0x709c70ed0f2c0037f1b22359d575e80b6fd337d381532bfcd8168a1f41131d62",
+        "address": "0x5fd54e5e037939C93fAC248E39459b168d741502",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000053a7e989cd6ac04edace214d192edad7c7f350df"
+        ],
+        "data": "0x",
+        "logIndex": 0,
+        "blockHash": "0xd80c7d6464acad97dd81a195df6d76353921928c70e26fd7e85ee7ee06969801"
+      }
+    ],
+    "blockNumber": 71157743,
+    "cumulativeGasUsed": "2663988",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x7eE4f73bab260C11c68e5560c46E3975E824ed79",
+    "0x007Aaa957829ea04e130809e9cebbBd4d06dABa2",
+    "100000000000000000",
+    259200,
+    30
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "7e24ddcb10469489694c0196111974d8",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_orxToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_stakingContract\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_minimumDisputeBond\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_votingPeriod\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_quorumThreshold\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ReentrancyGuardReentrantCall\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"disputeId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"market\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"disputer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"disputedOutcome\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"proposedOutcome\",\"type\":\"uint256\"}],\"name\":\"DisputeOpened\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"disputeId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"upheld\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"finalOutcome\",\"type\":\"uint256\"}],\"name\":\"DisputeResolved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"disputeId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"totalRewards\",\"type\":\"uint256\"}],\"name\":\"RewardsDistributed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"disputeId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"voter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"enum DisputeResolution.VoteChoice\",\"name\":\"choice\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"votingPower\",\"type\":\"uint256\"}],\"name\":\"VoteCast\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_voter\",\"type\":\"address\"}],\"name\":\"canVote\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeId\",\"type\":\"uint256\"}],\"name\":\"claimVotingReward\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"disputeCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"disputeVoters\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"disputes\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"market\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"disputer\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"disputedOutcome\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"proposedOutcome\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"disputeBond\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"createdAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votingEndsAt\",\"type\":\"uint256\"},{\"internalType\":\"enum DisputeResolution.DisputeStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"upholdVotes\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"overturnVotes\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalVotingPower\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"resolved\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"finalOutcome\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"emergencyWithdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeId\",\"type\":\"uint256\"}],\"name\":\"finalizeDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getActiveDisputes\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeId\",\"type\":\"uint256\"}],\"name\":\"getDispute\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"market\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"disputer\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"disputedOutcome\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"proposedOutcome\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"disputeBond\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"createdAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votingEndsAt\",\"type\":\"uint256\"},{\"internalType\":\"enum DisputeResolution.DisputeStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"upholdVotes\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"overturnVotes\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalVotingPower\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"resolved\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"finalOutcome\",\"type\":\"uint256\"}],\"internalType\":\"struct DisputeResolution.Dispute\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeId\",\"type\":\"uint256\"}],\"name\":\"getDisputeVoters\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTotalDisputes\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_voter\",\"type\":\"address\"}],\"name\":\"getVote\",\"outputs\":[{\"components\":[{\"internalType\":\"enum DisputeResolution.VoteChoice\",\"name\":\"choice\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"votingPower\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"claimed\",\"type\":\"bool\"}],\"internalType\":\"struct DisputeResolution.Vote\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minimumDisputeBond\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minimumVotingPower\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_market\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_disputedOutcome\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_proposedOutcome\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_reason\",\"type\":\"string\"}],\"name\":\"openDispute\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"orxToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"quorumThreshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stakingContract\",\"outputs\":[{\"internalType\":\"contract StakingContract\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_minimumDisputeBond\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_votingPeriod\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_quorumThreshold\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_minimumVotingPower\",\"type\":\"uint256\"}],\"name\":\"updateParameters\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeId\",\"type\":\"uint256\"},{\"internalType\":\"enum DisputeResolution.VoteChoice\",\"name\":\"_choice\",\"type\":\"uint8\"}],\"name\":\"voteOnDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"votes\",\"outputs\":[{\"internalType\":\"enum DisputeResolution.VoteChoice\",\"name\":\"choice\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"votingPower\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"claimed\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"votingPeriod\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"OwnableInvalidOwner(address)\":[{\"details\":\"The owner is not a valid owner account. (eg. `address(0)`)\"}],\"OwnableUnauthorizedAccount(address)\":[{\"details\":\"The caller account is not authorized to perform an operation.\"}],\"ReentrancyGuardReentrantCall()\":[{\"details\":\"Unauthorized reentrant call.\"}]},\"kind\":\"dev\",\"methods\":{\"canVote(uint256,address)\":{\"details\":\"Check if user can vote on dispute\"},\"claimVotingReward(uint256)\":{\"details\":\"Claim voting rewards manually\"},\"emergencyWithdraw()\":{\"details\":\"Emergency withdrawal of contract funds\"},\"finalizeDispute(uint256)\":{\"details\":\"Finalize a dispute after voting period\",\"params\":{\"_disputeId\":\"ID of the dispute to finalize\"}},\"getActiveDisputes()\":{\"details\":\"Get active disputes\"},\"getDispute(uint256)\":{\"details\":\"Get dispute information\"},\"getDisputeVoters(uint256)\":{\"details\":\"Get all voters for a dispute\"},\"getTotalDisputes()\":{\"details\":\"Get total disputes count\"},\"getVote(uint256,address)\":{\"details\":\"Get vote information\"},\"openDispute(address,uint256,uint256,string)\":{\"details\":\"Open a dispute for a market resolution\",\"params\":{\"_disputedOutcome\":\"Current outcome being disputed\",\"_market\":\"Address of the prediction market\",\"_proposedOutcome\":\"Proposed correct outcome\",\"_reason\":\"Reason for the dispute\"}},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"},\"updateParameters(uint256,uint256,uint256,uint256)\":{\"details\":\"Update contract parameters\"},\"voteOnDispute(uint256,uint8)\":{\"details\":\"Vote on a dispute\",\"params\":{\"_choice\":\"Vote choice (Uphold or Overturn)\",\"_disputeId\":\"ID of the dispute\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/DisputeResolution.sol\":\"DisputeResolution\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Context} from \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * The initial owner is set to the address provided by the deployer. This can\\n * later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    /**\\n     * @dev The caller account is not authorized to perform an operation.\\n     */\\n    error OwnableUnauthorizedAccount(address account);\\n\\n    /**\\n     * @dev The owner is not a valid owner account. (eg. `address(0)`)\\n     */\\n    error OwnableInvalidOwner(address owner);\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the address provided by the deployer as the initial owner.\\n     */\\n    constructor(address initialOwner) {\\n        if (initialOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(initialOwner);\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        if (owner() != _msgSender()) {\\n            revert OwnableUnauthorizedAccount(_msgSender());\\n        }\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby disabling any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        if (newOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\"},\"@openzeppelin/contracts/interfaces/IERC1363.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.4.0) (interfaces/IERC1363.sol)\\n\\npragma solidity >=0.6.2;\\n\\nimport {IERC20} from \\\"./IERC20.sol\\\";\\nimport {IERC165} from \\\"./IERC165.sol\\\";\\n\\n/**\\n * @title IERC1363\\n * @dev Interface of the ERC-1363 standard as defined in the https://eips.ethereum.org/EIPS/eip-1363[ERC-1363].\\n *\\n * Defines an extension interface for ERC-20 tokens that supports executing code on a recipient contract\\n * after `transfer` or `transferFrom`, or code on a spender contract after `approve`, in a single transaction.\\n */\\ninterface IERC1363 is IERC20, IERC165 {\\n    /*\\n     * Note: the ERC-165 identifier for this interface is 0xb0202a11.\\n     * 0xb0202a11 ===\\n     *   bytes4(keccak256('transferAndCall(address,uint256)')) ^\\n     *   bytes4(keccak256('transferAndCall(address,uint256,bytes)')) ^\\n     *   bytes4(keccak256('transferFromAndCall(address,address,uint256)')) ^\\n     *   bytes4(keccak256('transferFromAndCall(address,address,uint256,bytes)')) ^\\n     *   bytes4(keccak256('approveAndCall(address,uint256)')) ^\\n     *   bytes4(keccak256('approveAndCall(address,uint256,bytes)'))\\n     */\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from the caller's account to `to`\\n     * and then calls {IERC1363Receiver-onTransferReceived} on `to`.\\n     * @param to The address which you want to transfer to.\\n     * @param value The amount of tokens to be transferred.\\n     * @return A boolean value indicating whether the operation succeeded unless throwing.\\n     */\\n    function transferAndCall(address to, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from the caller's account to `to`\\n     * and then calls {IERC1363Receiver-onTransferReceived} on `to`.\\n     * @param to The address which you want to transfer to.\\n     * @param value The amount of tokens to be transferred.\\n     * @param data Additional data with no specified format, sent in call to `to`.\\n     * @return A boolean value indicating whether the operation succeeded unless throwing.\\n     */\\n    function transferAndCall(address to, uint256 value, bytes calldata data) external returns (bool);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from `from` to `to` using the allowance mechanism\\n     * and then calls {IERC1363Receiver-onTransferReceived} on `to`.\\n     * @param from The address which you want to send tokens from.\\n     * @param to The address which you want to transfer to.\\n     * @param value The amount of tokens to be transferred.\\n     * @return A boolean value indicating whether the operation succeeded unless throwing.\\n     */\\n    function transferFromAndCall(address from, address to, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from `from` to `to` using the allowance mechanism\\n     * and then calls {IERC1363Receiver-onTransferReceived} on `to`.\\n     * @param from The address which you want to send tokens from.\\n     * @param to The address which you want to transfer to.\\n     * @param value The amount of tokens to be transferred.\\n     * @param data Additional data with no specified format, sent in call to `to`.\\n     * @return A boolean value indicating whether the operation succeeded unless throwing.\\n     */\\n    function transferFromAndCall(address from, address to, uint256 value, bytes calldata data) external returns (bool);\\n\\n    /**\\n     * @dev Sets a `value` amount of tokens as the allowance of `spender` over the\\n     * caller's tokens and then calls {IERC1363Spender-onApprovalReceived} on `spender`.\\n     * @param spender The address which will spend the funds.\\n     * @param value The amount of tokens to be spent.\\n     * @return A boolean value indicating whether the operation succeeded unless throwing.\\n     */\\n    function approveAndCall(address spender, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Sets a `value` amount of tokens as the allowance of `spender` over the\\n     * caller's tokens and then calls {IERC1363Spender-onApprovalReceived} on `spender`.\\n     * @param spender The address which will spend the funds.\\n     * @param value The amount of tokens to be spent.\\n     * @param data Additional data with no specified format, sent in call to `spender`.\\n     * @return A boolean value indicating whether the operation succeeded unless throwing.\\n     */\\n    function approveAndCall(address spender, uint256 value, bytes calldata data) external returns (bool);\\n}\\n\",\"keccak256\":\"0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d\",\"license\":\"MIT\"},\"@openzeppelin/contracts/interfaces/IERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.4.0) (interfaces/IERC165.sol)\\n\\npragma solidity >=0.4.16;\\n\\nimport {IERC165} from \\\"../utils/introspection/IERC165.sol\\\";\\n\",\"keccak256\":\"0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc\",\"license\":\"MIT\"},\"@openzeppelin/contracts/interfaces/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.4.0) (interfaces/IERC20.sol)\\n\\npragma solidity >=0.4.16;\\n\\nimport {IERC20} from \\\"../token/ERC20/IERC20.sol\\\";\\n\",\"keccak256\":\"0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.4.0) (token/ERC20/IERC20.sol)\\n\\npragma solidity >=0.4.16;\\n\\n/**\\n * @dev Interface of the ERC-20 standard as defined in the ERC.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n\\n    /**\\n     * @dev Returns the value of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the value of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from the caller's account to `to`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address to, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets a `value` amount of tokens as the allowance of `spender` over the\\n     * caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from `from` to `to` using the\\n     * allowance mechanism. `value` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(address from, address to, uint256 value) external returns (bool);\\n}\\n\",\"keccak256\":\"0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.3.0) (token/ERC20/utils/SafeERC20.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {IERC20} from \\\"../IERC20.sol\\\";\\nimport {IERC1363} from \\\"../../../interfaces/IERC1363.sol\\\";\\n\\n/**\\n * @title SafeERC20\\n * @dev Wrappers around ERC-20 operations that throw on failure (when the token\\n * contract returns false). Tokens that return no value (and instead revert or\\n * throw on failure) are also supported, non-reverting calls are assumed to be\\n * successful.\\n * To use this library you can add a `using SafeERC20 for IERC20;` statement to your contract,\\n * which allows you to call the safe operations as `token.safeTransfer(...)`, etc.\\n */\\nlibrary SafeERC20 {\\n    /**\\n     * @dev An operation with an ERC-20 token failed.\\n     */\\n    error SafeERC20FailedOperation(address token);\\n\\n    /**\\n     * @dev Indicates a failed `decreaseAllowance` request.\\n     */\\n    error SafeERC20FailedDecreaseAllowance(address spender, uint256 currentAllowance, uint256 requestedDecrease);\\n\\n    /**\\n     * @dev Transfer `value` amount of `token` from the calling contract to `to`. If `token` returns no value,\\n     * non-reverting calls are assumed to be successful.\\n     */\\n    function safeTransfer(IERC20 token, address to, uint256 value) internal {\\n        _callOptionalReturn(token, abi.encodeCall(token.transfer, (to, value)));\\n    }\\n\\n    /**\\n     * @dev Transfer `value` amount of `token` from `from` to `to`, spending the approval given by `from` to the\\n     * calling contract. If `token` returns no value, non-reverting calls are assumed to be successful.\\n     */\\n    function safeTransferFrom(IERC20 token, address from, address to, uint256 value) internal {\\n        _callOptionalReturn(token, abi.encodeCall(token.transferFrom, (from, to, value)));\\n    }\\n\\n    /**\\n     * @dev Variant of {safeTransfer} that returns a bool instead of reverting if the operation is not successful.\\n     */\\n    function trySafeTransfer(IERC20 token, address to, uint256 value) internal returns (bool) {\\n        return _callOptionalReturnBool(token, abi.encodeCall(token.transfer, (to, value)));\\n    }\\n\\n    /**\\n     * @dev Variant of {safeTransferFrom} that returns a bool instead of reverting if the operation is not successful.\\n     */\\n    function trySafeTransferFrom(IERC20 token, address from, address to, uint256 value) internal returns (bool) {\\n        return _callOptionalReturnBool(token, abi.encodeCall(token.transferFrom, (from, to, value)));\\n    }\\n\\n    /**\\n     * @dev Increase the calling contract's allowance toward `spender` by `value`. If `token` returns no value,\\n     * non-reverting calls are assumed to be successful.\\n     *\\n     * IMPORTANT: If the token implements ERC-7674 (ERC-20 with temporary allowance), and if the \\\"client\\\"\\n     * smart contract uses ERC-7674 to set temporary allowances, then the \\\"client\\\" smart contract should avoid using\\n     * this function. Performing a {safeIncreaseAllowance} or {safeDecreaseAllowance} operation on a token contract\\n     * that has a non-zero temporary allowance (for that particular owner-spender) will result in unexpected behavior.\\n     */\\n    function safeIncreaseAllowance(IERC20 token, address spender, uint256 value) internal {\\n        uint256 oldAllowance = token.allowance(address(this), spender);\\n        forceApprove(token, spender, oldAllowance + value);\\n    }\\n\\n    /**\\n     * @dev Decrease the calling contract's allowance toward `spender` by `requestedDecrease`. If `token` returns no\\n     * value, non-reverting calls are assumed to be successful.\\n     *\\n     * IMPORTANT: If the token implements ERC-7674 (ERC-20 with temporary allowance), and if the \\\"client\\\"\\n     * smart contract uses ERC-7674 to set temporary allowances, then the \\\"client\\\" smart contract should avoid using\\n     * this function. Performing a {safeIncreaseAllowance} or {safeDecreaseAllowance} operation on a token contract\\n     * that has a non-zero temporary allowance (for that particular owner-spender) will result in unexpected behavior.\\n     */\\n    function safeDecreaseAllowance(IERC20 token, address spender, uint256 requestedDecrease) internal {\\n        unchecked {\\n            uint256 currentAllowance = token.allowance(address(this), spender);\\n            if (currentAllowance < requestedDecrease) {\\n                revert SafeERC20FailedDecreaseAllowance(spender, currentAllowance, requestedDecrease);\\n            }\\n            forceApprove(token, spender, currentAllowance - requestedDecrease);\\n        }\\n    }\\n\\n    /**\\n     * @dev Set the calling contract's allowance toward `spender` to `value`. If `token` returns no value,\\n     * non-reverting calls are assumed to be successful. Meant to be used with tokens that require the approval\\n     * to be set to zero before setting it to a non-zero value, such as USDT.\\n     *\\n     * NOTE: If the token implements ERC-7674, this function will not modify any temporary allowance. This function\\n     * only sets the \\\"standard\\\" allowance. Any temporary allowance will remain active, in addition to the value being\\n     * set here.\\n     */\\n    function forceApprove(IERC20 token, address spender, uint256 value) internal {\\n        bytes memory approvalCall = abi.encodeCall(token.approve, (spender, value));\\n\\n        if (!_callOptionalReturnBool(token, approvalCall)) {\\n            _callOptionalReturn(token, abi.encodeCall(token.approve, (spender, 0)));\\n            _callOptionalReturn(token, approvalCall);\\n        }\\n    }\\n\\n    /**\\n     * @dev Performs an {ERC1363} transferAndCall, with a fallback to the simple {ERC20} transfer if the target has no\\n     * code. This can be used to implement an {ERC721}-like safe transfer that rely on {ERC1363} checks when\\n     * targeting contracts.\\n     *\\n     * Reverts if the returned value is other than `true`.\\n     */\\n    function transferAndCallRelaxed(IERC1363 token, address to, uint256 value, bytes memory data) internal {\\n        if (to.code.length == 0) {\\n            safeTransfer(token, to, value);\\n        } else if (!token.transferAndCall(to, value, data)) {\\n            revert SafeERC20FailedOperation(address(token));\\n        }\\n    }\\n\\n    /**\\n     * @dev Performs an {ERC1363} transferFromAndCall, with a fallback to the simple {ERC20} transferFrom if the target\\n     * has no code. This can be used to implement an {ERC721}-like safe transfer that rely on {ERC1363} checks when\\n     * targeting contracts.\\n     *\\n     * Reverts if the returned value is other than `true`.\\n     */\\n    function transferFromAndCallRelaxed(\\n        IERC1363 token,\\n        address from,\\n        address to,\\n        uint256 value,\\n        bytes memory data\\n    ) internal {\\n        if (to.code.length == 0) {\\n            safeTransferFrom(token, from, to, value);\\n        } else if (!token.transferFromAndCall(from, to, value, data)) {\\n            revert SafeERC20FailedOperation(address(token));\\n        }\\n    }\\n\\n    /**\\n     * @dev Performs an {ERC1363} approveAndCall, with a fallback to the simple {ERC20} approve if the target has no\\n     * code. This can be used to implement an {ERC721}-like safe transfer that rely on {ERC1363} checks when\\n     * targeting contracts.\\n     *\\n     * NOTE: When the recipient address (`to`) has no code (i.e. is an EOA), this function behaves as {forceApprove}.\\n     * Opposedly, when the recipient address (`to`) has code, this function only attempts to call {ERC1363-approveAndCall}\\n     * once without retrying, and relies on the returned value to be true.\\n     *\\n     * Reverts if the returned value is other than `true`.\\n     */\\n    function approveAndCallRelaxed(IERC1363 token, address to, uint256 value, bytes memory data) internal {\\n        if (to.code.length == 0) {\\n            forceApprove(token, to, value);\\n        } else if (!token.approveAndCall(to, value, data)) {\\n            revert SafeERC20FailedOperation(address(token));\\n        }\\n    }\\n\\n    /**\\n     * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement\\n     * on the return value: the return value is optional (but if data is returned, it must not be false).\\n     * @param token The token targeted by the call.\\n     * @param data The call data (encoded using abi.encode or one of its variants).\\n     *\\n     * This is a variant of {_callOptionalReturnBool} that reverts if call fails to meet the requirements.\\n     */\\n    function _callOptionalReturn(IERC20 token, bytes memory data) private {\\n        uint256 returnSize;\\n        uint256 returnValue;\\n        assembly (\\\"memory-safe\\\") {\\n            let success := call(gas(), token, 0, add(data, 0x20), mload(data), 0, 0x20)\\n            // bubble errors\\n            if iszero(success) {\\n                let ptr := mload(0x40)\\n                returndatacopy(ptr, 0, returndatasize())\\n                revert(ptr, returndatasize())\\n            }\\n            returnSize := returndatasize()\\n            returnValue := mload(0)\\n        }\\n\\n        if (returnSize == 0 ? address(token).code.length == 0 : returnValue != 1) {\\n            revert SafeERC20FailedOperation(address(token));\\n        }\\n    }\\n\\n    /**\\n     * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement\\n     * on the return value: the return value is optional (but if data is returned, it must not be false).\\n     * @param token The token targeted by the call.\\n     * @param data The call data (encoded using abi.encode or one of its variants).\\n     *\\n     * This is a variant of {_callOptionalReturn} that silently catches all reverts and returns a bool instead.\\n     */\\n    function _callOptionalReturnBool(IERC20 token, bytes memory data) private returns (bool) {\\n        bool success;\\n        uint256 returnSize;\\n        uint256 returnValue;\\n        assembly (\\\"memory-safe\\\") {\\n            success := call(gas(), token, 0, add(data, 0x20), mload(data), 0, 0x20)\\n            returnSize := returndatasize()\\n            returnValue := mload(0)\\n        }\\n        return success && (returnSize == 0 ? address(token).code.length > 0 : returnValue == 1);\\n    }\\n}\\n\",\"keccak256\":\"0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.1) (utils/Context.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Pausable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.3.0) (utils/Pausable.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Context} from \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which allows children to implement an emergency stop\\n * mechanism that can be triggered by an authorized account.\\n *\\n * This module is used through inheritance. It will make available the\\n * modifiers `whenNotPaused` and `whenPaused`, which can be applied to\\n * the functions of your contract. Note that they will not be pausable by\\n * simply including this module, only once the modifiers are put in place.\\n */\\nabstract contract Pausable is Context {\\n    bool private _paused;\\n\\n    /**\\n     * @dev Emitted when the pause is triggered by `account`.\\n     */\\n    event Paused(address account);\\n\\n    /**\\n     * @dev Emitted when the pause is lifted by `account`.\\n     */\\n    event Unpaused(address account);\\n\\n    /**\\n     * @dev The operation failed because the contract is paused.\\n     */\\n    error EnforcedPause();\\n\\n    /**\\n     * @dev The operation failed because the contract is not paused.\\n     */\\n    error ExpectedPause();\\n\\n    /**\\n     * @dev Modifier to make a function callable only when the contract is not paused.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must not be paused.\\n     */\\n    modifier whenNotPaused() {\\n        _requireNotPaused();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Modifier to make a function callable only when the contract is paused.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must be paused.\\n     */\\n    modifier whenPaused() {\\n        _requirePaused();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns true if the contract is paused, and false otherwise.\\n     */\\n    function paused() public view virtual returns (bool) {\\n        return _paused;\\n    }\\n\\n    /**\\n     * @dev Throws if the contract is paused.\\n     */\\n    function _requireNotPaused() internal view virtual {\\n        if (paused()) {\\n            revert EnforcedPause();\\n        }\\n    }\\n\\n    /**\\n     * @dev Throws if the contract is not paused.\\n     */\\n    function _requirePaused() internal view virtual {\\n        if (!paused()) {\\n            revert ExpectedPause();\\n        }\\n    }\\n\\n    /**\\n     * @dev Triggers stopped state.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must not be paused.\\n     */\\n    function _pause() internal virtual whenNotPaused {\\n        _paused = true;\\n        emit Paused(_msgSender());\\n    }\\n\\n    /**\\n     * @dev Returns to normal state.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must be paused.\\n     */\\n    function _unpause() internal virtual whenPaused {\\n        _paused = false;\\n        emit Unpaused(_msgSender());\\n    }\\n}\\n\",\"keccak256\":\"0xdb484371dfbb848cb6f5d70464e9ac9b2900e4164ead76bbce4fef0b44bcc68f\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.1.0) (utils/ReentrancyGuard.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Contract module that helps prevent reentrant calls to a function.\\n *\\n * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\\n * available, which can be applied to functions to make sure there are no nested\\n * (reentrant) calls to them.\\n *\\n * Note that because there is a single `nonReentrant` guard, functions marked as\\n * `nonReentrant` may not call one another. This can be worked around by making\\n * those functions `private`, and then adding `external` `nonReentrant` entry\\n * points to them.\\n *\\n * TIP: If EIP-1153 (transient storage) is available on the chain you're deploying at,\\n * consider using {ReentrancyGuardTransient} instead.\\n *\\n * TIP: If you would like to learn more about reentrancy and alternative ways\\n * to protect against it, check out our blog post\\n * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].\\n */\\nabstract contract ReentrancyGuard {\\n    // Booleans are more expensive than uint256 or any type that takes up a full\\n    // word because each write operation emits an extra SLOAD to first read the\\n    // slot's contents, replace the bits taken up by the boolean, and then write\\n    // back. This is the compiler's defense against contract upgrades and\\n    // pointer aliasing, and it cannot be disabled.\\n\\n    // The values being non-zero value makes deployment a bit more expensive,\\n    // but in exchange the refund on every call to nonReentrant will be lower in\\n    // amount. Since refunds are capped to a percentage of the total\\n    // transaction's gas, it is best to keep them low in cases like this one, to\\n    // increase the likelihood of the full refund coming into effect.\\n    uint256 private constant NOT_ENTERED = 1;\\n    uint256 private constant ENTERED = 2;\\n\\n    uint256 private _status;\\n\\n    /**\\n     * @dev Unauthorized reentrant call.\\n     */\\n    error ReentrancyGuardReentrantCall();\\n\\n    constructor() {\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Prevents a contract from calling itself, directly or indirectly.\\n     * Calling a `nonReentrant` function from another `nonReentrant`\\n     * function is not supported. It is possible to prevent this from happening\\n     * by making the `nonReentrant` function external, and making it call a\\n     * `private` function that does the actual work.\\n     */\\n    modifier nonReentrant() {\\n        _nonReentrantBefore();\\n        _;\\n        _nonReentrantAfter();\\n    }\\n\\n    function _nonReentrantBefore() private {\\n        // On the first call to nonReentrant, _status will be NOT_ENTERED\\n        if (_status == ENTERED) {\\n            revert ReentrancyGuardReentrantCall();\\n        }\\n\\n        // Any calls to nonReentrant after this point will fail\\n        _status = ENTERED;\\n    }\\n\\n    function _nonReentrantAfter() private {\\n        // By storing the original value once again, a refund is triggered (see\\n        // https://eips.ethereum.org/EIPS/eip-2200)\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Returns true if the reentrancy guard is currently set to \\\"entered\\\", which indicates there is a\\n     * `nonReentrant` function in the call stack.\\n     */\\n    function _reentrancyGuardEntered() internal view returns (bool) {\\n        return _status == ENTERED;\\n    }\\n}\\n\",\"keccak256\":\"0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.4.0) (utils/introspection/IERC165.sol)\\n\\npragma solidity >=0.4.16;\\n\\n/**\\n * @dev Interface of the ERC-165 standard, as defined in the\\n * https://eips.ethereum.org/EIPS/eip-165[ERC].\\n *\\n * Implementers can declare support of contract interfaces, which can then be\\n * queried by others ({ERC165Checker}).\\n *\\n * For an implementation, see {ERC165}.\\n */\\ninterface IERC165 {\\n    /**\\n     * @dev Returns true if this contract implements the interface defined by\\n     * `interfaceId`. See the corresponding\\n     * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[ERC section]\\n     * to learn more about how these ids are created.\\n     *\\n     * This function call must use less than 30 000 gas.\\n     */\\n    function supportsInterface(bytes4 interfaceId) external view returns (bool);\\n}\\n\",\"keccak256\":\"0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c\",\"license\":\"MIT\"},\"contracts/DisputeResolution.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\r\\nimport \\\"./StakingContract.sol\\\";\\r\\nimport \\\"./PredictionMarket.sol\\\";\\r\\n\\r\\ncontract DisputeResolution is ReentrancyGuard, Ownable {\\r\\n    enum DisputeStatus { Open, Voting, Resolved, Rejected }\\r\\n    enum VoteChoice { NoVote, Uphold, Overturn }\\r\\n\\r\\n    struct Dispute {\\r\\n        address market;\\r\\n        address disputer;\\r\\n        uint256 disputedOutcome;\\r\\n        uint256 proposedOutcome;\\r\\n        string reason;\\r\\n        uint256 disputeBond;\\r\\n        uint256 createdAt;\\r\\n        uint256 votingEndsAt;\\r\\n        DisputeStatus status;\\r\\n        uint256 upholdVotes;\\r\\n        uint256 overturnVotes;\\r\\n        uint256 totalVotingPower;\\r\\n        bool resolved;\\r\\n        uint256 finalOutcome;\\r\\n    }\\r\\n\\r\\n    struct Vote {\\r\\n        VoteChoice choice;\\r\\n        uint256 votingPower;\\r\\n        uint256 timestamp;\\r\\n        bool claimed;\\r\\n    }\\r\\n\\r\\n    // State variables\\r\\n    mapping(uint256 => Dispute) public disputes;\\r\\n    mapping(uint256 => mapping(address => Vote)) public votes; // disputeId => voter => vote\\r\\n    mapping(uint256 => address[]) public disputeVoters; // disputeId => voters[]\\r\\n    \\r\\n    uint256 public disputeCounter;\\r\\n    uint256 public minimumDisputeBond;\\r\\n    uint256 public votingPeriod;\\r\\n    uint256 public minimumVotingPower;\\r\\n    uint256 public quorumThreshold; // Percentage of total voting power needed\\r\\n    \\r\\n    IERC20 public orxToken;\\r\\n    StakingContract public stakingContract;\\r\\n    \\r\\n    // Events\\r\\n    event DisputeOpened(\\r\\n        uint256 indexed disputeId,\\r\\n        address indexed market,\\r\\n        address indexed disputer,\\r\\n        uint256 disputedOutcome,\\r\\n        uint256 proposedOutcome\\r\\n    );\\r\\n    \\r\\n    event VoteCast(\\r\\n        uint256 indexed disputeId,\\r\\n        address indexed voter,\\r\\n        VoteChoice choice,\\r\\n        uint256 votingPower\\r\\n    );\\r\\n    \\r\\n    event DisputeResolved(\\r\\n        uint256 indexed disputeId,\\r\\n        bool upheld,\\r\\n        uint256 finalOutcome\\r\\n    );\\r\\n    \\r\\n    event RewardsDistributed(uint256 indexed disputeId, uint256 totalRewards);\\r\\n\\r\\n    modifier onlyActiveValidator() {\\r\\n        require(stakingContract.isActiveValidator(msg.sender), \\\"Not an active validator\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier disputeExists(uint256 _disputeId) {\\r\\n        require(_disputeId < disputeCounter, \\\"Dispute does not exist\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    constructor(\\r\\n        address _orxToken,\\r\\n        address _stakingContract,\\r\\n        uint256 _minimumDisputeBond,\\r\\n        uint256 _votingPeriod,\\r\\n        uint256 _quorumThreshold\\r\\n    ) Ownable(msg.sender) {\\r\\n        orxToken = IERC20(_orxToken);\\r\\n        stakingContract = StakingContract(_stakingContract);\\r\\n        minimumDisputeBond = _minimumDisputeBond;\\r\\n        votingPeriod = _votingPeriod;\\r\\n        quorumThreshold = _quorumThreshold;\\r\\n        minimumVotingPower = 1000 * 1e18; // 1000 ORX minimum\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Open a dispute for a market resolution\\r\\n     * @param _market Address of the prediction market\\r\\n     * @param _disputedOutcome Current outcome being disputed\\r\\n     * @param _proposedOutcome Proposed correct outcome\\r\\n     * @param _reason Reason for the dispute\\r\\n     */\\r\\n    function openDispute(\\r\\n        address _market,\\r\\n        uint256 _disputedOutcome,\\r\\n        uint256 _proposedOutcome,\\r\\n        string memory _reason\\r\\n    ) external payable nonReentrant returns (uint256) {\\r\\n        require(msg.value >= minimumDisputeBond, \\\"Insufficient dispute bond\\\");\\r\\n        require(_disputedOutcome != _proposedOutcome, \\\"Outcomes cannot be the same\\\");\\r\\n        require(bytes(_reason).length > 0, \\\"Reason required\\\");\\r\\n\\r\\n        // Verify market status\\r\\n        (,,,, PredictionMarket.MarketStatus status,,) = PredictionMarket(_market).getMarketInfo();\\r\\n        require(status == PredictionMarket.MarketStatus.Resolved, \\\"Market not resolved\\\");\\r\\n\\r\\n        uint256 disputeId = disputeCounter++;\\r\\n        \\r\\n        disputes[disputeId] = Dispute({\\r\\n            market: _market,\\r\\n            disputer: msg.sender,\\r\\n            disputedOutcome: _disputedOutcome,\\r\\n            proposedOutcome: _proposedOutcome,\\r\\n            reason: _reason,\\r\\n            disputeBond: msg.value,\\r\\n            createdAt: block.timestamp,\\r\\n            votingEndsAt: block.timestamp + votingPeriod,\\r\\n            status: DisputeStatus.Voting,\\r\\n            upholdVotes: 0,\\r\\n            overturnVotes: 0,\\r\\n            totalVotingPower: 0,\\r\\n            resolved: false,\\r\\n            finalOutcome: _disputedOutcome\\r\\n        });\\r\\n\\r\\n        emit DisputeOpened(disputeId, _market, msg.sender, _disputedOutcome, _proposedOutcome);\\r\\n\\r\\n        return disputeId;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Vote on a dispute\\r\\n     * @param _disputeId ID of the dispute\\r\\n     * @param _choice Vote choice (Uphold or Overturn)\\r\\n     */\\r\\n    function voteOnDispute(uint256 _disputeId, VoteChoice _choice) \\r\\n        external \\r\\n        nonReentrant \\r\\n        disputeExists(_disputeId)\\r\\n        onlyActiveValidator \\r\\n    {\\r\\n        require(_choice != VoteChoice.NoVote, \\\"Invalid vote choice\\\");\\r\\n        \\r\\n        Dispute storage dispute = disputes[_disputeId];\\r\\n        require(dispute.status == DisputeStatus.Voting, \\\"Voting period ended\\\");\\r\\n        require(block.timestamp <= dispute.votingEndsAt, \\\"Voting period expired\\\");\\r\\n        require(votes[_disputeId][msg.sender].choice == VoteChoice.NoVote, \\\"Already voted\\\");\\r\\n\\r\\n        // Calculate voting power based on stake and reputation\\r\\n        StakingContract.StakeInfo memory stakeInfo = stakingContract.getStakeInfo(msg.sender);\\r\\n        StakingContract.Validator memory validatorInfo = stakingContract.getValidatorInfo(msg.sender);\\r\\n        \\r\\n        require(stakeInfo.amount >= minimumVotingPower, \\\"Insufficient voting power\\\");\\r\\n        \\r\\n        // Voting power = staked amount * reputation factor\\r\\n        uint256 votingPower = (stakeInfo.amount * validatorInfo.reputation) / 1000;\\r\\n\\r\\n        // Record vote\\r\\n        votes[_disputeId][msg.sender] = Vote({\\r\\n            choice: _choice,\\r\\n            votingPower: votingPower,\\r\\n            timestamp: block.timestamp,\\r\\n            claimed: false\\r\\n        });\\r\\n\\r\\n        disputeVoters[_disputeId].push(msg.sender);\\r\\n\\r\\n        // Update vote tallies\\r\\n        if (_choice == VoteChoice.Uphold) {\\r\\n            dispute.upholdVotes += votingPower;\\r\\n        } else if (_choice == VoteChoice.Overturn) {\\r\\n            dispute.overturnVotes += votingPower;\\r\\n        }\\r\\n\\r\\n        dispute.totalVotingPower += votingPower;\\r\\n\\r\\n        emit VoteCast(_disputeId, msg.sender, _choice, votingPower);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Finalize a dispute after voting period\\r\\n     * @param _disputeId ID of the dispute to finalize\\r\\n     */\\r\\n    function finalizeDispute(uint256 _disputeId) \\r\\n        external \\r\\n        nonReentrant \\r\\n        disputeExists(_disputeId) \\r\\n    {\\r\\n        Dispute storage dispute = disputes[_disputeId];\\r\\n        require(dispute.status == DisputeStatus.Voting, \\\"Dispute not in voting phase\\\");\\r\\n        require(block.timestamp > dispute.votingEndsAt, \\\"Voting period not ended\\\");\\r\\n        require(!dispute.resolved, \\\"Dispute already resolved\\\");\\r\\n\\r\\n        // Check if quorum was reached\\r\\n        uint256 totalStaked = orxToken.balanceOf(address(stakingContract));\\r\\n        uint256 quorumRequired = (totalStaked * quorumThreshold) / 100;\\r\\n        \\r\\n        if (dispute.totalVotingPower < quorumRequired) {\\r\\n            dispute.status = DisputeStatus.Rejected;\\r\\n            // Return dispute bond to disputer\\r\\n            (bool success, ) = payable(dispute.disputer).call{value: dispute.disputeBond}(\\\"\\\");\\r\\n            require(success, \\\"Bond return failed\\\");\\r\\n            \\r\\n            emit DisputeResolved(_disputeId, false, dispute.finalOutcome);\\r\\n        } else {\\r\\n            // Determine outcome based on votes\\r\\n            bool upheld = dispute.upholdVotes > dispute.overturnVotes;\\r\\n            \\r\\n            if (upheld) {\\r\\n                dispute.status = DisputeStatus.Resolved;\\r\\n                dispute.finalOutcome = dispute.disputedOutcome;\\r\\n                // Return dispute bond to disputer (they were wrong)\\r\\n                (bool success, ) = payable(dispute.disputer).call{value: dispute.disputeBond}(\\\"\\\");\\r\\n                require(success, \\\"Bond return failed\\\");\\r\\n            } else {\\r\\n                dispute.status = DisputeStatus.Resolved;\\r\\n                dispute.finalOutcome = dispute.proposedOutcome;\\r\\n                \\r\\n                // Update market with new outcome - this would require market to have an update function\\r\\n                // For now, we'll just record the decision\\r\\n                \\r\\n                // Reward the disputer with their bond back plus bonus\\r\\n                uint256 reward = dispute.disputeBond + (dispute.disputeBond / 2); // 50% bonus\\r\\n                (bool success, ) = payable(dispute.disputer).call{value: reward}(\\\"\\\");\\r\\n                require(success, \\\"Reward transfer failed\\\");\\r\\n            }\\r\\n            \\r\\n            dispute.resolved = true;\\r\\n            _distributeVotingRewards(_disputeId, upheld);\\r\\n            \\r\\n            emit DisputeResolved(_disputeId, upheld, dispute.finalOutcome);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Distribute rewards to winning voters\\r\\n     */\\r\\n    function _distributeVotingRewards(uint256 _disputeId, bool _upheld) internal {\\r\\n        Dispute storage dispute = disputes[_disputeId];\\r\\n        address[] memory voters = disputeVoters[_disputeId];\\r\\n        \\r\\n        uint256 winningVotes = _upheld ? dispute.upholdVotes : dispute.overturnVotes;\\r\\n        uint256 totalReward = dispute.disputeBond / 4; // 25% of dispute bond as reward pool\\r\\n        \\r\\n        if (winningVotes == 0) return;\\r\\n        \\r\\n        for (uint256 i = 0; i < voters.length; i++) {\\r\\n            address voter = voters[i];\\r\\n            Vote storage vote = votes[_disputeId][voter];\\r\\n            \\r\\n            bool wonVote = (_upheld && vote.choice == VoteChoice.Uphold) || \\r\\n                          (!_upheld && vote.choice == VoteChoice.Overturn);\\r\\n            \\r\\n            if (wonVote && !vote.claimed) {\\r\\n                uint256 voterReward = (vote.votingPower * totalReward) / winningVotes;\\r\\n                vote.claimed = true;\\r\\n                \\r\\n                // Transfer ORX tokens as reward\\r\\n                orxToken.transfer(voter, voterReward);\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        emit RewardsDistributed(_disputeId, totalReward);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Claim voting rewards manually\\r\\n     */\\r\\n    function claimVotingReward(uint256 _disputeId) external nonReentrant disputeExists(_disputeId) {\\r\\n        require(disputes[_disputeId].resolved, \\\"Dispute not resolved\\\");\\r\\n        require(!votes[_disputeId][msg.sender].claimed, \\\"Reward already claimed\\\");\\r\\n        \\r\\n        Dispute storage dispute = disputes[_disputeId];\\r\\n        Vote storage vote = votes[_disputeId][msg.sender];\\r\\n        \\r\\n        bool upheld = dispute.upholdVotes > dispute.overturnVotes;\\r\\n        bool wonVote = (upheld && vote.choice == VoteChoice.Uphold) || \\r\\n                      (!upheld && vote.choice == VoteChoice.Overturn);\\r\\n        \\r\\n        require(wonVote, \\\"Did not win the vote\\\");\\r\\n        \\r\\n        uint256 winningVotes = upheld ? dispute.upholdVotes : dispute.overturnVotes;\\r\\n        uint256 totalReward = dispute.disputeBond / 4;\\r\\n        uint256 voterReward = (vote.votingPower * totalReward) / winningVotes;\\r\\n        \\r\\n        vote.claimed = true;\\r\\n        orxToken.transfer(msg.sender, voterReward);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get dispute information\\r\\n     */\\r\\n    function getDispute(uint256 _disputeId) external view returns (Dispute memory) {\\r\\n        return disputes[_disputeId];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get vote information\\r\\n     */\\r\\n    function getVote(uint256 _disputeId, address _voter) external view returns (Vote memory) {\\r\\n        return votes[_disputeId][_voter];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get all voters for a dispute\\r\\n     */\\r\\n    function getDisputeVoters(uint256 _disputeId) external view returns (address[] memory) {\\r\\n        return disputeVoters[_disputeId];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Check if user can vote on dispute\\r\\n     */\\r\\n    function canVote(uint256 _disputeId, address _voter) external view returns (bool) {\\r\\n        if (_disputeId >= disputeCounter) return false;\\r\\n        \\r\\n        Dispute memory dispute = disputes[_disputeId];\\r\\n        if (dispute.status != DisputeStatus.Voting) return false;\\r\\n        if (block.timestamp > dispute.votingEndsAt) return false;\\r\\n        if (votes[_disputeId][_voter].choice != VoteChoice.NoVote) return false;\\r\\n        if (!stakingContract.isActiveValidator(_voter)) return false;\\r\\n        \\r\\n        StakingContract.StakeInfo memory stakeInfo = stakingContract.getStakeInfo(_voter);\\r\\n        return stakeInfo.amount >= minimumVotingPower;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Update contract parameters\\r\\n     */\\r\\n    function updateParameters(\\r\\n        uint256 _minimumDisputeBond,\\r\\n        uint256 _votingPeriod,\\r\\n        uint256 _quorumThreshold,\\r\\n        uint256 _minimumVotingPower\\r\\n    ) external onlyOwner {\\r\\n        minimumDisputeBond = _minimumDisputeBond;\\r\\n        votingPeriod = _votingPeriod;\\r\\n        quorumThreshold = _quorumThreshold;\\r\\n        minimumVotingPower = _minimumVotingPower;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Emergency withdrawal of contract funds\\r\\n     */\\r\\n    function emergencyWithdraw() external onlyOwner {\\r\\n        uint256 balance = address(this).balance;\\r\\n        (bool success, ) = payable(owner()).call{value: balance}(\\\"\\\");\\r\\n        require(success, \\\"Withdrawal failed\\\");\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get total disputes count\\r\\n     */\\r\\n    function getTotalDisputes() external view returns (uint256) {\\r\\n        return disputeCounter;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get active disputes\\r\\n     */\\r\\n    function getActiveDisputes() external view returns (uint256[] memory) {\\r\\n        uint256 activeCount = 0;\\r\\n        \\r\\n        // Count active disputes\\r\\n        for (uint256 i = 0; i < disputeCounter; i++) {\\r\\n            if (disputes[i].status == DisputeStatus.Voting) {\\r\\n                activeCount++;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        // Build active disputes array\\r\\n        uint256[] memory activeDisputes = new uint256[](activeCount);\\r\\n        uint256 index = 0;\\r\\n        \\r\\n        for (uint256 i = 0; i < disputeCounter; i++) {\\r\\n            if (disputes[i].status == DisputeStatus.Voting) {\\r\\n                activeDisputes[index] = i;\\r\\n                index++;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        return activeDisputes;\\r\\n    }\\r\\n}\",\"keccak256\":\"0xd9def505aa91c06d2aabbfaf1d875c241cf428e766de70be5ddfd9c4ab895743\",\"license\":\"MIT\"},\"contracts/PredictionMarket.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/utils/Pausable.sol\\\";\\r\\nimport \\\"./interfaces/IAIOracle.sol\\\";\\r\\n\\r\\ncontract PredictionMarket is ReentrancyGuard, Pausable {\\r\\n    enum MarketStatus { Active, Resolved, Disputed, Cancelled }\\r\\n    enum OracleType { AI, Manual, Hybrid }\\r\\n\\r\\n    struct Bet {\\r\\n        uint256 amount;\\r\\n        uint256 outcome;\\r\\n        uint256 timestamp;\\r\\n        bool claimed;\\r\\n    }\\r\\n\\r\\n    struct Outcome {\\r\\n        string name;\\r\\n        uint256 totalStaked;\\r\\n        uint256 betCount;\\r\\n    }\\r\\n\\r\\n    // State variables\\r\\n    string public title;\\r\\n    string public description;\\r\\n    Outcome[] public outcomes;\\r\\n    uint256 public expiryTime;\\r\\n    address public creator;\\r\\n    address public factory;\\r\\n    address public oracleAddress;\\r\\n    OracleType public oracleType;\\r\\n    MarketStatus public status;\\r\\n    \\r\\n    uint256 public totalVolume;\\r\\n    uint256 public winningOutcome;\\r\\n    uint256 public resolutionTime;\\r\\n    uint256 public platformFeeRate; // Basis points (e.g., 250 = 2.5%)\\r\\n    \\r\\n    mapping(address => Bet[]) public userBets;\\r\\n    mapping(address => uint256) public userTotalStaked;\\r\\n    mapping(uint256 => uint256) public outcomeStaked;\\r\\n    \\r\\n    address[] public participants;\\r\\n    mapping(address => bool) public hasParticipated;\\r\\n\\r\\n    // Events\\r\\n    event BetPlaced(\\r\\n        address indexed user,\\r\\n        uint256 indexed outcome,\\r\\n        uint256 amount,\\r\\n        uint256 timestamp\\r\\n    );\\r\\n    \\r\\n    event MarketResolved(\\r\\n        uint256 indexed winningOutcome,\\r\\n        uint256 timestamp,\\r\\n        string resolution\\r\\n    );\\r\\n    \\r\\n    event RewardClaimed(\\r\\n        address indexed user,\\r\\n        uint256 amount,\\r\\n        uint256 timestamp\\r\\n    );\\r\\n    \\r\\n    event MarketDisputed(\\r\\n        address indexed disputer,\\r\\n        uint256 timestamp,\\r\\n        string reason\\r\\n    );\\r\\n\\r\\n    event MarketCancelled(uint256 timestamp, string reason);\\r\\n\\r\\n    modifier onlyCreator() {\\r\\n        require(msg.sender == creator, \\\"Only market creator allowed\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier onlyFactory() {\\r\\n        require(msg.sender == factory, \\\"Only factory allowed\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier onlyOracle() {\\r\\n        require(msg.sender == oracleAddress, \\\"Only oracle allowed\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier marketActive() {\\r\\n        require(status == MarketStatus.Active, \\\"Market not active\\\");\\r\\n        require(block.timestamp < expiryTime, \\\"Market expired\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier marketResolved() {\\r\\n        require(status == MarketStatus.Resolved, \\\"Market not resolved\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    constructor(\\r\\n        string memory _title,\\r\\n        string memory _description,\\r\\n        string[] memory _outcomes,\\r\\n        uint256 _expiryTime,\\r\\n        address _creator,\\r\\n        address _oracleAddress,\\r\\n        uint8 _oracleType,\\r\\n        address _factory\\r\\n    ) {\\r\\n        require(_outcomes.length >= 2, \\\"Need at least 2 outcomes\\\");\\r\\n        require(_expiryTime > block.timestamp, \\\"Expiry must be in future\\\");\\r\\n        \\r\\n        title = _title;\\r\\n        description = _description;\\r\\n        expiryTime = _expiryTime;\\r\\n        creator = _creator;\\r\\n        oracleAddress = _oracleAddress;\\r\\n        oracleType = OracleType(_oracleType);\\r\\n        factory = _factory;\\r\\n        status = MarketStatus.Active;\\r\\n        platformFeeRate = 250; // 2.5% default fee\\r\\n        \\r\\n        // Initialize outcomes\\r\\n        for (uint256 i = 0; i < _outcomes.length; i++) {\\r\\n            outcomes.push(Outcome({\\r\\n                name: _outcomes[i],\\r\\n                totalStaked: 0,\\r\\n                betCount: 0\\r\\n            }));\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Place a bet on a specific outcome\\r\\n     * @param _outcome Index of the outcome to bet on\\r\\n     */\\r\\n    function placeBet(uint256 _outcome) \\r\\n        external \\r\\n        payable \\r\\n        nonReentrant \\r\\n        marketActive \\r\\n        whenNotPaused \\r\\n    {\\r\\n        require(_outcome < outcomes.length, \\\"Invalid outcome\\\");\\r\\n        require(msg.value > 0, \\\"Bet amount must be positive\\\");\\r\\n        \\r\\n        // Record bet\\r\\n        userBets[msg.sender].push(Bet({\\r\\n            amount: msg.value,\\r\\n            outcome: _outcome,\\r\\n            timestamp: block.timestamp,\\r\\n            claimed: false\\r\\n        }));\\r\\n\\r\\n        // Update tracking variables\\r\\n        outcomes[_outcome].totalStaked += msg.value;\\r\\n        outcomes[_outcome].betCount++;\\r\\n        outcomeStaked[_outcome] += msg.value;\\r\\n        userTotalStaked[msg.sender] += msg.value;\\r\\n        totalVolume += msg.value;\\r\\n\\r\\n        // Track unique participants\\r\\n        if (!hasParticipated[msg.sender]) {\\r\\n            participants.push(msg.sender);\\r\\n            hasParticipated[msg.sender] = true;\\r\\n        }\\r\\n\\r\\n        emit BetPlaced(msg.sender, _outcome, msg.value, block.timestamp);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Resolve market with winning outcome\\r\\n     * @param _winningOutcome Index of the winning outcome\\r\\n     * @param _resolution Description of resolution\\r\\n     */\\r\\n    function resolveMarket(uint256 _winningOutcome, string memory _resolution) \\r\\n        external \\r\\n        onlyOracle \\r\\n        nonReentrant \\r\\n    {\\r\\n        require(status == MarketStatus.Active, \\\"Market not active\\\");\\r\\n        require(block.timestamp >= expiryTime, \\\"Market not expired yet\\\");\\r\\n        require(_winningOutcome < outcomes.length, \\\"Invalid winning outcome\\\");\\r\\n        \\r\\n        status = MarketStatus.Resolved;\\r\\n        winningOutcome = _winningOutcome;\\r\\n        resolutionTime = block.timestamp;\\r\\n        \\r\\n        emit MarketResolved(_winningOutcome, block.timestamp, _resolution);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Claim rewards for winning bets\\r\\n     */\\r\\n    function claimReward() external nonReentrant marketResolved {\\r\\n        require(userBets[msg.sender].length > 0, \\\"No bets found\\\");\\r\\n        \\r\\n        uint256 totalReward = calculateUserReward(msg.sender);\\r\\n        require(totalReward > 0, \\\"No rewards to claim\\\");\\r\\n        \\r\\n        // Mark bets as claimed\\r\\n        for (uint256 i = 0; i < userBets[msg.sender].length; i++) {\\r\\n            if (userBets[msg.sender][i].outcome == winningOutcome && \\r\\n                !userBets[msg.sender][i].claimed) {\\r\\n                userBets[msg.sender][i].claimed = true;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        // Calculate platform fee\\r\\n        uint256 platformFee = (totalReward * platformFeeRate) / 10000;\\r\\n        uint256 userReward = totalReward - platformFee;\\r\\n        \\r\\n        // Transfer rewards\\r\\n        (bool success, ) = payable(msg.sender).call{value: userReward}(\\\"\\\");\\r\\n        require(success, \\\"Reward transfer failed\\\");\\r\\n        \\r\\n        // Transfer platform fee to factory\\r\\n        if (platformFee > 0) {\\r\\n            (bool feeSuccess, ) = payable(factory).call{value: platformFee}(\\\"\\\");\\r\\n            require(feeSuccess, \\\"Fee transfer failed\\\");\\r\\n        }\\r\\n        \\r\\n        emit RewardClaimed(msg.sender, userReward, block.timestamp);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Calculate potential reward for a user\\r\\n     */\\r\\n    function calculateUserReward(address _user) public view returns (uint256) {\\r\\n        if (status != MarketStatus.Resolved) return 0;\\r\\n        \\r\\n        uint256 userWinningStake = 0;\\r\\n        \\r\\n        // Calculate user's winning stakes\\r\\n        for (uint256 i = 0; i < userBets[_user].length; i++) {\\r\\n            Bet memory bet = userBets[_user][i];\\r\\n            if (bet.outcome == winningOutcome && !bet.claimed) {\\r\\n                userWinningStake += bet.amount;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        if (userWinningStake == 0) return 0;\\r\\n        \\r\\n        uint256 totalWinningStake = outcomes[winningOutcome].totalStaked;\\r\\n        if (totalWinningStake == 0) return 0;\\r\\n        \\r\\n        // Calculate proportional share of total pool\\r\\n        return (userWinningStake * totalVolume) / totalWinningStake;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get market information\\r\\n     */\\r\\n    function getMarketInfo() external view returns (\\r\\n        string memory _title,\\r\\n        string memory _description,\\r\\n        uint256 _totalVolume,\\r\\n        uint256 _expiryTime,\\r\\n        MarketStatus _status,\\r\\n        uint256 _participantCount,\\r\\n        uint256 _outcomeCount\\r\\n    ) {\\r\\n        return (\\r\\n            title,\\r\\n            description,\\r\\n            totalVolume,\\r\\n            expiryTime,\\r\\n            status,\\r\\n            participants.length,\\r\\n            outcomes.length\\r\\n        );\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get all outcomes\\r\\n     */\\r\\n    function getOutcomes() external view returns (Outcome[] memory) {\\r\\n        return outcomes;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get user's bets\\r\\n     */\\r\\n    function getUserBets(address _user) external view returns (Bet[] memory) {\\r\\n        return userBets[_user];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get market odds for each outcome\\r\\n     */\\r\\n    function getOdds() external view returns (uint256[] memory) {\\r\\n        uint256[] memory odds = new uint256[](outcomes.length);\\r\\n        \\r\\n        if (totalVolume == 0) {\\r\\n            // Equal odds if no bets placed\\r\\n            for (uint256 i = 0; i < outcomes.length; i++) {\\r\\n                odds[i] = 10000 / outcomes.length; // Basis points\\r\\n            }\\r\\n        } else {\\r\\n            for (uint256 i = 0; i < outcomes.length; i++) {\\r\\n                odds[i] = (outcomes[i].totalStaked * 10000) / totalVolume;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        return odds;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Emergency pause (only creator or factory)\\r\\n     */\\r\\n    function pause() external {\\r\\n        require(msg.sender == creator || msg.sender == factory, \\\"Unauthorized\\\");\\r\\n        _pause();\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Unpause (only creator or factory)\\r\\n     */\\r\\n    function unpause() external {\\r\\n        require(msg.sender == creator || msg.sender == factory, \\\"Unauthorized\\\");\\r\\n        _unpause();\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Cancel market and refund all participants\\r\\n     */\\r\\n    function cancelMarket(string memory _reason) external onlyFactory {\\r\\n        require(status == MarketStatus.Active, \\\"Market not active\\\");\\r\\n        \\r\\n        status = MarketStatus.Cancelled;\\r\\n        \\r\\n        // Refund all participants\\r\\n        for (uint256 i = 0; i < participants.length; i++) {\\r\\n            address participant = participants[i];\\r\\n            uint256 totalStaked = userTotalStaked[participant];\\r\\n            \\r\\n            if (totalStaked > 0) {\\r\\n                userTotalStaked[participant] = 0;\\r\\n                (bool success, ) = payable(participant).call{value: totalStaked}(\\\"\\\");\\r\\n                require(success, \\\"Refund failed\\\");\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        emit MarketCancelled(block.timestamp, _reason);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Dispute market resolution\\r\\n     */\\r\\n    function disputeMarket(string memory _reason) external payable {\\r\\n        require(status == MarketStatus.Resolved, \\\"Market not resolved\\\");\\r\\n        require(block.timestamp <= resolutionTime + 7 days, \\\"Dispute period expired\\\");\\r\\n        require(msg.value >= 0.1 ether, \\\"Insufficient dispute bond\\\");\\r\\n        \\r\\n        status = MarketStatus.Disputed;\\r\\n        \\r\\n        emit MarketDisputed(msg.sender, block.timestamp, _reason);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get participants list\\r\\n     */\\r\\n    function getParticipants() external view returns (address[] memory) {\\r\\n        return participants;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Check if user has unclaimed rewards\\r\\n     */\\r\\n    function hasUnclaimedRewards(address _user) external view returns (bool) {\\r\\n        if (status != MarketStatus.Resolved) return false;\\r\\n        return calculateUserReward(_user) > 0;\\r\\n    }\\r\\n}\",\"keccak256\":\"0xde68b8254bb00048432be4040aa2dcdb1451b87a2d425e883ac1c1317c51f930\",\"license\":\"MIT\"},\"contracts/StakingContract.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol\\\";\\r\\n\\r\\ncontract StakingContract is ReentrancyGuard, Ownable {\\r\\n    using SafeERC20 for IERC20;\\r\\n\\r\\n    struct StakeInfo {\\r\\n        uint256 amount;\\r\\n        uint256 timestamp;\\r\\n        uint256 lockPeriod; // in seconds\\r\\n        uint256 rewardDebt;\\r\\n        bool isValidator;\\r\\n    }\\r\\n\\r\\n    struct Validator {\\r\\n        address validatorAddress;\\r\\n        uint256 totalStaked;\\r\\n        uint256 reputation; // 0-1000\\r\\n        uint256 successfulResolutions;\\r\\n        uint256 totalResolutions;\\r\\n        bool isActive;\\r\\n        uint256 slashCount;\\r\\n    }\\r\\n\\r\\n    // State variables\\r\\n    IERC20 public orxToken;\\r\\n    \\r\\n    mapping(address => StakeInfo) public stakes;\\r\\n    mapping(address => Validator) public validators;\\r\\n    address[] public validatorList;\\r\\n    \\r\\n    uint256 public totalStaked;\\r\\n    uint256 public rewardRate; // Reward per second per token (scaled by 1e18)\\r\\n    uint256 public lastUpdateTime;\\r\\n    uint256 public rewardPerTokenStored;\\r\\n    uint256 public minimumValidatorStake;\\r\\n    uint256 public minimumStakingPeriod;\\r\\n    uint256 public slashingRate; // Percentage to slash (basis points)\\r\\n    \\r\\n    mapping(address => uint256) public userRewardPerTokenPaid;\\r\\n    mapping(address => uint256) public rewards;\\r\\n\\r\\n    // Events\\r\\n    event TokensStaked(address indexed user, uint256 amount, uint256 lockPeriod, bool isValidator);\\r\\n    event TokensUnstaked(address indexed user, uint256 amount);\\r\\n    event RewardClaimed(address indexed user, uint256 reward);\\r\\n    event ValidatorRegistered(address indexed validator, uint256 stakedAmount);\\r\\n    event ValidatorSlashed(address indexed validator, uint256 slashedAmount, string reason);\\r\\n    event RewardsDistributed(uint256 totalRewards, uint256 rewardRate);\\r\\n\\r\\n    modifier updateReward(address account) {\\r\\n        rewardPerTokenStored = rewardPerToken();\\r\\n        lastUpdateTime = block.timestamp;\\r\\n\\r\\n        if (account != address(0)) {\\r\\n            rewards[account] = earned(account);\\r\\n            userRewardPerTokenPaid[account] = rewardPerTokenStored;\\r\\n        }\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier validatorOnly() {\\r\\n        require(validators[msg.sender].isActive, \\\"Not an active validator\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    constructor(\\r\\n        address _orxToken,\\r\\n        uint256 _rewardRate,\\r\\n        uint256 _minimumValidatorStake,\\r\\n        uint256 _minimumStakingPeriod,\\r\\n        uint256 _slashingRate\\r\\n    ) Ownable(msg.sender) {\\r\\n        orxToken = IERC20(_orxToken);\\r\\n        rewardRate = _rewardRate;\\r\\n        minimumValidatorStake = _minimumValidatorStake;\\r\\n        minimumStakingPeriod = _minimumStakingPeriod;\\r\\n        slashingRate = _slashingRate;\\r\\n        lastUpdateTime = block.timestamp;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Stake ORX tokens\\r\\n     * @param _amount Amount of tokens to stake\\r\\n     * @param _lockPeriod Lock period in seconds\\r\\n     * @param _asValidator Whether to register as validator\\r\\n     */\\r\\n    function stakeTokens(\\r\\n        uint256 _amount,\\r\\n        uint256 _lockPeriod,\\r\\n        bool _asValidator\\r\\n    ) external nonReentrant updateReward(msg.sender) {\\r\\n        require(_amount > 0, \\\"Cannot stake 0 tokens\\\");\\r\\n        require(_lockPeriod >= minimumStakingPeriod, \\\"Lock period too short\\\");\\r\\n        \\r\\n        if (_asValidator) {\\r\\n            require(_amount >= minimumValidatorStake, \\\"Insufficient stake for validator\\\");\\r\\n            require(!validators[msg.sender].isActive, \\\"Already a validator\\\");\\r\\n        }\\r\\n\\r\\n        // Transfer tokens from user\\r\\n        orxToken.safeTransferFrom(msg.sender, address(this), _amount);\\r\\n\\r\\n        // Update stake info\\r\\n        StakeInfo storage stake = stakes[msg.sender];\\r\\n        stake.amount += _amount;\\r\\n        stake.timestamp = block.timestamp;\\r\\n        stake.lockPeriod = _lockPeriod;\\r\\n        stake.isValidator = _asValidator;\\r\\n\\r\\n        totalStaked += _amount;\\r\\n\\r\\n        // Register as validator if requested\\r\\n        if (_asValidator) {\\r\\n            _registerValidator(msg.sender, _amount);\\r\\n        }\\r\\n\\r\\n        emit TokensStaked(msg.sender, _amount, _lockPeriod, _asValidator);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Unstake tokens\\r\\n     * @param _amount Amount to unstake\\r\\n     */\\r\\n    function unstakeTokens(uint256 _amount) \\r\\n        external \\r\\n        nonReentrant \\r\\n        updateReward(msg.sender) \\r\\n    {\\r\\n        StakeInfo storage stake = stakes[msg.sender];\\r\\n        require(stake.amount >= _amount, \\\"Insufficient staked amount\\\");\\r\\n        require(\\r\\n            block.timestamp >= stake.timestamp + stake.lockPeriod,\\r\\n            \\\"Tokens still locked\\\"\\r\\n        );\\r\\n\\r\\n        // If validator, check if they can unstake\\r\\n        if (stake.isValidator && validators[msg.sender].isActive) {\\r\\n            require(\\r\\n                stake.amount - _amount >= minimumValidatorStake || _amount == stake.amount,\\r\\n                \\\"Would fall below minimum validator stake\\\"\\r\\n            );\\r\\n            \\r\\n            if (_amount == stake.amount) {\\r\\n                // Remove validator status\\r\\n                validators[msg.sender].isActive = false;\\r\\n                _removeFromValidatorList(msg.sender);\\r\\n            }\\r\\n        }\\r\\n\\r\\n        // Update stake\\r\\n        stake.amount -= _amount;\\r\\n        totalStaked -= _amount;\\r\\n\\r\\n        if (stake.amount == 0) {\\r\\n            delete stakes[msg.sender];\\r\\n        }\\r\\n\\r\\n        // Transfer tokens back to user\\r\\n        orxToken.safeTransfer(msg.sender, _amount);\\r\\n\\r\\n        emit TokensUnstaked(msg.sender, _amount);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Claim staking rewards\\r\\n     */\\r\\n    function claimRewards() external nonReentrant updateReward(msg.sender) {\\r\\n        uint256 reward = rewards[msg.sender];\\r\\n        require(reward > 0, \\\"No rewards to claim\\\");\\r\\n\\r\\n        rewards[msg.sender] = 0;\\r\\n        orxToken.safeTransfer(msg.sender, reward);\\r\\n\\r\\n        emit RewardClaimed(msg.sender, reward);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Calculate current reward per token\\r\\n     */\\r\\n    function rewardPerToken() public view returns (uint256) {\\r\\n        if (totalStaked == 0) {\\r\\n            return rewardPerTokenStored;\\r\\n        }\\r\\n        return\\r\\n            rewardPerTokenStored +\\r\\n            (((block.timestamp - lastUpdateTime) * rewardRate * 1e18) / totalStaked);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Calculate earned rewards for an account\\r\\n     */\\r\\n    function earned(address account) public view returns (uint256) {\\r\\n        return\\r\\n            ((stakes[account].amount *\\r\\n                (rewardPerToken() - userRewardPerTokenPaid[account])) / 1e18) +\\r\\n            rewards[account];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Register as validator\\r\\n     */\\r\\n    function _registerValidator(address _validator, uint256 _stakedAmount) internal {\\r\\n        validators[_validator] = Validator({\\r\\n            validatorAddress: _validator,\\r\\n            totalStaked: _stakedAmount,\\r\\n            reputation: 500, // Start with medium reputation\\r\\n            successfulResolutions: 0,\\r\\n            totalResolutions: 0,\\r\\n            isActive: true,\\r\\n            slashCount: 0\\r\\n        });\\r\\n\\r\\n        validatorList.push(_validator);\\r\\n\\r\\n        emit ValidatorRegistered(_validator, _stakedAmount);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Remove validator from list\\r\\n     */\\r\\n    function _removeFromValidatorList(address _validator) internal {\\r\\n        for (uint256 i = 0; i < validatorList.length; i++) {\\r\\n            if (validatorList[i] == _validator) {\\r\\n                validatorList[i] = validatorList[validatorList.length - 1];\\r\\n                validatorList.pop();\\r\\n                break;\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Slash validator stake for malicious behavior\\r\\n     */\\r\\n    function slashStake(address _validator, string memory _reason) \\r\\n        external \\r\\n        onlyOwner \\r\\n        updateReward(_validator) \\r\\n    {\\r\\n        require(validators[_validator].isActive, \\\"Validator not active\\\");\\r\\n        \\r\\n        StakeInfo storage stake = stakes[_validator];\\r\\n        uint256 slashAmount = (stake.amount * slashingRate) / 10000;\\r\\n        \\r\\n        if (slashAmount > stake.amount) {\\r\\n            slashAmount = stake.amount;\\r\\n        }\\r\\n\\r\\n        // Update stake\\r\\n        stake.amount -= slashAmount;\\r\\n        totalStaked -= slashAmount;\\r\\n\\r\\n        // Update validator info\\r\\n        validators[_validator].slashCount++;\\r\\n        validators[_validator].reputation = validators[_validator].reputation > 100 ? \\r\\n            validators[_validator].reputation - 100 : 0;\\r\\n\\r\\n        // If stake falls below minimum, deactivate validator\\r\\n        if (stake.amount < minimumValidatorStake) {\\r\\n            validators[_validator].isActive = false;\\r\\n            _removeFromValidatorList(_validator);\\r\\n        }\\r\\n\\r\\n        // Burn slashed tokens (send to dead address)\\r\\n        orxToken.safeTransfer(address(0x000000000000000000000000000000000000dEaD), slashAmount);\\r\\n\\r\\n        emit ValidatorSlashed(_validator, slashAmount, _reason);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Distribute rewards to stakers\\r\\n     */\\r\\n    function distributeRewards(uint256 _rewardAmount) \\r\\n        external \\r\\n        onlyOwner \\r\\n        updateReward(address(0)) \\r\\n    {\\r\\n        require(_rewardAmount > 0, \\\"No rewards to distribute\\\");\\r\\n        \\r\\n        // Transfer reward tokens to contract\\r\\n        orxToken.safeTransferFrom(msg.sender, address(this), _rewardAmount);\\r\\n\\r\\n        emit RewardsDistributed(_rewardAmount, rewardRate);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Update validator performance\\r\\n     */\\r\\n    function updateValidatorPerformance(\\r\\n        address _validator,\\r\\n        bool _successful\\r\\n    ) external onlyOwner {\\r\\n        require(validators[_validator].isActive, \\\"Validator not active\\\");\\r\\n        \\r\\n        Validator storage validator = validators[_validator];\\r\\n        validator.totalResolutions++;\\r\\n        \\r\\n        if (_successful) {\\r\\n            validator.successfulResolutions++;\\r\\n            // Increase reputation for successful resolution\\r\\n            if (validator.reputation < 1000) {\\r\\n                validator.reputation += 10;\\r\\n            }\\r\\n        } else {\\r\\n            // Decrease reputation for failed resolution\\r\\n            if (validator.reputation > 10) {\\r\\n                validator.reputation -= 10;\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get validator list\\r\\n     */\\r\\n    function getValidators() external view returns (address[] memory) {\\r\\n        return validatorList;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get active validators only\\r\\n     */\\r\\n    function getActiveValidators() external view returns (address[] memory) {\\r\\n        uint256 activeCount = 0;\\r\\n        \\r\\n        // Count active validators\\r\\n        for (uint256 i = 0; i < validatorList.length; i++) {\\r\\n            if (validators[validatorList[i]].isActive) {\\r\\n                activeCount++;\\r\\n            }\\r\\n        }\\r\\n\\r\\n        // Build active validators array\\r\\n        address[] memory activeValidators = new address[](activeCount);\\r\\n        uint256 index = 0;\\r\\n        \\r\\n        for (uint256 i = 0; i < validatorList.length; i++) {\\r\\n            if (validators[validatorList[i]].isActive) {\\r\\n                activeValidators[index] = validatorList[i];\\r\\n                index++;\\r\\n            }\\r\\n        }\\r\\n\\r\\n        return activeValidators;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Update contract parameters\\r\\n     */\\r\\n    function updateParameters(\\r\\n        uint256 _rewardRate,\\r\\n        uint256 _minimumValidatorStake,\\r\\n        uint256 _minimumStakingPeriod,\\r\\n        uint256 _slashingRate\\r\\n    ) external onlyOwner {\\r\\n        rewardRate = _rewardRate;\\r\\n        minimumValidatorStake = _minimumValidatorStake;\\r\\n        minimumStakingPeriod = _minimumStakingPeriod;\\r\\n        slashingRate = _slashingRate;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get stake info for user\\r\\n     */\\r\\n    function getStakeInfo(address _user) external view returns (StakeInfo memory) {\\r\\n        return stakes[_user];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get validator info\\r\\n     */\\r\\n    function getValidatorInfo(address _validator) external view returns (Validator memory) {\\r\\n        return validators[_validator];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Check if address is active validator\\r\\n     */\\r\\n    function isActiveValidator(address _validator) external view returns (bool) {\\r\\n        return validators[_validator].isActive;\\r\\n    }\\r\\n}\",\"keccak256\":\"0xd064ef1cb7984ca5d60ff499cb3358e69073af9640116a0dc1357699b5cea883\",\"license\":\"MIT\"},\"contracts/interfaces/IAIOracle.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\ninterface IAIOracle {\\r\\n    function submitAIResult(\\r\\n        address _market,\\r\\n        uint256 _predictedOutcome,\\r\\n        uint256 _confidence,\\r\\n        string memory _evidence\\r\\n    ) external;\\r\\n\\r\\n    function getAIResult(address _market) \\r\\n        external \\r\\n        view \\r\\n        returns (uint256 outcome, uint256 confidence, bool isSubmitted);\\r\\n}\",\"keccak256\":\"0x1de79fcc4243ee5adf4b4930b641ef47b9e3c6cc0f2c88c24b73b4e65f5bbf86\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60806040523480156200001157600080fd5b5060405162002d6938038062002d6983398101604081905262000034916200012a565b600160005533806200006057604051631e4fbdf760e01b81526000600482015260240160405180910390fd5b6200006b81620000bb565b50600a80546001600160a01b039687166001600160a01b031991821617909155600b805495909616941693909317909355600655600791909155600955683635c9adc5dea000006008556200017d565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a35050565b80516001600160a01b03811681146200012557600080fd5b919050565b600080600080600060a086880312156200014357600080fd5b6200014e866200010d565b94506200015e602087016200010d565b6040870151606088015160809098015196999198509695945092505050565b612bdc806200018d6000396000f3fe6080604052600436106101665760003560e01c80639a181e40116100d1578063db2e21bc1161008a578063ee1eab4f11610064578063ee1eab4f14610474578063ee99205c14610494578063f2fde38b146104b4578063f3d01532146104d457600080fd5b8063db2e21bc14610412578063e36c33b214610427578063e3a96cbd1461044757600080fd5b80639a181e4014610301578063ada6b0d414610321578063bc3f931f14610341578063c057f4ce1461036e578063cdb2867b14610381578063d23254b4146103b157600080fd5b806356989a831161012357806356989a831461026b578063715018a61461028d5780637b7a91dd146102a25780637d36f4d3146102b85780638da5cb5b146102ce57806397fbc2fb146102ec57600080fd5b806302a251a31461016b578063032db3391461019457806303a09d18146101cc578063120ea202146101ee5780631732d65214610204578063564a565d14610231575b600080fd5b34801561017757600080fd5b5061018160075481565b6040519081526020015b60405180910390f35b3480156101a057600080fd5b50600a546101b4906001600160a01b031681565b6040516001600160a01b03909116815260200161018b565b3480156101d857600080fd5b506101e16104ea565b60405161018b9190612239565b3480156101fa57600080fd5b5061018160085481565b34801561021057600080fd5b5061022461021f36600461227d565b610611565b60405161018b9190612296565b34801561023d57600080fd5b5061025161024c36600461227d565b61067d565b60405161018b9e9d9c9b9a99989796959493929190612351565b34801561027757600080fd5b5061028b61028636600461227d565b610788565b005b34801561029957600080fd5b5061028b610c95565b3480156102ae57600080fd5b5061018160095481565b3480156102c457600080fd5b5061018160055481565b3480156102da57600080fd5b506001546001600160a01b03166101b4565b3480156102f857600080fd5b50600554610181565b34801561030d57600080fd5b5061028b61031c36600461227d565b610ca9565b34801561032d57600080fd5b5061028b61033c3660046123ec565b610f34565b34801561034d57600080fd5b5061036161035c366004612435565b611491565b60405161018b919061246a565b61018161037c366004612512565b611536565b34801561038d57600080fd5b506103a161039c366004612435565b6118e3565b604051901515815260200161018b565b3480156103bd57600080fd5b506104026103cc366004612435565b60036020818152600093845260408085209091529183529120805460018201546002830154929093015460ff9182169392911684565b60405161018b94939291906125b8565b34801561041e57600080fd5b5061028b611be1565b34801561043357600080fd5b506101b46104423660046125e3565b611c92565b34801561045357600080fd5b5061046761046236600461227d565b611cca565b60405161018b9190612605565b34801561048057600080fd5b5061028b61048f3660046126f2565b611e43565b3480156104a057600080fd5b50600b546101b4906001600160a01b031681565b3480156104c057600080fd5b5061028b6104cf366004612724565b611e5f565b3480156104e057600080fd5b5061018160065481565b60606000805b60055481101561054757600160008281526002602052604090206008015460ff16600381111561052257610522612327565b0361053557816105318161275e565b9250505b8061053f8161275e565b9150506104f0565b5060008167ffffffffffffffff811115610563576105636124a3565b60405190808252806020026020018201604052801561058c578160200160208202803683370190505b5090506000805b60055481101561060857600160008281526002602052604090206008015460ff1660038111156105c5576105c5612327565b036105f657808383815181106105dd576105dd612777565b6020908102919091010152816105f28161275e565b9250505b806106008161275e565b915050610593565b50909392505050565b60008181526004602090815260409182902080548351818402810184019094528084526060939283018282801561067157602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610653575b50505050509050919050565b6002602081905260009182526040909120805460018201549282015460038301546004840180546001600160a01b03948516969094169492939192916106c29061278d565b80601f01602080910402602001604051908101604052809291908181526020018280546106ee9061278d565b801561073b5780601f106107105761010080835404028352916020019161073b565b820191906000526020600020905b81548152906001019060200180831161071e57829003601f168201915b5050505060058301546006840154600785015460088601546009870154600a880154600b890154600c8a0154600d909a015498999698959750939560ff938416959294919391929116908e565b610790611e9a565b8060055481106107bb5760405162461bcd60e51b81526004016107b2906127c7565b60405180910390fd5b60008281526002602052604090206001600882015460ff1660038111156107e4576107e4612327565b146108315760405162461bcd60e51b815260206004820152601b60248201527f44697370757465206e6f7420696e20766f74696e67207068617365000000000060448201526064016107b2565b806007015442116108845760405162461bcd60e51b815260206004820152601760248201527f566f74696e6720706572696f64206e6f7420656e64656400000000000000000060448201526064016107b2565b600c81015460ff16156108d95760405162461bcd60e51b815260206004820152601860248201527f4469737075746520616c7265616479207265736f6c766564000000000000000060448201526064016107b2565b600a54600b546040516370a0823160e01b81526001600160a01b03918216600482015260009291909116906370a0823190602401602060405180830381865afa15801561092a573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061094e91906127f7565b905060006064600954836109629190612810565b61096c9190612827565b90508083600b01541015610a6f5760088301805460ff19166003179055600183015460058401546040516000926001600160a01b031691908381818185875af1925050503d80600081146109dc576040519150601f19603f3d011682016040523d82523d6000602084013e6109e1565b606091505b5050905080610a275760405162461bcd60e51b8152602060048201526012602482015271109bdb99081c995d1d5c9b8819985a5b195960721b60448201526064016107b2565b600d8401546040805160008152602081019290925287917f5add0b1fc2a3dfd95be33d1d5feb6709087e50213b7a73c3c3b2c387001221e7910160405180910390a250610c84565b600a8301546009840154118015610b3e5760088401805460ff19166002908117909155840154600d850155600184015460058501546040516000926001600160a01b031691908381818185875af1925050503d8060008114610aed576040519150601f19603f3d011682016040523d82523d6000602084013e610af2565b606091505b5050905080610b385760405162461bcd60e51b8152602060048201526012602482015271109bdb99081c995d1d5c9b8819985a5b195960721b60448201526064016107b2565b50610c20565b60088401805460ff191660029081179091556003850154600d8601556005850154600091610b6b91612827565b8560050154610b7a9190612849565b60018601546040519192506000916001600160a01b039091169083908381818185875af1925050503d8060008114610bce576040519150601f19603f3d011682016040523d82523d6000602084013e610bd3565b606091505b5050905080610c1d5760405162461bcd60e51b815260206004820152601660248201527514995dd85c99081d1c985b9cd9995c8819985a5b195960521b60448201526064016107b2565b50505b600c8401805460ff19166001179055610c398682611ec4565b857f5add0b1fc2a3dfd95be33d1d5feb6709087e50213b7a73c3c3b2c387001221e78286600d0154604051610c7a9291909115158252602082015260400190565b60405180910390a2505b50505050610c926001600055565b50565b610c9d612126565b610ca76000612153565b565b610cb1611e9a565b806005548110610cd35760405162461bcd60e51b81526004016107b2906127c7565b6000828152600260205260409020600c015460ff16610d2b5760405162461bcd60e51b8152602060048201526014602482015273111a5cdc1d5d19481b9bdd081c995cdbdb1d995960621b60448201526064016107b2565b6000828152600360208181526040808420338552909152909120015460ff1615610d905760405162461bcd60e51b815260206004820152601660248201527514995dd85c9908185b1c9958591e4818db185a5b595960521b60448201526064016107b2565b6000828152600260209081526040808320600383528184203385529092528220600a8201546009830154929391921190818015610de257506001835460ff166002811115610de057610de0612327565b145b80610e0b575081158015610e0b57506002835460ff166002811115610e0957610e09612327565b145b905080610e515760405162461bcd60e51b8152602060048201526014602482015273446964206e6f742077696e2074686520766f746560601b60448201526064016107b2565b600082610e625784600a0154610e68565b84600901545b9050600060048660050154610e7d9190612827565b9050600082828760010154610e929190612810565b610e9c9190612827565b60038701805460ff19166001179055600a5460405163a9059cbb60e01b8152336004820152602481018390529192506001600160a01b03169063a9059cbb906044016020604051808303816000875af1158015610efd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610f219190612871565b505050505050505050610c926001600055565b610f3c611e9a565b816005548110610f5e5760405162461bcd60e51b81526004016107b2906127c7565b600b54604051631015428760e21b81523360048201526001600160a01b03909116906340550a1c90602401602060405180830381865afa158015610fa6573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610fca9190612871565b6110165760405162461bcd60e51b815260206004820152601760248201527f4e6f7420616e206163746976652076616c696461746f7200000000000000000060448201526064016107b2565b600082600281111561102a5761102a612327565b0361106d5760405162461bcd60e51b8152602060048201526013602482015272496e76616c696420766f74652063686f69636560681b60448201526064016107b2565b60008381526002602052604090206001600882015460ff16600381111561109657611096612327565b146110d95760405162461bcd60e51b8152602060048201526013602482015272159bdd1a5b99c81c195c9a5bd908195b991959606a1b60448201526064016107b2565b80600701544211156111255760405162461bcd60e51b8152602060048201526015602482015274159bdd1a5b99c81c195c9a5bd908195e1c1a5c9959605a1b60448201526064016107b2565b600084815260036020908152604080832033845290915281205460ff16600281111561115357611153612327565b146111905760405162461bcd60e51b815260206004820152600d60248201526c105b1c9958591e481d9bdd1959609a1b60448201526064016107b2565b600b5460405163c345315360e01b81523360048201526000916001600160a01b03169063c34531539060240160a060405180830381865afa1580156111d9573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906111fd919061288c565b600b54604051638a11d7c960e01b81523360048201529192506000916001600160a01b0390911690638a11d7c99060240160e060405180830381865afa15801561124b573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061126f9190612900565b9050600854826000015110156112c75760405162461bcd60e51b815260206004820152601960248201527f496e73756666696369656e7420766f74696e6720706f7765720000000000000060448201526064016107b2565b60006103e8826040015184600001516112e09190612810565b6112ea9190612827565b9050604051806080016040528087600281111561130957611309612327565b8152602080820184905242604080840191909152600060609093018390528a835260038252808320338452909152902081518154829060ff1916600183600281111561135757611357612327565b021790555060208281015160018084019190915560408085015160028501556060909401516003909301805493151560ff199094169390931790925560008a81526004825292832080548084018255908452922090910180546001600160a01b031916331790558660028111156113d0576113d0612327565b036113f457808460090160008282546113e99190612849565b909155506114279050565b600286600281111561140857611408612327565b03611427578084600a0160008282546114219190612849565b90915550505b8084600b01600082825461143b9190612849565b9091555050604051339088907fb83d25c6a5d258561330739951487acb4bd09ba5190b5d32c4f261817d90679290611476908a908690612994565b60405180910390a3505050505061148d6001600055565b5050565b60408051608080820183526000808352602080840182905283850182905260608401829052868252600381528482206001600160a01b038716835290528390208351918201909352825491929091829060ff1660028111156114f5576114f5612327565b600281111561150657611506612327565b8152600182015460208201526002820154604082015260039091015460ff16151560609091015290505b92915050565b6000611540611e9a565b6006543410156115925760405162461bcd60e51b815260206004820152601960248201527f496e73756666696369656e74206469737075746520626f6e640000000000000060448201526064016107b2565b8284036115e15760405162461bcd60e51b815260206004820152601b60248201527f4f7574636f6d65732063616e6e6f74206265207468652073616d65000000000060448201526064016107b2565b60008251116116245760405162461bcd60e51b815260206004820152600f60248201526e1499585cdbdb881c995c5d5a5c9959608a1b60448201526064016107b2565b6000856001600160a01b03166323341a056040518163ffffffff1660e01b8152600401600060405180830381865afa158015611664573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f1916820160405261168c91908101906129f4565b509095506001945061169e9350505050565b8160038111156116b0576116b0612327565b146116f35760405162461bcd60e51b815260206004820152601360248201527213585c9ad95d081b9bdd081c995cdbdb1d9959606a1b60448201526064016107b2565b60058054600091826117048361275e565b919050559050604051806101c00160405280886001600160a01b03168152602001336001600160a01b03168152602001878152602001868152602001858152602001348152602001428152602001600754426117609190612849565b8152602001600181526000602080830182905260408084018390526060808501849052608080860185905260a09095018c9052868452600280845293829020865181546001600160a01b03199081166001600160a01b039283161783559488015160018301805490961691161790935590850151928201929092559083015160038201559082015160048201906117f79082612ae6565b5060a0820151600582015560c0820151600682015560e0820151600782015561010082015160088201805460ff1916600183600381111561183a5761183a612327565b02179055506101208201516009820155610140820151600a820155610160820151600b820155610180820151600c8201805460ff19169115159190911790556101a090910151600d90910155604080518781526020810187905233916001600160a01b038a169184917f0f192e69661023236eea1ddf6a33a7b77ffadea48ea9250e4b49e4a4c68c4b03910160405180910390a49150506118db6001600055565b949350505050565b600060055483106118f657506000611530565b600083815260026020818152604080842081516101c08101835281546001600160a01b039081168252600183015416938101939093529283015490820152600382015460608201526004820180549192916080840191906119569061278d565b80601f01602080910402602001604051908101604052809291908181526020018280546119829061278d565b80156119cf5780601f106119a4576101008083540402835291602001916119cf565b820191906000526020600020905b8154815290600101906020018083116119b257829003601f168201915b5050509183525050600582015460208201526006820154604082015260078201546060820152600882015460809091019060ff166003811115611a1457611a14612327565b6003811115611a2557611a25612327565b815260098201546020820152600a8201546040820152600b8201546060820152600c82015460ff1615156080820152600d9091015460a090910152905060018161010001516003811115611a7b57611a7b612327565b14611a8a576000915050611530565b8060e00151421115611aa0576000915050611530565b60008481526003602090815260408083206001600160a01b038716845290915281205460ff166002811115611ad757611ad7612327565b14611ae6576000915050611530565b600b54604051631015428760e21b81526001600160a01b038581166004830152909116906340550a1c90602401602060405180830381865afa158015611b30573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190611b549190612871565b611b62576000915050611530565b600b5460405163c345315360e01b81526001600160a01b038581166004830152600092169063c34531539060240160a060405180830381865afa158015611bad573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190611bd1919061288c565b6008549051101595945050505050565b611be9612126565b476000611bfe6001546001600160a01b031690565b6001600160a01b03168260405160006040518083038185875af1925050503d8060008114611c48576040519150601f19603f3d011682016040523d82523d6000602084013e611c4d565b606091505b505090508061148d5760405162461bcd60e51b815260206004820152601160248201527015da5d1a191c985dd85b0819985a5b1959607a1b60448201526064016107b2565b60046020528160005260406000208181548110611cae57600080fd5b6000918252602090912001546001600160a01b03169150829050565b611cd26121a5565b60008281526002602081815260409283902083516101c08101855281546001600160a01b03908116825260018301541692810192909252918201549281019290925260038101546060830152600481018054608084019190611d339061278d565b80601f0160208091040260200160405190810160405280929190818152602001828054611d5f9061278d565b8015611dac5780601f10611d8157610100808354040283529160200191611dac565b820191906000526020600020905b815481529060010190602001808311611d8f57829003601f168201915b5050509183525050600582015460208201526006820154604082015260078201546060820152600882015460809091019060ff166003811115611df157611df1612327565b6003811115611e0257611e02612327565b815260098201546020820152600a8201546040820152600b8201546060820152600c82015460ff1615156080820152600d9091015460a09091015292915050565b611e4b612126565b600693909355600791909155600955600855565b611e67612126565b6001600160a01b038116611e9157604051631e4fbdf760e01b8152600060048201526024016107b2565b610c9281612153565b600260005403611ebd57604051633ee5aeb560e01b815260040160405180910390fd5b6002600055565b6000828152600260209081526040808320600483528184208054835181860281018601909452808452919493909190830182828015611f2c57602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311611f0e575b50505050509050600083611f445782600a0154611f4a565b82600901545b9050600060048460050154611f5f9190612827565b905081600003611f7157505050505050565b60005b83518110156120e3576000848281518110611f9157611f91612777565b60209081029190910181015160008a81526003835260408082206001600160a01b038416835290935291822090925090888015611fe357506001825460ff166002811115611fe157611fe1612327565b145b8061200c57508815801561200c57506002825460ff16600281111561200a5761200a612327565b145b90508080156120205750600382015460ff16155b156120cd576000868684600101546120389190612810565b6120429190612827565b60038401805460ff19166001179055600a5460405163a9059cbb60e01b81526001600160a01b0387811660048301526024820184905292935091169063a9059cbb906044016020604051808303816000875af11580156120a6573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906120ca9190612871565b50505b50505080806120db9061275e565b915050611f74565b50857f29e98ba00d07f171959c4ddcd2f3020debc7c52cf537a034d7e664340d098c6c8260405161211691815260200190565b60405180910390a2505050505050565b6001546001600160a01b03163314610ca75760405163118cdaa760e01b81523360048201526024016107b2565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a35050565b604051806101c0016040528060006001600160a01b0316815260200160006001600160a01b031681526020016000815260200160008152602001606081526020016000815260200160008152602001600081526020016000600381111561220e5761220e612327565b8152602001600081526020016000815260200160008152602001600015158152602001600081525090565b6020808252825182820181905260009190848201906040850190845b8181101561227157835183529284019291840191600101612255565b50909695505050505050565b60006020828403121561228f57600080fd5b5035919050565b6020808252825182820181905260009190848201906040850190845b818110156122715783516001600160a01b0316835292840192918401916001016122b2565b60005b838110156122f25781810151838201526020016122da565b50506000910152565b600081518084526123138160208601602086016122d7565b601f01601f19169290920160200192915050565b634e487b7160e01b600052602160045260246000fd5b6004811061234d5761234d612327565b9052565b6001600160a01b038f811682528e166020820152604081018d9052606081018c90526101c06080820181905260009061238c9083018d6122fb565b90508a60a08301528960c08301528860e08301526123ae61010083018961233d565b8661012083015285610140830152846101608301526123d261018083018515159052565b826101a08301529f9e505050505050505050505050505050565b600080604083850312156123ff57600080fd5b8235915060208301356003811061241557600080fd5b809150509250929050565b6001600160a01b0381168114610c9257600080fd5b6000806040838503121561244857600080fd5b82359150602083013561241581612420565b6003811061234d5761234d612327565b600060808201905061247d82845161245a565b602083015160208301526040830151604083015260608301511515606083015292915050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff811182821017156124e2576124e26124a3565b604052919050565b600067ffffffffffffffff821115612504576125046124a3565b50601f01601f191660200190565b6000806000806080858703121561252857600080fd5b843561253381612420565b93506020850135925060408501359150606085013567ffffffffffffffff81111561255d57600080fd5b8501601f8101871361256e57600080fd5b803561258161257c826124ea565b6124b9565b81815288602083850101111561259657600080fd5b8160208401602083013760006020838301015280935050505092959194509250565b608081016125c6828761245a565b846020830152836040830152821515606083015295945050505050565b600080604083850312156125f657600080fd5b50508035926020909101359150565b6020815261261f6020820183516001600160a01b03169052565b6000602083015161263b60408401826001600160a01b03169052565b50604083015160608301526060830151608083015260808301516101c08060a085015261266c6101e08501836122fb565b915060a085015160c085015260c085015160e085015260e08501516101008181870152808701519150506101206126a58187018361233d565b86015161014086810191909152860151610160808701919091528601516101808087019190915286015190506101a06126e18187018315159052565b959095015193019290925250919050565b6000806000806080858703121561270857600080fd5b5050823594602084013594506040840135936060013592509050565b60006020828403121561273657600080fd5b813561274181612420565b9392505050565b634e487b7160e01b600052601160045260246000fd5b60006001820161277057612770612748565b5060010190565b634e487b7160e01b600052603260045260246000fd5b600181811c908216806127a157607f821691505b6020821081036127c157634e487b7160e01b600052602260045260246000fd5b50919050565b602080825260169082015275111a5cdc1d5d1948191bd95cc81b9bdd08195e1a5cdd60521b604082015260600190565b60006020828403121561280957600080fd5b5051919050565b808202811582820484141761153057611530612748565b60008261284457634e487b7160e01b600052601260045260246000fd5b500490565b8082018082111561153057611530612748565b8051801515811461286c57600080fd5b919050565b60006020828403121561288357600080fd5b6127418261285c565b600060a0828403121561289e57600080fd5b60405160a0810181811067ffffffffffffffff821117156128c1576128c16124a3565b8060405250825181526020830151602082015260408301516040820152606083015160608201526128f46080840161285c565b60808201529392505050565b600060e0828403121561291257600080fd5b60405160e0810181811067ffffffffffffffff82111715612935576129356124a3565b604052825161294381612420565b808252506020830151602082015260408301516040820152606083015160608201526080830151608082015261297b60a0840161285c565b60a082015260c083015160c08201528091505092915050565b604081016129a2828561245a565b8260208301529392505050565b600082601f8301126129c057600080fd5b81516129ce61257c826124ea565b8181528460208386010111156129e357600080fd5b6118db8260208301602087016122d7565b600080600080600080600060e0888a031215612a0f57600080fd5b875167ffffffffffffffff80821115612a2757600080fd5b612a338b838c016129af565b985060208a0151915080821115612a4957600080fd5b50612a568a828b016129af565b9650506040880151945060608801519350608088015160048110612a7957600080fd5b8093505060a0880151915060c0880151905092959891949750929550565b601f821115612ae157600081815260208120601f850160051c81016020861015612abe5750805b601f850160051c820191505b81811015612add57828155600101612aca565b5050505b505050565b815167ffffffffffffffff811115612b0057612b006124a3565b612b1481612b0e845461278d565b84612a97565b602080601f831160018114612b495760008415612b315750858301515b600019600386901b1c1916600185901b178555612add565b600085815260208120601f198616915b82811015612b7857888601518255948401946001909101908401612b59565b5085821015612b965787850151600019600388901b60f8161c191681555b5050505050600190811b0190555056fea2646970667358221220830cb5e2b92c1b48252aee7cd6552e5f397f8abbc2b9e2abc62691b22b446c1764736f6c63430008140033",
+  "deployedBytecode": "0x6080604052600436106101665760003560e01c80639a181e40116100d1578063db2e21bc1161008a578063ee1eab4f11610064578063ee1eab4f14610474578063ee99205c14610494578063f2fde38b146104b4578063f3d01532146104d457600080fd5b8063db2e21bc14610412578063e36c33b214610427578063e3a96cbd1461044757600080fd5b80639a181e4014610301578063ada6b0d414610321578063bc3f931f14610341578063c057f4ce1461036e578063cdb2867b14610381578063d23254b4146103b157600080fd5b806356989a831161012357806356989a831461026b578063715018a61461028d5780637b7a91dd146102a25780637d36f4d3146102b85780638da5cb5b146102ce57806397fbc2fb146102ec57600080fd5b806302a251a31461016b578063032db3391461019457806303a09d18146101cc578063120ea202146101ee5780631732d65214610204578063564a565d14610231575b600080fd5b34801561017757600080fd5b5061018160075481565b6040519081526020015b60405180910390f35b3480156101a057600080fd5b50600a546101b4906001600160a01b031681565b6040516001600160a01b03909116815260200161018b565b3480156101d857600080fd5b506101e16104ea565b60405161018b9190612239565b3480156101fa57600080fd5b5061018160085481565b34801561021057600080fd5b5061022461021f36600461227d565b610611565b60405161018b9190612296565b34801561023d57600080fd5b5061025161024c36600461227d565b61067d565b60405161018b9e9d9c9b9a99989796959493929190612351565b34801561027757600080fd5b5061028b61028636600461227d565b610788565b005b34801561029957600080fd5b5061028b610c95565b3480156102ae57600080fd5b5061018160095481565b3480156102c457600080fd5b5061018160055481565b3480156102da57600080fd5b506001546001600160a01b03166101b4565b3480156102f857600080fd5b50600554610181565b34801561030d57600080fd5b5061028b61031c36600461227d565b610ca9565b34801561032d57600080fd5b5061028b61033c3660046123ec565b610f34565b34801561034d57600080fd5b5061036161035c366004612435565b611491565b60405161018b919061246a565b61018161037c366004612512565b611536565b34801561038d57600080fd5b506103a161039c366004612435565b6118e3565b604051901515815260200161018b565b3480156103bd57600080fd5b506104026103cc366004612435565b60036020818152600093845260408085209091529183529120805460018201546002830154929093015460ff9182169392911684565b60405161018b94939291906125b8565b34801561041e57600080fd5b5061028b611be1565b34801561043357600080fd5b506101b46104423660046125e3565b611c92565b34801561045357600080fd5b5061046761046236600461227d565b611cca565b60405161018b9190612605565b34801561048057600080fd5b5061028b61048f3660046126f2565b611e43565b3480156104a057600080fd5b50600b546101b4906001600160a01b031681565b3480156104c057600080fd5b5061028b6104cf366004612724565b611e5f565b3480156104e057600080fd5b5061018160065481565b60606000805b60055481101561054757600160008281526002602052604090206008015460ff16600381111561052257610522612327565b0361053557816105318161275e565b9250505b8061053f8161275e565b9150506104f0565b5060008167ffffffffffffffff811115610563576105636124a3565b60405190808252806020026020018201604052801561058c578160200160208202803683370190505b5090506000805b60055481101561060857600160008281526002602052604090206008015460ff1660038111156105c5576105c5612327565b036105f657808383815181106105dd576105dd612777565b6020908102919091010152816105f28161275e565b9250505b806106008161275e565b915050610593565b50909392505050565b60008181526004602090815260409182902080548351818402810184019094528084526060939283018282801561067157602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610653575b50505050509050919050565b6002602081905260009182526040909120805460018201549282015460038301546004840180546001600160a01b03948516969094169492939192916106c29061278d565b80601f01602080910402602001604051908101604052809291908181526020018280546106ee9061278d565b801561073b5780601f106107105761010080835404028352916020019161073b565b820191906000526020600020905b81548152906001019060200180831161071e57829003601f168201915b5050505060058301546006840154600785015460088601546009870154600a880154600b890154600c8a0154600d909a015498999698959750939560ff938416959294919391929116908e565b610790611e9a565b8060055481106107bb5760405162461bcd60e51b81526004016107b2906127c7565b60405180910390fd5b60008281526002602052604090206001600882015460ff1660038111156107e4576107e4612327565b146108315760405162461bcd60e51b815260206004820152601b60248201527f44697370757465206e6f7420696e20766f74696e67207068617365000000000060448201526064016107b2565b806007015442116108845760405162461bcd60e51b815260206004820152601760248201527f566f74696e6720706572696f64206e6f7420656e64656400000000000000000060448201526064016107b2565b600c81015460ff16156108d95760405162461bcd60e51b815260206004820152601860248201527f4469737075746520616c7265616479207265736f6c766564000000000000000060448201526064016107b2565b600a54600b546040516370a0823160e01b81526001600160a01b03918216600482015260009291909116906370a0823190602401602060405180830381865afa15801561092a573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061094e91906127f7565b905060006064600954836109629190612810565b61096c9190612827565b90508083600b01541015610a6f5760088301805460ff19166003179055600183015460058401546040516000926001600160a01b031691908381818185875af1925050503d80600081146109dc576040519150601f19603f3d011682016040523d82523d6000602084013e6109e1565b606091505b5050905080610a275760405162461bcd60e51b8152602060048201526012602482015271109bdb99081c995d1d5c9b8819985a5b195960721b60448201526064016107b2565b600d8401546040805160008152602081019290925287917f5add0b1fc2a3dfd95be33d1d5feb6709087e50213b7a73c3c3b2c387001221e7910160405180910390a250610c84565b600a8301546009840154118015610b3e5760088401805460ff19166002908117909155840154600d850155600184015460058501546040516000926001600160a01b031691908381818185875af1925050503d8060008114610aed576040519150601f19603f3d011682016040523d82523d6000602084013e610af2565b606091505b5050905080610b385760405162461bcd60e51b8152602060048201526012602482015271109bdb99081c995d1d5c9b8819985a5b195960721b60448201526064016107b2565b50610c20565b60088401805460ff191660029081179091556003850154600d8601556005850154600091610b6b91612827565b8560050154610b7a9190612849565b60018601546040519192506000916001600160a01b039091169083908381818185875af1925050503d8060008114610bce576040519150601f19603f3d011682016040523d82523d6000602084013e610bd3565b606091505b5050905080610c1d5760405162461bcd60e51b815260206004820152601660248201527514995dd85c99081d1c985b9cd9995c8819985a5b195960521b60448201526064016107b2565b50505b600c8401805460ff19166001179055610c398682611ec4565b857f5add0b1fc2a3dfd95be33d1d5feb6709087e50213b7a73c3c3b2c387001221e78286600d0154604051610c7a9291909115158252602082015260400190565b60405180910390a2505b50505050610c926001600055565b50565b610c9d612126565b610ca76000612153565b565b610cb1611e9a565b806005548110610cd35760405162461bcd60e51b81526004016107b2906127c7565b6000828152600260205260409020600c015460ff16610d2b5760405162461bcd60e51b8152602060048201526014602482015273111a5cdc1d5d19481b9bdd081c995cdbdb1d995960621b60448201526064016107b2565b6000828152600360208181526040808420338552909152909120015460ff1615610d905760405162461bcd60e51b815260206004820152601660248201527514995dd85c9908185b1c9958591e4818db185a5b595960521b60448201526064016107b2565b6000828152600260209081526040808320600383528184203385529092528220600a8201546009830154929391921190818015610de257506001835460ff166002811115610de057610de0612327565b145b80610e0b575081158015610e0b57506002835460ff166002811115610e0957610e09612327565b145b905080610e515760405162461bcd60e51b8152602060048201526014602482015273446964206e6f742077696e2074686520766f746560601b60448201526064016107b2565b600082610e625784600a0154610e68565b84600901545b9050600060048660050154610e7d9190612827565b9050600082828760010154610e929190612810565b610e9c9190612827565b60038701805460ff19166001179055600a5460405163a9059cbb60e01b8152336004820152602481018390529192506001600160a01b03169063a9059cbb906044016020604051808303816000875af1158015610efd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610f219190612871565b505050505050505050610c926001600055565b610f3c611e9a565b816005548110610f5e5760405162461bcd60e51b81526004016107b2906127c7565b600b54604051631015428760e21b81523360048201526001600160a01b03909116906340550a1c90602401602060405180830381865afa158015610fa6573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610fca9190612871565b6110165760405162461bcd60e51b815260206004820152601760248201527f4e6f7420616e206163746976652076616c696461746f7200000000000000000060448201526064016107b2565b600082600281111561102a5761102a612327565b0361106d5760405162461bcd60e51b8152602060048201526013602482015272496e76616c696420766f74652063686f69636560681b60448201526064016107b2565b60008381526002602052604090206001600882015460ff16600381111561109657611096612327565b146110d95760405162461bcd60e51b8152602060048201526013602482015272159bdd1a5b99c81c195c9a5bd908195b991959606a1b60448201526064016107b2565b80600701544211156111255760405162461bcd60e51b8152602060048201526015602482015274159bdd1a5b99c81c195c9a5bd908195e1c1a5c9959605a1b60448201526064016107b2565b600084815260036020908152604080832033845290915281205460ff16600281111561115357611153612327565b146111905760405162461bcd60e51b815260206004820152600d60248201526c105b1c9958591e481d9bdd1959609a1b60448201526064016107b2565b600b5460405163c345315360e01b81523360048201526000916001600160a01b03169063c34531539060240160a060405180830381865afa1580156111d9573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906111fd919061288c565b600b54604051638a11d7c960e01b81523360048201529192506000916001600160a01b0390911690638a11d7c99060240160e060405180830381865afa15801561124b573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061126f9190612900565b9050600854826000015110156112c75760405162461bcd60e51b815260206004820152601960248201527f496e73756666696369656e7420766f74696e6720706f7765720000000000000060448201526064016107b2565b60006103e8826040015184600001516112e09190612810565b6112ea9190612827565b9050604051806080016040528087600281111561130957611309612327565b8152602080820184905242604080840191909152600060609093018390528a835260038252808320338452909152902081518154829060ff1916600183600281111561135757611357612327565b021790555060208281015160018084019190915560408085015160028501556060909401516003909301805493151560ff199094169390931790925560008a81526004825292832080548084018255908452922090910180546001600160a01b031916331790558660028111156113d0576113d0612327565b036113f457808460090160008282546113e99190612849565b909155506114279050565b600286600281111561140857611408612327565b03611427578084600a0160008282546114219190612849565b90915550505b8084600b01600082825461143b9190612849565b9091555050604051339088907fb83d25c6a5d258561330739951487acb4bd09ba5190b5d32c4f261817d90679290611476908a908690612994565b60405180910390a3505050505061148d6001600055565b5050565b60408051608080820183526000808352602080840182905283850182905260608401829052868252600381528482206001600160a01b038716835290528390208351918201909352825491929091829060ff1660028111156114f5576114f5612327565b600281111561150657611506612327565b8152600182015460208201526002820154604082015260039091015460ff16151560609091015290505b92915050565b6000611540611e9a565b6006543410156115925760405162461bcd60e51b815260206004820152601960248201527f496e73756666696369656e74206469737075746520626f6e640000000000000060448201526064016107b2565b8284036115e15760405162461bcd60e51b815260206004820152601b60248201527f4f7574636f6d65732063616e6e6f74206265207468652073616d65000000000060448201526064016107b2565b60008251116116245760405162461bcd60e51b815260206004820152600f60248201526e1499585cdbdb881c995c5d5a5c9959608a1b60448201526064016107b2565b6000856001600160a01b03166323341a056040518163ffffffff1660e01b8152600401600060405180830381865afa158015611664573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f1916820160405261168c91908101906129f4565b509095506001945061169e9350505050565b8160038111156116b0576116b0612327565b146116f35760405162461bcd60e51b815260206004820152601360248201527213585c9ad95d081b9bdd081c995cdbdb1d9959606a1b60448201526064016107b2565b60058054600091826117048361275e565b919050559050604051806101c00160405280886001600160a01b03168152602001336001600160a01b03168152602001878152602001868152602001858152602001348152602001428152602001600754426117609190612849565b8152602001600181526000602080830182905260408084018390526060808501849052608080860185905260a09095018c9052868452600280845293829020865181546001600160a01b03199081166001600160a01b039283161783559488015160018301805490961691161790935590850151928201929092559083015160038201559082015160048201906117f79082612ae6565b5060a0820151600582015560c0820151600682015560e0820151600782015561010082015160088201805460ff1916600183600381111561183a5761183a612327565b02179055506101208201516009820155610140820151600a820155610160820151600b820155610180820151600c8201805460ff19169115159190911790556101a090910151600d90910155604080518781526020810187905233916001600160a01b038a169184917f0f192e69661023236eea1ddf6a33a7b77ffadea48ea9250e4b49e4a4c68c4b03910160405180910390a49150506118db6001600055565b949350505050565b600060055483106118f657506000611530565b600083815260026020818152604080842081516101c08101835281546001600160a01b039081168252600183015416938101939093529283015490820152600382015460608201526004820180549192916080840191906119569061278d565b80601f01602080910402602001604051908101604052809291908181526020018280546119829061278d565b80156119cf5780601f106119a4576101008083540402835291602001916119cf565b820191906000526020600020905b8154815290600101906020018083116119b257829003601f168201915b5050509183525050600582015460208201526006820154604082015260078201546060820152600882015460809091019060ff166003811115611a1457611a14612327565b6003811115611a2557611a25612327565b815260098201546020820152600a8201546040820152600b8201546060820152600c82015460ff1615156080820152600d9091015460a090910152905060018161010001516003811115611a7b57611a7b612327565b14611a8a576000915050611530565b8060e00151421115611aa0576000915050611530565b60008481526003602090815260408083206001600160a01b038716845290915281205460ff166002811115611ad757611ad7612327565b14611ae6576000915050611530565b600b54604051631015428760e21b81526001600160a01b038581166004830152909116906340550a1c90602401602060405180830381865afa158015611b30573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190611b549190612871565b611b62576000915050611530565b600b5460405163c345315360e01b81526001600160a01b038581166004830152600092169063c34531539060240160a060405180830381865afa158015611bad573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190611bd1919061288c565b6008549051101595945050505050565b611be9612126565b476000611bfe6001546001600160a01b031690565b6001600160a01b03168260405160006040518083038185875af1925050503d8060008114611c48576040519150601f19603f3d011682016040523d82523d6000602084013e611c4d565b606091505b505090508061148d5760405162461bcd60e51b815260206004820152601160248201527015da5d1a191c985dd85b0819985a5b1959607a1b60448201526064016107b2565b60046020528160005260406000208181548110611cae57600080fd5b6000918252602090912001546001600160a01b03169150829050565b611cd26121a5565b60008281526002602081815260409283902083516101c08101855281546001600160a01b03908116825260018301541692810192909252918201549281019290925260038101546060830152600481018054608084019190611d339061278d565b80601f0160208091040260200160405190810160405280929190818152602001828054611d5f9061278d565b8015611dac5780601f10611d8157610100808354040283529160200191611dac565b820191906000526020600020905b815481529060010190602001808311611d8f57829003601f168201915b5050509183525050600582015460208201526006820154604082015260078201546060820152600882015460809091019060ff166003811115611df157611df1612327565b6003811115611e0257611e02612327565b815260098201546020820152600a8201546040820152600b8201546060820152600c82015460ff1615156080820152600d9091015460a09091015292915050565b611e4b612126565b600693909355600791909155600955600855565b611e67612126565b6001600160a01b038116611e9157604051631e4fbdf760e01b8152600060048201526024016107b2565b610c9281612153565b600260005403611ebd57604051633ee5aeb560e01b815260040160405180910390fd5b6002600055565b6000828152600260209081526040808320600483528184208054835181860281018601909452808452919493909190830182828015611f2c57602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311611f0e575b50505050509050600083611f445782600a0154611f4a565b82600901545b9050600060048460050154611f5f9190612827565b905081600003611f7157505050505050565b60005b83518110156120e3576000848281518110611f9157611f91612777565b60209081029190910181015160008a81526003835260408082206001600160a01b038416835290935291822090925090888015611fe357506001825460ff166002811115611fe157611fe1612327565b145b8061200c57508815801561200c57506002825460ff16600281111561200a5761200a612327565b145b90508080156120205750600382015460ff16155b156120cd576000868684600101546120389190612810565b6120429190612827565b60038401805460ff19166001179055600a5460405163a9059cbb60e01b81526001600160a01b0387811660048301526024820184905292935091169063a9059cbb906044016020604051808303816000875af11580156120a6573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906120ca9190612871565b50505b50505080806120db9061275e565b915050611f74565b50857f29e98ba00d07f171959c4ddcd2f3020debc7c52cf537a034d7e664340d098c6c8260405161211691815260200190565b60405180910390a2505050505050565b6001546001600160a01b03163314610ca75760405163118cdaa760e01b81523360048201526024016107b2565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a35050565b604051806101c0016040528060006001600160a01b0316815260200160006001600160a01b031681526020016000815260200160008152602001606081526020016000815260200160008152602001600081526020016000600381111561220e5761220e612327565b8152602001600081526020016000815260200160008152602001600015158152602001600081525090565b6020808252825182820181905260009190848201906040850190845b8181101561227157835183529284019291840191600101612255565b50909695505050505050565b60006020828403121561228f57600080fd5b5035919050565b6020808252825182820181905260009190848201906040850190845b818110156122715783516001600160a01b0316835292840192918401916001016122b2565b60005b838110156122f25781810151838201526020016122da565b50506000910152565b600081518084526123138160208601602086016122d7565b601f01601f19169290920160200192915050565b634e487b7160e01b600052602160045260246000fd5b6004811061234d5761234d612327565b9052565b6001600160a01b038f811682528e166020820152604081018d9052606081018c90526101c06080820181905260009061238c9083018d6122fb565b90508a60a08301528960c08301528860e08301526123ae61010083018961233d565b8661012083015285610140830152846101608301526123d261018083018515159052565b826101a08301529f9e505050505050505050505050505050565b600080604083850312156123ff57600080fd5b8235915060208301356003811061241557600080fd5b809150509250929050565b6001600160a01b0381168114610c9257600080fd5b6000806040838503121561244857600080fd5b82359150602083013561241581612420565b6003811061234d5761234d612327565b600060808201905061247d82845161245a565b602083015160208301526040830151604083015260608301511515606083015292915050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff811182821017156124e2576124e26124a3565b604052919050565b600067ffffffffffffffff821115612504576125046124a3565b50601f01601f191660200190565b6000806000806080858703121561252857600080fd5b843561253381612420565b93506020850135925060408501359150606085013567ffffffffffffffff81111561255d57600080fd5b8501601f8101871361256e57600080fd5b803561258161257c826124ea565b6124b9565b81815288602083850101111561259657600080fd5b8160208401602083013760006020838301015280935050505092959194509250565b608081016125c6828761245a565b846020830152836040830152821515606083015295945050505050565b600080604083850312156125f657600080fd5b50508035926020909101359150565b6020815261261f6020820183516001600160a01b03169052565b6000602083015161263b60408401826001600160a01b03169052565b50604083015160608301526060830151608083015260808301516101c08060a085015261266c6101e08501836122fb565b915060a085015160c085015260c085015160e085015260e08501516101008181870152808701519150506101206126a58187018361233d565b86015161014086810191909152860151610160808701919091528601516101808087019190915286015190506101a06126e18187018315159052565b959095015193019290925250919050565b6000806000806080858703121561270857600080fd5b5050823594602084013594506040840135936060013592509050565b60006020828403121561273657600080fd5b813561274181612420565b9392505050565b634e487b7160e01b600052601160045260246000fd5b60006001820161277057612770612748565b5060010190565b634e487b7160e01b600052603260045260246000fd5b600181811c908216806127a157607f821691505b6020821081036127c157634e487b7160e01b600052602260045260246000fd5b50919050565b602080825260169082015275111a5cdc1d5d1948191bd95cc81b9bdd08195e1a5cdd60521b604082015260600190565b60006020828403121561280957600080fd5b5051919050565b808202811582820484141761153057611530612748565b60008261284457634e487b7160e01b600052601260045260246000fd5b500490565b8082018082111561153057611530612748565b8051801515811461286c57600080fd5b919050565b60006020828403121561288357600080fd5b6127418261285c565b600060a0828403121561289e57600080fd5b60405160a0810181811067ffffffffffffffff821117156128c1576128c16124a3565b8060405250825181526020830151602082015260408301516040820152606083015160608201526128f46080840161285c565b60808201529392505050565b600060e0828403121561291257600080fd5b60405160e0810181811067ffffffffffffffff82111715612935576129356124a3565b604052825161294381612420565b808252506020830151602082015260408301516040820152606083015160608201526080830151608082015261297b60a0840161285c565b60a082015260c083015160c08201528091505092915050565b604081016129a2828561245a565b8260208301529392505050565b600082601f8301126129c057600080fd5b81516129ce61257c826124ea565b8181528460208386010111156129e357600080fd5b6118db8260208301602087016122d7565b600080600080600080600060e0888a031215612a0f57600080fd5b875167ffffffffffffffff80821115612a2757600080fd5b612a338b838c016129af565b985060208a0151915080821115612a4957600080fd5b50612a568a828b016129af565b9650506040880151945060608801519350608088015160048110612a7957600080fd5b8093505060a0880151915060c0880151905092959891949750929550565b601f821115612ae157600081815260208120601f850160051c81016020861015612abe5750805b601f850160051c820191505b81811015612add57828155600101612aca565b5050505b505050565b815167ffffffffffffffff811115612b0057612b006124a3565b612b1481612b0e845461278d565b84612a97565b602080601f831160018114612b495760008415612b315750858301515b600019600386901b1c1916600185901b178555612add565b600085815260208120601f198616915b82811015612b7857888601518255948401946001909101908401612b59565b5085821015612b965787850151600019600388901b60f8161c191681555b5050505050600190811b0190555056fea2646970667358221220830cb5e2b92c1b48252aee7cd6552e5f397f8abbc2b9e2abc62691b22b446c1764736f6c63430008140033",
+  "devdoc": {
+    "errors": {
+      "OwnableInvalidOwner(address)": [
+        {
+          "details": "The owner is not a valid owner account. (eg. `address(0)`)"
+        }
+      ],
+      "OwnableUnauthorizedAccount(address)": [
+        {
+          "details": "The caller account is not authorized to perform an operation."
+        }
+      ],
+      "ReentrancyGuardReentrantCall()": [
+        {
+          "details": "Unauthorized reentrant call."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {
+      "canVote(uint256,address)": {
+        "details": "Check if user can vote on dispute"
+      },
+      "claimVotingReward(uint256)": {
+        "details": "Claim voting rewards manually"
+      },
+      "emergencyWithdraw()": {
+        "details": "Emergency withdrawal of contract funds"
+      },
+      "finalizeDispute(uint256)": {
+        "details": "Finalize a dispute after voting period",
+        "params": {
+          "_disputeId": "ID of the dispute to finalize"
+        }
+      },
+      "getActiveDisputes()": {
+        "details": "Get active disputes"
+      },
+      "getDispute(uint256)": {
+        "details": "Get dispute information"
+      },
+      "getDisputeVoters(uint256)": {
+        "details": "Get all voters for a dispute"
+      },
+      "getTotalDisputes()": {
+        "details": "Get total disputes count"
+      },
+      "getVote(uint256,address)": {
+        "details": "Get vote information"
+      },
+      "openDispute(address,uint256,uint256,string)": {
+        "details": "Open a dispute for a market resolution",
+        "params": {
+          "_disputedOutcome": "Current outcome being disputed",
+          "_market": "Address of the prediction market",
+          "_proposedOutcome": "Proposed correct outcome",
+          "_reason": "Reason for the dispute"
+        }
+      },
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      },
+      "updateParameters(uint256,uint256,uint256,uint256)": {
+        "details": "Update contract parameters"
+      },
+      "voteOnDispute(uint256,uint8)": {
+        "details": "Vote on a dispute",
+        "params": {
+          "_choice": "Vote choice (Uphold or Overturn)",
+          "_disputeId": "ID of the dispute"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 928,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "_status",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 8,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 1939,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "disputes",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_uint256,t_struct(Dispute)1924_storage)"
+      },
+      {
+        "astId": 1946,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "votes",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_uint256,t_mapping(t_address,t_struct(Vote)1934_storage))"
+      },
+      {
+        "astId": 1951,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "disputeVoters",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_mapping(t_uint256,t_array(t_address)dyn_storage)"
+      },
+      {
+        "astId": 1953,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "disputeCounter",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1955,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "minimumDisputeBond",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1957,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "votingPeriod",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1959,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "minimumVotingPower",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1961,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "quorumThreshold",
+        "offset": 0,
+        "slot": "9",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1964,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "orxToken",
+        "offset": 0,
+        "slot": "10",
+        "type": "t_contract(IERC20)315"
+      },
+      {
+        "astId": 1967,
+        "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+        "label": "stakingContract",
+        "offset": 0,
+        "slot": "11",
+        "type": "t_contract(StakingContract)5757"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_address)dyn_storage": {
+        "base": "t_address",
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_contract(IERC20)315": {
+        "encoding": "inplace",
+        "label": "contract IERC20",
+        "numberOfBytes": "20"
+      },
+      "t_contract(StakingContract)5757": {
+        "encoding": "inplace",
+        "label": "contract StakingContract",
+        "numberOfBytes": "20"
+      },
+      "t_enum(DisputeStatus)1890": {
+        "encoding": "inplace",
+        "label": "enum DisputeResolution.DisputeStatus",
+        "numberOfBytes": "1"
+      },
+      "t_enum(VoteChoice)1894": {
+        "encoding": "inplace",
+        "label": "enum DisputeResolution.VoteChoice",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_struct(Vote)1934_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct DisputeResolution.Vote)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Vote)1934_storage"
+      },
+      "t_mapping(t_uint256,t_array(t_address)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => address[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_address)dyn_storage"
+      },
+      "t_mapping(t_uint256,t_mapping(t_address,t_struct(Vote)1934_storage))": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => mapping(address => struct DisputeResolution.Vote))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_address,t_struct(Vote)1934_storage)"
+      },
+      "t_mapping(t_uint256,t_struct(Dispute)1924_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct DisputeResolution.Dispute)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Dispute)1924_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Dispute)1924_storage": {
+        "encoding": "inplace",
+        "label": "struct DisputeResolution.Dispute",
+        "members": [
+          {
+            "astId": 1896,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "market",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 1898,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "disputer",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address"
+          },
+          {
+            "astId": 1900,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "disputedOutcome",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1902,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "proposedOutcome",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1904,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "reason",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 1906,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "disputeBond",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1908,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "createdAt",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1910,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "votingEndsAt",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1913,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "status",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_enum(DisputeStatus)1890"
+          },
+          {
+            "astId": 1915,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "upholdVotes",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1917,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "overturnVotes",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1919,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "totalVotingPower",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1921,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "resolved",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_bool"
+          },
+          {
+            "astId": 1923,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "finalOutcome",
+            "offset": 0,
+            "slot": "13",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "448"
+      },
+      "t_struct(Vote)1934_storage": {
+        "encoding": "inplace",
+        "label": "struct DisputeResolution.Vote",
+        "members": [
+          {
+            "astId": 1927,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "choice",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_enum(VoteChoice)1894"
+          },
+          {
+            "astId": 1929,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "votingPower",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1931,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1933,
+            "contract": "contracts/DisputeResolution.sol:DisputeResolution",
+            "label": "claimed",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bool"
+          }
+        ],
+        "numberOfBytes": "128"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

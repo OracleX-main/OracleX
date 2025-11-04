@@ -38,6 +38,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC721Errors__factory>;
     getContractFactory(
+      name: "IERC1363",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC1363__factory>;
+    getContractFactory(
       name: "IERC5267",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC5267__factory>;
@@ -74,6 +78,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
+      name: "SafeERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.SafeERC20__factory>;
+    getContractFactory(
       name: "ECDSA",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ECDSA__factory>;
@@ -82,6 +90,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EIP712__factory>;
     getContractFactory(
+      name: "IERC165",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC165__factory>;
+    getContractFactory(
       name: "SafeCast",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.SafeCast__factory>;
@@ -89,6 +101,10 @@ declare module "hardhat/types/runtime" {
       name: "Nonces",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Nonces__factory>;
+    getContractFactory(
+      name: "Pausable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Pausable__factory>;
     getContractFactory(
       name: "ReentrancyGuard",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -106,6 +122,18 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Checkpoints__factory>;
     getContractFactory(
+      name: "AIOracle",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AIOracle__factory>;
+    getContractFactory(
+      name: "DisputeResolution",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.DisputeResolution__factory>;
+    getContractFactory(
+      name: "IAIOracle",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IAIOracle__factory>;
+    getContractFactory(
       name: "OracleBridge",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.OracleBridge__factory>;
@@ -113,6 +141,18 @@ declare module "hardhat/types/runtime" {
       name: "ORXToken",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ORXToken__factory>;
+    getContractFactory(
+      name: "PredictionMarket",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.PredictionMarket__factory>;
+    getContractFactory(
+      name: "PredictionMarketFactory",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.PredictionMarketFactory__factory>;
+    getContractFactory(
+      name: "StakingContract",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.StakingContract__factory>;
 
     getContractAt(
       name: "Ownable",
@@ -144,6 +184,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC721Errors>;
+    getContractAt(
+      name: "IERC1363",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC1363>;
     getContractAt(
       name: "IERC5267",
       address: string | ethers.Addressable,
@@ -190,6 +235,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20>;
     getContractAt(
+      name: "SafeERC20",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.SafeERC20>;
+    getContractAt(
       name: "ECDSA",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -200,6 +250,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.EIP712>;
     getContractAt(
+      name: "IERC165",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC165>;
+    getContractAt(
       name: "SafeCast",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -209,6 +264,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.Nonces>;
+    getContractAt(
+      name: "Pausable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Pausable>;
     getContractAt(
       name: "ReentrancyGuard",
       address: string | ethers.Addressable,
@@ -230,6 +290,21 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.Checkpoints>;
     getContractAt(
+      name: "AIOracle",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AIOracle>;
+    getContractAt(
+      name: "DisputeResolution",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.DisputeResolution>;
+    getContractAt(
+      name: "IAIOracle",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IAIOracle>;
+    getContractAt(
       name: "OracleBridge",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -239,6 +314,21 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.ORXToken>;
+    getContractAt(
+      name: "PredictionMarket",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.PredictionMarket>;
+    getContractAt(
+      name: "PredictionMarketFactory",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.PredictionMarketFactory>;
+    getContractAt(
+      name: "StakingContract",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.StakingContract>;
 
     deployContract(
       name: "Ownable",
@@ -264,6 +354,10 @@ declare module "hardhat/types/runtime" {
       name: "IERC721Errors",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC721Errors>;
+    deployContract(
+      name: "IERC1363",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC1363>;
     deployContract(
       name: "IERC5267",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -301,6 +395,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC20>;
     deployContract(
+      name: "SafeERC20",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.SafeERC20>;
+    deployContract(
       name: "ECDSA",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ECDSA>;
@@ -309,6 +407,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EIP712>;
     deployContract(
+      name: "IERC165",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC165>;
+    deployContract(
       name: "SafeCast",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.SafeCast>;
@@ -316,6 +418,10 @@ declare module "hardhat/types/runtime" {
       name: "Nonces",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Nonces>;
+    deployContract(
+      name: "Pausable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Pausable>;
     deployContract(
       name: "ReentrancyGuard",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -333,6 +439,18 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Checkpoints>;
     deployContract(
+      name: "AIOracle",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.AIOracle>;
+    deployContract(
+      name: "DisputeResolution",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.DisputeResolution>;
+    deployContract(
+      name: "IAIOracle",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IAIOracle>;
+    deployContract(
       name: "OracleBridge",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.OracleBridge>;
@@ -340,6 +458,18 @@ declare module "hardhat/types/runtime" {
       name: "ORXToken",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ORXToken>;
+    deployContract(
+      name: "PredictionMarket",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.PredictionMarket>;
+    deployContract(
+      name: "PredictionMarketFactory",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.PredictionMarketFactory>;
+    deployContract(
+      name: "StakingContract",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.StakingContract>;
 
     deployContract(
       name: "Ownable",
@@ -371,6 +501,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC721Errors>;
+    deployContract(
+      name: "IERC1363",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC1363>;
     deployContract(
       name: "IERC5267",
       args: any[],
@@ -417,6 +552,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC20>;
     deployContract(
+      name: "SafeERC20",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.SafeERC20>;
+    deployContract(
       name: "ECDSA",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -427,6 +567,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EIP712>;
     deployContract(
+      name: "IERC165",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC165>;
+    deployContract(
       name: "SafeCast",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -436,6 +581,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Nonces>;
+    deployContract(
+      name: "Pausable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Pausable>;
     deployContract(
       name: "ReentrancyGuard",
       args: any[],
@@ -457,6 +607,21 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Checkpoints>;
     deployContract(
+      name: "AIOracle",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.AIOracle>;
+    deployContract(
+      name: "DisputeResolution",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.DisputeResolution>;
+    deployContract(
+      name: "IAIOracle",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IAIOracle>;
+    deployContract(
       name: "OracleBridge",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -466,6 +631,21 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ORXToken>;
+    deployContract(
+      name: "PredictionMarket",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.PredictionMarket>;
+    deployContract(
+      name: "PredictionMarketFactory",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.PredictionMarketFactory>;
+    deployContract(
+      name: "StakingContract",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.StakingContract>;
 
     // default types
     getContractFactory(

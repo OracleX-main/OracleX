@@ -1,0 +1,68 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IAIOracle",
+  "sourceName": "contracts/interfaces/IAIOracle.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        }
+      ],
+      "name": "getAIResult",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "outcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "confidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isSubmitted",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_predictedOutcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_confidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_evidence",
+          "type": "string"
+        }
+      ],
+      "name": "submitAIResult",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

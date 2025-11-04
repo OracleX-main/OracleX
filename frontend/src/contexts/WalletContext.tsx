@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { ethers } from 'ethers';
 import { toast } from 'sonner';
+import { web3Service } from '@/services/web3';
 
 interface WalletContextType {
   isConnected: boolean;
@@ -12,6 +13,9 @@ interface WalletContextType {
   isConnecting: boolean;
   chainId: number | null;
   balance: string | null;
+  orxBalance: string | null;
+  switchToBNBChain: () => Promise<boolean>;
+  refreshBalance: () => Promise<void>;
 }
 
 const WalletContext = createContext<WalletContextType | undefined>(undefined);
@@ -28,6 +32,7 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [chainId, setChainId] = useState<number | null>(null);
   const [balance, setBalance] = useState<string | null>(null);
+  const [orxBalance, setOrxBalance] = useState<string | null>(null);
 
   // Target chain ID for BNB Smart Chain
   const TARGET_CHAIN_ID = 56; // BSC Mainnet
@@ -225,6 +230,42 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
     }
   }, [isConnected, provider, address]);
 
+  const switchToBNBChain = async (): Promise<boolean> => {
+    try {
+      await web3Service.initialize();
+      const result = await web3Service.switchToBNBChain();
+      if (result) {
+        toast.success('Switched to BNB Smart Chain');
+      }
+      return result;
+    } catch (error) {
+      console.error('Failed to switch to BNB Chain:', error);
+      toast.error('Failed to switch to BNB Smart Chain');
+      return false;
+    }
+  };
+
+  const refreshBalance = async (): Promise<void> => {
+    if (!provider || !address) return;
+
+    try {
+      // Update BNB balance
+      const newBalance = await provider.getBalance(address);
+      setBalance(ethers.formatEther(newBalance));
+
+      // Update ORX balance if contract available
+      try {
+        const newOrxBalance = await web3Service.getORXBalance(address);
+        setOrxBalance(newOrxBalance);
+      } catch (error) {
+        console.warn('ORX token not available:', error);
+        setOrxBalance('0');
+      }
+    } catch (error) {
+      console.error('Error refreshing balance:', error);
+    }
+  };
+
   const value: WalletContextType = {
     isConnected,
     address,
@@ -235,6 +276,9 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
     isConnecting,
     chainId,
     balance,
+    orxBalance,
+    switchToBNBChain,
+    refreshBalance,
   };
 
   return (

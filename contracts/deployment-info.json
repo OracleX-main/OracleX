@@ -1,0 +1,27 @@
+{
+  "network": "bsc-testnet",
+  "deployer": "0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df",
+  "timestamp": "2025-11-04T00:15:17.087Z",
+  "contracts": {
+    "ORXToken": "0x7eE4f73bab260C11c68e5560c46E3975E824ed79",
+    "AIOracle": "0xC7FBa4a30396CC6F7fD107c165eA29E4bc62314d",
+    "StakingContract": "0x007Aaa957829ea04e130809e9cebbBd4d06dABa2",
+    "DisputeResolution": "0x5fd54e5e037939C93fAC248E39459b168d741502",
+    "PredictionMarketFactory": "0x273C8Dde70897069BeC84394e235feF17e7c5E1b",
+    "OracleBridge": "0x7CeE510d9080379738B3D9870C4C046d9a891E7F"
+  },
+  "parameters": {
+    "totalSupply": "1000000000000000000000000000",
+    "marketCreationFee": "10000000000000000",
+    "minimumConfidence": 70,
+    "minimumAgents": 3,
+    "consensusThreshold": 60,
+    "rewardRate": "100000000000000",
+    "minimumValidatorStake": "10000000000000000000000",
+    "minimumStakingPeriod": 604800,
+    "slashingRate": 1000,
+    "minimumDisputeBond": "100000000000000000",
+    "votingPeriod": 259200,
+    "quorumThreshold": 30
+  }
+}

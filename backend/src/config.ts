@@ -17,7 +17,12 @@ export const config = {
   // Blockchain
   BLOCKCHAIN_RPC_URL: process.env.BLOCKCHAIN_RPC_URL || 'https://data-seed-prebsc-1-s1.binance.org:8545',
   PRIVATE_KEY: process.env.PRIVATE_KEY || '',
-  CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS || '',
+  ORX_TOKEN_ADDRESS: process.env.ORX_TOKEN_ADDRESS || '',
+  ORACLE_BRIDGE_ADDRESS: process.env.ORACLE_BRIDGE_ADDRESS || '',
+  AI_ORACLE_ADDRESS: process.env.AI_ORACLE_ADDRESS || '',
+  STAKING_CONTRACT_ADDRESS: process.env.STAKING_CONTRACT_ADDRESS || '',
+  DISPUTE_RESOLUTION_ADDRESS: process.env.DISPUTE_RESOLUTION_ADDRESS || '',
+  MARKET_FACTORY_ADDRESS: process.env.MARKET_FACTORY_ADDRESS || '',
   
   // AI Oracle
   AI_ORACLE_URL: process.env.AI_ORACLE_URL || 'http://localhost:8000',

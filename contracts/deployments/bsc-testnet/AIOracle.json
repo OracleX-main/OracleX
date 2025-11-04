@@ -1,0 +1,1023 @@
+{
+  "address": "0xC7FBa4a30396CC6F7fD107c165eA29E4bc62314d",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_minimumConfidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_minimumAgents",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_consensusThreshold",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "market",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "outcome",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "confidence",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "submitter",
+          "type": "address"
+        }
+      ],
+      "name": "AIResultSubmitted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "agent",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "reputation",
+          "type": "uint256"
+        }
+      ],
+      "name": "AgentAuthorized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "agent",
+          "type": "address"
+        }
+      ],
+      "name": "AgentDeauthorized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "market",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "agent",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "outcome",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "confidence",
+          "type": "uint256"
+        }
+      ],
+      "name": "AgentReportSubmitted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "market",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "outcome",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "confidence",
+          "type": "uint256"
+        }
+      ],
+      "name": "ConsensusReached",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "agentReports",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "agent",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "outcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "confidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "data",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "agentReputation",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "aiResults",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "predictedOutcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "confidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isSubmitted",
+          "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "evidence",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "submitter",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_agent",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_reputation",
+          "type": "uint256"
+        }
+      ],
+      "name": "authorizeAgent",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "authorizedAgents",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "consensusThreshold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_agent",
+          "type": "address"
+        }
+      ],
+      "name": "deauthorizeAgent",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        }
+      ],
+      "name": "forceConsensusCheck",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        }
+      ],
+      "name": "getAIResult",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "outcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "confidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isSubmitted",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_agent",
+          "type": "address"
+        }
+      ],
+      "name": "getAgentReport",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "agent",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "outcome",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "confidence",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "data",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct AIOracle.AgentReport",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        }
+      ],
+      "name": "getMarketAgents",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "marketAgents",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minimumAgents",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minimumConfidence",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_predictedOutcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_confidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_evidence",
+          "type": "string"
+        }
+      ],
+      "name": "submitAIResult",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_market",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_outcome",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_confidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_evidence",
+          "type": "string"
+        }
+      ],
+      "name": "submitManualResult",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_agent",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_newReputation",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateAgentReputation",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_minimumConfidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_minimumAgents",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_consensusThreshold",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateParameters",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xdbe5ededa6a5a9d1eff881703e8f9da4e70f783e4e67d8be379d4fe3dfe121a9",
+  "receipt": {
+    "to": null,
+    "from": "0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df",
+    "contractAddress": "0xC7FBa4a30396CC6F7fD107c165eA29E4bc62314d",
+    "transactionIndex": 0,
+    "gasUsed": "1778955",
+    "logsBloom": "0x00000000000100000000000000000000000000000000000000800000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000080001000000000000000000000000000000000000020000000000000000000800000000000000000000000000000000400000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x1e2a4e83f75e92581a6c162aa4d102fab20c3e8a0b9b6edb6185c1d776b56966",
+    "transactionHash": "0xdbe5ededa6a5a9d1eff881703e8f9da4e70f783e4e67d8be379d4fe3dfe121a9",
+    "logs": [
+      {
+        "transactionIndex": 0,
+        "blockNumber": 71157731,
+        "transactionHash": "0xdbe5ededa6a5a9d1eff881703e8f9da4e70f783e4e67d8be379d4fe3dfe121a9",
+        "address": "0xC7FBa4a30396CC6F7fD107c165eA29E4bc62314d",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000053a7e989cd6ac04edace214d192edad7c7f350df"
+        ],
+        "data": "0x",
+        "logIndex": 0,
+        "blockHash": "0x1e2a4e83f75e92581a6c162aa4d102fab20c3e8a0b9b6edb6185c1d776b56966"
+      }
+    ],
+    "blockNumber": 71157731,
+    "cumulativeGasUsed": "1778955",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    70,
+    3,
+    60
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "7e24ddcb10469489694c0196111974d8",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_minimumConfidence\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_minimumAgents\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_consensusThreshold\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ReentrancyGuardReentrantCall\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"market\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"outcome\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"submitter\",\"type\":\"address\"}],\"name\":\"AIResultSubmitted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"reputation\",\"type\":\"uint256\"}],\"name\":\"AgentAuthorized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"}],\"name\":\"AgentDeauthorized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"market\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"outcome\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"}],\"name\":\"AgentReportSubmitted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"market\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"outcome\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"}],\"name\":\"ConsensusReached\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"agentReports\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"outcome\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"data\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"agentReputation\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"aiResults\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"predictedOutcome\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isSubmitted\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"evidence\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"submitter\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_agent\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_reputation\",\"type\":\"uint256\"}],\"name\":\"authorizeAgent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"authorizedAgents\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"consensusThreshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_agent\",\"type\":\"address\"}],\"name\":\"deauthorizeAgent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_market\",\"type\":\"address\"}],\"name\":\"forceConsensusCheck\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_market\",\"type\":\"address\"}],\"name\":\"getAIResult\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"outcome\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isSubmitted\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_market\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_agent\",\"type\":\"address\"}],\"name\":\"getAgentReport\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"outcome\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"data\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"internalType\":\"struct AIOracle.AgentReport\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_market\",\"type\":\"address\"}],\"name\":\"getMarketAgents\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"marketAgents\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minimumAgents\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minimumConfidence\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_market\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_predictedOutcome\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_confidence\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_evidence\",\"type\":\"string\"}],\"name\":\"submitAIResult\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_market\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_outcome\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_confidence\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_evidence\",\"type\":\"string\"}],\"name\":\"submitManualResult\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_agent\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_newReputation\",\"type\":\"uint256\"}],\"name\":\"updateAgentReputation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_minimumConfidence\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_minimumAgents\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_consensusThreshold\",\"type\":\"uint256\"}],\"name\":\"updateParameters\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"OwnableInvalidOwner(address)\":[{\"details\":\"The owner is not a valid owner account. (eg. `address(0)`)\"}],\"OwnableUnauthorizedAccount(address)\":[{\"details\":\"The caller account is not authorized to perform an operation.\"}],\"ReentrancyGuardReentrantCall()\":[{\"details\":\"Unauthorized reentrant call.\"}]},\"kind\":\"dev\",\"methods\":{\"authorizeAgent(address,uint256)\":{\"details\":\"Authorize an AI agent\"},\"deauthorizeAgent(address)\":{\"details\":\"Deauthorize an AI agent\"},\"forceConsensusCheck(address)\":{\"details\":\"Force consensus calculation (for testing/emergency)\"},\"getAIResult(address)\":{\"details\":\"Get AI result for a market\"},\"getAgentReport(address,address)\":{\"details\":\"Get agent report for market\"},\"getMarketAgents(address)\":{\"details\":\"Get market agents\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"submitAIResult(address,uint256,uint256,string)\":{\"details\":\"Submit AI analysis result for a market\",\"params\":{\"_confidence\":\"Confidence level (0-100)\",\"_evidence\":\"Supporting evidence/data\",\"_market\":\"Address of the prediction market\",\"_predictedOutcome\":\"Predicted winning outcome\"}},\"submitManualResult(address,uint256,uint256,string)\":{\"details\":\"Manual result submission (fallback)\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"},\"updateAgentReputation(address,uint256)\":{\"details\":\"Update agent reputation based on performance\"},\"updateParameters(uint256,uint256,uint256)\":{\"details\":\"Update oracle parameters\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/AIOracle.sol\":\"AIOracle\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Context} from \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * The initial owner is set to the address provided by the deployer. This can\\n * later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    /**\\n     * @dev The caller account is not authorized to perform an operation.\\n     */\\n    error OwnableUnauthorizedAccount(address account);\\n\\n    /**\\n     * @dev The owner is not a valid owner account. (eg. `address(0)`)\\n     */\\n    error OwnableInvalidOwner(address owner);\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the address provided by the deployer as the initial owner.\\n     */\\n    constructor(address initialOwner) {\\n        if (initialOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(initialOwner);\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        if (owner() != _msgSender()) {\\n            revert OwnableUnauthorizedAccount(_msgSender());\\n        }\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby disabling any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        if (newOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.1) (utils/Context.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Pausable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.3.0) (utils/Pausable.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Context} from \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which allows children to implement an emergency stop\\n * mechanism that can be triggered by an authorized account.\\n *\\n * This module is used through inheritance. It will make available the\\n * modifiers `whenNotPaused` and `whenPaused`, which can be applied to\\n * the functions of your contract. Note that they will not be pausable by\\n * simply including this module, only once the modifiers are put in place.\\n */\\nabstract contract Pausable is Context {\\n    bool private _paused;\\n\\n    /**\\n     * @dev Emitted when the pause is triggered by `account`.\\n     */\\n    event Paused(address account);\\n\\n    /**\\n     * @dev Emitted when the pause is lifted by `account`.\\n     */\\n    event Unpaused(address account);\\n\\n    /**\\n     * @dev The operation failed because the contract is paused.\\n     */\\n    error EnforcedPause();\\n\\n    /**\\n     * @dev The operation failed because the contract is not paused.\\n     */\\n    error ExpectedPause();\\n\\n    /**\\n     * @dev Modifier to make a function callable only when the contract is not paused.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must not be paused.\\n     */\\n    modifier whenNotPaused() {\\n        _requireNotPaused();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Modifier to make a function callable only when the contract is paused.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must be paused.\\n     */\\n    modifier whenPaused() {\\n        _requirePaused();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns true if the contract is paused, and false otherwise.\\n     */\\n    function paused() public view virtual returns (bool) {\\n        return _paused;\\n    }\\n\\n    /**\\n     * @dev Throws if the contract is paused.\\n     */\\n    function _requireNotPaused() internal view virtual {\\n        if (paused()) {\\n            revert EnforcedPause();\\n        }\\n    }\\n\\n    /**\\n     * @dev Throws if the contract is not paused.\\n     */\\n    function _requirePaused() internal view virtual {\\n        if (!paused()) {\\n            revert ExpectedPause();\\n        }\\n    }\\n\\n    /**\\n     * @dev Triggers stopped state.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must not be paused.\\n     */\\n    function _pause() internal virtual whenNotPaused {\\n        _paused = true;\\n        emit Paused(_msgSender());\\n    }\\n\\n    /**\\n     * @dev Returns to normal state.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must be paused.\\n     */\\n    function _unpause() internal virtual whenPaused {\\n        _paused = false;\\n        emit Unpaused(_msgSender());\\n    }\\n}\\n\",\"keccak256\":\"0xdb484371dfbb848cb6f5d70464e9ac9b2900e4164ead76bbce4fef0b44bcc68f\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.1.0) (utils/ReentrancyGuard.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Contract module that helps prevent reentrant calls to a function.\\n *\\n * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\\n * available, which can be applied to functions to make sure there are no nested\\n * (reentrant) calls to them.\\n *\\n * Note that because there is a single `nonReentrant` guard, functions marked as\\n * `nonReentrant` may not call one another. This can be worked around by making\\n * those functions `private`, and then adding `external` `nonReentrant` entry\\n * points to them.\\n *\\n * TIP: If EIP-1153 (transient storage) is available on the chain you're deploying at,\\n * consider using {ReentrancyGuardTransient} instead.\\n *\\n * TIP: If you would like to learn more about reentrancy and alternative ways\\n * to protect against it, check out our blog post\\n * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].\\n */\\nabstract contract ReentrancyGuard {\\n    // Booleans are more expensive than uint256 or any type that takes up a full\\n    // word because each write operation emits an extra SLOAD to first read the\\n    // slot's contents, replace the bits taken up by the boolean, and then write\\n    // back. This is the compiler's defense against contract upgrades and\\n    // pointer aliasing, and it cannot be disabled.\\n\\n    // The values being non-zero value makes deployment a bit more expensive,\\n    // but in exchange the refund on every call to nonReentrant will be lower in\\n    // amount. Since refunds are capped to a percentage of the total\\n    // transaction's gas, it is best to keep them low in cases like this one, to\\n    // increase the likelihood of the full refund coming into effect.\\n    uint256 private constant NOT_ENTERED = 1;\\n    uint256 private constant ENTERED = 2;\\n\\n    uint256 private _status;\\n\\n    /**\\n     * @dev Unauthorized reentrant call.\\n     */\\n    error ReentrancyGuardReentrantCall();\\n\\n    constructor() {\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Prevents a contract from calling itself, directly or indirectly.\\n     * Calling a `nonReentrant` function from another `nonReentrant`\\n     * function is not supported. It is possible to prevent this from happening\\n     * by making the `nonReentrant` function external, and making it call a\\n     * `private` function that does the actual work.\\n     */\\n    modifier nonReentrant() {\\n        _nonReentrantBefore();\\n        _;\\n        _nonReentrantAfter();\\n    }\\n\\n    function _nonReentrantBefore() private {\\n        // On the first call to nonReentrant, _status will be NOT_ENTERED\\n        if (_status == ENTERED) {\\n            revert ReentrancyGuardReentrantCall();\\n        }\\n\\n        // Any calls to nonReentrant after this point will fail\\n        _status = ENTERED;\\n    }\\n\\n    function _nonReentrantAfter() private {\\n        // By storing the original value once again, a refund is triggered (see\\n        // https://eips.ethereum.org/EIPS/eip-2200)\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Returns true if the reentrancy guard is currently set to \\\"entered\\\", which indicates there is a\\n     * `nonReentrant` function in the call stack.\\n     */\\n    function _reentrancyGuardEntered() internal view returns (bool) {\\n        return _status == ENTERED;\\n    }\\n}\\n\",\"keccak256\":\"0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3\",\"license\":\"MIT\"},\"contracts/AIOracle.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\r\\nimport \\\"./interfaces/IAIOracle.sol\\\";\\r\\nimport \\\"./PredictionMarket.sol\\\";\\r\\n\\r\\ncontract AIOracle is IAIOracle, Ownable, ReentrancyGuard {\\r\\n    struct AIResult {\\r\\n        uint256 predictedOutcome;\\r\\n        uint256 confidence; // 0-100\\r\\n        uint256 timestamp;\\r\\n        bool isSubmitted;\\r\\n        string evidence;\\r\\n        address submitter;\\r\\n    }\\r\\n\\r\\n    struct AgentReport {\\r\\n        address agent;\\r\\n        uint256 outcome;\\r\\n        uint256 confidence;\\r\\n        string data;\\r\\n        uint256 timestamp;\\r\\n    }\\r\\n\\r\\n    // State variables\\r\\n    mapping(address => AIResult) public aiResults; // market => result\\r\\n    mapping(address => mapping(address => AgentReport)) public agentReports; // market => agent => report\\r\\n    mapping(address => address[]) public marketAgents; // market => agents[]\\r\\n    mapping(address => bool) public authorizedAgents;\\r\\n    mapping(address => uint256) public agentReputation; // 0-1000 reputation score\\r\\n    \\r\\n    uint256 public minimumConfidence;\\r\\n    uint256 public minimumAgents;\\r\\n    uint256 public consensusThreshold; // Percentage needed for consensus\\r\\n    \\r\\n    // Events\\r\\n    event AIResultSubmitted(\\r\\n        address indexed market,\\r\\n        uint256 outcome,\\r\\n        uint256 confidence,\\r\\n        address submitter\\r\\n    );\\r\\n    \\r\\n    event AgentReportSubmitted(\\r\\n        address indexed market,\\r\\n        address indexed agent,\\r\\n        uint256 outcome,\\r\\n        uint256 confidence\\r\\n    );\\r\\n    \\r\\n    event AgentAuthorized(address indexed agent, uint256 reputation);\\r\\n    event AgentDeauthorized(address indexed agent);\\r\\n    event ConsensusReached(address indexed market, uint256 outcome, uint256 confidence);\\r\\n\\r\\n    modifier onlyAuthorizedAgent() {\\r\\n        require(authorizedAgents[msg.sender], \\\"Not authorized agent\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    constructor(\\r\\n        uint256 _minimumConfidence,\\r\\n        uint256 _minimumAgents,\\r\\n        uint256 _consensusThreshold\\r\\n    ) Ownable(msg.sender) {\\r\\n        minimumConfidence = _minimumConfidence;\\r\\n        minimumAgents = _minimumAgents;\\r\\n        consensusThreshold = _consensusThreshold;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Submit AI analysis result for a market\\r\\n     * @param _market Address of the prediction market\\r\\n     * @param _predictedOutcome Predicted winning outcome\\r\\n     * @param _confidence Confidence level (0-100)\\r\\n     * @param _evidence Supporting evidence/data\\r\\n     */\\r\\n    function submitAIResult(\\r\\n        address _market,\\r\\n        uint256 _predictedOutcome,\\r\\n        uint256 _confidence,\\r\\n        string memory _evidence\\r\\n    ) external override onlyAuthorizedAgent nonReentrant {\\r\\n        require(_confidence >= minimumConfidence, \\\"Confidence too low\\\");\\r\\n        require(_confidence <= 100, \\\"Invalid confidence level\\\");\\r\\n        \\r\\n        // Submit agent report\\r\\n        agentReports[_market][msg.sender] = AgentReport({\\r\\n            agent: msg.sender,\\r\\n            outcome: _predictedOutcome,\\r\\n            confidence: _confidence,\\r\\n            data: _evidence,\\r\\n            timestamp: block.timestamp\\r\\n        });\\r\\n\\r\\n        // Add agent to market if not already added\\r\\n        if (!_isAgentInMarket(_market, msg.sender)) {\\r\\n            marketAgents[_market].push(msg.sender);\\r\\n        }\\r\\n\\r\\n        emit AgentReportSubmitted(_market, msg.sender, _predictedOutcome, _confidence);\\r\\n\\r\\n        // Check if we have enough reports to reach consensus\\r\\n        _checkConsensus(_market);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get AI result for a market\\r\\n     */\\r\\n    function getAIResult(address _market) \\r\\n        external \\r\\n        view \\r\\n        override \\r\\n        returns (uint256 outcome, uint256 confidence, bool isSubmitted) \\r\\n    {\\r\\n        AIResult memory result = aiResults[_market];\\r\\n        return (result.predictedOutcome, result.confidence, result.isSubmitted);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Check if consensus has been reached and submit final result\\r\\n     */\\r\\n    function _checkConsensus(address _market) internal {\\r\\n        address[] memory agents = marketAgents[_market];\\r\\n        \\r\\n        if (agents.length < minimumAgents) {\\r\\n            return; // Not enough agents yet\\r\\n        }\\r\\n\\r\\n        // Calculate consensus\\r\\n        (uint256 consensusOutcome, uint256 avgConfidence, bool hasConsensus) = \\r\\n            _calculateConsensus(_market, agents);\\r\\n\\r\\n        if (hasConsensus && !aiResults[_market].isSubmitted) {\\r\\n            // Submit final AI result\\r\\n            aiResults[_market] = AIResult({\\r\\n                predictedOutcome: consensusOutcome,\\r\\n                confidence: avgConfidence,\\r\\n                timestamp: block.timestamp,\\r\\n                isSubmitted: true,\\r\\n                evidence: \\\"AI consensus reached\\\",\\r\\n                submitter: address(this)\\r\\n            });\\r\\n\\r\\n            emit AIResultSubmitted(_market, consensusOutcome, avgConfidence, address(this));\\r\\n            emit ConsensusReached(_market, consensusOutcome, avgConfidence);\\r\\n\\r\\n            // Automatically resolve market if it's expired\\r\\n            _attemptMarketResolution(_market, consensusOutcome);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Calculate consensus from agent reports\\r\\n     */\\r\\n    function _calculateConsensus(address _market, address[] memory agents) \\r\\n        internal \\r\\n        view \\r\\n        returns (uint256 outcome, uint256 confidence, bool hasConsensus) \\r\\n    {\\r\\n        if (agents.length == 0) return (0, 0, false);\\r\\n\\r\\n        uint256 totalWeight = 0;\\r\\n        uint256 totalConfidence = 0;\\r\\n        uint256 validReports = 0;\\r\\n\\r\\n        // Find maximum outcome to determine array size\\r\\n        uint256 maxOutcome = 0;\\r\\n        for (uint256 i = 0; i < agents.length; i++) {\\r\\n            AgentReport memory report = agentReports[_market][agents[i]];\\r\\n            if (report.timestamp > 0) {\\r\\n                if (report.outcome > maxOutcome) {\\r\\n                    maxOutcome = report.outcome;\\r\\n                }\\r\\n                validReports++;\\r\\n            }\\r\\n        }\\r\\n\\r\\n        if (validReports == 0) return (0, 0, false);\\r\\n\\r\\n        // Use arrays for vote counting\\r\\n        uint256[] memory votes = new uint256[](maxOutcome + 1);\\r\\n        \\r\\n        for (uint256 i = 0; i < agents.length; i++) {\\r\\n            AgentReport memory report = agentReports[_market][agents[i]];\\r\\n            if (report.timestamp > 0) {\\r\\n                uint256 agentRep = agentReputation[agents[i]];\\r\\n                if (agentRep == 0) agentRep = 100; // Default reputation\\r\\n                \\r\\n                uint256 weight = (agentRep * report.confidence) / 100;\\r\\n                votes[report.outcome] += weight;\\r\\n                totalWeight += weight;\\r\\n                totalConfidence += report.confidence;\\r\\n            }\\r\\n        }\\r\\n\\r\\n        // Find outcome with most votes\\r\\n        uint256 maxVotes = 0;\\r\\n        uint256 winningOutcome = 0;\\r\\n        \\r\\n        for (uint256 i = 0; i <= maxOutcome; i++) {\\r\\n            if (votes[i] > maxVotes) {\\r\\n                maxVotes = votes[i];\\r\\n                winningOutcome = i;\\r\\n            }\\r\\n        }\\r\\n\\r\\n        // Check if consensus threshold is met\\r\\n        uint256 consensusPercentage = (maxVotes * 100) / totalWeight;\\r\\n        bool consensus = consensusPercentage >= consensusThreshold;\\r\\n        \\r\\n        uint256 avgConf = totalConfidence / validReports;\\r\\n        \\r\\n        return (winningOutcome, avgConf, consensus);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Attempt to resolve market with AI result\\r\\n     */\\r\\n    function _attemptMarketResolution(address _market, uint256 _outcome) internal {\\r\\n        try PredictionMarket(_market).resolveMarket(_outcome, \\\"AI Oracle Resolution\\\") {\\r\\n            // Market resolved successfully\\r\\n        } catch {\\r\\n            // Market resolution failed, possibly not expired yet\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Check if agent is already in market's agent list\\r\\n     */\\r\\n    function _isAgentInMarket(address _market, address _agent) internal view returns (bool) {\\r\\n        address[] memory agents = marketAgents[_market];\\r\\n        for (uint256 i = 0; i < agents.length; i++) {\\r\\n            if (agents[i] == _agent) {\\r\\n                return true;\\r\\n            }\\r\\n        }\\r\\n        return false;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Authorize an AI agent\\r\\n     */\\r\\n    function authorizeAgent(address _agent, uint256 _reputation) external onlyOwner {\\r\\n        require(_agent != address(0), \\\"Invalid agent address\\\");\\r\\n        require(_reputation <= 1000, \\\"Invalid reputation score\\\");\\r\\n        \\r\\n        authorizedAgents[_agent] = true;\\r\\n        agentReputation[_agent] = _reputation;\\r\\n        \\r\\n        emit AgentAuthorized(_agent, _reputation);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Deauthorize an AI agent\\r\\n     */\\r\\n    function deauthorizeAgent(address _agent) external onlyOwner {\\r\\n        authorizedAgents[_agent] = false;\\r\\n        agentReputation[_agent] = 0;\\r\\n        \\r\\n        emit AgentDeauthorized(_agent);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Update agent reputation based on performance\\r\\n     */\\r\\n    function updateAgentReputation(address _agent, uint256 _newReputation) external onlyOwner {\\r\\n        require(authorizedAgents[_agent], \\\"Agent not authorized\\\");\\r\\n        require(_newReputation <= 1000, \\\"Invalid reputation score\\\");\\r\\n        \\r\\n        agentReputation[_agent] = _newReputation;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Update oracle parameters\\r\\n     */\\r\\n    function updateParameters(\\r\\n        uint256 _minimumConfidence,\\r\\n        uint256 _minimumAgents,\\r\\n        uint256 _consensusThreshold\\r\\n    ) external onlyOwner {\\r\\n        require(_minimumConfidence <= 100, \\\"Invalid confidence\\\");\\r\\n        require(_consensusThreshold <= 100, \\\"Invalid threshold\\\");\\r\\n        \\r\\n        minimumConfidence = _minimumConfidence;\\r\\n        minimumAgents = _minimumAgents;\\r\\n        consensusThreshold = _consensusThreshold;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get market agents\\r\\n     */\\r\\n    function getMarketAgents(address _market) external view returns (address[] memory) {\\r\\n        return marketAgents[_market];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get agent report for market\\r\\n     */\\r\\n    function getAgentReport(address _market, address _agent) \\r\\n        external \\r\\n        view \\r\\n        returns (AgentReport memory) \\r\\n    {\\r\\n        return agentReports[_market][_agent];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Force consensus calculation (for testing/emergency)\\r\\n     */\\r\\n    function forceConsensusCheck(address _market) external onlyOwner {\\r\\n        _checkConsensus(_market);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Manual result submission (fallback)\\r\\n     */\\r\\n    function submitManualResult(\\r\\n        address _market,\\r\\n        uint256 _outcome,\\r\\n        uint256 _confidence,\\r\\n        string memory _evidence\\r\\n    ) external onlyOwner {\\r\\n        require(!aiResults[_market].isSubmitted, \\\"Result already submitted\\\");\\r\\n        \\r\\n        aiResults[_market] = AIResult({\\r\\n            predictedOutcome: _outcome,\\r\\n            confidence: _confidence,\\r\\n            timestamp: block.timestamp,\\r\\n            isSubmitted: true,\\r\\n            evidence: _evidence,\\r\\n            submitter: msg.sender\\r\\n        });\\r\\n\\r\\n        emit AIResultSubmitted(_market, _outcome, _confidence, msg.sender);\\r\\n        \\r\\n        _attemptMarketResolution(_market, _outcome);\\r\\n    }\\r\\n}\",\"keccak256\":\"0xf66c8c7f5d2176271bd8c7cc02be3abc1623b68c01dd7367d39aa1e723f56683\",\"license\":\"MIT\"},\"contracts/PredictionMarket.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/utils/Pausable.sol\\\";\\r\\nimport \\\"./interfaces/IAIOracle.sol\\\";\\r\\n\\r\\ncontract PredictionMarket is ReentrancyGuard, Pausable {\\r\\n    enum MarketStatus { Active, Resolved, Disputed, Cancelled }\\r\\n    enum OracleType { AI, Manual, Hybrid }\\r\\n\\r\\n    struct Bet {\\r\\n        uint256 amount;\\r\\n        uint256 outcome;\\r\\n        uint256 timestamp;\\r\\n        bool claimed;\\r\\n    }\\r\\n\\r\\n    struct Outcome {\\r\\n        string name;\\r\\n        uint256 totalStaked;\\r\\n        uint256 betCount;\\r\\n    }\\r\\n\\r\\n    // State variables\\r\\n    string public title;\\r\\n    string public description;\\r\\n    Outcome[] public outcomes;\\r\\n    uint256 public expiryTime;\\r\\n    address public creator;\\r\\n    address public factory;\\r\\n    address public oracleAddress;\\r\\n    OracleType public oracleType;\\r\\n    MarketStatus public status;\\r\\n    \\r\\n    uint256 public totalVolume;\\r\\n    uint256 public winningOutcome;\\r\\n    uint256 public resolutionTime;\\r\\n    uint256 public platformFeeRate; // Basis points (e.g., 250 = 2.5%)\\r\\n    \\r\\n    mapping(address => Bet[]) public userBets;\\r\\n    mapping(address => uint256) public userTotalStaked;\\r\\n    mapping(uint256 => uint256) public outcomeStaked;\\r\\n    \\r\\n    address[] public participants;\\r\\n    mapping(address => bool) public hasParticipated;\\r\\n\\r\\n    // Events\\r\\n    event BetPlaced(\\r\\n        address indexed user,\\r\\n        uint256 indexed outcome,\\r\\n        uint256 amount,\\r\\n        uint256 timestamp\\r\\n    );\\r\\n    \\r\\n    event MarketResolved(\\r\\n        uint256 indexed winningOutcome,\\r\\n        uint256 timestamp,\\r\\n        string resolution\\r\\n    );\\r\\n    \\r\\n    event RewardClaimed(\\r\\n        address indexed user,\\r\\n        uint256 amount,\\r\\n        uint256 timestamp\\r\\n    );\\r\\n    \\r\\n    event MarketDisputed(\\r\\n        address indexed disputer,\\r\\n        uint256 timestamp,\\r\\n        string reason\\r\\n    );\\r\\n\\r\\n    event MarketCancelled(uint256 timestamp, string reason);\\r\\n\\r\\n    modifier onlyCreator() {\\r\\n        require(msg.sender == creator, \\\"Only market creator allowed\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier onlyFactory() {\\r\\n        require(msg.sender == factory, \\\"Only factory allowed\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier onlyOracle() {\\r\\n        require(msg.sender == oracleAddress, \\\"Only oracle allowed\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier marketActive() {\\r\\n        require(status == MarketStatus.Active, \\\"Market not active\\\");\\r\\n        require(block.timestamp < expiryTime, \\\"Market expired\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier marketResolved() {\\r\\n        require(status == MarketStatus.Resolved, \\\"Market not resolved\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    constructor(\\r\\n        string memory _title,\\r\\n        string memory _description,\\r\\n        string[] memory _outcomes,\\r\\n        uint256 _expiryTime,\\r\\n        address _creator,\\r\\n        address _oracleAddress,\\r\\n        uint8 _oracleType,\\r\\n        address _factory\\r\\n    ) {\\r\\n        require(_outcomes.length >= 2, \\\"Need at least 2 outcomes\\\");\\r\\n        require(_expiryTime > block.timestamp, \\\"Expiry must be in future\\\");\\r\\n        \\r\\n        title = _title;\\r\\n        description = _description;\\r\\n        expiryTime = _expiryTime;\\r\\n        creator = _creator;\\r\\n        oracleAddress = _oracleAddress;\\r\\n        oracleType = OracleType(_oracleType);\\r\\n        factory = _factory;\\r\\n        status = MarketStatus.Active;\\r\\n        platformFeeRate = 250; // 2.5% default fee\\r\\n        \\r\\n        // Initialize outcomes\\r\\n        for (uint256 i = 0; i < _outcomes.length; i++) {\\r\\n            outcomes.push(Outcome({\\r\\n                name: _outcomes[i],\\r\\n                totalStaked: 0,\\r\\n                betCount: 0\\r\\n            }));\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Place a bet on a specific outcome\\r\\n     * @param _outcome Index of the outcome to bet on\\r\\n     */\\r\\n    function placeBet(uint256 _outcome) \\r\\n        external \\r\\n        payable \\r\\n        nonReentrant \\r\\n        marketActive \\r\\n        whenNotPaused \\r\\n    {\\r\\n        require(_outcome < outcomes.length, \\\"Invalid outcome\\\");\\r\\n        require(msg.value > 0, \\\"Bet amount must be positive\\\");\\r\\n        \\r\\n        // Record bet\\r\\n        userBets[msg.sender].push(Bet({\\r\\n            amount: msg.value,\\r\\n            outcome: _outcome,\\r\\n            timestamp: block.timestamp,\\r\\n            claimed: false\\r\\n        }));\\r\\n\\r\\n        // Update tracking variables\\r\\n        outcomes[_outcome].totalStaked += msg.value;\\r\\n        outcomes[_outcome].betCount++;\\r\\n        outcomeStaked[_outcome] += msg.value;\\r\\n        userTotalStaked[msg.sender] += msg.value;\\r\\n        totalVolume += msg.value;\\r\\n\\r\\n        // Track unique participants\\r\\n        if (!hasParticipated[msg.sender]) {\\r\\n            participants.push(msg.sender);\\r\\n            hasParticipated[msg.sender] = true;\\r\\n        }\\r\\n\\r\\n        emit BetPlaced(msg.sender, _outcome, msg.value, block.timestamp);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Resolve market with winning outcome\\r\\n     * @param _winningOutcome Index of the winning outcome\\r\\n     * @param _resolution Description of resolution\\r\\n     */\\r\\n    function resolveMarket(uint256 _winningOutcome, string memory _resolution) \\r\\n        external \\r\\n        onlyOracle \\r\\n        nonReentrant \\r\\n    {\\r\\n        require(status == MarketStatus.Active, \\\"Market not active\\\");\\r\\n        require(block.timestamp >= expiryTime, \\\"Market not expired yet\\\");\\r\\n        require(_winningOutcome < outcomes.length, \\\"Invalid winning outcome\\\");\\r\\n        \\r\\n        status = MarketStatus.Resolved;\\r\\n        winningOutcome = _winningOutcome;\\r\\n        resolutionTime = block.timestamp;\\r\\n        \\r\\n        emit MarketResolved(_winningOutcome, block.timestamp, _resolution);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Claim rewards for winning bets\\r\\n     */\\r\\n    function claimReward() external nonReentrant marketResolved {\\r\\n        require(userBets[msg.sender].length > 0, \\\"No bets found\\\");\\r\\n        \\r\\n        uint256 totalReward = calculateUserReward(msg.sender);\\r\\n        require(totalReward > 0, \\\"No rewards to claim\\\");\\r\\n        \\r\\n        // Mark bets as claimed\\r\\n        for (uint256 i = 0; i < userBets[msg.sender].length; i++) {\\r\\n            if (userBets[msg.sender][i].outcome == winningOutcome && \\r\\n                !userBets[msg.sender][i].claimed) {\\r\\n                userBets[msg.sender][i].claimed = true;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        // Calculate platform fee\\r\\n        uint256 platformFee = (totalReward * platformFeeRate) / 10000;\\r\\n        uint256 userReward = totalReward - platformFee;\\r\\n        \\r\\n        // Transfer rewards\\r\\n        (bool success, ) = payable(msg.sender).call{value: userReward}(\\\"\\\");\\r\\n        require(success, \\\"Reward transfer failed\\\");\\r\\n        \\r\\n        // Transfer platform fee to factory\\r\\n        if (platformFee > 0) {\\r\\n            (bool feeSuccess, ) = payable(factory).call{value: platformFee}(\\\"\\\");\\r\\n            require(feeSuccess, \\\"Fee transfer failed\\\");\\r\\n        }\\r\\n        \\r\\n        emit RewardClaimed(msg.sender, userReward, block.timestamp);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Calculate potential reward for a user\\r\\n     */\\r\\n    function calculateUserReward(address _user) public view returns (uint256) {\\r\\n        if (status != MarketStatus.Resolved) return 0;\\r\\n        \\r\\n        uint256 userWinningStake = 0;\\r\\n        \\r\\n        // Calculate user's winning stakes\\r\\n        for (uint256 i = 0; i < userBets[_user].length; i++) {\\r\\n            Bet memory bet = userBets[_user][i];\\r\\n            if (bet.outcome == winningOutcome && !bet.claimed) {\\r\\n                userWinningStake += bet.amount;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        if (userWinningStake == 0) return 0;\\r\\n        \\r\\n        uint256 totalWinningStake = outcomes[winningOutcome].totalStaked;\\r\\n        if (totalWinningStake == 0) return 0;\\r\\n        \\r\\n        // Calculate proportional share of total pool\\r\\n        return (userWinningStake * totalVolume) / totalWinningStake;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get market information\\r\\n     */\\r\\n    function getMarketInfo() external view returns (\\r\\n        string memory _title,\\r\\n        string memory _description,\\r\\n        uint256 _totalVolume,\\r\\n        uint256 _expiryTime,\\r\\n        MarketStatus _status,\\r\\n        uint256 _participantCount,\\r\\n        uint256 _outcomeCount\\r\\n    ) {\\r\\n        return (\\r\\n            title,\\r\\n            description,\\r\\n            totalVolume,\\r\\n            expiryTime,\\r\\n            status,\\r\\n            participants.length,\\r\\n            outcomes.length\\r\\n        );\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get all outcomes\\r\\n     */\\r\\n    function getOutcomes() external view returns (Outcome[] memory) {\\r\\n        return outcomes;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get user's bets\\r\\n     */\\r\\n    function getUserBets(address _user) external view returns (Bet[] memory) {\\r\\n        return userBets[_user];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get market odds for each outcome\\r\\n     */\\r\\n    function getOdds() external view returns (uint256[] memory) {\\r\\n        uint256[] memory odds = new uint256[](outcomes.length);\\r\\n        \\r\\n        if (totalVolume == 0) {\\r\\n            // Equal odds if no bets placed\\r\\n            for (uint256 i = 0; i < outcomes.length; i++) {\\r\\n                odds[i] = 10000 / outcomes.length; // Basis points\\r\\n            }\\r\\n        } else {\\r\\n            for (uint256 i = 0; i < outcomes.length; i++) {\\r\\n                odds[i] = (outcomes[i].totalStaked * 10000) / totalVolume;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        return odds;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Emergency pause (only creator or factory)\\r\\n     */\\r\\n    function pause() external {\\r\\n        require(msg.sender == creator || msg.sender == factory, \\\"Unauthorized\\\");\\r\\n        _pause();\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Unpause (only creator or factory)\\r\\n     */\\r\\n    function unpause() external {\\r\\n        require(msg.sender == creator || msg.sender == factory, \\\"Unauthorized\\\");\\r\\n        _unpause();\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Cancel market and refund all participants\\r\\n     */\\r\\n    function cancelMarket(string memory _reason) external onlyFactory {\\r\\n        require(status == MarketStatus.Active, \\\"Market not active\\\");\\r\\n        \\r\\n        status = MarketStatus.Cancelled;\\r\\n        \\r\\n        // Refund all participants\\r\\n        for (uint256 i = 0; i < participants.length; i++) {\\r\\n            address participant = participants[i];\\r\\n            uint256 totalStaked = userTotalStaked[participant];\\r\\n            \\r\\n            if (totalStaked > 0) {\\r\\n                userTotalStaked[participant] = 0;\\r\\n                (bool success, ) = payable(participant).call{value: totalStaked}(\\\"\\\");\\r\\n                require(success, \\\"Refund failed\\\");\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        emit MarketCancelled(block.timestamp, _reason);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Dispute market resolution\\r\\n     */\\r\\n    function disputeMarket(string memory _reason) external payable {\\r\\n        require(status == MarketStatus.Resolved, \\\"Market not resolved\\\");\\r\\n        require(block.timestamp <= resolutionTime + 7 days, \\\"Dispute period expired\\\");\\r\\n        require(msg.value >= 0.1 ether, \\\"Insufficient dispute bond\\\");\\r\\n        \\r\\n        status = MarketStatus.Disputed;\\r\\n        \\r\\n        emit MarketDisputed(msg.sender, block.timestamp, _reason);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get participants list\\r\\n     */\\r\\n    function getParticipants() external view returns (address[] memory) {\\r\\n        return participants;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Check if user has unclaimed rewards\\r\\n     */\\r\\n    function hasUnclaimedRewards(address _user) external view returns (bool) {\\r\\n        if (status != MarketStatus.Resolved) return false;\\r\\n        return calculateUserReward(_user) > 0;\\r\\n    }\\r\\n}\",\"keccak256\":\"0xde68b8254bb00048432be4040aa2dcdb1451b87a2d425e883ac1c1317c51f930\",\"license\":\"MIT\"},\"contracts/interfaces/IAIOracle.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\ninterface IAIOracle {\\r\\n    function submitAIResult(\\r\\n        address _market,\\r\\n        uint256 _predictedOutcome,\\r\\n        uint256 _confidence,\\r\\n        string memory _evidence\\r\\n    ) external;\\r\\n\\r\\n    function getAIResult(address _market) \\r\\n        external \\r\\n        view \\r\\n        returns (uint256 outcome, uint256 confidence, bool isSubmitted);\\r\\n}\",\"keccak256\":\"0x1de79fcc4243ee5adf4b4930b641ef47b9e3c6cc0f2c88c24b73b4e65f5bbf86\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60806040523480156200001157600080fd5b5060405162001e2638038062001e268339810160408190526200003491620000cd565b33806200005b57604051631e4fbdf760e01b81526000600482015260240160405180910390fd5b62000066816200007d565b5060018055600792909255600855600955620000fc565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600080600060608486031215620000e357600080fd5b8351925060208401519150604084015190509250925092565b611d1a806200010c6000396000f3fe608060405234801561001057600080fd5b50600436106101375760003560e01c80638da5cb5b116100b8578063dec289951161007c578063dec28995146102bf578063efd76065146102d2578063f2fde38b14610305578063f76d50ad14610318578063f9b0b5b91461032b578063fd5ef5a91461033457600080fd5b80638da5cb5b146102625780639259b274146102875780639f5b45df1461029a578063c983a11e146102a3578063db61c57d146102b657600080fd5b8063770c0fb2116100ff578063770c0fb2146101d95780637d415b0d146101ec57806383ee761a146101ff57806384b5f6921461021f5780638a4221d41461023257600080fd5b806321ebd7481461013c5780633811f9051461016957806354de6e321461018e5780636d6b49e0146101bc578063715018a6146101d1575b600080fd5b61014f61014a366004611803565b610354565b60405161016095949392919061187c565b60405180910390f35b61017c6101773660046118bb565b610420565b604051610160969594939291906118dd565b6101ae61019c3660046118bb565b60066020526000908152604090205481565b604051908152602001610160565b6101cf6101ca3660046118bb565b6104ee565b005b6101cf610502565b6101cf6101e73660046118bb565b610516565b6101cf6101fa366004611925565b610574565b61021261020d3660046118bb565b610681565b604051610160919061194f565b6101cf61022d3660046119b2565b6106f7565b6102456102403660046118bb565b610870565b604080519384526020840192909252151590820152606001610160565b6000546001600160a01b03165b6040516001600160a01b039091168152602001610160565b6101cf610295366004611925565b610987565b6101ae60075481565b61026f6102b1366004611925565b610a57565b6101ae60085481565b6101cf6102cd3660046119b2565b610a8f565b6102f56102e03660046118bb565b60056020526000908152604090205460ff1681565b6040519015158152602001610160565b6101cf6103133660046118bb565b610cb3565b6101cf610326366004611a87565b610cee565b6101ae60095481565b610347610342366004611803565b610d8f565b6040516101609190611ab3565b6003602081815260009384526040808520909152918352912080546001820154600283015493830180546001600160a01b03909316949193919261039790611b0b565b80601f01602080910402602001604051908101604052809291908181526020018280546103c390611b0b565b80156104105780601f106103e557610100808354040283529160200191610410565b820191906000526020600020905b8154815290600101906020018083116103f357829003601f168201915b5050505050908060040154905085565b600260208190526000918252604090912080546001820154928201546003830154600484018054939594929360ff909216929161045c90611b0b565b80601f016020809104026020016040519081016040528092919081815260200182805461048890611b0b565b80156104d55780601f106104aa576101008083540402835291602001916104d5565b820191906000526020600020905b8154815290600101906020018083116104b857829003601f168201915b505050600590930154919250506001600160a01b031686565b6104f6610ec0565b6104ff81610eed565b50565b61050a610ec0565b6105146000611121565b565b61051e610ec0565b6001600160a01b0381166000818152600560209081526040808320805460ff191690556006909152808220829055517f69258123e9dbc03da1ee0667259dcd60f4a7c1202406374c0a10d8fca01111789190a250565b61057c610ec0565b6001600160a01b0382166105cf5760405162461bcd60e51b8152602060048201526015602482015274496e76616c6964206167656e74206164647265737360581b60448201526064015b60405180910390fd5b6103e881111561061c5760405162461bcd60e51b8152602060048201526018602482015277496e76616c69642072657075746174696f6e2073636f726560401b60448201526064016105c6565b6001600160a01b0382166000818152600560209081526040808320805460ff19166001179055600682529182902084905590518381527fb96c0d1669568ce35ff427b65ce0c24076c0ddde00997047dd705a87f1bab02e910160405180910390a25050565b6001600160a01b0381166000908152600460209081526040918290208054835181840281018401909452808452606093928301828280156106eb57602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116106cd575b50505050509050919050565b6106ff610ec0565b6001600160a01b03841660009081526002602052604090206003015460ff161561076b5760405162461bcd60e51b815260206004820152601860248201527f526573756c7420616c7265616479207375626d6974746564000000000000000060448201526064016105c6565b6040805160c081018252848152602080820185815242838501908152600160608501818152608086018881523360a08801526001600160a01b038c1660009081526002968790529790972086518155935191840191909155905192820192909255905160038201805460ff1916911515919091179055915190919060048201906107f59082611b93565b5060a09190910151600590910180546001600160a01b0319166001600160a01b03928316179055604080518581526020810185905233818301529051918616917fc29d3b4477f7f991fa65706c95ab0f02a84f1e98d0661c5abdef1c092a72026b916060908290030190a261086a8484611171565b50505050565b6001600160a01b0381166000908152600260208181526040808420815160c081018352815481526001820154938101939093529283015490820152600382015460ff161515606082015260048201805484938493849390926080840191906108d790611b0b565b80601f016020809104026020016040519081016040528092919081815260200182805461090390611b0b565b80156109505780601f1061092557610100808354040283529160200191610950565b820191906000526020600020905b81548152906001019060200180831161093357829003601f168201915b5050509183525050600591909101546001600160a01b03166020918201528151908201516060909201519097919650945092505050565b61098f610ec0565b6001600160a01b03821660009081526005602052604090205460ff166109ee5760405162461bcd60e51b81526020600482015260146024820152731059d95b9d081b9bdd08185d5d1a1bdc9a5e995960621b60448201526064016105c6565b6103e8811115610a3b5760405162461bcd60e51b8152602060048201526018602482015277496e76616c69642072657075746174696f6e2073636f726560401b60448201526064016105c6565b6001600160a01b03909116600090815260066020526040902055565b60046020528160005260406000208181548110610a7357600080fd5b6000918252602090912001546001600160a01b03169150829050565b3360009081526005602052604090205460ff16610ae55760405162461bcd60e51b8152602060048201526014602482015273139bdd08185d5d1a1bdc9a5e9959081859d95b9d60621b60448201526064016105c6565b610aed6111f6565b600754821015610b345760405162461bcd60e51b8152602060048201526012602482015271436f6e666964656e636520746f6f206c6f7760701b60448201526064016105c6565b6064821115610b855760405162461bcd60e51b815260206004820152601860248201527f496e76616c696420636f6e666964656e6365206c6576656c000000000000000060448201526064016105c6565b6040805160a081018252338082526020808301878152838501878152606085018781524260808701526001600160a01b038b8116600090815260038087528982209782529690955296909320855181546001600160a01b0319169716969096178655905160018601555160028501555191929190820190610c069082611b93565b5060808201518160040155905050610c1e8433611220565b610c5b576001600160a01b03841660009081526004602090815260408220805460018101825590835291200180546001600160a01b031916331790555b604080518481526020810184905233916001600160a01b038716917f4db4def2ebd720221e7b88003545a82c45be3928bb5f508a3a15a1a53670282f910160405180910390a3610caa84610eed565b61086a60018055565b610cbb610ec0565b6001600160a01b038116610ce557604051631e4fbdf760e01b8152600060048201526024016105c6565b6104ff81611121565b610cf6610ec0565b6064831115610d3c5760405162461bcd60e51b8152602060048201526012602482015271496e76616c696420636f6e666964656e636560701b60448201526064016105c6565b6064811115610d815760405162461bcd60e51b8152602060048201526011602482015270125b9d985b1a59081d1a1c995cda1bdb19607a1b60448201526064016105c6565b600792909255600855600955565b610dca6040518060a0016040528060006001600160a01b03168152602001600081526020016000815260200160608152602001600081525090565b6001600160a01b0380841660009081526003602081815260408084208786168552825292839020835160a0810185528154909516855260018101549185019190915260028101549284019290925281018054606084019190610e2b90611b0b565b80601f0160208091040260200160405190810160405280929190818152602001828054610e5790611b0b565b8015610ea45780601f10610e7957610100808354040283529160200191610ea4565b820191906000526020600020905b815481529060010190602001808311610e8757829003601f168201915b5050505050815260200160048201548152505090505b92915050565b6000546001600160a01b031633146105145760405163118cdaa760e01b81523360048201526024016105c6565b6001600160a01b038116600090815260046020908152604080832080548251818502810185019093528083529192909190830182828015610f5757602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610f39575b5050505050905060085481511015610f6d575050565b6000806000610f7c85856112f4565b925092509250808015610fab57506001600160a01b03851660009081526002602052604090206003015460ff16155b1561111a576040805160c08101825284815260208082018581524283850190815260016060850181815286518088018852601481527310524818dbdb9cd95b9cdd5cc81c995858da195960621b81870152608087019081523060a08801526001600160a01b038d1660009081526002968790529790972086518155935191840191909155905192820192909255905160038201805460ff1916911515919091179055915190919060048201906110619082611b93565b5060a09190910151600590910180546001600160a01b0319166001600160a01b03928316179055604080518581526020810185905230818301529051918716917fc29d3b4477f7f991fa65706c95ab0f02a84f1e98d0661c5abdef1c092a72026b916060908290030190a260408051848152602081018490526001600160a01b038716917f12b7578569c894199e8ad6dc7a90233e4bcecfeb787403388481ae1efd149f3b910160405180910390a261111a8584611171565b5050505050565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b604080516331d6edc960e21b8152600481018390526024810191909152601460448201527320a49027b930b1b632902932b9b7b63aba34b7b760611b60648201526001600160a01b0383169063c75bb72490608401600060405180830381600087803b1580156111e057600080fd5b505af19250505080156111f1575060015b505050565b60026001540361121957604051633ee5aeb560e01b815260040160405180910390fd5b6002600155565b6001600160a01b03821660009081526004602090815260408083208054825181850281018501909352808352849383018282801561128757602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311611269575b5050505050905060005b81518110156112e957836001600160a01b03168282815181106112b6576112b6611c53565b60200260200101516001600160a01b0316036112d757600192505050610eba565b806112e181611c7f565b915050611291565b506000949350505050565b60008060008351600003611310575060009150819050806117e0565b60008060008060005b88518110156114a6576001600160a01b038a1660009081526003602052604081208a5182908c908590811061135057611350611c53565b60200260200101516001600160a01b03166001600160a01b031681526020019081526020016000206040518060a00160405290816000820160009054906101000a90046001600160a01b03166001600160a01b03166001600160a01b0316815260200160018201548152602001600282015481526020016003820180546113d690611b0b565b80601f016020809104026020016040519081016040528092919081815260200182805461140290611b0b565b801561144f5780601f106114245761010080835404028352916020019161144f565b820191906000526020600020905b81548152906001019060200180831161143257829003601f168201915b50505050508152602001600482015481525050905060008160800151111561149357828160200151111561148557806020015192505b8361148f81611c7f565b9450505b508061149e81611c7f565b915050611319565b50816000036114c3576000806000965096509650505050506117e0565b60006114d0826001611c98565b67ffffffffffffffff8111156114e8576114e861199c565b604051908082528060200260200182016040528015611511578160200160208202803683370190505b50905060005b8951811015611740576001600160a01b038b1660009081526003602052604081208b5182908d908590811061154e5761154e611c53565b60200260200101516001600160a01b03166001600160a01b031681526020019081526020016000206040518060a00160405290816000820160009054906101000a90046001600160a01b03166001600160a01b03166001600160a01b0316815260200160018201548152602001600282015481526020016003820180546115d490611b0b565b80601f016020809104026020016040519081016040528092919081815260200182805461160090611b0b565b801561164d5780601f106116225761010080835404028352916020019161164d565b820191906000526020600020905b81548152906001019060200180831161163057829003601f168201915b50505050508152602001600482015481525050905060008160800151111561172d576000600660008d858151811061168757611687611c53565b60200260200101516001600160a01b03166001600160a01b03168152602001908152602001600020549050806000036116be575060645b600060648360400151836116d29190611cab565b6116dc9190611cc2565b905080858460200151815181106116f5576116f5611c53565b602002602001018181516117099190611c98565b905250611716818a611c98565b98508260400151886117289190611c98565b975050505b508061173881611c7f565b915050611517565b5060008060005b8481116117a1578284828151811061176157611761611c53565b6020026020010151111561178f5783818151811061178157611781611c53565b602002602001015192508091505b8061179981611c7f565b915050611747565b506000876117b0846064611cab565b6117ba9190611cc2565b60095490915081101560006117cf888a611cc2565b939c50929a50985050505050505050505b9250925092565b80356001600160a01b03811681146117fe57600080fd5b919050565b6000806040838503121561181657600080fd5b61181f836117e7565b915061182d602084016117e7565b90509250929050565b6000815180845260005b8181101561185c57602081850181015186830182015201611840565b506000602082860101526020601f19601f83011685010191505092915050565b60018060a01b038616815284602082015283604082015260a0606082015260006118a960a0830185611836565b90508260808301529695505050505050565b6000602082840312156118cd57600080fd5b6118d6826117e7565b9392505050565b868152856020820152846040820152831515606082015260c06080820152600061190a60c0830185611836565b905060018060a01b03831660a0830152979650505050505050565b6000806040838503121561193857600080fd5b611941836117e7565b946020939093013593505050565b6020808252825182820181905260009190848201906040850190845b818110156119905783516001600160a01b03168352928401929184019160010161196b565b50909695505050505050565b634e487b7160e01b600052604160045260246000fd5b600080600080608085870312156119c857600080fd5b6119d1856117e7565b93506020850135925060408501359150606085013567ffffffffffffffff808211156119fc57600080fd5b818701915087601f830112611a1057600080fd5b813581811115611a2257611a2261199c565b604051601f8201601f19908116603f01168101908382118183101715611a4a57611a4a61199c565b816040528281528a6020848701011115611a6357600080fd5b82602086016020830137600060208483010152809550505050505092959194509250565b600080600060608486031215611a9c57600080fd5b505081359360208301359350604090920135919050565b6020815260018060a01b03825116602082015260208201516040820152604082015160608201526000606083015160a06080840152611af560c0840182611836565b9050608084015160a08401528091505092915050565b600181811c90821680611b1f57607f821691505b602082108103611b3f57634e487b7160e01b600052602260045260246000fd5b50919050565b601f8211156111f157600081815260208120601f850160051c81016020861015611b6c5750805b601f850160051c820191505b81811015611b8b57828155600101611b78565b505050505050565b815167ffffffffffffffff811115611bad57611bad61199c565b611bc181611bbb8454611b0b565b84611b45565b602080601f831160018114611bf65760008415611bde5750858301515b600019600386901b1c1916600185901b178555611b8b565b600085815260208120601f198616915b82811015611c2557888601518255948401946001909101908401611c06565b5085821015611c435787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b600060018201611c9157611c91611c69565b5060010190565b80820180821115610eba57610eba611c69565b8082028115828204841417610eba57610eba611c69565b600082611cdf57634e487b7160e01b600052601260045260246000fd5b50049056fea2646970667358221220cddf8bb46045852e49b331a34eba436e4476d545889ed7cbfee965f15f38bcbf64736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106101375760003560e01c80638da5cb5b116100b8578063dec289951161007c578063dec28995146102bf578063efd76065146102d2578063f2fde38b14610305578063f76d50ad14610318578063f9b0b5b91461032b578063fd5ef5a91461033457600080fd5b80638da5cb5b146102625780639259b274146102875780639f5b45df1461029a578063c983a11e146102a3578063db61c57d146102b657600080fd5b8063770c0fb2116100ff578063770c0fb2146101d95780637d415b0d146101ec57806383ee761a146101ff57806384b5f6921461021f5780638a4221d41461023257600080fd5b806321ebd7481461013c5780633811f9051461016957806354de6e321461018e5780636d6b49e0146101bc578063715018a6146101d1575b600080fd5b61014f61014a366004611803565b610354565b60405161016095949392919061187c565b60405180910390f35b61017c6101773660046118bb565b610420565b604051610160969594939291906118dd565b6101ae61019c3660046118bb565b60066020526000908152604090205481565b604051908152602001610160565b6101cf6101ca3660046118bb565b6104ee565b005b6101cf610502565b6101cf6101e73660046118bb565b610516565b6101cf6101fa366004611925565b610574565b61021261020d3660046118bb565b610681565b604051610160919061194f565b6101cf61022d3660046119b2565b6106f7565b6102456102403660046118bb565b610870565b604080519384526020840192909252151590820152606001610160565b6000546001600160a01b03165b6040516001600160a01b039091168152602001610160565b6101cf610295366004611925565b610987565b6101ae60075481565b61026f6102b1366004611925565b610a57565b6101ae60085481565b6101cf6102cd3660046119b2565b610a8f565b6102f56102e03660046118bb565b60056020526000908152604090205460ff1681565b6040519015158152602001610160565b6101cf6103133660046118bb565b610cb3565b6101cf610326366004611a87565b610cee565b6101ae60095481565b610347610342366004611803565b610d8f565b6040516101609190611ab3565b6003602081815260009384526040808520909152918352912080546001820154600283015493830180546001600160a01b03909316949193919261039790611b0b565b80601f01602080910402602001604051908101604052809291908181526020018280546103c390611b0b565b80156104105780601f106103e557610100808354040283529160200191610410565b820191906000526020600020905b8154815290600101906020018083116103f357829003601f168201915b5050505050908060040154905085565b600260208190526000918252604090912080546001820154928201546003830154600484018054939594929360ff909216929161045c90611b0b565b80601f016020809104026020016040519081016040528092919081815260200182805461048890611b0b565b80156104d55780601f106104aa576101008083540402835291602001916104d5565b820191906000526020600020905b8154815290600101906020018083116104b857829003601f168201915b505050600590930154919250506001600160a01b031686565b6104f6610ec0565b6104ff81610eed565b50565b61050a610ec0565b6105146000611121565b565b61051e610ec0565b6001600160a01b0381166000818152600560209081526040808320805460ff191690556006909152808220829055517f69258123e9dbc03da1ee0667259dcd60f4a7c1202406374c0a10d8fca01111789190a250565b61057c610ec0565b6001600160a01b0382166105cf5760405162461bcd60e51b8152602060048201526015602482015274496e76616c6964206167656e74206164647265737360581b60448201526064015b60405180910390fd5b6103e881111561061c5760405162461bcd60e51b8152602060048201526018602482015277496e76616c69642072657075746174696f6e2073636f726560401b60448201526064016105c6565b6001600160a01b0382166000818152600560209081526040808320805460ff19166001179055600682529182902084905590518381527fb96c0d1669568ce35ff427b65ce0c24076c0ddde00997047dd705a87f1bab02e910160405180910390a25050565b6001600160a01b0381166000908152600460209081526040918290208054835181840281018401909452808452606093928301828280156106eb57602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116106cd575b50505050509050919050565b6106ff610ec0565b6001600160a01b03841660009081526002602052604090206003015460ff161561076b5760405162461bcd60e51b815260206004820152601860248201527f526573756c7420616c7265616479207375626d6974746564000000000000000060448201526064016105c6565b6040805160c081018252848152602080820185815242838501908152600160608501818152608086018881523360a08801526001600160a01b038c1660009081526002968790529790972086518155935191840191909155905192820192909255905160038201805460ff1916911515919091179055915190919060048201906107f59082611b93565b5060a09190910151600590910180546001600160a01b0319166001600160a01b03928316179055604080518581526020810185905233818301529051918616917fc29d3b4477f7f991fa65706c95ab0f02a84f1e98d0661c5abdef1c092a72026b916060908290030190a261086a8484611171565b50505050565b6001600160a01b0381166000908152600260208181526040808420815160c081018352815481526001820154938101939093529283015490820152600382015460ff161515606082015260048201805484938493849390926080840191906108d790611b0b565b80601f016020809104026020016040519081016040528092919081815260200182805461090390611b0b565b80156109505780601f1061092557610100808354040283529160200191610950565b820191906000526020600020905b81548152906001019060200180831161093357829003601f168201915b5050509183525050600591909101546001600160a01b03166020918201528151908201516060909201519097919650945092505050565b61098f610ec0565b6001600160a01b03821660009081526005602052604090205460ff166109ee5760405162461bcd60e51b81526020600482015260146024820152731059d95b9d081b9bdd08185d5d1a1bdc9a5e995960621b60448201526064016105c6565b6103e8811115610a3b5760405162461bcd60e51b8152602060048201526018602482015277496e76616c69642072657075746174696f6e2073636f726560401b60448201526064016105c6565b6001600160a01b03909116600090815260066020526040902055565b60046020528160005260406000208181548110610a7357600080fd5b6000918252602090912001546001600160a01b03169150829050565b3360009081526005602052604090205460ff16610ae55760405162461bcd60e51b8152602060048201526014602482015273139bdd08185d5d1a1bdc9a5e9959081859d95b9d60621b60448201526064016105c6565b610aed6111f6565b600754821015610b345760405162461bcd60e51b8152602060048201526012602482015271436f6e666964656e636520746f6f206c6f7760701b60448201526064016105c6565b6064821115610b855760405162461bcd60e51b815260206004820152601860248201527f496e76616c696420636f6e666964656e6365206c6576656c000000000000000060448201526064016105c6565b6040805160a081018252338082526020808301878152838501878152606085018781524260808701526001600160a01b038b8116600090815260038087528982209782529690955296909320855181546001600160a01b0319169716969096178655905160018601555160028501555191929190820190610c069082611b93565b5060808201518160040155905050610c1e8433611220565b610c5b576001600160a01b03841660009081526004602090815260408220805460018101825590835291200180546001600160a01b031916331790555b604080518481526020810184905233916001600160a01b038716917f4db4def2ebd720221e7b88003545a82c45be3928bb5f508a3a15a1a53670282f910160405180910390a3610caa84610eed565b61086a60018055565b610cbb610ec0565b6001600160a01b038116610ce557604051631e4fbdf760e01b8152600060048201526024016105c6565b6104ff81611121565b610cf6610ec0565b6064831115610d3c5760405162461bcd60e51b8152602060048201526012602482015271496e76616c696420636f6e666964656e636560701b60448201526064016105c6565b6064811115610d815760405162461bcd60e51b8152602060048201526011602482015270125b9d985b1a59081d1a1c995cda1bdb19607a1b60448201526064016105c6565b600792909255600855600955565b610dca6040518060a0016040528060006001600160a01b03168152602001600081526020016000815260200160608152602001600081525090565b6001600160a01b0380841660009081526003602081815260408084208786168552825292839020835160a0810185528154909516855260018101549185019190915260028101549284019290925281018054606084019190610e2b90611b0b565b80601f0160208091040260200160405190810160405280929190818152602001828054610e5790611b0b565b8015610ea45780601f10610e7957610100808354040283529160200191610ea4565b820191906000526020600020905b815481529060010190602001808311610e8757829003601f168201915b5050505050815260200160048201548152505090505b92915050565b6000546001600160a01b031633146105145760405163118cdaa760e01b81523360048201526024016105c6565b6001600160a01b038116600090815260046020908152604080832080548251818502810185019093528083529192909190830182828015610f5757602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610f39575b5050505050905060085481511015610f6d575050565b6000806000610f7c85856112f4565b925092509250808015610fab57506001600160a01b03851660009081526002602052604090206003015460ff16155b1561111a576040805160c08101825284815260208082018581524283850190815260016060850181815286518088018852601481527310524818dbdb9cd95b9cdd5cc81c995858da195960621b81870152608087019081523060a08801526001600160a01b038d1660009081526002968790529790972086518155935191840191909155905192820192909255905160038201805460ff1916911515919091179055915190919060048201906110619082611b93565b5060a09190910151600590910180546001600160a01b0319166001600160a01b03928316179055604080518581526020810185905230818301529051918716917fc29d3b4477f7f991fa65706c95ab0f02a84f1e98d0661c5abdef1c092a72026b916060908290030190a260408051848152602081018490526001600160a01b038716917f12b7578569c894199e8ad6dc7a90233e4bcecfeb787403388481ae1efd149f3b910160405180910390a261111a8584611171565b5050505050565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b604080516331d6edc960e21b8152600481018390526024810191909152601460448201527320a49027b930b1b632902932b9b7b63aba34b7b760611b60648201526001600160a01b0383169063c75bb72490608401600060405180830381600087803b1580156111e057600080fd5b505af19250505080156111f1575060015b505050565b60026001540361121957604051633ee5aeb560e01b815260040160405180910390fd5b6002600155565b6001600160a01b03821660009081526004602090815260408083208054825181850281018501909352808352849383018282801561128757602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311611269575b5050505050905060005b81518110156112e957836001600160a01b03168282815181106112b6576112b6611c53565b60200260200101516001600160a01b0316036112d757600192505050610eba565b806112e181611c7f565b915050611291565b506000949350505050565b60008060008351600003611310575060009150819050806117e0565b60008060008060005b88518110156114a6576001600160a01b038a1660009081526003602052604081208a5182908c908590811061135057611350611c53565b60200260200101516001600160a01b03166001600160a01b031681526020019081526020016000206040518060a00160405290816000820160009054906101000a90046001600160a01b03166001600160a01b03166001600160a01b0316815260200160018201548152602001600282015481526020016003820180546113d690611b0b565b80601f016020809104026020016040519081016040528092919081815260200182805461140290611b0b565b801561144f5780601f106114245761010080835404028352916020019161144f565b820191906000526020600020905b81548152906001019060200180831161143257829003601f168201915b50505050508152602001600482015481525050905060008160800151111561149357828160200151111561148557806020015192505b8361148f81611c7f565b9450505b508061149e81611c7f565b915050611319565b50816000036114c3576000806000965096509650505050506117e0565b60006114d0826001611c98565b67ffffffffffffffff8111156114e8576114e861199c565b604051908082528060200260200182016040528015611511578160200160208202803683370190505b50905060005b8951811015611740576001600160a01b038b1660009081526003602052604081208b5182908d908590811061154e5761154e611c53565b60200260200101516001600160a01b03166001600160a01b031681526020019081526020016000206040518060a00160405290816000820160009054906101000a90046001600160a01b03166001600160a01b03166001600160a01b0316815260200160018201548152602001600282015481526020016003820180546115d490611b0b565b80601f016020809104026020016040519081016040528092919081815260200182805461160090611b0b565b801561164d5780601f106116225761010080835404028352916020019161164d565b820191906000526020600020905b81548152906001019060200180831161163057829003601f168201915b50505050508152602001600482015481525050905060008160800151111561172d576000600660008d858151811061168757611687611c53565b60200260200101516001600160a01b03166001600160a01b03168152602001908152602001600020549050806000036116be575060645b600060648360400151836116d29190611cab565b6116dc9190611cc2565b905080858460200151815181106116f5576116f5611c53565b602002602001018181516117099190611c98565b905250611716818a611c98565b98508260400151886117289190611c98565b975050505b508061173881611c7f565b915050611517565b5060008060005b8481116117a1578284828151811061176157611761611c53565b6020026020010151111561178f5783818151811061178157611781611c53565b602002602001015192508091505b8061179981611c7f565b915050611747565b506000876117b0846064611cab565b6117ba9190611cc2565b60095490915081101560006117cf888a611cc2565b939c50929a50985050505050505050505b9250925092565b80356001600160a01b03811681146117fe57600080fd5b919050565b6000806040838503121561181657600080fd5b61181f836117e7565b915061182d602084016117e7565b90509250929050565b6000815180845260005b8181101561185c57602081850181015186830182015201611840565b506000602082860101526020601f19601f83011685010191505092915050565b60018060a01b038616815284602082015283604082015260a0606082015260006118a960a0830185611836565b90508260808301529695505050505050565b6000602082840312156118cd57600080fd5b6118d6826117e7565b9392505050565b868152856020820152846040820152831515606082015260c06080820152600061190a60c0830185611836565b905060018060a01b03831660a0830152979650505050505050565b6000806040838503121561193857600080fd5b611941836117e7565b946020939093013593505050565b6020808252825182820181905260009190848201906040850190845b818110156119905783516001600160a01b03168352928401929184019160010161196b565b50909695505050505050565b634e487b7160e01b600052604160045260246000fd5b600080600080608085870312156119c857600080fd5b6119d1856117e7565b93506020850135925060408501359150606085013567ffffffffffffffff808211156119fc57600080fd5b818701915087601f830112611a1057600080fd5b813581811115611a2257611a2261199c565b604051601f8201601f19908116603f01168101908382118183101715611a4a57611a4a61199c565b816040528281528a6020848701011115611a6357600080fd5b82602086016020830137600060208483010152809550505050505092959194509250565b600080600060608486031215611a9c57600080fd5b505081359360208301359350604090920135919050565b6020815260018060a01b03825116602082015260208201516040820152604082015160608201526000606083015160a06080840152611af560c0840182611836565b9050608084015160a08401528091505092915050565b600181811c90821680611b1f57607f821691505b602082108103611b3f57634e487b7160e01b600052602260045260246000fd5b50919050565b601f8211156111f157600081815260208120601f850160051c81016020861015611b6c5750805b601f850160051c820191505b81811015611b8b57828155600101611b78565b505050505050565b815167ffffffffffffffff811115611bad57611bad61199c565b611bc181611bbb8454611b0b565b84611b45565b602080601f831160018114611bf65760008415611bde5750858301515b600019600386901b1c1916600185901b178555611b8b565b600085815260208120601f198616915b82811015611c2557888601518255948401946001909101908401611c06565b5085821015611c435787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b600060018201611c9157611c91611c69565b5060010190565b80820180821115610eba57610eba611c69565b8082028115828204841417610eba57610eba611c69565b600082611cdf57634e487b7160e01b600052601260045260246000fd5b50049056fea2646970667358221220cddf8bb46045852e49b331a34eba436e4476d545889ed7cbfee965f15f38bcbf64736f6c63430008140033",
+  "devdoc": {
+    "errors": {
+      "OwnableInvalidOwner(address)": [
+        {
+          "details": "The owner is not a valid owner account. (eg. `address(0)`)"
+        }
+      ],
+      "OwnableUnauthorizedAccount(address)": [
+        {
+          "details": "The caller account is not authorized to perform an operation."
+        }
+      ],
+      "ReentrancyGuardReentrantCall()": [
+        {
+          "details": "Unauthorized reentrant call."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {
+      "authorizeAgent(address,uint256)": {
+        "details": "Authorize an AI agent"
+      },
+      "deauthorizeAgent(address)": {
+        "details": "Deauthorize an AI agent"
+      },
+      "forceConsensusCheck(address)": {
+        "details": "Force consensus calculation (for testing/emergency)"
+      },
+      "getAIResult(address)": {
+        "details": "Get AI result for a market"
+      },
+      "getAgentReport(address,address)": {
+        "details": "Get agent report for market"
+      },
+      "getMarketAgents(address)": {
+        "details": "Get market agents"
+      },
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+      },
+      "submitAIResult(address,uint256,uint256,string)": {
+        "details": "Submit AI analysis result for a market",
+        "params": {
+          "_confidence": "Confidence level (0-100)",
+          "_evidence": "Supporting evidence/data",
+          "_market": "Address of the prediction market",
+          "_predictedOutcome": "Predicted winning outcome"
+        }
+      },
+      "submitManualResult(address,uint256,uint256,string)": {
+        "details": "Manual result submission (fallback)"
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      },
+      "updateAgentReputation(address,uint256)": {
+        "details": "Update agent reputation based on performance"
+      },
+      "updateParameters(uint256,uint256,uint256)": {
+        "details": "Update oracle parameters"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 8,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 928,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "_status",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1039,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "aiResults",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_address,t_struct(AIResult)1023_storage)"
+      },
+      {
+        "astId": 1046,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "agentReports",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_address,t_mapping(t_address,t_struct(AgentReport)1034_storage))"
+      },
+      {
+        "astId": 1051,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "marketAgents",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_mapping(t_address,t_array(t_address)dyn_storage)"
+      },
+      {
+        "astId": 1055,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "authorizedAgents",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_mapping(t_address,t_bool)"
+      },
+      {
+        "astId": 1059,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "agentReputation",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_mapping(t_address,t_uint256)"
+      },
+      {
+        "astId": 1061,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "minimumConfidence",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1063,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "minimumAgents",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1065,
+        "contract": "contracts/AIOracle.sol:AIOracle",
+        "label": "consensusThreshold",
+        "offset": 0,
+        "slot": "9",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_address)dyn_storage": {
+        "base": "t_address",
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_array(t_address)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => address[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_address)dyn_storage"
+      },
+      "t_mapping(t_address,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_address,t_mapping(t_address,t_struct(AgentReport)1034_storage))": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => mapping(address => struct AIOracle.AgentReport))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_address,t_struct(AgentReport)1034_storage)"
+      },
+      "t_mapping(t_address,t_struct(AIResult)1023_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct AIOracle.AIResult)",
+        "numberOfBytes": "32",
+        "value": "t_struct(AIResult)1023_storage"
+      },
+      "t_mapping(t_address,t_struct(AgentReport)1034_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct AIOracle.AgentReport)",
+        "numberOfBytes": "32",
+        "value": "t_struct(AgentReport)1034_storage"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(AIResult)1023_storage": {
+        "encoding": "inplace",
+        "label": "struct AIOracle.AIResult",
+        "members": [
+          {
+            "astId": 1012,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "predictedOutcome",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1014,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "confidence",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1016,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1018,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "isSubmitted",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bool"
+          },
+          {
+            "astId": 1020,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "evidence",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 1022,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "submitter",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_address"
+          }
+        ],
+        "numberOfBytes": "192"
+      },
+      "t_struct(AgentReport)1034_storage": {
+        "encoding": "inplace",
+        "label": "struct AIOracle.AgentReport",
+        "members": [
+          {
+            "astId": 1025,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "agent",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 1027,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "outcome",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1029,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "confidence",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1031,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "data",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 1033,
+            "contract": "contracts/AIOracle.sol:AIOracle",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "160"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
