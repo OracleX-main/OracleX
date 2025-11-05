@@ -73,6 +73,19 @@ class ApiService {
   async patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH', url, data });
   }
+
+  // Market-specific methods
+  async createMarket(marketData: any): Promise<any> {
+    return this.post('/markets', marketData);
+  }
+
+  async getMarkets(): Promise<any[]> {
+    return this.get('/markets');
+  }
+
+  async getMarket(id: number): Promise<any> {
+    return this.get(`/markets/${id}`);
+  }
 }
 
 export const apiService = new ApiService();

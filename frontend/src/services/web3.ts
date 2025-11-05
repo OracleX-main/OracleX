@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+import { getMetaMaskProvider } from '@/utils/walletDetection';
 
 declare global {
   interface Window {
@@ -43,12 +44,14 @@ class Web3Service {
    * Initialize Web3 connection
    */
   async initialize(): Promise<boolean> {
-    if (typeof window.ethereum === 'undefined') {
+    // Get MetaMask provider specifically
+    const metaMaskProvider = getMetaMaskProvider();
+    if (!metaMaskProvider) {
       throw new Error('MetaMask is not installed');
     }
 
     try {
-      this.provider = new ethers.BrowserProvider(window.ethereum);
+      this.provider = new ethers.BrowserProvider(metaMaskProvider);
       return true;
     } catch (error) {
       console.error('Failed to initialize Web3:', error);
@@ -65,7 +68,13 @@ class Web3Service {
     }
 
     try {
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      // Get MetaMask provider specifically
+      const metaMaskProvider = getMetaMaskProvider();
+      if (!metaMaskProvider) {
+        throw new Error('MetaMask not found');
+      }
+
+      await metaMaskProvider.request({ method: 'eth_requestAccounts' });
       this.signer = await this.provider!.getSigner();
       
       const address = await this.signer.getAddress();
@@ -110,9 +119,15 @@ class Web3Service {
    */
   async switchToBNBChain(): Promise<boolean> {
     try {
+      // Get MetaMask provider specifically
+      const metaMaskProvider = getMetaMaskProvider();
+      if (!metaMaskProvider) {
+        throw new Error('MetaMask not found');
+      }
+
       const chainId = import.meta.env.VITE_CHAIN_ID || '0x61'; // BSC Testnet
       
-      await window.ethereum.request({
+      await metaMaskProvider.request({
         method: 'wallet_switchEthereumChain',
         params: [{ chainId }],
       });
@@ -122,7 +137,12 @@ class Web3Service {
       // Chain not added to MetaMask
       if (switchError.code === 4902) {
         try {
-          await window.ethereum.request({
+          const metaMaskProvider = getMetaMaskProvider();
+          if (!metaMaskProvider) {
+            throw new Error('MetaMask not found');
+          }
+          
+          await metaMaskProvider.request({
             method: 'wallet_addEthereumChain',
             params: [
               {
@@ -150,13 +170,18 @@ class Web3Service {
   }
 
   /**
-   * Get current account
+   * Get current connected account
    */
   async getCurrentAccount(): Promise<string | null> {
     if (!this.provider) return null;
 
     try {
-      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+      const metaMaskProvider = getMetaMaskProvider();
+      if (!metaMaskProvider) {
+        return null;
+      }
+      
+      const accounts = await metaMaskProvider.request({ method: 'eth_accounts' });
       return accounts[0] || null;
     } catch (error) {
       console.error('Failed to get current account:', error);

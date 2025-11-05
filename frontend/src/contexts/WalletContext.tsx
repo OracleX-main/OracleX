@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { ethers } from 'ethers';
 import { toast } from 'sonner';
 import { web3Service } from '@/services/web3';
+import { getMetaMaskProvider, isMetaMaskAvailable } from '@/utils/walletDetection';
 
 interface WalletContextType {
   isConnected: boolean;
@@ -39,9 +40,11 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
   const TARGET_CHAIN_ID_HEX = '0x38';
 
   const checkConnection = async () => {
-    if (typeof window.ethereum !== 'undefined') {
+    // Check specifically for MetaMask using our detection utility
+    const metaMaskProvider = getMetaMaskProvider();
+    if (metaMaskProvider) {
       try {
-        const provider = new ethers.BrowserProvider(window.ethereum);
+        const provider = new ethers.BrowserProvider(metaMaskProvider);
         const accounts = await provider.listAccounts();
         
         if (accounts.length > 0) {
@@ -64,10 +67,14 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
   };
 
   const switchToTargetChain = async () => {
-    if (!window.ethereum) return false;
+    const metaMaskProvider = getMetaMaskProvider();
+    if (!metaMaskProvider) {
+      toast.error('MetaMask not found');
+      return false;
+    }
 
     try {
-      await window.ethereum.request({
+      await metaMaskProvider.request({
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: TARGET_CHAIN_ID_HEX }],
       });
@@ -76,7 +83,7 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
       // This error code indicates that the chain has not been added to MetaMask
       if (switchError.code === 4902) {
         try {
-          await window.ethereum.request({
+          await metaMaskProvider.request({
             method: 'wallet_addEthereumChain',
             params: [
               {
@@ -106,18 +113,38 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
   };
 
   const connectWallet = async () => {
-    if (typeof window.ethereum === 'undefined') {
-      toast.error('Please install MetaMask or another Web3 wallet');
+    // Check specifically for MetaMask using our detection utility
+    if (!isMetaMaskAvailable()) {
+      toast.error('MetaMask is required to use this application');
+      toast.info('Please install MetaMask and disable other wallets if needed', {
+        duration: 5000,
+        action: {
+          label: 'Get MetaMask',
+          onClick: () => window.open('https://metamask.io/download/', '_blank')
+        }
+      });
       return;
+    }
+
+    // Check if multiple wallets are interfering
+    if (window.phantom && window.ethereum) {
+      toast.warning('Multiple wallets detected. Please disable Phantom to use MetaMask', {
+        duration: 7000
+      });
     }
 
     setIsConnecting(true);
 
     try {
-      // Request account access
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const metaMaskProvider = getMetaMaskProvider();
+      if (!metaMaskProvider) {
+        throw new Error('MetaMask provider not found');
+      }
 
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      // Request account access from MetaMask specifically
+      await metaMaskProvider.request({ method: 'eth_requestAccounts' });
+
+      const provider = new ethers.BrowserProvider(metaMaskProvider);
       const network = await provider.getNetwork();
 
       // Check if we're on the correct chain
