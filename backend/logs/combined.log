@@ -7,3 +7,47 @@
 2025-11-04 01:36:43 [info]: 🚀 OracleX Backend API running on port 3001
 2025-11-04 01:36:43 [info]: 📊 Environment: development
 2025-11-04 01:36:43 [info]: 🔗 Database: Connected
+2025-11-05 04:20:19 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-05 04:20:19 [info]: 📊 Environment: development
+2025-11-05 04:20:19 [info]: 🔗 Database: Connected
+2025-11-05 04:49:40 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-05 04:49:40 [info]: 📊 Environment: development
+2025-11-05 04:49:40 [info]: 🔗 Database: Connected
+2025-11-05 04:50:59 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-05 04:50:59 [info]: 📊 Environment: development
+2025-11-05 04:50:59 [info]: 🔗 Database: Connected
+2025-11-05 04:52:44 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-05 04:52:44 [info]: 📊 Environment: development
+2025-11-05 04:52:44 [info]: 🔗 Database: Connected
+2025-11-05 04:52:55 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-05 04:52:55 [info]: 📊 Environment: development
+2025-11-05 04:52:55 [info]: 🔗 Database: Connected
+2025-11-05 04:53:02 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-05 04:53:02 [info]: 📊 Environment: development
+2025-11-05 04:53:02 [info]: 🔗 Database: Connected
+2025-11-05 04:53:10 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-05 04:53:10 [info]: 📊 Environment: development
+2025-11-05 04:53:10 [info]: 🔗 Database: Connected
+2025-11-05 04:53:19 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-05 04:53:19 [info]: 📊 Environment: development
+2025-11-05 04:53:19 [info]: 🔗 Database: Connected
+2025-11-05 04:53:43 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-05 04:53:43 [info]: 📊 Environment: development
+2025-11-05 04:53:43 [info]: 🔗 Database: Connected
+2025-11-05 09:57:22 [info]: ::1 - - [05/Nov/2025:08:57:22 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 200 635 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.105.0 Chrome/138.0.7204.251 Electron/37.6.0 Safari/537.36"
+2025-11-06 09:15:57 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 09:15:57 [info]: 📊 Environment: development
+2025-11-06 09:15:57 [info]: 🔗 Database: Connected
+2025-11-06 09:16:51 [info]: ::1 - - [06/Nov/2025:08:16:51 +0000] "GET /api/markets/categories HTTP/1.1" 200 123 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 09:16:51 [info]: ::1 - - [06/Nov/2025:08:16:51 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 09:16:54 [info]: ::1 - - [06/Nov/2025:08:16:54 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 09:16:55 [info]: ::1 - - [06/Nov/2025:08:16:55 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 09:16:56 [info]: ::1 - - [06/Nov/2025:08:16:56 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 09:17:17 [info]: ::1 - - [06/Nov/2025:08:17:17 +0000] "GET /api/markets/categories HTTP/1.1" 200 123 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 09:17:17 [info]: ::1 - - [06/Nov/2025:08:17:17 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 09:20:42 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 09:20:42 [info]: 📊 Environment: development
+2025-11-06 09:20:42 [info]: 🔗 Database: Connected
+2025-11-06 09:22:17 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 09:22:17 [info]: 📊 Environment: development
+2025-11-06 09:22:17 [info]: 🔗 Database: Connected

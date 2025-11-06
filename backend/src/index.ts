@@ -21,7 +21,11 @@ const app = express();
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: config.FRONTEND_URL,
+  origin: [
+    'http://localhost:8080',
+    'http://localhost:5173',
+    config.FRONTEND_URL
+  ],
   credentials: true
 }));
 
@@ -54,7 +58,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/auth', authRoutes);
-app.use('/api/markets', authMiddleware, marketRoutes);
+app.use('/api/markets', marketRoutes); // Remove auth middleware for market browsing
 app.use('/api/oracles', authMiddleware, oracleRoutes);
 app.use('/api/users', authMiddleware, userRoutes);
 app.use('/api/analytics', authMiddleware, analyticsRoutes);
