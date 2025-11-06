@@ -54,9 +54,36 @@ router.post('/verify', asyncHandler(async (req: any, res: any) => {
     // Clean up used nonce
     nonces.delete(address.toLowerCase());
 
-    // Generate JWT token
+    // Import Prisma client
+    const { PrismaClient } = await import('@prisma/client');
+    const prisma = new PrismaClient();
+
+    // Find or create user in database
+    let user = await prisma.user.findUnique({
+      where: { walletAddress: address.toLowerCase() }
+    });
+
+    if (!user) {
+      // Create new user
+      user = await prisma.user.create({
+        data: {
+          walletAddress: address.toLowerCase(),
+          username: `User_${address.substring(0, 6)}`,
+          reputation: 0
+        }
+      });
+      logger.info(`New user created: ${address}`);
+    }
+
+    await prisma.$disconnect();
+
+    // Generate JWT token with user database ID
     const token = jwt.sign(
-      { id: address, address },
+      { 
+        id: user.id,
+        address: user.walletAddress,
+        username: user.username
+      },
       config.JWT_SECRET,
       { expiresIn: '7d' } // Use a literal string instead of config value
     );
@@ -66,8 +93,10 @@ router.post('/verify', asyncHandler(async (req: any, res: any) => {
     res.json({
       token,
       user: {
-        address,
-        id: address
+        id: user.id,
+        address: user.walletAddress,
+        username: user.username,
+        reputation: user.reputation
       }
     });
 

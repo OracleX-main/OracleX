@@ -64,6 +64,33 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
           try {
             await web3Service.connectWallet();
             console.log('Web3 service initialized on reconnect');
+            
+            // Check if we have a valid auth token, if not, re-authenticate
+            const existingToken = localStorage.getItem('auth_token');
+            if (!existingToken) {
+              // Re-authenticate
+              const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+              
+              const nonceResponse = await fetch(`${API_BASE_URL}/auth/nonce`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ address })
+              });
+              const { nonce } = await nonceResponse.json();
+              
+              const message = `Welcome to OracleX! Your nonce: ${nonce}`;
+              const signature = await signer.signMessage(message);
+              
+              const verifyResponse = await fetch(`${API_BASE_URL}/auth/verify`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ address, signature })
+              });
+              const { token } = await verifyResponse.json();
+              
+              localStorage.setItem('auth_token', token);
+              console.log('Re-authenticated on reconnect');
+            }
           } catch (web3Error) {
             console.error('Failed to initialize Web3 service on reconnect:', web3Error);
           }
@@ -102,7 +129,7 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
                   symbol: 'BNB',
                   decimals: 18,
                 },
-                rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545'],
+                rpcUrls: ['https://bsc-testnet-rpc.publicnode.com'],
                 blockExplorerUrls: ['https://testnet.bscscan.com/'],
               },
             ],
@@ -184,6 +211,38 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
         toast.warning('Wallet connected but some features may not work');
       }
 
+      // Authenticate with backend to get JWT token
+      try {
+        const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+        
+        // Step 1: Get nonce from backend
+        const nonceResponse = await fetch(`${API_BASE_URL}/auth/nonce`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ address })
+        });
+        const { nonce } = await nonceResponse.json();
+        
+        // Step 2: Sign the message with the user's wallet
+        const message = `Welcome to OracleX! Your nonce: ${nonce}`;
+        const signature = await signer.signMessage(message);
+        
+        // Step 3: Verify signature and get JWT token
+        const verifyResponse = await fetch(`${API_BASE_URL}/auth/verify`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ address, signature })
+        });
+        const { token } = await verifyResponse.json();
+        
+        // Store JWT token
+        localStorage.setItem('auth_token', token);
+        console.log('Authentication successful');
+      } catch (authError) {
+        console.error('Failed to authenticate:', authError);
+        toast.warning('Wallet connected but authentication failed. Some features may not work.');
+      }
+
       // Store connection in localStorage
       localStorage.setItem('walletConnected', 'true');
       localStorage.setItem('walletAddress', address);
@@ -212,6 +271,7 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
     // Clear localStorage
     localStorage.removeItem('walletConnected');
     localStorage.removeItem('walletAddress');
+    localStorage.removeItem('auth_token'); // Clear JWT token
 
     toast.info('Wallet disconnected');
   };

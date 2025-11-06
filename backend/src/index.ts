@@ -8,6 +8,7 @@ import { config } from './config';
 import { logger } from './utils/logger';
 import { errorHandler } from './middleware/errorHandler';
 import { authMiddleware } from './middleware/auth';
+import { blockchainSyncService } from './services/blockchainSync';
 
 // Import routes
 import authRoutes from './routes/auth';
@@ -76,10 +77,39 @@ app.use('*', (req, res) => {
 
 const PORT = config.PORT || 3001;
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   logger.info(`🚀 OracleX Backend API running on port ${PORT}`);
   logger.info(`📊 Environment: ${config.NODE_ENV}`);
   logger.info(`🔗 Database: ${config.DATABASE_URL ? 'Connected' : 'Not configured'}`);
+  
+  // Start blockchain sync service (optional)
+  const enableBlockchainSync = process.env.ENABLE_BLOCKCHAIN_SYNC !== 'false';
+  
+  if (enableBlockchainSync) {
+    try {
+      await blockchainSyncService.start();
+      logger.info('✅ Blockchain sync service started');
+    } catch (error) {
+      logger.error('Failed to start blockchain sync service:', error);
+      logger.warn('⚠️ Backend running without blockchain sync');
+    }
+  } else {
+    logger.info('📴 Blockchain sync service disabled via environment variable');
+    logger.info('💡 Set ENABLE_BLOCKCHAIN_SYNC=true to enable');
+  }
+});
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM received, shutting down gracefully');
+  blockchainSyncService.stop();
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  logger.info('SIGINT received, shutting down gracefully');
+  blockchainSyncService.stop();
+  process.exit(0);
 });
 
 export default app;

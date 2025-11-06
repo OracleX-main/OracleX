@@ -9,10 +9,14 @@ declare global {
 
 class Web3Service {
   private provider: ethers.BrowserProvider | null = null;
+  private readOnlyProvider: ethers.JsonRpcProvider | null = null; // For read-only calls without rate limits
   private signer: ethers.JsonRpcSigner | null = null;
   private orxTokenContract: ethers.Contract | null = null;
   private oracleBridgeContract: ethers.Contract | null = null;
   private marketFactoryContract: ethers.Contract | null = null;
+
+  // RPC URL for read-only operations
+  private readonly RPC_URL = import.meta.env.VITE_RPC_URL || 'https://bsc-testnet-rpc.publicnode.com';
 
   // Contract addresses (will be set from environment)
   private readonly ORX_TOKEN_ADDRESS = import.meta.env.VITE_ORX_TOKEN_ADDRESS || '0x7eE4f73bab260C11c68e5560c46E3975E824ed79';
@@ -42,18 +46,22 @@ class Web3Service {
   ];
 
   private readonly MARKET_FACTORY_ABI = [
-    "function createMarket(string title, string description, string[] outcomes, uint256 endTime) returns (address)",
-    "function getMarket(uint256 marketId) view returns (address)",
+    "function createMarket(string title, string description, string[] outcomes, uint256 expiryTime, string category, uint8 oracleType) payable returns (address)",
+    "function getMarket(uint256 marketId) view returns (address marketAddress, string title, string description, uint256 createdAt, uint256 expiryTime, bool isActive, address creator, string category)",
     "function getAllMarkets() view returns (address[])",
     "function getMarketCount() view returns (uint256)",
-    "event MarketCreated(uint256 indexed marketId, address indexed marketAddress, address indexed creator)"
+    "function marketCreationFee() view returns (uint256)",
+    "event MarketCreated(uint256 indexed marketId, address indexed marketAddress, address indexed creator, string title, string category, uint256 expiryTime)"
   ];
 
   /**
    * Initialize Web3 connection
    */
   async initialize(): Promise<boolean> {
-    // Get MetaMask provider specifically
+    // Initialize read-only provider for contract calls
+    this.readOnlyProvider = new ethers.JsonRpcProvider(this.RPC_URL);
+    
+    // Get MetaMask provider specifically for signing
     const metaMaskProvider = getMetaMaskProvider();
     if (!metaMaskProvider) {
       throw new Error('MetaMask is not installed');
@@ -239,14 +247,30 @@ class Web3Service {
     title: string,
     description: string,
     outcomes: string[],
-    endTime: number
+    endTime: number,
+    category: string = 'General',
+    oracleType: number = 0 // 0: AI, 1: Manual, 2: Hybrid
   ): Promise<{ txHash: string; marketId?: number }> {
     if (!this.marketFactoryContract) {
       throw new Error('Market Factory contract not available. Please connect your wallet first.');
     }
 
+    if (!this.readOnlyProvider) {
+      throw new Error('Read-only provider not initialized');
+    }
+
     try {
-      console.log('Creating market with params:', { title, description, outcomes, endTime });
+      console.log('Creating market with params:', { title, description, outcomes, endTime, category, oracleType });
+      
+      // Use read-only provider to fetch the market creation fee (avoids rate limits)
+      const readOnlyContract = new ethers.Contract(
+        this.MARKET_FACTORY_ADDRESS,
+        this.MARKET_FACTORY_ABI,
+        this.readOnlyProvider
+      );
+      
+      const creationFee = await readOnlyContract.marketCreationFee();
+      console.log('Market creation fee:', ethers.formatEther(creationFee), 'BNB');
       
       // Estimate gas for the transaction
       let gasEstimate;
@@ -255,7 +279,10 @@ class Web3Service {
           title,
           description,
           outcomes,
-          endTime
+          endTime,
+          category,
+          oracleType,
+          { value: creationFee }
         );
         console.log('Gas estimate:', gasEstimate.toString());
         
@@ -271,7 +298,10 @@ class Web3Service {
         description,
         outcomes,
         endTime,
+        category,
+        oracleType,
         {
+          value: creationFee,
           gasLimit: gasEstimate
         }
       );
@@ -309,7 +339,7 @@ class Web3Service {
       
       // Better error messages
       if (error.code === 'INSUFFICIENT_FUNDS') {
-        throw new Error('Insufficient BNB balance to pay for transaction gas fees');
+        throw new Error('Insufficient BNB balance to pay for transaction gas fees and market creation fee');
       } else if (error.code === 'NETWORK_ERROR') {
         throw new Error('Network error. Please check your connection and try again');
       } else if (error.code === 'UNPREDICTABLE_GAS_LIMIT') {

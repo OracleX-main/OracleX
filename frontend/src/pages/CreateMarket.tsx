@@ -99,7 +99,9 @@ const CreateMarket = () => {
         formData.title,
         formData.description,
         formData.outcomes,
-        endTimeUnix
+        endTimeUnix,
+        formData.category || 'General',
+        0 // Oracle type: 0 = AI, 1 = Manual, 2 = Hybrid
       );
 
       toast.success('Market created on blockchain!', {
@@ -111,12 +113,14 @@ const CreateMarket = () => {
         title: formData.title,
         description: formData.description,
         outcomes: formData.outcomes,
-        endTime: endDateTime.toISOString(),
+        endDate: endDateTime.toISOString(), // Backend expects 'endDate' not 'endTime'
         category: formData.category || 'General',
-        creator: address,
-        transactionHash: txHash,
-        marketId: marketId || 0,
-        status: 'active'
+        contractAddress: txHash, // Store transaction hash as contract address reference
+        metadata: {
+          blockchainMarketId: marketId || 0,
+          transactionHash: txHash,
+          oracleType: 0
+        }
       };
 
       await apiService.createMarket(marketData);

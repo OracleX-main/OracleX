@@ -63,3 +63,401 @@
 2025-11-06 09:24:22 [info]: ::1 - - [06/Nov/2025:08:24:22 +0000] "GET /api/markets?page=1&limit=12&search=te HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
 2025-11-06 09:24:22 [info]: ::1 - - [06/Nov/2025:08:24:22 +0000] "GET /api/markets?page=1&limit=12&search=t HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
 2025-11-06 09:24:23 [info]: ::1 - - [06/Nov/2025:08:24:23 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 09:28:34 [info]: ::1 - - [06/Nov/2025:08:28:34 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 09:28:34 [info]: ::1 - - [06/Nov/2025:08:28:34 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 12:17:44 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 12:17:44 [info]: 📊 Environment: development
+2025-11-06 12:17:44 [info]: 🔗 Database: Connected
+2025-11-06 12:18:31 [info]: ::1 - - [06/Nov/2025:11:18:31 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 12:18:31 [info]: ::1 - - [06/Nov/2025:11:18:31 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 12:18:47 [info]: ::1 - - [06/Nov/2025:11:18:47 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 12:18:47 [info]: ::1 - - [06/Nov/2025:11:18:47 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 12:19:03 [info]: ::1 - - [06/Nov/2025:11:19:03 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 12:19:03 [info]: ::1 - - [06/Nov/2025:11:19:03 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 12:56:50 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 12:56:50 [info]: 📊 Environment: development
+2025-11-06 12:56:50 [info]: 🔗 Database: Connected
+2025-11-06 12:57:39 [info]: ::1 - - [06/Nov/2025:11:57:39 +0000] "GET /api/markets/categories HTTP/1.1" 200 123 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 12:57:39 [info]: ::1 - - [06/Nov/2025:11:57:39 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 13:00:00 [info]: ::1 - - [06/Nov/2025:12:00:00 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 13:00:00 [info]: ::1 - - [06/Nov/2025:12:00:00 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-06 13:10:49 [info]: ::1 - - [06/Nov/2025:12:10:49 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:10:49 [info]: ::1 - - [06/Nov/2025:12:10:49 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:13:25 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:13:25 [info]: 📊 Environment: development
+2025-11-06 13:13:25 [info]: 🔗 Database: Connected
+2025-11-06 13:13:35 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:13:35 [info]: 📊 Environment: development
+2025-11-06 13:13:35 [info]: 🔗 Database: Connected
+2025-11-06 13:14:02 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:14:02 [info]: 📊 Environment: development
+2025-11-06 13:14:02 [info]: 🔗 Database: Connected
+2025-11-06 13:14:19 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:14:19 [info]: 📊 Environment: development
+2025-11-06 13:14:19 [info]: 🔗 Database: Connected
+2025-11-06 13:14:38 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:14:38 [info]: 📊 Environment: development
+2025-11-06 13:14:38 [info]: 🔗 Database: Connected
+2025-11-06 13:15:02 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:15:02 [info]: 📊 Environment: development
+2025-11-06 13:15:02 [info]: 🔗 Database: Connected
+2025-11-06 13:15:35 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:15:35 [info]: 📊 Environment: development
+2025-11-06 13:15:35 [info]: 🔗 Database: Connected
+2025-11-06 13:17:39 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:17:39 [info]: 📊 Environment: development
+2025-11-06 13:17:39 [info]: 🔗 Database: Connected
+2025-11-06 13:17:39 [info]: Starting blockchain sync service...
+2025-11-06 13:17:39 [info]: Syncing historical blockchain data...
+2025-11-06 13:17:41 [info]: Syncing from block 0 to 71446016
+2025-11-06 13:17:42 [error]: Error: missing response for request (value=[ { "error": { "code": -32005, "message": "method eth_getLogs in batch triggered rate limit" }, "id": null, "jsonrpc": "2.0" } ], info={ "payload": { "id": 4, "jsonrpc": "2.0", "method": "eth_getLogs", "params": [ { "address": "0x273c8dde70897069bec84394e235fef17e7c5e1b", "fromBlock": "0x0", "toBlock": "0x4422e00", "topics": [ "0x1ea36c45a9820289f7809111d6cca6a65e76da18d999731dde21a7d1486cc459" ] } ] } }, code=BAD_DATA, version=6.15.0)
+    at makeError (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:698:21)
+    at <anonymous> (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:561:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-11-06 13:17:42 [info]: Listening for blockchain events...
+2025-11-06 13:17:42 [info]: ✅ Blockchain sync service started
+2025-11-06 13:18:21 [info]: ::1 - - [06/Nov/2025:12:18:21 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:18:21 [info]: ::1 - - [06/Nov/2025:12:18:21 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 86 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:19:22 [info]: ::1 - - [06/Nov/2025:12:19:22 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:19:22 [info]: ::1 - - [06/Nov/2025:12:19:22 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:23:09 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:23:09 [info]: 📊 Environment: development
+2025-11-06 13:23:09 [info]: 🔗 Database: Connected
+2025-11-06 13:23:09 [info]: Starting blockchain sync service...
+2025-11-06 13:23:09 [info]: Syncing historical blockchain data...
+2025-11-06 13:23:11 [info]: Syncing from block 0 to 71446456
+2025-11-06 13:23:11 [error]: Error: missing response for request (value=[ { "error": { "code": -32005, "message": "method eth_getLogs in batch triggered rate limit" }, "id": null, "jsonrpc": "2.0" } ], info={ "payload": { "id": 4, "jsonrpc": "2.0", "method": "eth_getLogs", "params": [ { "address": "0x273c8dde70897069bec84394e235fef17e7c5e1b", "fromBlock": "0x0", "toBlock": "0x4422fb8", "topics": [ "0x1ea36c45a9820289f7809111d6cca6a65e76da18d999731dde21a7d1486cc459" ] } ] } }, code=BAD_DATA, version=6.15.0)
+    at makeError (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:698:21)
+    at <anonymous> (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:561:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-11-06 13:23:11 [info]: Listening for blockchain events...
+2025-11-06 13:23:11 [info]: ✅ Blockchain sync service started
+2025-11-06 13:24:18 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:24:18 [info]: 📊 Environment: development
+2025-11-06 13:24:18 [info]: 🔗 Database: Connected
+2025-11-06 13:24:18 [info]: Starting blockchain sync service...
+2025-11-06 13:24:18 [info]: Syncing historical blockchain data...
+2025-11-06 13:24:20 [info]: Syncing from block 71436548 to 71446548
+2025-11-06 13:24:20 [info]: Large block range detected. Syncing in chunks of 2000 blocks...
+2025-11-06 13:24:20 [warn]: Error: missing response for request (value=[ { "error": { "code": -32005, "message": "method eth_getLogs in batch triggered rate limit" }, "id": null, "jsonrpc": "2.0" } ], info={ "payload": { "id": 4, "jsonrpc": "2.0", "method": "eth_getLogs", "params": [ { "address": "0x273c8dde70897069bec84394e235fef17e7c5e1b", "fromBlock": "0x4420904", "toBlock": "0x44210d3", "topics": [ "0x1ea36c45a9820289f7809111d6cca6a65e76da18d999731dde21a7d1486cc459" ] } ] } }, code=BAD_DATA, version=6.15.0)
+    at makeError (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:698:21)
+    at <anonymous> (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:561:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-11-06 13:24:20 [warn]: Error: missing response for request (value=[ { "error": { "code": -32005, "message": "method eth_getLogs in batch triggered rate limit" }, "id": null, "jsonrpc": "2.0" } ], info={ "payload": { "id": 6, "jsonrpc": "2.0", "method": "eth_getLogs", "params": [ { "address": "0x273c8dde70897069bec84394e235fef17e7c5e1b", "fromBlock": "0x44210d4", "toBlock": "0x44218a3", "topics": [ "0x1ea36c45a9820289f7809111d6cca6a65e76da18d999731dde21a7d1486cc459" ] } ] } }, code=BAD_DATA, version=6.15.0)
+    at makeError (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:698:21)
+    at <anonymous> (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:561:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-11-06 13:24:21 [warn]: Error: missing response for request (value=[ { "error": { "code": -32005, "message": "method eth_getLogs in batch triggered rate limit" }, "id": null, "jsonrpc": "2.0" } ], info={ "payload": { "id": 8, "jsonrpc": "2.0", "method": "eth_getLogs", "params": [ { "address": "0x273c8dde70897069bec84394e235fef17e7c5e1b", "fromBlock": "0x44218a4", "toBlock": "0x4422073", "topics": [ "0x1ea36c45a9820289f7809111d6cca6a65e76da18d999731dde21a7d1486cc459" ] } ] } }, code=BAD_DATA, version=6.15.0)
+    at makeError (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:698:21)
+    at <anonymous> (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:561:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-11-06 13:24:21 [warn]: Error: missing response for request (value=[ { "error": { "code": -32005, "message": "method eth_getLogs in batch triggered rate limit" }, "id": null, "jsonrpc": "2.0" } ], info={ "payload": { "id": 10, "jsonrpc": "2.0", "method": "eth_getLogs", "params": [ { "address": "0x273c8dde70897069bec84394e235fef17e7c5e1b", "fromBlock": "0x4422074", "toBlock": "0x4422843", "topics": [ "0x1ea36c45a9820289f7809111d6cca6a65e76da18d999731dde21a7d1486cc459" ] } ] } }, code=BAD_DATA, version=6.15.0)
+    at makeError (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:698:21)
+    at <anonymous> (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:561:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-11-06 13:24:21 [warn]: Error: missing response for request (value=[ { "error": { "code": -32005, "message": "method eth_getLogs in batch triggered rate limit" }, "id": null, "jsonrpc": "2.0" } ], info={ "payload": { "id": 12, "jsonrpc": "2.0", "method": "eth_getLogs", "params": [ { "address": "0x273c8dde70897069bec84394e235fef17e7c5e1b", "fromBlock": "0x4422844", "toBlock": "0x4423013", "topics": [ "0x1ea36c45a9820289f7809111d6cca6a65e76da18d999731dde21a7d1486cc459" ] } ] } }, code=BAD_DATA, version=6.15.0)
+    at makeError (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:698:21)
+    at <anonymous> (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:561:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-11-06 13:24:22 [warn]: Error: missing response for request (value=[ { "error": { "code": -32005, "message": "method eth_getLogs in batch triggered rate limit" }, "id": null, "jsonrpc": "2.0" } ], info={ "payload": { "id": 14, "jsonrpc": "2.0", "method": "eth_getLogs", "params": [ { "address": "0x273c8dde70897069bec84394e235fef17e7c5e1b", "fromBlock": "0x4423014", "toBlock": "0x4423014", "topics": [ "0x1ea36c45a9820289f7809111d6cca6a65e76da18d999731dde21a7d1486cc459" ] } ] } }, code=BAD_DATA, version=6.15.0)
+    at makeError (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:698:21)
+    at <anonymous> (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:561:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-11-06 13:24:22 [info]: Found 0 MarketCreated events total
+2025-11-06 13:24:22 [info]: Historical data sync completed
+2025-11-06 13:24:22 [info]: Listening for blockchain events...
+2025-11-06 13:24:22 [info]: ✅ Blockchain sync service started
+2025-11-06 13:24:25 [info]: ::1 - - [06/Nov/2025:12:24:25 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:24:32 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:24:32 [info]: 📊 Environment: development
+2025-11-06 13:24:32 [info]: 🔗 Database: Connected
+2025-11-06 13:24:32 [info]: Starting blockchain sync service...
+2025-11-06 13:24:32 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:24:32 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:24:32 [info]: Listening for blockchain events...
+2025-11-06 13:24:32 [info]: ✅ Blockchain sync service started
+2025-11-06 13:24:42 [info]: ::1 - - [06/Nov/2025:12:24:42 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:26:04 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:26:04 [info]: 📊 Environment: development
+2025-11-06 13:26:04 [info]: 🔗 Database: Connected
+2025-11-06 13:26:04 [info]: Starting blockchain sync service...
+2025-11-06 13:26:04 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:26:04 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:26:04 [info]: Listening for blockchain events...
+2025-11-06 13:26:04 [info]: ✅ Blockchain sync service started
+2025-11-06 13:26:21 [info]: ::1 - - [06/Nov/2025:12:26:21 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:26:21 [info]: ::1 - - [06/Nov/2025:12:26:21 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:26:26 [info]: ::1 - - [06/Nov/2025:12:26:26 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:26:26 [info]: ::1 - - [06/Nov/2025:12:26:26 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:26:47 [info]: ::1 - - [06/Nov/2025:12:26:47 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:27:33 [info]: ::1 - - [06/Nov/2025:12:27:33 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:27:42 [info]: ::1 - - [06/Nov/2025:12:27:42 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:27:59 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:27:59 [info]: 📊 Environment: development
+2025-11-06 13:27:59 [info]: 🔗 Database: Connected
+2025-11-06 13:27:59 [info]: Starting blockchain sync service...
+2025-11-06 13:27:59 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:27:59 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:27:59 [info]: Listening for blockchain events...
+2025-11-06 13:27:59 [info]: ✅ Blockchain sync service started
+2025-11-06 13:28:31 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:28:31 [info]: 📊 Environment: development
+2025-11-06 13:28:31 [info]: 🔗 Database: Connected
+2025-11-06 13:28:31 [info]: Starting blockchain sync service...
+2025-11-06 13:28:31 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:28:31 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:28:31 [info]: Listening for blockchain events...
+2025-11-06 13:28:31 [info]: ✅ Blockchain sync service started
+2025-11-06 13:34:20 [info]: Using RPC endpoint: https://data-seed-prebsc-1-s1.binance.org:8545
+2025-11-06 13:34:20 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:34:20 [info]: 📊 Environment: development
+2025-11-06 13:34:20 [info]: 🔗 Database: Connected
+2025-11-06 13:34:20 [info]: Starting blockchain sync service...
+2025-11-06 13:34:20 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:34:20 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:34:20 [info]: Listening for blockchain events...
+2025-11-06 13:34:20 [info]: ✅ Blockchain sync service started
+2025-11-06 13:34:37 [info]: Using RPC endpoint: https://data-seed-prebsc-1-s1.binance.org:8545
+2025-11-06 13:34:37 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:34:37 [info]: 📊 Environment: development
+2025-11-06 13:34:37 [info]: 🔗 Database: Connected
+2025-11-06 13:34:37 [info]: Starting blockchain sync service...
+2025-11-06 13:34:37 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:34:37 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:34:37 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:34:37 [info]: Listening for blockchain events...
+2025-11-06 13:34:37 [info]: ✅ Blockchain sync service started
+2025-11-06 13:34:53 [info]: Using RPC endpoint: https://data-seed-prebsc-1-s1.binance.org:8545
+2025-11-06 13:34:54 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:34:54 [info]: 📊 Environment: development
+2025-11-06 13:34:54 [info]: 🔗 Database: Connected
+2025-11-06 13:34:54 [info]: Starting blockchain sync service...
+2025-11-06 13:34:54 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:34:54 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:34:54 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:34:54 [info]: Listening for blockchain events...
+2025-11-06 13:34:54 [info]: ✅ Blockchain sync service started
+2025-11-06 13:35:43 [info]: ::1 - - [06/Nov/2025:12:35:43 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:35:48 [info]: ::1 - - [06/Nov/2025:12:35:48 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:35:48 [info]: ::1 - - [06/Nov/2025:12:35:48 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:35:52 [info]: ::1 - - [06/Nov/2025:12:35:52 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:35:52 [info]: ::1 - - [06/Nov/2025:12:35:52 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:37:40 [info]: Using RPC endpoint: https://bsc-testnet.public.blastapi.io
+2025-11-06 13:37:40 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:37:40 [info]: 📊 Environment: development
+2025-11-06 13:37:40 [info]: 🔗 Database: Connected
+2025-11-06 13:37:40 [info]: Starting blockchain sync service...
+2025-11-06 13:37:40 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:37:40 [info]: Syncing historical blockchain data...
+2025-11-06 13:37:41 [error]: Error: server response 403 Forbidden (request={  }, response={  }, error=null, info={ "requestUrl": "https://bsc-testnet.public.blastapi.io", "responseBody": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": null,\n  \"error\": {\n    \"code\": -32000,\n    \"message\": \"Blast API is no longer available. Please update your integration to use Alchemy's API instead: https://alchemy.com\"\n  }\n}\n", "responseStatus": "403 Forbidden" }, code=SERVER_ERROR, version=6.15.0)
+    at makeError (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:698:21)
+    at assert (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\errors.ts:719:25)
+    at FetchResponse.assertOk (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\utils\fetch.ts:950:15)
+    at JsonRpcProvider._send (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:1272:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (C:\Users\DELL\Desktop\OracleX\node_modules\ethers\src.ts\providers\provider-jsonrpc.ts:545:40)
+2025-11-06 13:37:41 [info]: Listening for blockchain events...
+2025-11-06 13:37:41 [info]: ✅ Blockchain sync service started
+2025-11-06 13:38:57 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 13:38:57 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:38:57 [info]: 📊 Environment: development
+2025-11-06 13:38:57 [info]: 🔗 Database: Connected
+2025-11-06 13:38:57 [info]: Starting blockchain sync service...
+2025-11-06 13:38:57 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:38:57 [info]: Syncing historical blockchain data...
+2025-11-06 13:38:58 [info]: Syncing from block 71445000 to 71447719
+2025-11-06 13:38:58 [info]: Large block range detected. Syncing in chunks of 2000 blocks...
+2025-11-06 13:38:58 [info]: Synced blocks 71445000 to 71446999 - Found 0 events
+2025-11-06 13:38:59 [info]: Synced blocks 71447000 to 71447719 - Found 0 events
+2025-11-06 13:38:59 [info]: Found 0 MarketCreated events total
+2025-11-06 13:38:59 [info]: Historical data sync completed
+2025-11-06 13:38:59 [info]: Listening for blockchain events...
+2025-11-06 13:38:59 [info]: ✅ Blockchain sync service started
+2025-11-06 13:40:33 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 13:40:33 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:40:33 [info]: 📊 Environment: development
+2025-11-06 13:40:33 [info]: 🔗 Database: Connected
+2025-11-06 13:40:33 [info]: Starting blockchain sync service...
+2025-11-06 13:40:33 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:40:33 [info]: Syncing historical blockchain data...
+2025-11-06 13:40:34 [info]: Syncing from block 71445000 to 71447847
+2025-11-06 13:40:34 [info]: Large block range detected. Syncing in chunks of 2000 blocks...
+2025-11-06 13:40:35 [info]: Synced blocks 71445000 to 71446999 - Found 0 events
+2025-11-06 13:40:35 [info]: Synced blocks 71447000 to 71447847 - Found 0 events
+2025-11-06 13:40:35 [info]: Found 0 MarketCreated events total
+2025-11-06 13:40:35 [info]: Historical data sync completed
+2025-11-06 13:40:35 [info]: Listening for blockchain events...
+2025-11-06 13:40:35 [info]: ✅ Blockchain sync service started
+2025-11-06 13:42:01 [info]: ::1 - - [06/Nov/2025:12:42:01 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:43:35 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 13:43:35 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:43:35 [info]: 📊 Environment: development
+2025-11-06 13:43:35 [info]: 🔗 Database: Connected
+2025-11-06 13:43:35 [info]: Starting blockchain sync service...
+2025-11-06 13:43:35 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:43:35 [info]: Syncing historical blockchain data...
+2025-11-06 13:43:38 [info]: Syncing from block 71445000 to 71448091
+2025-11-06 13:43:38 [info]: Large block range detected. Syncing in chunks of 2000 blocks...
+2025-11-06 13:43:38 [info]: Synced blocks 71445000 to 71446999 - Found 0 events
+2025-11-06 13:43:39 [info]: Synced blocks 71447000 to 71448091 - Found 0 events
+2025-11-06 13:43:39 [info]: Found 0 MarketCreated events total
+2025-11-06 13:43:39 [info]: Historical data sync completed
+2025-11-06 13:43:39 [info]: Listening for blockchain events...
+2025-11-06 13:43:39 [info]: ✅ Blockchain sync service started
+2025-11-06 13:45:15 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 13:45:15 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:45:15 [info]: 📊 Environment: development
+2025-11-06 13:45:15 [info]: 🔗 Database: Connected
+2025-11-06 13:45:15 [info]: Starting blockchain sync service...
+2025-11-06 13:45:15 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:45:15 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:45:15 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:45:15 [info]: Listening for blockchain events...
+2025-11-06 13:45:15 [info]: ✅ Blockchain sync service started
+2025-11-06 13:45:25 [info]: ::1 - - [06/Nov/2025:12:45:25 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:45:25 [info]: ::1 - - [06/Nov/2025:12:45:25 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:45:31 [info]: ::1 - - [06/Nov/2025:12:45:31 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:45:31 [info]: ::1 - - [06/Nov/2025:12:45:31 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:47:08 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 13:47:08 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:47:08 [info]: 📊 Environment: development
+2025-11-06 13:47:08 [info]: 🔗 Database: Connected
+2025-11-06 13:47:08 [info]: Starting blockchain sync service...
+2025-11-06 13:47:08 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:47:08 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:47:08 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:47:08 [info]: Listening for blockchain events...
+2025-11-06 13:47:08 [info]: ✅ Blockchain sync service started
+2025-11-06 13:47:43 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 13:47:43 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:47:43 [info]: 📊 Environment: development
+2025-11-06 13:47:43 [info]: 🔗 Database: Connected
+2025-11-06 13:47:43 [info]: Starting blockchain sync service...
+2025-11-06 13:47:43 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:47:43 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:47:43 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:47:43 [info]: Listening for blockchain events...
+2025-11-06 13:47:43 [info]: ✅ Blockchain sync service started
+2025-11-06 13:48:11 [info]: ::1 - - [06/Nov/2025:12:48:11 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:48:11 [info]: ::1 - - [06/Nov/2025:12:48:11 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:48:15 [info]: ::1 - - [06/Nov/2025:12:48:15 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:48:15 [info]: ::1 - - [06/Nov/2025:12:48:15 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 13:56:43 [info]: SIGINT received, shutting down gracefully
+2025-11-06 13:58:51 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 13:58:51 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 13:58:51 [info]: 📊 Environment: development
+2025-11-06 13:58:51 [info]: 🔗 Database: Connected
+2025-11-06 13:58:51 [info]: Starting blockchain sync service...
+2025-11-06 13:58:51 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 13:58:51 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 13:58:51 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 13:58:51 [info]: Listening for blockchain events...
+2025-11-06 13:58:51 [info]: ✅ Blockchain sync service started
+2025-11-06 14:01:23 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 14:01:23 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 14:01:23 [info]: 📊 Environment: development
+2025-11-06 14:01:23 [info]: 🔗 Database: Connected
+2025-11-06 14:01:23 [info]: Starting blockchain sync service...
+2025-11-06 14:01:23 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 14:01:23 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 14:01:23 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 14:01:23 [info]: Listening for blockchain events...
+2025-11-06 14:01:23 [info]: ✅ Blockchain sync service started
+2025-11-06 14:06:08 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 14:06:08 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 14:06:08 [info]: 📊 Environment: development
+2025-11-06 14:06:08 [info]: 🔗 Database: Connected
+2025-11-06 14:06:08 [info]: Starting blockchain sync service...
+2025-11-06 14:06:08 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 14:06:08 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 14:06:08 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 14:06:08 [info]: Listening for blockchain events...
+2025-11-06 14:06:08 [info]: ✅ Blockchain sync service started
+2025-11-06 14:06:38 [info]: SIGINT received, shutting down gracefully
+2025-11-06 14:10:15 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 14:10:15 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 14:10:15 [info]: 📊 Environment: development
+2025-11-06 14:10:15 [info]: 🔗 Database: Connected
+2025-11-06 14:10:15 [info]: Starting blockchain sync service...
+2025-11-06 14:10:15 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 14:10:15 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 14:10:15 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 14:10:15 [info]: Listening for blockchain events...
+2025-11-06 14:10:15 [info]: ✅ Blockchain sync service started
+2025-11-06 14:11:02 [info]: ::1 - - [06/Nov/2025:13:11:02 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:11:02 [info]: ::1 - - [06/Nov/2025:13:11:02 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:11:02 [info]: ::1 - - [06/Nov/2025:13:11:02 +0000] "POST /api/auth/nonce HTTP/1.1" 200 17 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:11:21 [info]: ::1 - - [06/Nov/2025:13:11:21 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:11:21 [info]: ::1 - - [06/Nov/2025:13:11:21 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:11:21 [info]: ::1 - - [06/Nov/2025:13:11:21 +0000] "POST /api/auth/nonce HTTP/1.1" 200 18 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:11:25 [info]: New user created: 0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df
+2025-11-06 14:11:25 [info]: User authenticated: 0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df
+2025-11-06 14:11:25 [info]: ::1 - - [06/Nov/2025:13:11:25 +0000] "POST /api/auth/verify HTTP/1.1" 200 428 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:32:19 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 14:32:19 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 14:32:19 [info]: 📊 Environment: development
+2025-11-06 14:32:19 [info]: 🔗 Database: Connected
+2025-11-06 14:32:19 [info]: Starting blockchain sync service...
+2025-11-06 14:32:19 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 14:32:19 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 14:32:19 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 14:32:19 [info]: Listening for blockchain events...
+2025-11-06 14:32:19 [info]: ✅ Blockchain sync service started
+2025-11-06 14:32:31 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 14:32:31 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 14:32:31 [info]: 📊 Environment: development
+2025-11-06 14:32:31 [info]: 🔗 Database: Connected
+2025-11-06 14:32:31 [info]: Starting blockchain sync service...
+2025-11-06 14:32:31 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 14:32:31 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 14:32:31 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 14:32:31 [info]: Listening for blockchain events...
+2025-11-06 14:32:31 [info]: ✅ Blockchain sync service started
+2025-11-06 14:32:49 [info]: ::1 - - [06/Nov/2025:13:32:49 +0000] "POST /api/auth/nonce HTTP/1.1" 200 18 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:32:53 [info]: User authenticated: 0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df
+2025-11-06 14:32:53 [info]: ::1 - - [06/Nov/2025:13:32:53 +0000] "POST /api/auth/verify HTTP/1.1" 200 428 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:35:23 [info]: ::1 - - [06/Nov/2025:13:35:23 +0000] "POST /api/markets HTTP/1.1" 400 90 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 14:45:10 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 14:45:10 [info]: 📊 Environment: development
+2025-11-06 14:45:10 [info]: 🔗 Database: Connected
+2025-11-06 14:47:46 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 14:47:46 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 14:47:46 [info]: 📊 Environment: development
+2025-11-06 14:47:46 [info]: 🔗 Database: Connected
+2025-11-06 14:47:46 [info]: Starting blockchain sync service...
+2025-11-06 14:47:46 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 14:47:46 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 14:47:46 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 14:47:46 [info]: Listening for blockchain events...
+2025-11-06 14:47:46 [info]: ✅ Blockchain sync service started
+2025-11-06 14:48:07 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 14:48:07 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 14:48:07 [info]: 📊 Environment: development
+2025-11-06 14:48:07 [info]: 🔗 Database: Connected
+2025-11-06 14:48:07 [info]: Starting blockchain sync service...
+2025-11-06 14:48:07 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 14:48:07 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 14:48:07 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 14:48:07 [info]: Listening for blockchain events...
+2025-11-06 14:48:07 [info]: ✅ Blockchain sync service started
+2025-11-06 14:50:26 [info]: ::1 - - [06/Nov/2025:13:50:26 +0000] "POST /api/auth/nonce HTTP/1.1" 200 18 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:24:22 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 16:24:22 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 16:24:22 [info]: 📊 Environment: development
+2025-11-06 16:24:22 [info]: 🔗 Database: Connected
+2025-11-06 16:24:22 [info]: Starting blockchain sync service...
+2025-11-06 16:24:22 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 16:24:22 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 16:24:22 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 16:24:22 [info]: Listening for blockchain events...
+2025-11-06 16:24:22 [info]: ✅ Blockchain sync service started
+2025-11-06 16:26:36 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 16:26:37 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 16:26:37 [info]: 📊 Environment: development
+2025-11-06 16:26:37 [info]: 🔗 Database: Connected
+2025-11-06 16:26:37 [info]: Starting blockchain sync service...
+2025-11-06 16:26:37 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 16:26:37 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 16:26:37 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 16:26:37 [info]: Listening for blockchain events...
+2025-11-06 16:26:37 [info]: ✅ Blockchain sync service started
