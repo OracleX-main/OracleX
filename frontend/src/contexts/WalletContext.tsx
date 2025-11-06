@@ -35,9 +35,9 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
   const [balance, setBalance] = useState<string | null>(null);
   const [orxBalance, setOrxBalance] = useState<string | null>(null);
 
-  // Target chain ID for BNB Smart Chain
-  const TARGET_CHAIN_ID = 56; // BSC Mainnet
-  const TARGET_CHAIN_ID_HEX = '0x38';
+  // Target chain ID for BNB Smart Chain Testnet
+  const TARGET_CHAIN_ID = 97; // BSC Testnet
+  const TARGET_CHAIN_ID_HEX = '0x61';
 
   const checkConnection = async () => {
     // Check specifically for MetaMask using our detection utility
@@ -59,6 +59,14 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
           setChainId(Number(network.chainId));
           setBalance(ethers.formatEther(balance));
           setIsConnected(true);
+
+          // Initialize Web3 service
+          try {
+            await web3Service.connectWallet();
+            console.log('Web3 service initialized on reconnect');
+          } catch (web3Error) {
+            console.error('Failed to initialize Web3 service on reconnect:', web3Error);
+          }
         }
       } catch (error) {
         console.error('Error checking connection:', error);
@@ -88,14 +96,14 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
             params: [
               {
                 chainId: TARGET_CHAIN_ID_HEX,
-                chainName: 'BNB Smart Chain',
+                chainName: 'BNB Smart Chain Testnet',
                 nativeCurrency: {
                   name: 'BNB',
                   symbol: 'BNB',
                   decimals: 18,
                 },
-                rpcUrls: ['https://bsc-dataseed1.binance.org/'],
-                blockExplorerUrls: ['https://bscscan.com/'],
+                rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545'],
+                blockExplorerUrls: ['https://testnet.bscscan.com/'],
               },
             ],
           });
@@ -166,6 +174,15 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
       setChainId(TARGET_CHAIN_ID);
       setBalance(ethers.formatEther(balance));
       setIsConnected(true);
+
+      // Initialize Web3 service with the connected wallet
+      try {
+        await web3Service.connectWallet();
+        console.log('Web3 service initialized successfully');
+      } catch (web3Error) {
+        console.error('Failed to initialize Web3 service:', web3Error);
+        toast.warning('Wallet connected but some features may not work');
+      }
 
       // Store connection in localStorage
       localStorage.setItem('walletConnected', 'true');

@@ -51,3 +51,15 @@
 2025-11-06 09:22:17 [info]: 🚀 OracleX Backend API running on port 3001
 2025-11-06 09:22:17 [info]: 📊 Environment: development
 2025-11-06 09:22:17 [info]: 🔗 Database: Connected
+2025-11-06 09:22:23 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 09:22:23 [info]: 📊 Environment: development
+2025-11-06 09:22:23 [info]: 🔗 Database: Connected
+2025-11-06 09:23:50 [info]: ::1 - - [06/Nov/2025:08:23:50 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 09:24:12 [info]: ::1 - - [06/Nov/2025:08:24:12 +0000] "GET /api/markets/categories HTTP/1.1" 200 123 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 09:24:12 [info]: ::1 - - [06/Nov/2025:08:24:12 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 09:24:19 [info]: ::1 - - [06/Nov/2025:08:24:19 +0000] "GET /api/markets?page=1&limit=12&search=t HTTP/1.1" 200 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 09:24:20 [info]: ::1 - - [06/Nov/2025:08:24:20 +0000] "GET /api/markets?page=1&limit=12&search=te HTTP/1.1" 200 929 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 09:24:20 [info]: ::1 - - [06/Nov/2025:08:24:20 +0000] "GET /api/markets?page=1&limit=12&search=tes HTTP/1.1" 200 502 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 09:24:22 [info]: ::1 - - [06/Nov/2025:08:24:22 +0000] "GET /api/markets?page=1&limit=12&search=te HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 09:24:22 [info]: ::1 - - [06/Nov/2025:08:24:22 +0000] "GET /api/markets?page=1&limit=12&search=t HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 09:24:23 [info]: ::1 - - [06/Nov/2025:08:24:23 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"

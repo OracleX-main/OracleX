@@ -12,6 +12,7 @@ class Web3Service {
   private signer: ethers.JsonRpcSigner | null = null;
   private orxTokenContract: ethers.Contract | null = null;
   private oracleBridgeContract: ethers.Contract | null = null;
+  private marketFactoryContract: ethers.Contract | null = null;
 
   // Contract addresses (will be set from environment)
   private readonly ORX_TOKEN_ADDRESS = import.meta.env.VITE_ORX_TOKEN_ADDRESS || '0x7eE4f73bab260C11c68e5560c46E3975E824ed79';
@@ -38,6 +39,14 @@ class Web3Service {
     "function claimReward(uint256 marketId) returns (bool)",
     "function getMarket(uint256 marketId) view returns (tuple(string title, string description, string[] outcomes, uint256 endTime, bool resolved, string result))",
     "function getUserBets(uint256 marketId, address user) view returns (uint256[] memory amounts)"
+  ];
+
+  private readonly MARKET_FACTORY_ABI = [
+    "function createMarket(string title, string description, string[] outcomes, uint256 endTime) returns (address)",
+    "function getMarket(uint256 marketId) view returns (address)",
+    "function getAllMarkets() view returns (address[])",
+    "function getMarketCount() view returns (uint256)",
+    "event MarketCreated(uint256 indexed marketId, address indexed marketAddress, address indexed creator)"
   ];
 
   /**
@@ -106,6 +115,14 @@ class Web3Service {
         this.oracleBridgeContract = new ethers.Contract(
           this.ORACLE_BRIDGE_ADDRESS,
           this.ORACLE_BRIDGE_ABI,
+          this.signer
+        );
+      }
+
+      if (this.MARKET_FACTORY_ADDRESS) {
+        this.marketFactoryContract = new ethers.Contract(
+          this.MARKET_FACTORY_ADDRESS,
+          this.MARKET_FACTORY_ABI,
           this.signer
         );
       }
@@ -224,38 +241,84 @@ class Web3Service {
     outcomes: string[],
     endTime: number
   ): Promise<{ txHash: string; marketId?: number }> {
-    if (!this.oracleBridgeContract) {
-      throw new Error('Oracle Bridge contract not available');
+    if (!this.marketFactoryContract) {
+      throw new Error('Market Factory contract not available. Please connect your wallet first.');
     }
 
     try {
-      const tx = await this.oracleBridgeContract.createMarket(
+      console.log('Creating market with params:', { title, description, outcomes, endTime });
+      
+      // Estimate gas for the transaction
+      let gasEstimate;
+      try {
+        gasEstimate = await this.marketFactoryContract.createMarket.estimateGas(
+          title,
+          description,
+          outcomes,
+          endTime
+        );
+        console.log('Gas estimate:', gasEstimate.toString());
+        
+        // Add 20% buffer to gas estimate
+        gasEstimate = gasEstimate * 120n / 100n;
+      } catch (estimateError) {
+        console.warn('Gas estimation failed, using default gas limit:', estimateError);
+        gasEstimate = 500000n; // Fallback gas limit
+      }
+
+      const tx = await this.marketFactoryContract.createMarket(
         title,
         description,
         outcomes,
-        endTime
+        endTime,
+        {
+          gasLimit: gasEstimate
+        }
       );
 
+      console.log('Transaction sent:', tx.hash);
       const receipt = await tx.wait();
+      console.log('Transaction confirmed:', receipt);
       
       // Try to extract market ID from events
       let marketId;
       try {
-        const event = receipt.logs.find((log: any) => 
-          log.fragment && log.fragment.name === 'MarketCreated'
-        );
-        marketId = event ? Number(event.args[0]) : undefined;
+        const iface = new ethers.Interface(this.MARKET_FACTORY_ABI);
+        for (const log of receipt.logs) {
+          try {
+            const parsed = iface.parseLog(log);
+            if (parsed && parsed.name === 'MarketCreated') {
+              marketId = Number(parsed.args[0]);
+              console.log('Extracted market ID:', marketId);
+              break;
+            }
+          } catch (e) {
+            // Not a MarketCreated event, continue
+          }
+        }
       } catch (e) {
-        console.warn('Could not extract market ID from events');
+        console.warn('Could not extract market ID from events:', e);
       }
 
       return {
         txHash: receipt.hash,
         marketId
       };
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to create market:', error);
-      throw new Error('Failed to create market');
+      
+      // Better error messages
+      if (error.code === 'INSUFFICIENT_FUNDS') {
+        throw new Error('Insufficient BNB balance to pay for transaction gas fees');
+      } else if (error.code === 'NETWORK_ERROR') {
+        throw new Error('Network error. Please check your connection and try again');
+      } else if (error.code === 'UNPREDICTABLE_GAS_LIMIT') {
+        throw new Error('Transaction would fail. Please check contract parameters');
+      } else if (error.message.includes('user rejected')) {
+        throw new Error('Transaction was rejected by user');
+      }
+      
+      throw new Error(`Failed to create market: ${error.message || 'Unknown error'}`);
     }
   }
 
