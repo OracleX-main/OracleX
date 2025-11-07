@@ -83,8 +83,34 @@ class ApiService {
     return this.get('/markets');
   }
 
-  async getMarket(id: number): Promise<any> {
+  async getMarket(id: string | number): Promise<any> {
     return this.get(`/markets/${id}`);
+  }
+
+  // User-specific methods
+  async getUserProfile(): Promise<any> {
+    return this.get('/users/profile');
+  }
+
+  async getUserPortfolio(): Promise<any> {
+    return this.get('/users/portfolio');
+  }
+
+  async getUserTransactions(page: number = 1, limit: number = 20): Promise<any> {
+    return this.get(`/users/transactions?page=${page}&limit=${limit}`);
+  }
+
+  async getLeaderboard(limit: number = 50, period: string = 'all'): Promise<any> {
+    return this.get(`/users/leaderboard?limit=${limit}&period=${period}`);
+  }
+
+  // Analytics methods
+  async getAnalyticsOverview(): Promise<any> {
+    return this.get('/analytics/overview');
+  }
+
+  async getAnalyticsVolume(period: string = '30d'): Promise<any> {
+    return this.get(`/analytics/volume?period=${period}`);
   }
 }
 

@@ -1,28 +1,150 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PageLayout from "@/components/layout/PageLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 import { TrendingUp, Users, Clock, AlertCircle, BrainCircuit } from "lucide-react";
-import { mockMarkets, mockAIAnalysis } from "@/lib/mockData";
 import { formatCurrency, formatTimeRemaining, formatCategoryLabel, formatPercentage } from "@/lib/formatters";
+import { apiService } from "@/services/api";
+import { toast } from "sonner";
+import { useWallet } from "@/contexts/WalletContext";
+import { web3Service } from "@/services/web3";
 
 const MarketDetails = () => {
   const { id } = useParams();
-  const market = mockMarkets.find(m => m.id === id) || mockMarkets[0];
-  const [selectedOutcome, setSelectedOutcome] = useState<"yes" | "no">("yes");
+  const { isConnected, address } = useWallet();
+  const [market, setMarket] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedOutcome, setSelectedOutcome] = useState<number>(0);
+  const [predictionAmount, setPredictionAmount] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    fetchMarketDetails();
+  }, [id]);
+
+  const handlePredictionSubmit = async () => {
+    if (!isConnected || !address) {
+      toast.error('Please connect your wallet first');
+      return;
+    }
+
+    if (!predictionAmount || parseFloat(predictionAmount) <= 0) {
+      toast.error('Please enter a valid prediction amount');
+      return;
+    }
+
+    if (!market?.outcomes || !market.outcomes[selectedOutcome]) {
+      toast.error('Please select an outcome');
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      
+      const selectedOutcomeData = market.outcomes[selectedOutcome];
+      
+      // Save prediction to database
+      const response = await apiService.post<any>(`/markets/${market.id}/bet`, {
+        outcomeId: selectedOutcomeData.id,
+        amount: predictionAmount,
+        odds: selectedOutcomeData.probability / 100, // Convert percentage to decimal
+        txHash: '0xpending' // Placeholder for now, blockchain integration coming soon
+      });
+
+      toast.success('Prediction placed successfully!', {
+        description: `You bet ${predictionAmount} on ${selectedOutcomeData.name}`
+      });
+
+      // Refresh market data
+      await fetchMarketDetails();
+      setPredictionAmount('');
+      
+    } catch (error: any) {
+      console.error('Failed to place prediction:', error);
+      
+      const errorMessage = error.response?.data?.error || error.message || 'Failed to place prediction';
+      toast.error(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const fetchMarketDetails = async () => {
+    if (!id) return;
+    
+    try {
+      setLoading(true);
+      const response = await apiService.getMarket(id);
+      if (response.success && response.data) {
+        setMarket(response.data);
+      } else {
+        toast.error('Market not found');
+      }
+    } catch (error) {
+      console.error('Failed to fetch market details:', error);
+      toast.error('Failed to load market details');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDisputeSubmit = async () => {
+    try {
+      toast.info('Dispute submission pending blockchain integration');
+      // TODO: Implement dispute submission to blockchain
+      // await disputeContract.submitDispute(market.id, evidence);
+    } catch (error) {
+      console.error('Failed to submit dispute:', error);
+      toast.error('Failed to submit dispute');
+    }
+  };
+
+  if (loading) {
+    return (
+      <PageLayout>
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center">
+            <p className="text-muted-foreground">Loading market details...</p>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  if (!market) {
+    return (
+      <PageLayout>
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center">
+            <p className="text-muted-foreground">Market not found</p>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  // Calculate odds from outcomes
+  const totalVolume = market.outcomes?.reduce((sum: number, outcome: any) => 
+    sum + parseFloat(outcome.totalStaked || 0), 0) || 1;
+  
+  const outcomes = market.outcomes?.map((outcome: any) => ({
+    ...outcome,
+    odds: totalVolume > 0 ? (parseFloat(outcome.totalStaked || 0) / totalVolume) * 100 : 50
+  })) || [];
 
   const trendData = [
-    { date: "Jan 15", yes: 65, no: 35 },
-    { date: "Jan 18", yes: 66, no: 34 },
-    { date: "Jan 21", yes: 67, no: 33 },
-    { date: "Jan 24", yes: 68, no: 32 },
-    { date: "Jan 27", yes: 67.5, no: 32.5 },
+    { date: "Jan 15", yes: outcomes[0]?.odds || 50, no: outcomes[1]?.odds || 50 },
+    { date: "Jan 18", yes: outcomes[0]?.odds || 50, no: outcomes[1]?.odds || 50 },
+    { date: "Jan 21", yes: outcomes[0]?.odds || 50, no: outcomes[1]?.odds || 50 },
+    { date: "Jan 24", yes: outcomes[0]?.odds || 50, no: outcomes[1]?.odds || 50 },
+    { date: "Jan 27", yes: outcomes[0]?.odds || 50, no: outcomes[1]?.odds || 50 },
   ];
 
   return (
@@ -47,24 +169,43 @@ const MarketDetails = () => {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
-                  <Button
-                    variant={selectedOutcome === "yes" ? "default" : "outline"}
-                    className={selectedOutcome === "yes" ? "bg-green-600 hover:bg-green-700" : ""}
-                    onClick={() => setSelectedOutcome("yes")}
-                  >
-                    Yes - {formatPercentage(market.yesOdds)}
-                  </Button>
-                  <Button
-                    variant={selectedOutcome === "no" ? "default" : "outline"}
-                    className={selectedOutcome === "no" ? "bg-red-600 hover:bg-red-700" : ""}
-                    onClick={() => setSelectedOutcome("no")}
-                  >
-                    No - {formatPercentage(market.noOdds)}
-                  </Button>
+                  {outcomes.map((outcome: any, index: number) => (
+                    <Button
+                      key={outcome.id}
+                      variant={selectedOutcome === index ? "default" : "outline"}
+                      className={selectedOutcome === index ? (index === 0 ? "bg-green-600 hover:bg-green-700" : "bg-red-600 hover:bg-red-700") : ""}
+                      onClick={() => setSelectedOutcome(index)}
+                    >
+                      {outcome.name} - {formatPercentage(outcome.odds)}
+                    </Button>
+                  ))}
                 </div>
-                <Progress value={market.yesOdds} className="h-3" />
-                <Button className="w-full bg-gradient-gold hover:shadow-glow-primary">
-                  Confirm Prediction
+                <Progress value={outcomes[0]?.odds || 50} className="h-3" />
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Amount (USDT)</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter amount"
+                    value={predictionAmount}
+                    onChange={(e) => setPredictionAmount(e.target.value)}
+                    className="bg-card border-primary/30"
+                    min="0"
+                    step="0.01"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Potential Return: {predictionAmount && outcomes[selectedOutcome] 
+                      ? formatCurrency(parseFloat(predictionAmount) * (outcomes[selectedOutcome].odds / 100))
+                      : '$0.00'}
+                  </p>
+                </div>
+
+                <Button 
+                  className="w-full bg-gradient-gold hover:shadow-glow-primary"
+                  onClick={handlePredictionSubmit}
+                  disabled={isSubmitting || !predictionAmount}
+                >
+                  {isSubmitting ? 'Processing...' : 'Confirm Prediction'}
                 </Button>
               </CardContent>
             </Card>
@@ -99,23 +240,27 @@ const MarketDetails = () => {
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Confidence Score</span>
-                  <span className="text-2xl font-bold text-primary">{mockAIAnalysis.confidenceScore}%</span>
+                  <span className="text-2xl font-bold text-primary">
+                    {market.aiAnalysis?.confidence || 'N/A'}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Sentiment</span>
-                  <Badge className="bg-green-600">{mockAIAnalysis.sentiment}</Badge>
+                  <Badge className="bg-green-600">
+                    {market.aiAnalysis?.sentiment || 'Analyzing...'}
+                  </Badge>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Data Sources</span>
-                  <span className="font-semibold">{mockAIAnalysis.dataSources}</span>
+                  <span className="font-semibold">
+                    {market.aiAnalysis?.dataSources || 'Multiple'}
+                  </span>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-sm font-semibold">Key Factors:</p>
-                  <ul className="space-y-1">
-                    {mockAIAnalysis.keyFactors.map((factor, i) => (
-                      <li key={i} className="text-sm text-muted-foreground">• {factor}</li>
-                    ))}
-                  </ul>
+                  <p className="text-sm font-semibold">Analysis:</p>
+                  <p className="text-sm text-muted-foreground">
+                    {market.aiAnalysis?.summary || 'AI analysis pending...'}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -134,25 +279,27 @@ const MarketDetails = () => {
                     <TrendingUp className="w-4 h-4 text-primary" />
                     <span className="text-sm text-muted-foreground">Pool Size</span>
                   </div>
-                  <span className="font-semibold">{formatCurrency(market.poolSize)}</span>
+                  <span className="font-semibold">{formatCurrency(parseFloat(market.totalVolume || 0))}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4 text-primary" />
                     <span className="text-sm text-muted-foreground">Participants</span>
                   </div>
-                  <span className="font-semibold">{market.participants}</span>
+                  <span className="font-semibold">{market.predictions?.length || 0}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-primary" />
                     <span className="text-sm text-muted-foreground">Time Left</span>
                   </div>
-                  <span className="font-semibold">{formatTimeRemaining(market.endDate)}</span>
+                  <span className="font-semibold">{formatTimeRemaining(new Date(market.endDate))}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">24h Volume</span>
-                  <span className="font-semibold">{formatCurrency(market.volume24h)}</span>
+                  <span className="text-sm text-muted-foreground">Status</span>
+                  <Badge variant={market.status === 'ACTIVE' ? 'default' : 'secondary'}>
+                    {market.status}
+                  </Badge>
                 </div>
               </CardContent>
             </Card>
@@ -169,7 +316,11 @@ const MarketDetails = () => {
                 <p className="text-sm text-muted-foreground mb-4">
                   Disagree with the outcome? Submit a dispute with evidence.
                 </p>
-                <Button variant="outline" className="w-full border-primary/40">
+                <Button 
+                  variant="outline" 
+                  className="w-full border-primary/40"
+                  onClick={handleDisputeSubmit}
+                >
                   Submit Dispute
                 </Button>
               </CardContent>

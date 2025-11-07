@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import PageLayout from "@/components/layout/PageLayout";
 import StatCard from "@/components/shared/StatCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -5,10 +6,60 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { TrendingUp, Trophy, Target, Zap } from "lucide-react";
-import { mockUserPortfolio, mockUserPredictions } from "@/lib/mockData";
 import { formatCurrency, formatPercentage, formatDate, formatPredictionOutcome } from "@/lib/formatters";
+import { apiService } from "@/services/api";
+import { toast } from "sonner";
 
 const Portfolio = () => {
+  const [portfolio, setPortfolio] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      try {
+        setLoading(true);
+        const response = await apiService.get<any>('/users/portfolio');
+        if (response.success && response.data) {
+          setPortfolio(response.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch portfolio:', error);
+        toast.error('Failed to load portfolio');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPortfolio();
+  }, []);
+
+  if (loading) {
+    return (
+      <PageLayout>
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center">
+            <p className="text-muted-foreground">Loading portfolio...</p>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  if (!portfolio) {
+    return (
+      <PageLayout>
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center">
+            <p className="text-muted-foreground">No portfolio data available</p>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  const winRate = portfolio.resolvedPredictions > 0 
+    ? (portfolio.wonPredictions / portfolio.resolvedPredictions) * 100 
+    : 0;
   return (
     <PageLayout>
       <div className="container mx-auto px-4 py-12">
@@ -22,27 +73,25 @@ const Portfolio = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <StatCard
-            title="Total Earned"
-            value={formatCurrency(mockUserPortfolio.totalEarned)}
+            title="Total Returns"
+            value={formatCurrency(parseFloat(portfolio.totalReturns))}
             icon={TrendingUp}
-            trend="+12.5%"
-            trendUp={true}
+            trend={`${portfolio.returnPercentage}%`}
+            trendUp={parseFloat(portfolio.returnPercentage) > 0}
           />
           <StatCard
             title="Win Rate"
-            value={formatPercentage(mockUserPortfolio.winRate)}
+            value={formatPercentage(winRate)}
             icon={Trophy}
-            trend="+3.2%"
-            trendUp={true}
           />
           <StatCard
-            title="Accuracy Score"
-            value={formatPercentage(mockUserPortfolio.accuracyScore)}
+            title="Total Invested"
+            value={formatCurrency(parseFloat(portfolio.totalInvested))}
             icon={Target}
           />
           <StatCard
-            title="Current Streak"
-            value={mockUserPortfolio.currentStreak}
+            title="Active Positions"
+            value={portfolio.activePredictions.toString()}
             icon={Zap}
           />
         </div>
@@ -55,9 +104,9 @@ const Portfolio = () => {
           <CardContent>
             <Tabs defaultValue="active">
               <TabsList className="bg-card border border-primary/30 mb-6">
-                <TabsTrigger value="active">Active ({mockUserPortfolio.activePredictions})</TabsTrigger>
-                <TabsTrigger value="won">Won ({mockUserPortfolio.totalWon})</TabsTrigger>
-                <TabsTrigger value="lost">Lost ({mockUserPortfolio.totalLost})</TabsTrigger>
+                <TabsTrigger value="active">Active ({portfolio.activePredictions})</TabsTrigger>
+                <TabsTrigger value="won">Won ({portfolio.wonPredictions})</TabsTrigger>
+                <TabsTrigger value="history">History ({portfolio.resolvedPredictions})</TabsTrigger>
               </TabsList>
 
               <TabsContent value="active">
@@ -68,43 +117,121 @@ const Portfolio = () => {
                       <TableHead>Outcome</TableHead>
                       <TableHead>Amount</TableHead>
                       <TableHead>Odds</TableHead>
-                      <TableHead>Potential Return</TableHead>
-                      <TableHead>Date</TableHead>
+                      <TableHead>Current Value</TableHead>
+                      <TableHead>P&L</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {mockUserPredictions.map((prediction) => (
-                      <TableRow key={prediction.id}>
-                        <TableCell className="font-medium">{prediction.marketTitle}</TableCell>
-                        <TableCell>
-                          <Badge className={prediction.outcome === "yes" ? "bg-green-600" : "bg-red-600"}>
-                            {formatPredictionOutcome(prediction.outcome)}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>{formatCurrency(prediction.amount)}</TableCell>
-                        <TableCell>{formatPercentage(prediction.odds)}</TableCell>
-                        <TableCell className="text-primary font-semibold">
-                          {formatCurrency(prediction.potentialReturn)}
-                        </TableCell>
-                        <TableCell className="text-muted-foreground">
-                          {formatDate(prediction.placedAt)}
+                    {portfolio.positions.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={6} className="text-center text-muted-foreground">
+                          No active predictions
                         </TableCell>
                       </TableRow>
-                    ))}
+                    ) : (
+                      portfolio.positions.map((position: any) => (
+                        <TableRow key={position.marketId}>
+                          <TableCell className="font-medium">{position.marketTitle}</TableCell>
+                          <TableCell>
+                            <Badge className={position.outcome.toLowerCase() === "yes" ? "bg-green-600" : "bg-red-600"}>
+                              {position.outcome}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{formatCurrency(position.shares)}</TableCell>
+                          <TableCell>{formatPercentage(position.averagePrice * 100)}</TableCell>
+                          <TableCell>{formatCurrency(position.value)}</TableCell>
+                          <TableCell className={position.unrealizedPnL >= 0 ? "text-green-600" : "text-red-600"}>
+                            {formatCurrency(position.unrealizedPnL)}
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    )}
                   </TableBody>
                 </Table>
               </TabsContent>
 
               <TabsContent value="won">
-                <div className="text-center py-12 text-muted-foreground">
-                  No won predictions yet
-                </div>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Market</TableHead>
+                      <TableHead>Outcome</TableHead>
+                      <TableHead>Amount</TableHead>
+                      <TableHead>P&L</TableHead>
+                      <TableHead>Resolved</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {portfolio.history.filter((h: any) => h.status === 'WON').length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={5} className="text-center text-muted-foreground">
+                          No won predictions yet
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      portfolio.history
+                        .filter((h: any) => h.status === 'WON')
+                        .map((prediction: any, index: number) => (
+                          <TableRow key={index}>
+                            <TableCell className="font-medium">{prediction.marketTitle}</TableCell>
+                            <TableCell>
+                              <Badge className="bg-green-600">{prediction.outcome}</Badge>
+                            </TableCell>
+                            <TableCell>{formatCurrency(prediction.shares)}</TableCell>
+                            <TableCell className="text-green-600">
+                              +{formatCurrency(prediction.pnl)} ({formatPercentage(prediction.pnlPercentage)})
+                            </TableCell>
+                            <TableCell>{formatDate(prediction.resolvedAt)}</TableCell>
+                          </TableRow>
+                        ))
+                    )}
+                  </TableBody>
+                </Table>
               </TabsContent>
 
-              <TabsContent value="lost">
-                <div className="text-center py-12 text-muted-foreground">
-                  No lost predictions yet
-                </div>
+              <TabsContent value="history">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Market</TableHead>
+                      <TableHead>Outcome</TableHead>
+                      <TableHead>Amount</TableHead>
+                      <TableHead>P&L</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Resolved</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {portfolio.history.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={6} className="text-center text-muted-foreground">
+                          No resolved predictions
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      portfolio.history.map((prediction: any, index: number) => (
+                        <TableRow key={index}>
+                          <TableCell className="font-medium">{prediction.marketTitle}</TableCell>
+                          <TableCell>
+                            <Badge className={prediction.status === 'WON' ? "bg-green-600" : "bg-red-600"}>
+                              {prediction.outcome}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{formatCurrency(prediction.shares)}</TableCell>
+                          <TableCell className={prediction.pnl >= 0 ? "text-green-600" : "text-red-600"}>
+                            {prediction.pnl >= 0 ? '+' : ''}{formatCurrency(prediction.pnl)} ({formatPercentage(prediction.pnlPercentage)})
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant={prediction.status === 'WON' ? 'default' : 'secondary'}>
+                              {prediction.status}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{formatDate(prediction.resolvedAt)}</TableCell>
+                        </TableRow>
+                      ))
+                    )}
+                  </TableBody>
+                </Table>
               </TabsContent>
             </Tabs>
           </CardContent>

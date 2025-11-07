@@ -161,6 +161,75 @@ router.get('/categories', async (req: Request, res: Response) => {
   }
 });
 
+// Get trending markets
+router.get('/trending', async (req: Request, res: Response) => {
+  try {
+    const limit = parseInt(req.query.limit as string) || 6;
+
+    // Fetch trending markets (active, sorted by volume and recency)
+    const markets = await prisma.market.findMany({
+      where: {
+        status: 'ACTIVE'
+      },
+      orderBy: [
+        { totalVolume: 'desc' },
+        { createdAt: 'desc' }
+      ],
+      take: limit,
+      include: {
+        creator: {
+          select: {
+            walletAddress: true,
+            username: true
+          }
+        },
+        outcomes: {
+          select: {
+            id: true,
+            name: true,
+            totalStaked: true,
+            probability: true
+          }
+        },
+        _count: {
+          select: {
+            predictions: true
+          }
+        }
+      }
+    });
+
+    const formattedMarkets = markets.map(market => ({
+      id: market.id,
+      title: market.title,
+      description: market.description,
+      category: market.category,
+      endDate: market.endDate.toISOString(),
+      totalVolume: market.totalVolume.toString(),
+      totalStaked: market.totalStaked.toString(),
+      participants: market._count.predictions,
+      status: market.status,
+      yesOdds: market.outcomes.find(o => o.name.toLowerCase() === 'yes')?.probability || 50,
+      noOdds: market.outcomes.find(o => o.name.toLowerCase() === 'no')?.probability || 50,
+      poolSize: parseFloat(market.totalVolume.toString()),
+      confidenceScore: market.confidence || 0,
+      creator: market.creator
+    }));
+
+    res.json({
+      success: true,
+      data: formattedMarkets
+    });
+  } catch (error) {
+    logger.error('Error fetching trending markets:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch trending markets',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // Get specific market by ID
 router.get('/:id', async (req: Request, res: Response) => {
   try {

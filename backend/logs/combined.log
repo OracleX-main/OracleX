@@ -461,3 +461,190 @@
 2025-11-06 16:26:37 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
 2025-11-06 16:26:37 [info]: Listening for blockchain events...
 2025-11-06 16:26:37 [info]: ✅ Blockchain sync service started
+2025-11-06 16:34:29 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 16:34:29 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 16:34:29 [info]: 📊 Environment: development
+2025-11-06 16:34:29 [info]: 🔗 Database: Connected
+2025-11-06 16:34:29 [info]: Starting blockchain sync service...
+2025-11-06 16:34:29 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 16:34:29 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 16:34:29 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 16:34:29 [info]: Listening for blockchain events...
+2025-11-06 16:34:29 [info]: ✅ Blockchain sync service started
+2025-11-06 16:35:02 [info]: ::1 - - [06/Nov/2025:15:35:02 +0000] "POST /api/auth/nonce HTTP/1.1" 200 17 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:35:08 [info]: User authenticated: 0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df
+2025-11-06 16:35:08 [info]: ::1 - - [06/Nov/2025:15:35:08 +0000] "POST /api/auth/verify HTTP/1.1" 200 428 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:36:12 [info]: Market created:
+2025-11-06 16:36:12 [info]: ::1 - - [06/Nov/2025:15:36:12 +0000] "POST /api/markets HTTP/1.1" 201 601 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:36:19 [info]: ::1 - - [06/Nov/2025:15:36:19 +0000] "GET /api/markets/categories HTTP/1.1" 200 34 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:36:19 [info]: ::1 - - [06/Nov/2025:15:36:19 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 838 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:49:22 [info]: ::1 - - [06/Nov/2025:15:49:22 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:49:49 [info]: ::1 - - [06/Nov/2025:15:49:49 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:50:27 [info]: ::1 - - [06/Nov/2025:15:50:27 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:50:27 [info]: ::1 - - [06/Nov/2025:15:50:27 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:50:40 [info]: ::1 - - [06/Nov/2025:15:50:40 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:50:40 [info]: ::1 - - [06/Nov/2025:15:50:40 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 16:52:24 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 16:52:24 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 16:52:24 [info]: 📊 Environment: development
+2025-11-06 16:52:24 [info]: 🔗 Database: Connected
+2025-11-06 16:52:24 [info]: Starting blockchain sync service...
+2025-11-06 16:52:24 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 16:52:24 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 16:52:24 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 16:52:24 [info]: Listening for blockchain events...
+2025-11-06 16:52:24 [info]: ✅ Blockchain sync service started
+2025-11-06 16:53:38 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 16:53:39 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 16:53:39 [info]: 📊 Environment: development
+2025-11-06 16:53:39 [info]: 🔗 Database: Connected
+2025-11-06 16:53:39 [info]: Starting blockchain sync service...
+2025-11-06 16:53:39 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 16:53:39 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 16:53:39 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 16:53:39 [info]: Listening for blockchain events...
+2025-11-06 16:53:39 [info]: ✅ Blockchain sync service started
+2025-11-06 17:00:15 [info]: ::1 - - [06/Nov/2025:16:00:15 +0000] "GET /api/users/portfolio HTTP/1.1" 200 209 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 17:00:22 [info]: ::1 - - [06/Nov/2025:16:00:22 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 17:00:22 [info]: ::1 - - [06/Nov/2025:16:00:22 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 17:00:23 [info]: ::1 - - [06/Nov/2025:16:00:23 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-06 17:03:14 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-06 17:03:14 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-06 17:03:14 [info]: 📊 Environment: development
+2025-11-06 17:03:14 [info]: 🔗 Database: Connected
+2025-11-06 17:03:14 [info]: Starting blockchain sync service...
+2025-11-06 17:03:14 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-06 17:03:14 [info]: Historical sync disabled. Only listening for new events.
+2025-11-06 17:03:14 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-06 17:03:14 [info]: Listening for blockchain events...
+2025-11-06 17:03:14 [info]: ✅ Blockchain sync service started
+2025-11-07 12:45:29 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-07 12:45:29 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-07 12:45:29 [info]: 📊 Environment: development
+2025-11-07 12:45:29 [info]: 🔗 Database: Connected
+2025-11-07 12:45:29 [info]: Starting blockchain sync service...
+2025-11-07 12:45:29 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-07 12:45:29 [info]: Historical sync disabled. Only listening for new events.
+2025-11-07 12:45:29 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-07 12:45:29 [info]: Listening for blockchain events...
+2025-11-07 12:45:29 [info]: ✅ Blockchain sync service started
+2025-11-07 12:45:52 [info]: ::1 - - [07/Nov/2025:11:45:52 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:45:56 [info]: ::1 - - [07/Nov/2025:11:45:56 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:45:56 [info]: ::1 - - [07/Nov/2025:11:45:56 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:45:59 [info]: ::1 - - [07/Nov/2025:11:45:59 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:46:03 [info]: ::1 - - [07/Nov/2025:11:46:03 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:46:03 [info]: ::1 - - [07/Nov/2025:11:46:03 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:46:07 [info]: ::1 - - [07/Nov/2025:11:46:07 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:46:07 [info]: ::1 - - [07/Nov/2025:11:46:07 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:46:14 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-07 12:46:14 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-07 12:46:14 [info]: 📊 Environment: development
+2025-11-07 12:46:14 [info]: 🔗 Database: Connected
+2025-11-07 12:46:14 [info]: Starting blockchain sync service...
+2025-11-07 12:46:14 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-07 12:46:14 [info]: Historical sync disabled. Only listening for new events.
+2025-11-07 12:46:14 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-07 12:46:14 [info]: Listening for blockchain events...
+2025-11-07 12:46:14 [info]: ✅ Blockchain sync service started
+2025-11-07 12:47:16 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-07 12:47:16 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-07 12:47:16 [info]: 📊 Environment: development
+2025-11-07 12:47:16 [info]: 🔗 Database: Connected
+2025-11-07 12:47:16 [info]: Starting blockchain sync service...
+2025-11-07 12:47:16 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-07 12:47:16 [info]: Historical sync disabled. Only listening for new events.
+2025-11-07 12:47:16 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-07 12:47:16 [info]: Listening for blockchain events...
+2025-11-07 12:47:16 [info]: ✅ Blockchain sync service started
+2025-11-07 12:47:18 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-07 12:47:18 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-07 12:47:18 [info]: 📊 Environment: development
+2025-11-07 12:47:18 [info]: 🔗 Database: Connected
+2025-11-07 12:47:18 [info]: Starting blockchain sync service...
+2025-11-07 12:47:18 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-07 12:47:18 [info]: Historical sync disabled. Only listening for new events.
+2025-11-07 12:47:18 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-07 12:47:18 [info]: Listening for blockchain events...
+2025-11-07 12:47:18 [info]: ✅ Blockchain sync service started
+2025-11-07 12:47:32 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-07 12:47:32 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-07 12:47:32 [info]: 📊 Environment: development
+2025-11-07 12:47:32 [info]: 🔗 Database: Connected
+2025-11-07 12:47:32 [info]: Starting blockchain sync service...
+2025-11-07 12:47:32 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-07 12:47:32 [info]: Historical sync disabled. Only listening for new events.
+2025-11-07 12:47:32 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-07 12:47:32 [info]: Listening for blockchain events...
+2025-11-07 12:47:32 [info]: ✅ Blockchain sync service started
+2025-11-07 12:47:34 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-07 12:47:34 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-07 12:47:34 [info]: 📊 Environment: development
+2025-11-07 12:47:34 [info]: 🔗 Database: Connected
+2025-11-07 12:47:34 [info]: Starting blockchain sync service...
+2025-11-07 12:47:34 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-07 12:47:34 [info]: Historical sync disabled. Only listening for new events.
+2025-11-07 12:47:34 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-07 12:47:34 [info]: Listening for blockchain events...
+2025-11-07 12:47:34 [info]: ✅ Blockchain sync service started
+2025-11-07 12:47:50 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-07 12:47:50 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-07 12:47:50 [info]: 📊 Environment: development
+2025-11-07 12:47:50 [info]: 🔗 Database: Connected
+2025-11-07 12:47:50 [info]: Starting blockchain sync service...
+2025-11-07 12:47:50 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-07 12:47:50 [info]: Historical sync disabled. Only listening for new events.
+2025-11-07 12:47:50 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-07 12:47:50 [info]: Listening for blockchain events...
+2025-11-07 12:47:50 [info]: ✅ Blockchain sync service started
+2025-11-07 12:48:22 [info]: ::1 - - [07/Nov/2025:11:48:22 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:48:22 [info]: ::1 - - [07/Nov/2025:11:48:22 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:51:00 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-07 12:51:00 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-07 12:51:00 [info]: 📊 Environment: development
+2025-11-07 12:51:00 [info]: 🔗 Database: Connected
+2025-11-07 12:51:00 [info]: Starting blockchain sync service...
+2025-11-07 12:51:00 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-07 12:51:00 [info]: Historical sync disabled. Only listening for new events.
+2025-11-07 12:51:00 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-07 12:51:00 [info]: Listening for blockchain events...
+2025-11-07 12:51:00 [info]: ✅ Blockchain sync service started
+2025-11-07 12:51:22 [info]: ::1 - - [07/Nov/2025:11:51:22 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:51:22 [info]: ::1 - - [07/Nov/2025:11:51:22 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:52:31 [info]: ::1 - - [07/Nov/2025:11:52:31 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:52:31 [info]: ::1 - - [07/Nov/2025:11:52:31 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:54:34 [info]: ::1 - - [07/Nov/2025:11:54:34 +0000] "GET /api/users/leaderboard?limit=50&period=all HTTP/1.1" 200 244 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:54:52 [info]: ::1 - - [07/Nov/2025:11:54:52 +0000] "GET /api/users/portfolio HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:54:58 [info]: ::1 - - [07/Nov/2025:11:54:58 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:54:58 [info]: ::1 - - [07/Nov/2025:11:54:58 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:54:59 [info]: ::1 - - [07/Nov/2025:11:54:59 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:58:30 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-07 12:58:30 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-07 12:58:30 [info]: 📊 Environment: development
+2025-11-07 12:58:30 [info]: 🔗 Database: Connected
+2025-11-07 12:58:30 [info]: Starting blockchain sync service...
+2025-11-07 12:58:30 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-07 12:58:30 [info]: Historical sync disabled. Only listening for new events.
+2025-11-07 12:58:30 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-07 12:58:30 [info]: Listening for blockchain events...
+2025-11-07 12:58:30 [info]: ✅ Blockchain sync service started
+2025-11-07 12:58:30 [info]: ::1 - - [07/Nov/2025:11:58:30 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:58:36 [info]: ::1 - - [07/Nov/2025:11:58:36 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:58:39 [info]: ::1 - - [07/Nov/2025:11:58:39 +0000] "GET /api/users/portfolio HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:58:45 [info]: ::ffff:127.0.0.1 - - [07/Nov/2025:11:58:45 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:58:45 [info]: ::1 - - [07/Nov/2025:11:58:45 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 12:58:54 [info]: ::1 - - [07/Nov/2025:11:58:54 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:00:18 [info]: ::1 - - [07/Nov/2025:12:00:18 +0000] "GET /api/markets/NaN HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:03:46 [info]: ::1 - - [07/Nov/2025:12:03:46 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:03:46 [info]: ::1 - - [07/Nov/2025:12:03:46 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:05:05 [info]: ::1 - - [07/Nov/2025:12:05:05 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:05:05 [info]: ::1 - - [07/Nov/2025:12:05:05 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:06:34 [info]: ::1 - - [07/Nov/2025:12:06:34 +0000] "GET /api/markets/cmhnla1cv0001jce5lchd7cxs HTTP/1.1" 200 879 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:06:42 [info]: ::1 - - [07/Nov/2025:12:06:42 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:06:42 [info]: ::1 - - [07/Nov/2025:12:06:42 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:06:44 [info]: ::1 - - [07/Nov/2025:12:06:44 +0000] "GET /api/markets/cmhnla1cv0001jce5lchd7cxs HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:06:49 [info]: ::1 - - [07/Nov/2025:12:06:49 +0000] "GET /api/markets/cmhnla1cv0001jce5lchd7cxs HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:06:56 [info]: ::1 - - [07/Nov/2025:12:06:56 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:06:56 [info]: ::1 - - [07/Nov/2025:12:06:56 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:07:01 [info]: ::1 - - [07/Nov/2025:12:07:01 +0000] "GET /api/markets/cmhnla1cv0001jce5lchd7cxs HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:08:32 [info]: ::1 - - [07/Nov/2025:12:08:32 +0000] "GET /api/markets/cmhnla1cv0001jce5lchd7cxs HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-07 13:10:12 [info]: ::1 - - [07/Nov/2025:12:10:12 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 404 44 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"

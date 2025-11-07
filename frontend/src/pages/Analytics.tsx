@@ -4,18 +4,53 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
 import { TrendingUp, Users, Target, AlertCircle } from "lucide-react";
-import { mockAnalytics } from "@/lib/mockData";
 import { formatNumber, formatCurrency, formatPercentage } from "@/lib/formatters";
+import { useEffect, useState } from "react";
+import apiService from "@/services/api";
+
+interface AnalyticsOverview {
+  totalVolume: number;
+  totalMarkets: number;
+  totalUsers: number;
+  activeUsers: number;
+  totalPredictions: number;
+  aiAccuracy: number;
+  disputeRate: number;
+}
 
 const Analytics = () => {
-  const volumeData = [
-    { month: "Jan", volume: 180000 },
-    { month: "Feb", volume: 220000 },
-    { month: "Mar", volume: 280000 },
-    { month: "Apr", volume: 350000 },
-    { month: "May", volume: 420000 },
-    { month: "Jun", volume: 520000 },
-  ];
+  const [overview, setOverview] = useState<AnalyticsOverview | null>(null);
+  const [volumeData, setVolumeData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch overview data
+        const overviewResponse = await apiService.getAnalyticsOverview();
+        if (overviewResponse.success) {
+          setOverview(overviewResponse.data);
+        }
+
+        // Fetch volume data
+        const volumeResponse = await apiService.getAnalyticsVolume('30d');
+        if (volumeResponse.success && volumeResponse.data.daily) {
+          setVolumeData(volumeResponse.data.daily.slice(-6)); // Last 6 periods
+        }
+      } catch (err) {
+        console.error('Error fetching analytics:', err);
+        setError('Failed to load analytics data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnalytics();
+  }, []);
 
   const categoryData = [
     { name: "Crypto", value: 35, color: "hsl(45 100% 51%)" },
@@ -32,6 +67,30 @@ const Analytics = () => {
     { week: "Week 4", ai: 90, community: 85 },
   ];
 
+  if (loading) {
+    return (
+      <PageLayout>
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">Loading analytics...</p>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  if (error || !overview) {
+    return (
+      <PageLayout>
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center py-12">
+            <p className="text-red-500">{error || 'Failed to load analytics'}</p>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
   return (
     <PageLayout>
       <div className="container mx-auto px-4 py-12">
@@ -46,28 +105,28 @@ const Analytics = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <StatCard
             title="Total Volume"
-            value={formatCurrency(mockAnalytics.totalVolume)}
+            value={formatCurrency(overview.totalVolume)}
             icon={TrendingUp}
             trend="+18.2%"
             trendUp={true}
           />
           <StatCard
             title="Active Users"
-            value={formatNumber(mockAnalytics.activeUsers)}
+            value={formatNumber(overview.activeUsers)}
             icon={Users}
             trend="+12.5%"
             trendUp={true}
           />
           <StatCard
             title="AI Accuracy"
-            value={formatPercentage(mockAnalytics.averageAccuracy)}
+            value={formatPercentage(overview.aiAccuracy / 100)}
             icon={Target}
             trend="+2.1%"
             trendUp={true}
           />
           <StatCard
             title="Dispute Rate"
-            value={formatPercentage(mockAnalytics.disputeRate)}
+            value={formatPercentage(overview.disputeRate / 100)}
             icon={AlertCircle}
             trend="-0.5%"
             trendUp={true}
