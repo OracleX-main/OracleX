@@ -112,6 +112,87 @@ class ApiService {
   async getAnalyticsVolume(period: string = '30d'): Promise<any> {
     return this.get(`/analytics/volume?period=${period}`);
   }
+
+  // Staking methods
+  async getStakingInfo(address: string): Promise<any> {
+    return this.get(`/staking/info/${address}`);
+  }
+
+  async getStakingOverview(): Promise<any> {
+    return this.get('/staking/overview');
+  }
+
+  async getValidators(): Promise<any> {
+    return this.get('/staking/validators');
+  }
+
+  async getValidatorInfo(address: string): Promise<any> {
+    return this.get(`/staking/validator/${address}`);
+  }
+
+  // Governance methods
+  async getProposals(status?: string, limit?: number): Promise<any> {
+    const params = new URLSearchParams();
+    if (status) params.append('status', status);
+    if (limit) params.append('limit', limit.toString());
+    return this.get(`/governance/proposals?${params.toString()}`);
+  }
+
+  async getActiveProposals(): Promise<any> {
+    return this.get('/governance/proposals/active');
+  }
+
+  async getProposal(id: number): Promise<any> {
+    return this.get(`/governance/proposals/${id}`);
+  }
+
+  async getProposalVote(proposalId: number, address: string): Promise<any> {
+    return this.get(`/governance/proposals/${proposalId}/votes/${address}`);
+  }
+
+  async getVotingPower(address: string): Promise<any> {
+    return this.get(`/governance/voting-power/${address}`);
+  }
+
+  async canVoteOnProposal(proposalId: number, address: string): Promise<any> {
+    return this.get(`/governance/can-vote/${proposalId}/${address}`);
+  }
+
+  async getGovernanceStats(): Promise<any> {
+    return this.get('/governance/stats');
+  }
+
+  // Dispute methods
+  async getDisputes(status?: string, limit?: number): Promise<any> {
+    const params = new URLSearchParams();
+    if (status) params.append('status', status);
+    if (limit) params.append('limit', limit.toString());
+    return this.get(`/disputes?${params.toString()}`);
+  }
+
+  async getActiveDisputes(): Promise<any> {
+    return this.get('/disputes/active');
+  }
+
+  async getDispute(id: number): Promise<any> {
+    return this.get(`/disputes/${id}`);
+  }
+
+  async getDisputeVote(disputeId: number, address: string): Promise<any> {
+    return this.get(`/disputes/${disputeId}/votes/${address}`);
+  }
+
+  async getDisputeVoters(disputeId: number): Promise<any> {
+    return this.get(`/disputes/${disputeId}/voters`);
+  }
+
+  async canVoteOnDispute(disputeId: number, address: string): Promise<any> {
+    return this.get(`/disputes/can-vote/${disputeId}/${address}`);
+  }
+
+  async getDisputeStats(): Promise<any> {
+    return this.get('/disputes/stats');
+  }
 }
 
 export const apiService = new ApiService();

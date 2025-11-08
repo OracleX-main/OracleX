@@ -713,3 +713,28 @@
 2025-11-08 07:57:33 [info]: ::1 - - [08/Nov/2025:06:57:33 +0000] "GET /api/markets?page=1&limit=12&category=Crypto HTTP/1.1" 200 844 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
 2025-11-08 07:58:11 [info]: ::1 - - [08/Nov/2025:06:58:11 +0000] "GET /api/markets?page=1&limit=12&category=Crypto&status=CLOSED HTTP/1.1" 200 86 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
 2025-11-08 07:58:15 [info]: ::1 - - [08/Nov/2025:06:58:15 +0000] "GET /api/markets?page=1&limit=12&category=Crypto&status=ACTIVE HTTP/1.1" 200 844 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-08 08:03:37 [info]: ::1 - - [08/Nov/2025:07:03:37 +0000] "GET /api/analytics/overview HTTP/1.1" 200 249 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-08 08:03:37 [info]: ::1 - - [08/Nov/2025:07:03:37 +0000] "GET /api/analytics/volume?period=30d HTTP/1.1" 200 706 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-08 08:05:05 [info]: ::1 - - [08/Nov/2025:07:05:05 +0000] "GET /api/analytics/overview HTTP/1.1" 200 249 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:05:05 [info]: ::1 - - [08/Nov/2025:07:05:05 +0000] "GET /api/analytics/volume?period=30d HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:05:13 [info]: ::1 - - [08/Nov/2025:07:05:13 +0000] "GET /api/analytics/overview HTTP/1.1" 200 249 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:05:13 [info]: ::1 - - [08/Nov/2025:07:05:13 +0000] "GET /api/analytics/volume?period=30d HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:06:25 [info]: ::1 - - [08/Nov/2025:07:06:25 +0000] "GET /api/analytics/overview HTTP/1.1" 200 249 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:06:25 [info]: ::1 - - [08/Nov/2025:07:06:25 +0000] "GET /api/analytics/volume?period=30d HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:06:45 [info]: ::1 - - [08/Nov/2025:07:06:45 +0000] "POST /api/auth/nonce HTTP/1.1" 200 18 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:06:45 [info]: ::1 - - [08/Nov/2025:07:06:45 +0000] "GET /api/analytics/overview HTTP/1.1" 200 249 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:06:45 [info]: ::1 - - [08/Nov/2025:07:06:45 +0000] "GET /api/analytics/volume?period=30d HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:07:02 [info]: User authenticated: 0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df
+2025-11-08 08:07:02 [info]: ::1 - - [08/Nov/2025:07:07:02 +0000] "POST /api/auth/verify HTTP/1.1" 200 428 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:08:00 [info]: ::1 - - [08/Nov/2025:07:08:00 +0000] "GET /api/analytics/overview HTTP/1.1" 200 249 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:08:00 [info]: ::1 - - [08/Nov/2025:07:08:00 +0000] "GET /api/analytics/volume?period=30d HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 08:44:34 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-08 08:44:34 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-08 08:44:34 [info]: 📊 Environment: development
+2025-11-08 08:44:34 [info]: 🔗 Database: Connected
+2025-11-08 08:44:34 [info]: Starting blockchain sync service...
+2025-11-08 08:44:34 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-08 08:44:34 [info]: Historical sync disabled. Only listening for new events.
+2025-11-08 08:44:34 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-08 08:44:34 [info]: Listening for blockchain events...
+2025-11-08 08:44:34 [info]: ✅ Blockchain sync service started

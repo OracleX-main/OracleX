@@ -16,6 +16,9 @@ import marketRoutes from './routes/markets';
 import oracleRoutes from './routes/oracles';
 import userRoutes from './routes/users';
 import analyticsRoutes from './routes/analytics';
+import stakingRoutes from './routes/staking';
+import governanceRoutes from './routes/governance';
+import disputeRoutes from './routes/disputes';
 
 const app = express();
 
@@ -63,6 +66,9 @@ app.use('/api/markets', marketRoutes); // Remove auth middleware for market brow
 app.use('/api/oracles', authMiddleware, oracleRoutes);
 app.use('/api/users', authMiddleware, userRoutes);
 app.use('/api/analytics', authMiddleware, analyticsRoutes);
+app.use('/api/staking', stakingRoutes);
+app.use('/api/governance', governanceRoutes);
+app.use('/api/disputes', disputeRoutes);
 
 // Error handling
 app.use(errorHandler);
