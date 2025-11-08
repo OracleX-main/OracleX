@@ -3,6 +3,7 @@ import { Menu, Hexagon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import WalletButton from "./WalletButton";
+import oraclexLogo from "@/assets/oraclex_logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,12 +14,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-8 h-8 rounded-lg bg-gradient-gold flex items-center justify-center shadow-glow-accent group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-              <Hexagon className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold bg-gradient-gold bg-clip-text text-transparent">
-              OracleX
-            </span>
+            <img src={oraclexLogo} alt="OracleX" className="h-10 w-auto group-hover:scale-110 transition-all duration-300" />
           </Link>
 
           {/* Desktop Navigation */}

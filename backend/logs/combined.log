@@ -687,3 +687,14 @@
 2025-11-07 13:36:11 [info]: ::1 - - [07/Nov/2025:12:36:11 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 200 400 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
 2025-11-07 13:38:31 [info]: ::1 - - [07/Nov/2025:12:38:31 +0000] "GET /api/analytics/overview HTTP/1.1" 200 249 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
 2025-11-07 13:38:31 [info]: ::1 - - [07/Nov/2025:12:38:31 +0000] "GET /api/analytics/volume?period=30d HTTP/1.1" 200 706 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-08 07:36:30 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-08 07:36:30 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-08 07:36:30 [info]: 📊 Environment: development
+2025-11-08 07:36:30 [info]: 🔗 Database: Connected
+2025-11-08 07:36:30 [info]: Starting blockchain sync service...
+2025-11-08 07:36:30 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-08 07:36:30 [info]: Historical sync disabled. Only listening for new events.
+2025-11-08 07:36:30 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-08 07:36:30 [info]: Listening for blockchain events...
+2025-11-08 07:36:30 [info]: ✅ Blockchain sync service started
+2025-11-08 07:37:11 [info]: ::1 - - [08/Nov/2025:06:37:11 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 200 400 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"

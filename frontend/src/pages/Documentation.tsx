@@ -3,6 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Github, FileText, ExternalLink } from "lucide-react";
+import bnbChainLogo from "@/assets/bnb-chain-logo.png";
+import seedifyLogo from "@/assets/seedify-logo.svg";
+import vcLogo from "@/assets/vclogo.jpg";
+import aiPartnerLogo from "@/assets/aipartner.png";
 
 const Documentation = () => {
   return (
@@ -115,26 +119,26 @@ const Documentation = () => {
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="w-20 h-20 rounded-lg bg-primary/20 mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-primary font-bold">BNB</span>
+                <div className="w-20 h-20 rounded-lg bg-white/10 mx-auto mb-3 flex items-center justify-center overflow-hidden p-2">
+                  <img src={bnbChainLogo} alt="BNB Chain" className="w-full h-full object-contain" />
                 </div>
                 <p className="text-sm font-medium">BNB Chain</p>
               </div>
               <div className="text-center">
-                <div className="w-20 h-20 rounded-lg bg-primary/20 mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-primary font-bold">SF</span>
+                <div className="w-20 h-20 rounded-lg bg-white/10 mx-auto mb-3 flex items-center justify-center overflow-hidden p-2">
+                  <img src={seedifyLogo} alt="Seedify" className="w-full h-full object-contain" />
                 </div>
                 <p className="text-sm font-medium">Seedify</p>
               </div>
               <div className="text-center">
-                <div className="w-20 h-20 rounded-lg bg-primary/20 mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-primary font-bold">VC</span>
+                <div className="w-20 h-20 rounded-lg bg-white/10 mx-auto mb-3 flex items-center justify-center overflow-hidden p-2">
+                  <img src={vcLogo} alt="Venture Capital" className="w-full h-full object-contain" />
                 </div>
                 <p className="text-sm font-medium">Venture Capital</p>
               </div>
               <div className="text-center">
-                <div className="w-20 h-20 rounded-lg bg-primary/20 mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-primary font-bold">AI</span>
+                <div className="w-20 h-20 rounded-lg bg-white/10 mx-auto mb-3 flex items-center justify-center overflow-hidden p-2">
+                  <img src={aiPartnerLogo} alt="AI Partners" className="w-full h-full object-contain" />
                 </div>
                 <p className="text-sm font-medium">AI Partners</p>
               </div>

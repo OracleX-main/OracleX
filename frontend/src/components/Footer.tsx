@@ -1,5 +1,6 @@
 import { Hexagon, Twitter, Github, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import oraclexLogo from "@/assets/oraclex_logo.png";
 
 const Footer = () => {
   return (
@@ -10,12 +11,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-gold flex items-center justify-center shadow-glow-accent">
-                <Hexagon className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-gold bg-clip-text text-transparent">
-                OracleX
-              </span>
+              <img src={oraclexLogo} alt="OracleX" className="h-10 w-auto" />
             </Link>
             <p className="text-sm text-muted-foreground">
               The AI-powered social prediction & intelligence network on BNB Chain
