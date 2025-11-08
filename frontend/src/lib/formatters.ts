@@ -1,50 +1,61 @@
 import type { MarketCategory, MarketStatus, PredictionOutcome, DisputeStatus, ProposalStatus, StakingPeriod, TransactionType } from './enums';
 import { MarketCategory as MC, MarketStatus as MS, PredictionOutcome as PO, DisputeStatus as DS, ProposalStatus as PS, StakingPeriod as SP, TransactionType as TT } from './enums';
 
-export const formatCurrency = (amount: number): string => {
-  if (amount >= 1000000) {
-    return `$${(amount / 1000000).toFixed(1)}M`;
-  }
-  if (amount >= 1000) {
-    return `$${(amount / 1000).toFixed(1)}K`;
-  }
-  return `$${amount.toFixed(2)}`;
-};
-
-export const formatPercentage = (value: number): string => {
-  return `${value.toFixed(1)}%`;
-};
-
-export const formatNumber = (num: number): string => {
+export const formatCurrency = (amount: number | string): string => {
+  const num = typeof amount === 'string' ? parseFloat(amount) : amount;
+  if (isNaN(num)) return '$0.00';
+  
   if (num >= 1000000) {
-    return `${(num / 1000000).toFixed(1)}M`;
+    return `$${(num / 1000000).toFixed(1)}M`;
   }
   if (num >= 1000) {
-    return `${(num / 1000).toFixed(1)}K`;
+    return `$${(num / 1000).toFixed(1)}K`;
   }
-  return num.toString();
+  return `$${num.toFixed(2)}`;
 };
 
-export const formatDate = (date: Date): string => {
+export const formatPercentage = (value: number | string): string => {
+  const num = typeof value === 'string' ? parseFloat(value) : value;
+  if (isNaN(num)) return '0.0%';
+  return `${num.toFixed(1)}%`;
+};
+
+export const formatNumber = (num: number | string): string => {
+  const value = typeof num === 'string' ? parseFloat(num) : num;
+  if (isNaN(value)) return '0';
+  
+  if (value >= 1000000) {
+    return `${(value / 1000000).toFixed(1)}M`;
+  }
+  if (value >= 1000) {
+    return `${(value / 1000).toFixed(1)}K`;
+  }
+  return value.toString();
+};
+
+export const formatDate = (date: Date | string): string => {
+  const dateObj = typeof date === 'string' ? new Date(date) : date;
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric'
-  }).format(date);
+  }).format(dateObj);
 };
 
-export const formatDateTime = (date: Date): string => {
+export const formatDateTime = (date: Date | string): string => {
+  const dateObj = typeof date === 'string' ? new Date(date) : date;
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit'
-  }).format(date);
+  }).format(dateObj);
 };
 
-export const formatTimeRemaining = (endDate: Date): string => {
+export const formatTimeRemaining = (endDate: Date | string): string => {
   const now = new Date();
-  const diff = endDate.getTime() - now.getTime();
+  const dateObj = typeof endDate === 'string' ? new Date(endDate) : endDate;
+  const diff = dateObj.getTime() - now.getTime();
   
   if (diff <= 0) return 'Ended';
   

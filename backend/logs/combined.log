@@ -698,3 +698,18 @@
 2025-11-08 07:36:30 [info]: Listening for blockchain events...
 2025-11-08 07:36:30 [info]: ✅ Blockchain sync service started
 2025-11-08 07:37:11 [info]: ::1 - - [08/Nov/2025:06:37:11 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 200 400 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-08 07:51:42 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-08 07:51:42 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-08 07:51:42 [info]: 📊 Environment: development
+2025-11-08 07:51:42 [info]: 🔗 Database: Connected
+2025-11-08 07:51:42 [info]: Starting blockchain sync service...
+2025-11-08 07:51:42 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-08 07:51:42 [info]: Historical sync disabled. Only listening for new events.
+2025-11-08 07:51:42 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-08 07:51:42 [info]: Listening for blockchain events...
+2025-11-08 07:51:42 [info]: ✅ Blockchain sync service started
+2025-11-08 07:57:20 [info]: ::1 - - [08/Nov/2025:06:57:20 +0000] "GET /api/markets/categories HTTP/1.1" 200 34 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-08 07:57:20 [info]: ::1 - - [08/Nov/2025:06:57:20 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 200 844 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-08 07:57:33 [info]: ::1 - - [08/Nov/2025:06:57:33 +0000] "GET /api/markets?page=1&limit=12&category=Crypto HTTP/1.1" 200 844 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-08 07:58:11 [info]: ::1 - - [08/Nov/2025:06:58:11 +0000] "GET /api/markets?page=1&limit=12&category=Crypto&status=CLOSED HTTP/1.1" 200 86 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-08 07:58:15 [info]: ::1 - - [08/Nov/2025:06:58:15 +0000] "GET /api/markets?page=1&limit=12&category=Crypto&status=ACTIVE HTTP/1.1" 200 844 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
