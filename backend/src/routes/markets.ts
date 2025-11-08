@@ -61,11 +61,10 @@ router.get('/', async (req: Request, res: Response) => {
             isWinning: true
           }
         },
-        predictions: {
+        _count: {
           select: {
-            userId: true
-          },
-          distinct: ['userId']
+            predictions: true
+          }
         }
       },
       orderBy: {
@@ -86,7 +85,7 @@ router.get('/', async (req: Request, res: Response) => {
       resolutionDate: market.resolutionDate?.toISOString(),
       totalVolume: market.totalVolume.toString(),
       totalStaked: market.totalStaked.toString(),
-      participants: market.predictions.length,
+      participants: market._count.predictions,
       confidence: market.confidence,
       contractAddress: market.contractAddress,
       isVerified: market.isVerified,
