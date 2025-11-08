@@ -4,6 +4,7 @@
 export * as interfaces from "./interfaces";
 export { AIOracle__factory } from "./AIOracle__factory";
 export { DisputeResolution__factory } from "./DisputeResolution__factory";
+export { GovernanceDAO__factory } from "./GovernanceDAO__factory";
 export { ORXToken__factory } from "./ORXToken__factory";
 export { OracleBridge__factory } from "./OracleBridge__factory";
 export { PredictionMarket__factory } from "./PredictionMarket__factory";

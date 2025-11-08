@@ -5,6 +5,7 @@ import type * as interfaces from "./interfaces";
 export type { interfaces };
 export type { AIOracle } from "./AIOracle";
 export type { DisputeResolution } from "./DisputeResolution";
+export type { GovernanceDAO } from "./GovernanceDAO";
 export type { ORXToken } from "./ORXToken";
 export type { OracleBridge } from "./OracleBridge";
 export type { PredictionMarket } from "./PredictionMarket";

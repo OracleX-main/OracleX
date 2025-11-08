@@ -2,7 +2,7 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\DELL\\Desktop\\OracleX\\contracts\\contracts\\OracleBridge.sol": {
-      "lastModificationDate": 1762130699089,
+      "lastModificationDate": 1762214337333,
       "contentHash": "be440389349264c1204e7801c635d7ce",
       "sourceName": "contracts/OracleBridge.sol",
       "solcConfig": {
@@ -12,6 +12,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -59,6 +60,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -107,6 +109,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -150,6 +153,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -195,6 +199,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -243,6 +248,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -290,6 +296,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -339,6 +346,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -382,6 +390,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -427,6 +436,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -470,6 +480,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -515,6 +526,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -567,6 +579,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -612,6 +625,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -655,6 +669,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -701,6 +716,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -744,6 +760,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -791,6 +808,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -834,6 +852,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -880,6 +899,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -923,6 +943,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -966,6 +987,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1012,6 +1034,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1055,6 +1078,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1098,6 +1122,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1143,6 +1168,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1188,6 +1214,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1231,6 +1258,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1278,6 +1306,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1323,6 +1352,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1356,7 +1386,7 @@
       ]
     },
     "C:\\Users\\DELL\\Desktop\\OracleX\\contracts\\contracts\\AIOracle.sol": {
-      "lastModificationDate": 1762132867687,
+      "lastModificationDate": 1762214354348,
       "contentHash": "b08f5ff2292dad766443e3fab2f4eb94",
       "sourceName": "contracts/AIOracle.sol",
       "solcConfig": {
@@ -1366,6 +1396,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1404,7 +1435,7 @@
       ]
     },
     "C:\\Users\\DELL\\Desktop\\OracleX\\contracts\\contracts\\PredictionMarket.sol": {
-      "lastModificationDate": 1762132731037,
+      "lastModificationDate": 1762214354244,
       "contentHash": "d271d018123c5fdec271af65b97db358",
       "sourceName": "contracts/PredictionMarket.sol",
       "solcConfig": {
@@ -1414,6 +1445,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1451,7 +1483,7 @@
       ]
     },
     "C:\\Users\\DELL\\Desktop\\OracleX\\contracts\\contracts\\interfaces\\IAIOracle.sol": {
-      "lastModificationDate": 1762132382543,
+      "lastModificationDate": 1762214354471,
       "contentHash": "35011fb56b48a4bd78fe76bd5212a197",
       "sourceName": "contracts/interfaces/IAIOracle.sol",
       "solcConfig": {
@@ -1461,6 +1493,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1504,6 +1537,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1539,7 +1573,7 @@
       ]
     },
     "C:\\Users\\DELL\\Desktop\\OracleX\\contracts\\contracts\\StakingContract.sol": {
-      "lastModificationDate": 1762132830300,
+      "lastModificationDate": 1762214354559,
       "contentHash": "5b8ec6aa1662ba2edb4de7b2c5c6c511",
       "sourceName": "contracts/StakingContract.sol",
       "solcConfig": {
@@ -1549,6 +1583,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1597,6 +1632,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1643,6 +1679,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1689,6 +1726,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1732,6 +1770,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1775,6 +1814,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1808,7 +1848,7 @@
       ]
     },
     "C:\\Users\\DELL\\Desktop\\OracleX\\contracts\\contracts\\DisputeResolution.sol": {
-      "lastModificationDate": 1762132839252,
+      "lastModificationDate": 1762214354676,
       "contentHash": "4105fb3f9190a804feed33970aac7198",
       "sourceName": "contracts/DisputeResolution.sol",
       "solcConfig": {
@@ -1818,6 +1858,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1857,7 +1898,7 @@
       ]
     },
     "C:\\Users\\DELL\\Desktop\\OracleX\\contracts\\contracts\\PredictionMarketFactory.sol": {
-      "lastModificationDate": 1762132846160,
+      "lastModificationDate": 1762214354104,
       "contentHash": "2dec9c3f6986f5d03ab4366cf9fee95a",
       "sourceName": "contracts/PredictionMarketFactory.sol",
       "solcConfig": {
@@ -1867,6 +1908,7 @@
             "enabled": true,
             "runs": 200
           },
+          "viaIR": true,
           "evmVersion": "paris",
           "outputSelection": {
             "*": {
@@ -1901,6 +1943,55 @@
       ],
       "artifacts": [
         "PredictionMarketFactory"
+      ]
+    },
+    "C:\\Users\\DELL\\Desktop\\OracleX\\contracts\\contracts\\GovernanceDAO.sol": {
+      "lastModificationDate": 1762586853194,
+      "contentHash": "667bdd2c71defac4b0948c56e5993fcc",
+      "sourceName": "contracts/GovernanceDAO.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "./StakingContract.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "GovernanceDAO"
       ]
     }
   }

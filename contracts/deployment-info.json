@@ -7,6 +7,7 @@
     "AIOracle": "0xC7FBa4a30396CC6F7fD107c165eA29E4bc62314d",
     "StakingContract": "0x007Aaa957829ea04e130809e9cebbBd4d06dABa2",
     "DisputeResolution": "0x5fd54e5e037939C93fAC248E39459b168d741502",
+    "GovernanceDAO": "0x0b88B36631911efeBe9Dd6395Fb6DA635B1EfF8F",
     "PredictionMarketFactory": "0x273C8Dde70897069BeC84394e235feF17e7c5E1b",
     "OracleBridge": "0x7CeE510d9080379738B3D9870C4C046d9a891E7F"
   },

@@ -130,6 +130,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DisputeResolution__factory>;
     getContractFactory(
+      name: "GovernanceDAO",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.GovernanceDAO__factory>;
+    getContractFactory(
       name: "IAIOracle",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IAIOracle__factory>;
@@ -300,6 +304,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.DisputeResolution>;
     getContractAt(
+      name: "GovernanceDAO",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.GovernanceDAO>;
+    getContractAt(
       name: "IAIOracle",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -447,6 +456,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DisputeResolution>;
     deployContract(
+      name: "GovernanceDAO",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.GovernanceDAO>;
+    deployContract(
       name: "IAIOracle",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IAIOracle>;
@@ -616,6 +629,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DisputeResolution>;
+    deployContract(
+      name: "GovernanceDAO",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.GovernanceDAO>;
     deployContract(
       name: "IAIOracle",
       args: any[],

@@ -64,6 +64,8 @@ export type { AIOracle } from "./contracts/AIOracle";
 export { AIOracle__factory } from "./factories/contracts/AIOracle__factory";
 export type { DisputeResolution } from "./contracts/DisputeResolution";
 export { DisputeResolution__factory } from "./factories/contracts/DisputeResolution__factory";
+export type { GovernanceDAO } from "./contracts/GovernanceDAO";
+export { GovernanceDAO__factory } from "./factories/contracts/GovernanceDAO__factory";
 export type { IAIOracle } from "./contracts/interfaces/IAIOracle";
 export { IAIOracle__factory } from "./factories/contracts/interfaces/IAIOracle__factory";
 export type { OracleBridge } from "./contracts/OracleBridge";
