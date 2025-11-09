@@ -19,6 +19,7 @@ import Analytics from "./pages/Analytics";
 import Profile from "./pages/Profile";
 import Tokenomics from "./pages/Tokenomics";
 import Documentation from "./pages/Documentation";
+import Faucet from "./pages/Faucet";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/disputes" element={<ProtectedRoute><Disputes /></ProtectedRoute>} />
             <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/faucet" element={<ProtectedRoute><Faucet /></ProtectedRoute>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

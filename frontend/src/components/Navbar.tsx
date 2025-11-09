@@ -25,6 +25,9 @@ const Navbar = () => {
             <Link to="/portfolio" className="text-foreground hover:text-primary transition-colors font-medium">
               Portfolio
             </Link>
+            <Link to="/faucet" className="text-foreground hover:text-primary transition-colors font-medium">
+              Faucet
+            </Link>
             <Link to="/governance" className="text-foreground hover:text-primary transition-colors font-medium">
               Governance
             </Link>
@@ -58,6 +61,9 @@ const Navbar = () => {
             </Link>
             <Link to="/portfolio" className="block text-foreground hover:text-primary transition-colors font-medium">
               Portfolio
+            </Link>
+            <Link to="/faucet" className="block text-foreground hover:text-primary transition-colors font-medium">
+              Faucet
             </Link>
             <Link to="/governance" className="block text-foreground hover:text-primary transition-colors font-medium">
               Governance

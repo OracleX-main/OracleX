@@ -18,6 +18,7 @@ import analyticsRoutes from './routes/analytics';
 import stakingRoutes from './routes/staking';
 import governanceRoutes from './routes/governance';
 import disputeRoutes from './routes/disputes';
+import faucetRoutes from './routes/faucet';
 
 const app = express();
 
@@ -68,6 +69,7 @@ app.use('/api/analytics', authMiddleware, analyticsRoutes);
 app.use('/api/staking', stakingRoutes);
 app.use('/api/governance', governanceRoutes);
 app.use('/api/disputes', disputeRoutes);
+app.use('/api/faucet', faucetRoutes); // Public faucet endpoint
 
 // Error handling
 app.use(errorHandler);
