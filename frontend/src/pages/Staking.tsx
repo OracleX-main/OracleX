@@ -288,16 +288,16 @@ const Staking = () => {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="30">
+                          <SelectItem value="2592000">
                             30 days - 15% APY
                           </SelectItem>
-                          <SelectItem value="90">
+                          <SelectItem value="7776000">
                             90 days - 18% APY
                           </SelectItem>
-                          <SelectItem value="180">
+                          <SelectItem value="15552000">
                             180 days - 22% APY
                           </SelectItem>
-                          <SelectItem value="365">
+                          <SelectItem value="31536000">
                             365 days - 25% APY
                           </SelectItem>
                         </SelectContent>
@@ -313,7 +313,7 @@ const Staking = () => {
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Lock Period</span>
-                        <span className="font-semibold">{selectedPeriod} days</span>
+                        <span className="font-semibold">{Math.floor(parseInt(selectedPeriod) / 86400)} days</span>
                       </div>
                     </div>
 
