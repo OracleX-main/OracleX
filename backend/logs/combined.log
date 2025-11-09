@@ -1083,3 +1083,23 @@ C:\Users\DELL\Desktop\OracleX\backend\src\services\blockchainSync.ts:491:9: ERRO
 2025-11-09 11:07:32 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
 2025-11-09 11:07:32 [info]: Listening for blockchain events...
 2025-11-09 11:07:32 [info]: ✅ Blockchain sync service started
+2025-11-09 11:12:12 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 11:12:12 [info]: 📊 Environment: development
+2025-11-09 11:12:12 [info]: 🔗 Database: Connected
+2025-11-09 11:12:12 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 11:12:12 [info]: Starting blockchain sync service...
+2025-11-09 11:12:12 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 11:12:12 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 11:12:12 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 11:12:12 [info]: Listening for blockchain events...
+2025-11-09 11:12:12 [info]: ✅ Blockchain sync service started
+2025-11-09 11:13:12 [info]: Sending 1000.0 ORX to 0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df
+2025-11-09 11:13:14 [info]: Transaction sent: 0x536ed772191b8c57dfda688080fcdb6e1b2ad57deea74385cf4237b9a6e8a1ce
+2025-11-09 11:13:14 [info]: Transaction confirmed: 0x536ed772191b8c57dfda688080fcdb6e1b2ad57deea74385cf4237b9a6e8a1ce (Block: 71781318)
+2025-11-09 11:13:14 [info]: ::1 - - [09/Nov/2025:10:13:14 +0000] "POST /api/faucet/claim HTTP/1.1" 200 233 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:13:21 [info]: ::1 - - [09/Nov/2025:10:13:21 +0000] "GET /api/users/leaderboard?limit=50&period=all HTTP/1.1" 200 244 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:13:25 [info]: ::1 - - [09/Nov/2025:10:13:25 +0000] "GET /api/staking/overview HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:13:26 [info]: ::1 - - [09/Nov/2025:10:13:26 +0000] "GET /api/staking/info/0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:13:55 [info]: ::1 - - [09/Nov/2025:10:13:55 +0000] "GET /api/staking/overview HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:13:56 [info]: ::1 - - [09/Nov/2025:10:13:56 +0000] "GET /api/staking/info/0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:14:19 [info]: ::1 - - [09/Nov/2025:10:14:19 +0000] "POST /api/faucet/claim HTTP/1.1" 429 97 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"

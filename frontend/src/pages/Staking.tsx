@@ -6,15 +6,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Coins, TrendingUp, Clock, Wallet } from "lucide-react";
+import { Coins, TrendingUp, Clock, Wallet, RefreshCw } from "lucide-react";
 import { formatCurrency, formatPercentage, formatDate } from "@/lib/formatters";
 import { toast } from "sonner";
 import { apiService } from "@/services/api";
 import { stakingWeb3Service } from "@/services/stakingWeb3";
 import { useWallet } from "@/contexts/WalletContext";
+import { ethers } from "ethers";
+
+const ORX_TOKEN_ADDRESS = '0x7eE4f73bab260C11c68e5560c46E3975E824ed79';
 
 const Staking = () => {
-  const { address, isConnected } = useWallet();
+  const { address, isConnected, provider } = useWallet();
   const [stakeAmount, setStakeAmount] = useState("");
   const [unstakeAmount, setUnstakeAmount] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("2592000"); // 30 days in seconds
@@ -22,10 +25,34 @@ const Staking = () => {
   const [stakingData, setStakingData] = useState<any>(null);
   const [overview, setOverview] = useState<any>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [availableBalance, setAvailableBalance] = useState("0");
 
   useEffect(() => {
     fetchStakingData();
+    fetchORXBalance();
   }, [address]);
+
+  const fetchORXBalance = async () => {
+    if (!address || !isConnected || !provider) {
+      setAvailableBalance("0");
+      return;
+    }
+
+    try {
+      const orxAbi = [
+        'function balanceOf(address) view returns (uint256)',
+        'function decimals() view returns (uint8)'
+      ];
+
+      const orxContract = new ethers.Contract(ORX_TOKEN_ADDRESS, orxAbi, provider);
+      const balance = await orxContract.balanceOf(address);
+      const formattedBalance = ethers.formatEther(balance);
+      setAvailableBalance(formattedBalance);
+    } catch (error) {
+      console.error('Error fetching ORX balance:', error);
+      setAvailableBalance("0");
+    }
+  };
 
   const fetchStakingData = async () => {
     try {
@@ -75,6 +102,7 @@ const Staking = () => {
 
       setStakeAmount('');
       await fetchStakingData();
+      await fetchORXBalance(); // Refresh balance after staking
     } catch (error: any) {
       console.error('Error staking tokens:', error);
       toast.error(error.message || 'Failed to stake tokens');
@@ -106,6 +134,7 @@ const Staking = () => {
 
       setUnstakeAmount('');
       await fetchStakingData();
+      await fetchORXBalance(); // Refresh balance after unstaking
     } catch (error: any) {
       console.error('Error unstaking tokens:', error);
       toast.error(error.message || 'Failed to unstake tokens');
@@ -131,6 +160,7 @@ const Staking = () => {
       });
 
       await fetchStakingData();
+      await fetchORXBalance(); // Refresh balance after claiming
     } catch (error: any) {
       console.error('Error claiming rewards:', error);
       toast.error(error.message || 'Failed to claim rewards');
@@ -152,7 +182,7 @@ const Staking = () => {
   }
 
   const totalStaked = stakingData?.amount || "0";
-  const availableBalance = "0"; // Would need to fetch from ORX token contract
+  // availableBalance is now fetched from blockchain via state
   const pendingRewards = stakingData?.pendingRewards || "0";
   const currentAPY = overview?.currentAPY || "18";
   const unlockDate = stakingData?.timestamp 
@@ -164,10 +194,26 @@ const Staking = () => {
     <PageLayout>
       <div className="container mx-auto px-4 py-12">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">
-            <span className="bg-gradient-gold bg-clip-text text-transparent">Staking</span>
-          </h1>
-          <p className="text-muted-foreground">Stake ORX tokens to earn rewards and participate in governance</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold mb-2">
+                <span className="bg-gradient-gold bg-clip-text text-transparent">Staking</span>
+              </h1>
+              <p className="text-muted-foreground">Stake ORX tokens to earn rewards and participate in governance</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                fetchStakingData();
+                fetchORXBalance();
+              }}
+              className="border-primary/40"
+            >
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Refresh
+            </Button>
+          </div>
         </div>
 
         {/* Stats Grid */}
