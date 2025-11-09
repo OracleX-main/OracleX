@@ -8,6 +8,9 @@
     "coverage": "hardhat coverage",
     "deploy:testnet": "hardhat deploy --network bsc-testnet",
     "deploy:mainnet": "hardhat deploy --network bsc-mainnet",
+    "deploy:token": "hardhat run scripts/deploy-token.ts --network bscTestnet",
+    "manage:minters": "hardhat run scripts/manage-minters.ts --network bscTestnet",
+    "token:faucet": "hardhat run scripts/token-faucet.ts --network bscTestnet",
     "verify": "hardhat verify --network bsc-testnet",
     "lint": "solhint contracts/**/*.sol",
     "clean": "hardhat clean"
