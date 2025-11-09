@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
-import { Plus, X, Calendar, DollarSign } from 'lucide-react';
+import { Plus, X, Calendar, DollarSign, Sparkles, Wand2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { web3Service } from '@/services/web3';
 import { apiService } from '@/services/api';
@@ -25,6 +25,9 @@ interface MarketFormData {
 const CreateMarket = () => {
   const { isConnected, address } = useWallet();
   const [isLoading, setIsLoading] = useState(false);
+  const [isAIParsing, setIsAIParsing] = useState(false);
+  const [aiInput, setAiInput] = useState('');
+  const [showAIInput, setShowAIInput] = useState(true);
   const [newOutcome, setNewOutcome] = useState('');
   const [formData, setFormData] = useState<MarketFormData>({
     title: '',
@@ -40,6 +43,95 @@ const CreateMarket = () => {
       ...prev,
       [field]: value
     }));
+  };
+
+  const handleAIParse = async () => {
+    if (!aiInput.trim()) {
+      toast.error('Please describe your market idea');
+      return;
+    }
+
+    setIsAIParsing(true);
+
+    try {
+      // TODO: Replace with actual AI API call to backend
+      // For now, we'll simulate AI parsing with a simple parser
+      toast.info('AI is analyzing your input...', { duration: 2000 });
+
+      // Simulate AI processing delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Simple heuristic parsing (will be replaced with actual AI)
+      const lines = aiInput.split('\n').filter(l => l.trim());
+      const firstLine = lines[0] || aiInput.slice(0, 100);
+      
+      // Extract title (first sentence or line)
+      const title = firstLine.length > 150 ? firstLine.slice(0, 150) + '...' : firstLine;
+      
+      // Use full input as description
+      const description = aiInput;
+      
+      // Try to detect outcomes (yes/no for now)
+      const hasYesNo = /\byes\b|\bno\b/i.test(aiInput.toLowerCase());
+      const outcomes = hasYesNo ? ['Yes', 'No'] : [];
+      
+      // Try to detect category
+      let category = 'General';
+      const lowerInput = aiInput.toLowerCase();
+      if (lowerInput.includes('bitcoin') || lowerInput.includes('crypto') || lowerInput.includes('eth')) {
+        category = 'Cryptocurrency';
+      } else if (lowerInput.includes('sport') || lowerInput.includes('nba') || lowerInput.includes('nfl')) {
+        category = 'Sports';
+      } else if (lowerInput.includes('politic') || lowerInput.includes('election')) {
+        category = 'Politics';
+      } else if (lowerInput.includes('tech') || lowerInput.includes('ai') || lowerInput.includes('meta')) {
+        category = 'Technology';
+      }
+      
+      // Try to detect end date
+      const dateMatch = aiInput.match(/(\d{4})-(\d{2})-(\d{2})|(\w+)\s+(\d{1,2}),?\s+(\d{4})/);
+      let endDate = '';
+      if (dateMatch) {
+        if (dateMatch[1]) {
+          endDate = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
+        }
+      }
+
+      setFormData({
+        title,
+        description,
+        outcomes,
+        category,
+        endDate,
+        endTime: '23:59'
+      });
+
+      setShowAIInput(false);
+      
+      toast.success('AI parsed your market idea!', {
+        description: 'Review and adjust the details below'
+      });
+
+    } catch (error) {
+      console.error('AI parsing failed:', error);
+      toast.error('Failed to parse market idea', {
+        description: 'Please try again or use manual entry'
+      });
+    } finally {
+      setIsAIParsing(false);
+    }
+  };
+
+  const resetToAIInput = () => {
+    setShowAIInput(true);
+    setFormData({
+      title: '',
+      description: '',
+      outcomes: [],
+      endDate: '',
+      endTime: '',
+      category: ''
+    });
   };
 
   const addOutcome = () => {
@@ -186,6 +278,79 @@ const CreateMarket = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
+            {/* AI Natural Language Input */}
+            {showAIInput ? (
+              <div className="space-y-4 mb-6">
+                <div className="bg-gradient-to-r from-yellow-500/10 to-amber-500/10 rounded-lg p-4 border border-yellow-500/20">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sparkles className="h-5 w-5 text-yellow-500" />
+                    <h3 className="font-semibold text-lg">AI-Powered Market Creation</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Describe your prediction market in natural language, and our AI will automatically extract the title, description, outcomes, and other details.
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <Label htmlFor="ai-input" className="text-base">Describe Your Market</Label>
+                    <Textarea
+                      id="ai-input"
+                      placeholder="Example: Will Bitcoin reach $100,000 by December 31st, 2025? This market will resolve to YES if Bitcoin (BTC) trades at or above $100,000 USD on any major exchange (Coinbase, Binance, Kraken) before midnight UTC on December 31, 2025. Otherwise it resolves to NO."
+                      value={aiInput}
+                      onChange={(e) => setAiInput(e.target.value)}
+                      rows={6}
+                      className="bg-card border-yellow-500/30 focus:border-yellow-500/50 resize-none"
+                      disabled={isAIParsing}
+                    />
+                    
+                    <div className="flex gap-3">
+                      <Button 
+                        type="button"
+                        onClick={handleAIParse}
+                        disabled={isAIParsing || !aiInput.trim()}
+                        className="bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-black font-semibold"
+                      >
+                        {isAIParsing ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-black mr-2" />
+                            AI is analyzing...
+                          </>
+                        ) : (
+                          <>
+                            <Wand2 className="h-4 w-4 mr-2" />
+                            Generate with AI
+                          </>
+                        )}
+                      </Button>
+                      
+                      <Button 
+                        type="button"
+                        variant="outline"
+                        onClick={() => setShowAIInput(false)}
+                        disabled={isAIParsing}
+                        className="border-primary/40"
+                      >
+                        Manual Entry
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="mb-4">
+                <Button 
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={resetToAIInput}
+                  className="border-yellow-500/40 text-yellow-500 hover:bg-yellow-500/10"
+                >
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  Switch to AI Input
+                </Button>
+              </div>
+            )}
+
+            {!showAIInput && (
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Market Title */}
               <div className="space-y-2">
@@ -318,16 +483,15 @@ const CreateMarket = () => {
                 ) : (
                   <>
                     <Calendar className="h-4 w-4 mr-2" />
-                    Create Market
-                  </>
-                )}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-    </PageLayout>
-  );
-};
-
-export default CreateMarket;
+                  Create Market
+                </>
+              )}
+            </Button>
+          </form>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  </PageLayout>
+);
+};export default CreateMarket;
