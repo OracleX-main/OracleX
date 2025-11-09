@@ -88,7 +88,7 @@ const Staking = () => {
 
     try {
       setIsSubmitting(true);
-      toast.info('Confirm transaction in your wallet...');
+      toast.info('Processing staking... You may need to approve 2 transactions: token approval and staking');
 
       const txHash = await stakingWeb3Service.stakeTokens(
         stakeAmount,
