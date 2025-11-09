@@ -1,0 +1,103 @@
+# GitBook Configuration
+
+root: ./
+structure:
+  readme: README.md
+  summary: SUMMARY.md
+
+# Site metadata
+title: OracleX Documentation
+description: Complete documentation for OracleX - AI-Powered Prediction Markets on BNB Chain
+
+# Theme customization
+theme:
+  primaryColor: '#FFD700'  # Gold
+  secondaryColor: '#9333EA'  # Purple
+  accentColor: '#3B82F6'  # Blue
+  
+# Logo and favicon
+logo: assets/logo.png
+favicon: assets/favicon.ico
+
+# Social links
+links:
+  website: https://oraclex.ai
+  github: https://github.com/oraclex
+  twitter: https://twitter.com/oraclex_official
+  discord: https://discord.gg/oraclex
+
+# PDF export settings
+pdf:
+  fontSize: 12
+  paperSize: a4
+  margin:
+    top: 56
+    bottom: 56
+    left: 62
+    right: 62
+
+# Plugins
+plugins:
+  - search
+  - code-highlighter
+  - mermaid
+  - analytics
+  - sitemap
+  - canonical-link
+
+# Search configuration
+search:
+  maxIndexSize: 10000000
+  language: 'en'
+
+# Code syntax highlighting
+syntaxHighlighting:
+  theme: 'monokai'
+  languages:
+    - typescript
+    - javascript
+    - solidity
+    - python
+    - bash
+    - json
+    - yaml
+
+# Analytics
+analytics:
+  google: 'G-XXXXXXXXXX'
+
+# Custom domain
+url: https://docs.oraclex.ai
+
+# Table of contents depth
+tocDepth: 3
+
+# Navigation
+navigation:
+  showPrevNext: true
+  showBreadcrumbs: true
+  sidebarDepth: 2
+
+# Features
+features:
+  darkMode: true
+  editLink: true
+  feedback: true
+  print: true
+  share: true
+
+# Edit link configuration
+editLink:
+  base: https://github.com/oraclex/OracleX/edit/main/docs
+  text: Edit this page on GitHub
+
+# Footer
+footer:
+  copyright: © 2025 OracleX. All rights reserved.
+  links:
+    - label: Terms of Service
+      url: /resources/legal.md#terms
+    - label: Privacy Policy
+      url: /resources/legal.md#privacy
+    - label: License
+      url: /resources/legal.md#license
