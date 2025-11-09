@@ -66,7 +66,7 @@ router.get('/profile', authMiddleware, async (req: Request, res: Response) => {
       : 0;
 
     // Get unique markets participated in
-    const uniqueMarkets = new Set(predictions.map(p => p.marketId));
+    const uniqueMarkets = new Set(predictions.map((p: any) => p.marketId));
 
     const profileData = {
       id: user.id,
@@ -77,7 +77,7 @@ router.get('/profile', authMiddleware, async (req: Request, res: Response) => {
         marketsCreated: marketsCreated,
         marketsParticipated: uniqueMarkets.size,
         totalPredictions: predictions.length,
-        activePredictions: predictions.filter(p => p.market.status === 'ACTIVE').length,
+        activePredictions: predictions.filter((p: any) => p.market.status === 'ACTIVE').length,
         totalVolume: totalInvested.toFixed(2),
         totalEarned: totalReturns.toFixed(2),
         winRate: parseFloat((winRate * 100).toFixed(2)),
@@ -431,7 +431,7 @@ router.get('/leaderboard', async (req: Request, res: Response) => {
     });
 
     // Calculate stats for each user
-    const leaderboardData = users.map(user => {
+    const leaderboardData = users.map((user: any) => {
       const predictions = user.predictions;
       const totalPredictions = predictions.length;
       const wonPredictions = predictions.filter((p: any) => p.status === 'WON').length;
@@ -458,12 +458,12 @@ router.get('/leaderboard', async (req: Request, res: Response) => {
     });
 
     // Sort by total earned (descending)
-    leaderboardData.sort((a, b) => b.totalEarned - a.totalEarned);
+    leaderboardData.sort((a: any, b: any) => b.totalEarned - a.totalEarned);
 
     // Add rank and limit results
     const rankedLeaderboard = leaderboardData
       .slice(0, Number(limit))
-      .map((entry, index) => ({
+      .map((entry: any, index: number) => ({
         rank: index + 1,
         ...entry
       }));

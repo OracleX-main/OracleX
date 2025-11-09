@@ -815,3 +815,133 @@
 2025-11-08 23:27:43 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
 2025-11-08 23:27:43 [info]: Listening for blockchain events...
 2025-11-08 23:27:43 [info]: ✅ Blockchain sync service started
+2025-11-09 10:01:36 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:01:36 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:01:36 [info]: 📊 Environment: development
+2025-11-09 10:01:36 [info]: 🔗 Database: Connected
+2025-11-09 10:01:36 [info]: Starting blockchain sync service...
+2025-11-09 10:01:36 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:01:36 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:01:36 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:01:36 [info]: Listening for blockchain events...
+2025-11-09 10:01:36 [info]: ✅ Blockchain sync service started
+2025-11-09 10:01:52 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:01:52 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:01:52 [info]: 📊 Environment: development
+2025-11-09 10:01:52 [info]: 🔗 Database: Connected
+2025-11-09 10:01:52 [info]: Starting blockchain sync service...
+2025-11-09 10:01:52 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:01:52 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:01:52 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:01:52 [info]: Listening for blockchain events...
+2025-11-09 10:01:52 [info]: ✅ Blockchain sync service started
+2025-11-09 10:02:12 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:02:12 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:02:12 [info]: 📊 Environment: development
+2025-11-09 10:02:12 [info]: 🔗 Database: Connected
+2025-11-09 10:02:12 [info]: Starting blockchain sync service...
+2025-11-09 10:02:12 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:02:12 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:02:12 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:02:12 [info]: Listening for blockchain events...
+2025-11-09 10:02:12 [info]: ✅ Blockchain sync service started
+2025-11-09 10:02:19 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:02:20 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:02:20 [info]: 📊 Environment: development
+2025-11-09 10:02:20 [info]: 🔗 Database: Connected
+2025-11-09 10:02:20 [info]: Starting blockchain sync service...
+2025-11-09 10:02:20 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:02:20 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:02:20 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:02:20 [info]: Listening for blockchain events...
+2025-11-09 10:02:20 [info]: ✅ Blockchain sync service started
+2025-11-09 10:02:38 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:02:38 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:02:38 [info]: 📊 Environment: development
+2025-11-09 10:02:38 [info]: 🔗 Database: Connected
+2025-11-09 10:02:38 [info]: Starting blockchain sync service...
+2025-11-09 10:02:38 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:02:38 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:02:38 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:02:38 [info]: Listening for blockchain events...
+2025-11-09 10:02:38 [info]: ✅ Blockchain sync service started
+2025-11-09 10:02:50 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:02:50 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:02:50 [info]: 📊 Environment: development
+2025-11-09 10:02:50 [info]: 🔗 Database: Connected
+2025-11-09 10:02:50 [info]: Starting blockchain sync service...
+2025-11-09 10:02:50 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:02:50 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:02:50 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:02:50 [info]: Listening for blockchain events...
+2025-11-09 10:02:50 [info]: ✅ Blockchain sync service started
+2025-11-09 10:03:07 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:03:07 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:03:07 [info]: 📊 Environment: development
+2025-11-09 10:03:07 [info]: 🔗 Database: Connected
+2025-11-09 10:03:07 [info]: Starting blockchain sync service...
+2025-11-09 10:03:07 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:03:07 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:03:07 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:03:07 [info]: Listening for blockchain events...
+2025-11-09 10:03:07 [info]: ✅ Blockchain sync service started
+2025-11-09 10:03:29 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:03:29 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:03:29 [info]: 📊 Environment: development
+2025-11-09 10:03:29 [info]: 🔗 Database: Connected
+2025-11-09 10:03:29 [info]: Starting blockchain sync service...
+2025-11-09 10:03:29 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:03:29 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:03:29 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:03:29 [info]: Listening for blockchain events...
+2025-11-09 10:03:29 [info]: ✅ Blockchain sync service started
+2025-11-09 10:03:42 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:03:42 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:03:42 [info]: 📊 Environment: development
+2025-11-09 10:03:42 [info]: 🔗 Database: Connected
+2025-11-09 10:03:42 [info]: Starting blockchain sync service...
+2025-11-09 10:03:42 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:03:42 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:03:42 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:03:42 [info]: Listening for blockchain events...
+2025-11-09 10:03:42 [info]: ✅ Blockchain sync service started
+2025-11-09 10:03:54 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:03:54 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:03:54 [info]: 📊 Environment: development
+2025-11-09 10:03:54 [info]: 🔗 Database: Connected
+2025-11-09 10:03:54 [info]: Starting blockchain sync service...
+2025-11-09 10:03:54 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:03:54 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:03:54 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:03:54 [info]: Listening for blockchain events...
+2025-11-09 10:03:54 [info]: ✅ Blockchain sync service started
+2025-11-09 10:04:10 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:04:10 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:04:10 [info]: 📊 Environment: development
+2025-11-09 10:04:10 [info]: 🔗 Database: Connected
+2025-11-09 10:04:10 [info]: Starting blockchain sync service...
+2025-11-09 10:04:10 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:04:10 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:04:10 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:04:10 [info]: Listening for blockchain events...
+2025-11-09 10:04:10 [info]: ✅ Blockchain sync service started
+2025-11-09 10:04:32 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:04:32 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:04:32 [info]: 📊 Environment: development
+2025-11-09 10:04:32 [info]: 🔗 Database: Connected
+2025-11-09 10:04:32 [info]: Starting blockchain sync service...
+2025-11-09 10:04:32 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:04:32 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:04:32 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:04:32 [info]: Listening for blockchain events...
+2025-11-09 10:04:33 [info]: ✅ Blockchain sync service started
+2025-11-09 10:04:52 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:04:52 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:04:52 [info]: 📊 Environment: development
+2025-11-09 10:04:52 [info]: 🔗 Database: Connected
+2025-11-09 10:04:52 [info]: Starting blockchain sync service...
+2025-11-09 10:04:52 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:04:52 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:04:52 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:04:52 [info]: Listening for blockchain events...
+2025-11-09 10:04:52 [info]: ✅ Blockchain sync service started

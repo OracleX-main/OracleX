@@ -36,7 +36,7 @@ router.get('/overview', async (req: Request, res: Response) => {
 
     // Calculate 24h volume
     const volume24h = recentTransactions.reduce(
-      (sum, pred) => sum + parseFloat(pred.amount.toString()),
+      (sum: number, pred: any) => sum + parseFloat(pred.amount.toString()),
       0
     );
 
@@ -63,7 +63,7 @@ router.get('/overview', async (req: Request, res: Response) => {
     });
 
     const avgMarketDuration = resolvedMarketsData.length > 0
-      ? resolvedMarketsData.reduce((sum, m) => {
+      ? resolvedMarketsData.reduce((sum: number, m: any) => {
           const duration = m.resolutionDate!.getTime() - m.createdAt.getTime();
           return sum + duration / (1000 * 60 * 60 * 24); // Convert to days
         }, 0) / resolvedMarketsData.length
@@ -78,10 +78,10 @@ router.get('/overview', async (req: Request, res: Response) => {
     });
 
     const resolutionAccuracy = resolutions.length > 0
-      ? resolutions.reduce((sum, r) => sum + r.confidence, 0) / resolutions.length
+      ? resolutions.reduce((sum: number, r: any) => sum + r.confidence, 0) / resolutions.length
       : 0;
 
-    const disputes = resolutions.filter(r => !r.humanVerified).length;
+    const disputes = resolutions.filter((r: any) => !r.humanVerified).length;
     const disputeRate = resolutions.length > 0 ? disputes / resolutions.length : 0;
 
     const overview = {

@@ -73,7 +73,7 @@ router.get('/', async (req: Request, res: Response) => {
     });
 
     // Format the response
-    const formattedMarkets = markets.map(market => ({
+    const formattedMarkets = markets.map((market: any) => ({
       id: market.id,
       title: market.title,
       description: market.description,
@@ -95,7 +95,7 @@ router.get('/', async (req: Request, res: Response) => {
         username: market.creator.username,
         reputation: market.creator.reputation
       },
-      outcomes: market.outcomes.map(outcome => ({
+      outcomes: market.outcomes.map((outcome: any) => ({
         id: outcome.id,
         name: outcome.name,
         totalStaked: outcome.totalStaked.toString(),
@@ -135,7 +135,7 @@ router.get('/categories', async (req: Request, res: Response) => {
       distinct: ['category']
     });
 
-    const categoryList = categories.map(c => c.category).filter(Boolean);
+    const categoryList = categories.map((c: any) => c.category).filter(Boolean);
 
     res.json({
       success: true,
@@ -198,7 +198,7 @@ router.get('/trending', async (req: Request, res: Response) => {
       }
     });
 
-    const formattedMarkets = markets.map(market => ({
+    const formattedMarkets = markets.map((market: any) => ({
       id: market.id,
       title: market.title,
       description: market.description,
@@ -208,8 +208,8 @@ router.get('/trending', async (req: Request, res: Response) => {
       totalStaked: market.totalStaked.toString(),
       participants: market._count.predictions,
       status: market.status,
-      yesOdds: market.outcomes.find(o => o.name.toLowerCase() === 'yes')?.probability || 50,
-      noOdds: market.outcomes.find(o => o.name.toLowerCase() === 'no')?.probability || 50,
+      yesOdds: market.outcomes.find((o: any) => o.name.toLowerCase() === 'yes')?.probability || 50,
+      noOdds: market.outcomes.find((o: any) => o.name.toLowerCase() === 'no')?.probability || 50,
       poolSize: parseFloat(market.totalVolume.toString()),
       confidenceScore: market.confidence || 0,
       creator: market.creator
@@ -311,26 +311,26 @@ router.get('/:id', async (req: Request, res: Response) => {
       resolutionDate: market.resolutionDate?.toISOString(),
       totalVolume: market.totalVolume.toString(),
       totalStaked: market.totalStaked.toString(),
-      participants: new Set(market.predictions.map(p => p.userId)).size,
+      participants: new Set(market.predictions.map((p: any) => p.userId)).size,
       confidence: market.confidence,
       contractAddress: market.contractAddress,
       isVerified: market.isVerified,
       outcome: market.outcome,
       creator: market.creator,
-      outcomes: market.outcomes.map(outcome => ({
+      outcomes: market.outcomes.map((outcome: any) => ({
         id: outcome.id,
         name: outcome.name,
         totalStaked: outcome.totalStaked.toString(),
         probability: outcome.probability,
         isWinning: outcome.isWinning,
-        recentTrades: outcome.predictions.map(pred => ({
+        recentTrades: outcome.predictions.map((pred: any) => ({
           amount: pred.amount.toString(),
           odds: pred.odds,
           timestamp: pred.createdAt.toISOString(),
           user: pred.user.username || pred.user.walletAddress.slice(0, 10) + '...'
         }))
       })),
-      recentActivity: market.predictions.map(pred => ({
+      recentActivity: market.predictions.map((pred: any) => ({
         id: pred.id,
         userId: pred.userId,
         username: pred.user.username || pred.user.walletAddress.slice(0, 10) + '...',
@@ -435,7 +435,7 @@ router.post('/', authMiddleware, async (req: Request, res: Response) => {
         endDate: market.endDate.toISOString(),
         contractAddress: market.contractAddress,
         status: market.status,
-        outcomes: market.outcomes.map(o => ({
+        outcomes: market.outcomes.map((o: any) => ({
           id: o.id,
           name: o.name,
           probability: o.probability
@@ -498,7 +498,7 @@ router.post('/:id/bet', authMiddleware, async (req: Request, res: Response) => {
     }
 
     // Verify outcome exists for this market
-    const outcome = market.outcomes.find(o => o.id === outcomeId);
+    const outcome = market.outcomes.find((o: any) => o.id === outcomeId);
     if (!outcome) {
       return res.status(400).json({
         success: false,
@@ -614,7 +614,7 @@ router.get('/:id/analytics', async (req: Request, res: Response) => {
     }
 
     // Calculate price history from predictions
-    const priceHistory = market.predictions.reduce((acc: any[], pred) => {
+    const priceHistory = market.predictions.reduce((acc: any[], pred: any) => {
       const timestamp = pred.createdAt.toISOString();
       acc.push({
         timestamp,
@@ -625,7 +625,7 @@ router.get('/:id/analytics', async (req: Request, res: Response) => {
     }, []);
 
     // Group predictions by date for volume history
-    const volumeByDate = market.predictions.reduce((acc: any, pred) => {
+    const volumeByDate = market.predictions.reduce((acc: any, pred: any) => {
       const date = pred.createdAt.toISOString().split('T')[0];
       if (!acc[date]) {
         acc[date] = 0;
@@ -640,7 +640,7 @@ router.get('/:id/analytics', async (req: Request, res: Response) => {
     }));
 
     // Calculate unique participants over time
-    const participantsByDate = market.predictions.reduce((acc: any, pred) => {
+    const participantsByDate = market.predictions.reduce((acc: any, pred: any) => {
       const date = pred.createdAt.toISOString().split('T')[0];
       if (!acc[date]) {
         acc[date] = new Set();
@@ -661,8 +661,8 @@ router.get('/:id/analytics', async (req: Request, res: Response) => {
       participantGrowth,
       totalVolume: market.totalVolume.toString(),
       totalStaked: market.totalStaked.toString(),
-      currentParticipants: new Set(market.predictions.map(p => p.userId)).size,
-      analytics: market.analytics.map(a => ({
+      currentParticipants: new Set(market.predictions.map((p: any) => p.userId)).size,
+      analytics: market.analytics.map((a: any) => ({
         date: a.date.toISOString(),
         totalVolume: a.totalVolume.toString(),
         totalStaked: a.totalStaked.toString(),
