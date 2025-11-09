@@ -8,7 +8,6 @@ import { config } from './config';
 import { logger } from './utils/logger';
 import { errorHandler } from './middleware/errorHandler';
 import { authMiddleware } from './middleware/auth';
-import { blockchainSyncService } from './services/blockchainSync';
 
 // Import routes
 import authRoutes from './routes/auth';
@@ -83,6 +82,9 @@ app.use('*', (req, res) => {
 
 const PORT = config.PORT || 3001;
 
+// Store blockchain sync service reference for graceful shutdown
+let blockchainSyncService: any = null;
+
 app.listen(PORT, async () => {
   logger.info(`🚀 OracleX Backend API running on port ${PORT}`);
   logger.info(`📊 Environment: ${config.NODE_ENV}`);
@@ -91,8 +93,10 @@ app.listen(PORT, async () => {
   // Start blockchain sync service (optional)
   const enableBlockchainSync = process.env.ENABLE_BLOCKCHAIN_SYNC !== 'false';
   
-  if (enableBlockchainSync) {
+  if (enableBlockchainSync && process.env.MARKET_FACTORY_ADDRESS) {
     try {
+      const { getBlockchainSyncService } = await import('./services/blockchainSync');
+      const blockchainSyncService = getBlockchainSyncService();
       await blockchainSyncService.start();
       logger.info('✅ Blockchain sync service started');
     } catch (error) {
@@ -100,21 +104,29 @@ app.listen(PORT, async () => {
       logger.warn('⚠️ Backend running without blockchain sync');
     }
   } else {
-    logger.info('📴 Blockchain sync service disabled via environment variable');
-    logger.info('💡 Set ENABLE_BLOCKCHAIN_SYNC=true to enable');
+    if (!process.env.MARKET_FACTORY_ADDRESS) {
+      logger.info('📴 Blockchain sync disabled: MARKET_FACTORY_ADDRESS not configured');
+    } else {
+      logger.info('� Blockchain sync disabled via ENABLE_BLOCKCHAIN_SYNC=false');
+    }
+    logger.info('💡 Backend running in database-only mode');
   }
 });
 
 // Graceful shutdown
-process.on('SIGTERM', () => {
+process.on('SIGTERM', async () => {
   logger.info('SIGTERM received, shutting down gracefully');
-  blockchainSyncService.stop();
+  if (blockchainSyncService) {
+    blockchainSyncService.stop();
+  }
   process.exit(0);
 });
 
-process.on('SIGINT', () => {
+process.on('SIGINT', async () => {
   logger.info('SIGINT received, shutting down gracefully');
-  blockchainSyncService.stop();
+  if (blockchainSyncService) {
+    blockchainSyncService.stop();
+  }
   process.exit(0);
 });
 

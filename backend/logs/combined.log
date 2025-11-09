@@ -965,3 +965,95 @@
 2025-11-09 10:13:45 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
 2025-11-09 10:13:45 [info]: Listening for blockchain events...
 2025-11-09 10:13:45 [info]: ✅ Blockchain sync service started
+2025-11-09 10:19:05 [info]: ::1 - - [09/Nov/2025:09:19:05 +0000] "GET /api/markets/cmhnla1cv0001jce5lchd7cxs HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:19:07 [info]: ::1 - - [09/Nov/2025:09:19:07 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:19:07 [info]: ::1 - - [09/Nov/2025:09:19:07 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:19:39 [info]: ::1 - - [09/Nov/2025:09:19:39 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:20:00 [info]: ::1 - - [09/Nov/2025:09:20:00 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:20:00 [info]: ::1 - - [09/Nov/2025:09:20:00 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:20:02 [info]: ::1 - - [09/Nov/2025:09:20:02 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:20:17 [info]: ::1 - - [09/Nov/2025:09:20:17 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:20:17 [info]: ::1 - - [09/Nov/2025:09:20:17 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:22:40 [info]: ::1 - - [09/Nov/2025:09:22:40 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:35:12 [info]: ::1 - - [09/Nov/2025:09:35:12 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:35:12 [info]: ::1 - - [09/Nov/2025:09:35:12 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:35:20 [info]: ::1 - - [09/Nov/2025:09:35:20 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:35:20 [info]: ::1 - - [09/Nov/2025:09:35:20 +0000] "GET /api/markets/categories HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 10:39:34 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:39:34 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:39:34 [info]: 📊 Environment: development
+2025-11-09 10:39:34 [info]: 🔗 Database: Connected
+2025-11-09 10:39:34 [info]: Starting blockchain sync service...
+2025-11-09 10:39:34 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:39:34 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:39:34 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:39:34 [info]: Listening for blockchain events...
+2025-11-09 10:39:34 [info]: ✅ Blockchain sync service started
+2025-11-09 10:40:00 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:40:00 [info]: 📊 Environment: development
+2025-11-09 10:40:00 [info]: 🔗 Database: Connected
+2025-11-09 10:40:00 [error]: ReferenceError: blockchainSyncService is not defined
+    at Server.<anonymous> (C:\Users\DELL\Desktop\OracleX\backend\src\index.ts:95:7)
+    at Object.onceWrapper (node:events:633:28)
+    at Server.emit (node:events:531:35)
+    at emitListeningNT (node:net:1951:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+2025-11-09 10:40:00 [warn]: ⚠️ Backend running without blockchain sync
+2025-11-09 10:40:12 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:40:12 [info]: 📊 Environment: development
+2025-11-09 10:40:12 [info]: 🔗 Database: Connected
+2025-11-09 10:40:12 [error]: Error: Transform failed with 1 error:
+C:\Users\DELL\Desktop\OracleX\backend\src\services\blockchainSync.ts:491:9: ERROR: Multiple exports with the same name "BlockchainSyncService"
+    at failureErrorWithLog (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:1467:15)
+    at C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:736:50
+    at responseCallbacks.<computed> (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:603:9)
+    at handleIncomingPacket (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:658:12)
+    at Socket.readFromStdout (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:581:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+2025-11-09 10:40:12 [warn]: ⚠️ Backend running without blockchain sync
+2025-11-09 10:40:20 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:40:20 [info]: 📊 Environment: development
+2025-11-09 10:40:20 [info]: 🔗 Database: Connected
+2025-11-09 10:40:20 [error]: Error: Transform failed with 1 error:
+C:\Users\DELL\Desktop\OracleX\backend\src\services\blockchainSync.ts:491:9: ERROR: Multiple exports with the same name "BlockchainSyncService"
+    at failureErrorWithLog (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:1467:15)
+    at C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:736:50
+    at responseCallbacks.<computed> (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:603:9)
+    at handleIncomingPacket (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:658:12)
+    at Socket.readFromStdout (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:581:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+2025-11-09 10:40:20 [warn]: ⚠️ Backend running without blockchain sync
+2025-11-09 10:41:26 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:41:26 [info]: 📊 Environment: development
+2025-11-09 10:41:26 [info]: 🔗 Database: Connected
+2025-11-09 10:41:26 [error]: Error: Transform failed with 1 error:
+C:\Users\DELL\Desktop\OracleX\backend\src\services\blockchainSync.ts:491:9: ERROR: Multiple exports with the same name "BlockchainSyncService"
+    at failureErrorWithLog (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:1467:15)
+    at C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:736:50
+    at responseCallbacks.<computed> (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:603:9)
+    at handleIncomingPacket (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:658:12)
+    at Socket.readFromStdout (C:\Users\DELL\Desktop\OracleX\node_modules\esbuild\lib\main.js:581:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+2025-11-09 10:41:26 [warn]: ⚠️ Backend running without blockchain sync
+2025-11-09 10:41:47 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 10:41:47 [info]: 📊 Environment: development
+2025-11-09 10:41:47 [info]: 🔗 Database: Connected
+2025-11-09 10:41:47 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 10:41:47 [info]: Starting blockchain sync service...
+2025-11-09 10:41:47 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 10:41:47 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 10:41:47 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 10:41:47 [info]: Listening for blockchain events...
+2025-11-09 10:41:47 [info]: ✅ Blockchain sync service started

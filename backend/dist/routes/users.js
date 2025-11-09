@@ -1,41 +1,81 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const client_1 = require("@prisma/client");
 const logger_1 = require("../utils/logger");
+const auth_1 = require("../middleware/auth");
 const router = (0, express_1.Router)();
-router.get('/profile', async (req, res) => {
+const prisma = new client_1.PrismaClient();
+router.get('/profile', auth_1.authMiddleware, async (req, res) => {
     try {
-        const user = {
-            id: 'user123',
-            username: 'john_trader',
-            email: 'john@example.com',
-            walletAddress: '0x1234567890abcdef1234567890abcdef12345678',
-            balance: '1500.50',
-            reputation: 85,
-            joinedAt: '2024-01-15T10:30:00Z',
+        const userId = req.user?.id;
+        if (!userId) {
+            return res.status(401).json({
+                success: false,
+                error: 'User not authenticated'
+            });
+        }
+        const user = await prisma.user.findUnique({
+            where: { id: userId }
+        });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                error: 'User not found'
+            });
+        }
+        const predictions = await prisma.prediction.findMany({
+            where: { userId },
+            include: {
+                market: {
+                    select: {
+                        status: true
+                    }
+                }
+            }
+        });
+        const marketsCreated = await prisma.market.count({
+            where: { creatorId: userId }
+        });
+        const totalInvested = predictions.reduce((sum, p) => sum + parseFloat(p.amount.toString()), 0);
+        const wonPredictions = predictions.filter((p) => p.status === 'WON');
+        const lostPredictions = predictions.filter((p) => p.status === 'LOST');
+        const resolvedPredictions = [...wonPredictions, ...lostPredictions];
+        const totalReturns = wonPredictions.reduce((sum, p) => sum + parseFloat(p.potential?.toString() || '0'), 0);
+        const winRate = resolvedPredictions.length > 0
+            ? wonPredictions.length / resolvedPredictions.length
+            : 0;
+        const avgReturn = totalInvested > 0
+            ? (totalReturns - totalInvested) / totalInvested
+            : 0;
+        const uniqueMarkets = new Set(predictions.map((p) => p.marketId));
+        const profileData = {
+            id: user.id,
+            walletAddress: user.walletAddress,
+            reputation: user.reputation || 0,
+            joinedAt: user.createdAt.toISOString(),
             stats: {
-                marketsCreated: 5,
-                marketsParticipated: 23,
-                totalVolume: '5670.25',
-                winRate: 0.67,
-                avgReturn: 0.12
-            },
-            preferences: {
-                notifications: true,
-                emailAlerts: false,
-                categories: ['crypto', 'technology', 'sports']
+                marketsCreated: marketsCreated,
+                marketsParticipated: uniqueMarkets.size,
+                totalPredictions: predictions.length,
+                activePredictions: predictions.filter((p) => p.market.status === 'ACTIVE').length,
+                totalVolume: totalInvested.toFixed(2),
+                totalEarned: totalReturns.toFixed(2),
+                winRate: parseFloat((winRate * 100).toFixed(2)),
+                avgReturn: parseFloat((avgReturn * 100).toFixed(2))
             }
         };
         res.json({
             success: true,
-            data: user
+            data: profileData
         });
     }
     catch (error) {
         logger_1.logger.error('Error fetching user profile:', error);
         res.status(500).json({
             success: false,
-            error: 'Failed to fetch user profile'
+            error: 'Failed to fetch user profile',
+            message: error instanceof Error ? error.message : 'Unknown error'
         });
     }
 });
@@ -67,50 +107,81 @@ router.put('/profile', async (req, res) => {
         });
     }
 });
-router.get('/portfolio', async (req, res) => {
+router.get('/portfolio', auth_1.authMiddleware, async (req, res) => {
     try {
-        const portfolio = {
-            totalValue: '2150.75',
-            totalInvested: '1800.00',
-            totalReturns: '350.75',
-            returnPercentage: 19.49,
-            positions: [
-                {
-                    marketId: '1',
-                    marketTitle: 'Bitcoin Price Above $100,000 by End of 2024',
-                    outcome: 'YES',
-                    shares: 100,
-                    averagePrice: 0.62,
-                    currentPrice: 0.65,
-                    value: '65.00',
-                    unrealizedPnL: '3.00',
-                    unrealizedPnLPercentage: 4.84
+        const userId = req.user?.id;
+        if (!userId) {
+            return res.status(401).json({
+                success: false,
+                error: 'User not authenticated'
+            });
+        }
+        const predictions = await prisma.prediction.findMany({
+            where: { userId },
+            include: {
+                market: {
+                    select: {
+                        id: true,
+                        title: true,
+                        status: true,
+                        endDate: true
+                    }
                 },
-                {
-                    marketId: '2',
-                    marketTitle: 'AI Breakthrough in 2024',
-                    outcome: 'NO',
-                    shares: 50,
-                    averagePrice: 0.45,
-                    currentPrice: 0.28,
-                    value: '14.00',
-                    unrealizedPnL: '-8.50',
-                    unrealizedPnLPercentage: -37.78
+                outcome: {
+                    select: {
+                        id: true,
+                        name: true,
+                        probability: true
+                    }
                 }
-            ],
-            history: [
-                {
-                    marketId: '3',
-                    marketTitle: 'Ethereum ETF Approval',
-                    outcome: 'YES',
-                    shares: 75,
-                    entryPrice: 0.30,
-                    exitPrice: 0.95,
-                    pnl: '48.75',
-                    pnlPercentage: 216.67,
-                    resolvedAt: '2024-05-15T14:20:00Z'
-                }
-            ]
+            },
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });
+        const totalInvested = predictions.reduce((sum, p) => sum + parseFloat(p.amount.toString()), 0);
+        const activePredictions = predictions.filter((p) => p.market.status === 'ACTIVE');
+        const resolvedPredictions = predictions.filter((p) => p.market.status === 'RESOLVED');
+        const wonPredictions = predictions.filter((p) => p.status === 'WON');
+        const totalReturns = wonPredictions.reduce((sum, p) => sum + parseFloat(p.potential?.toString() || '0'), 0);
+        const totalValue = totalInvested + totalReturns;
+        const returnPercentage = totalInvested > 0
+            ? ((totalReturns / totalInvested) * 100)
+            : 0;
+        const positions = activePredictions.map((pred) => ({
+            marketId: pred.market.id,
+            marketTitle: pred.market.title,
+            outcome: pred.outcome.name,
+            shares: parseFloat(pred.amount.toString()),
+            averagePrice: parseFloat(pred.odds.toString()),
+            currentPrice: pred.outcome.probability,
+            value: parseFloat(pred.amount.toString()) * pred.outcome.probability,
+            unrealizedPnL: (parseFloat(pred.amount.toString()) * pred.outcome.probability) - parseFloat(pred.amount.toString()),
+            status: pred.status
+        }));
+        const history = resolvedPredictions.map((pred) => ({
+            marketId: pred.market.id,
+            marketTitle: pred.market.title,
+            outcome: pred.outcome.name,
+            shares: parseFloat(pred.amount.toString()),
+            entryPrice: parseFloat(pred.odds.toString()),
+            pnl: pred.status === 'WON' ? parseFloat(pred.potential?.toString() || '0') : -parseFloat(pred.amount.toString()),
+            pnlPercentage: pred.status === 'WON'
+                ? ((parseFloat(pred.potential?.toString() || '0') - parseFloat(pred.amount.toString())) / parseFloat(pred.amount.toString())) * 100
+                : -100,
+            resolvedAt: pred.updatedAt.toISOString(),
+            status: pred.status
+        }));
+        const portfolio = {
+            totalValue: totalValue.toFixed(2),
+            totalInvested: totalInvested.toFixed(2),
+            totalReturns: totalReturns.toFixed(2),
+            returnPercentage: returnPercentage.toFixed(2),
+            activePredictions: activePredictions.length,
+            resolvedPredictions: resolvedPredictions.length,
+            wonPredictions: wonPredictions.length,
+            positions,
+            history
         };
         res.json({
             success: true,
@@ -121,54 +192,67 @@ router.get('/portfolio', async (req, res) => {
         logger_1.logger.error('Error fetching user portfolio:', error);
         res.status(500).json({
             success: false,
-            error: 'Failed to fetch user portfolio'
+            error: 'Failed to fetch user portfolio',
+            message: error instanceof Error ? error.message : 'Unknown error'
         });
     }
 });
-router.get('/transactions', async (req, res) => {
+router.get('/transactions', auth_1.authMiddleware, async (req, res) => {
     try {
+        const userId = req.user?.id;
+        if (!userId) {
+            return res.status(401).json({
+                success: false,
+                error: 'User not authenticated'
+            });
+        }
         const { page = 1, limit = 20, type } = req.query;
-        const transactions = [
-            {
-                id: 'tx_1',
-                type: 'BUY',
-                marketId: '1',
-                marketTitle: 'Bitcoin Price Above $100,000 by End of 2024',
-                outcome: 'YES',
-                shares: 50,
-                price: 0.65,
-                amount: '32.50',
-                fee: '0.65',
-                timestamp: new Date().toISOString(),
-                status: 'completed',
-                txHash: '0xabcdef1234567890...'
+        const skip = (Number(page) - 1) * Number(limit);
+        const predictions = await prisma.prediction.findMany({
+            where: { userId },
+            include: {
+                market: {
+                    select: {
+                        id: true,
+                        title: true
+                    }
+                },
+                outcome: {
+                    select: {
+                        name: true
+                    }
+                }
             },
-            {
-                id: 'tx_2',
-                type: 'SELL',
-                marketId: '3',
-                marketTitle: 'Ethereum ETF Approval',
-                outcome: 'YES',
-                shares: 75,
-                price: 0.95,
-                amount: '71.25',
-                fee: '1.43',
-                timestamp: '2024-05-15T14:20:00Z',
-                status: 'completed',
-                txHash: '0x1234567890abcdef...'
-            }
-        ];
-        const filteredTransactions = type && typeof type === 'string'
-            ? transactions.filter(tx => tx.type === type.toUpperCase())
-            : transactions;
+            orderBy: {
+                createdAt: 'desc'
+            },
+            skip,
+            take: Number(limit)
+        });
+        const totalCount = await prisma.prediction.count({
+            where: { userId }
+        });
+        const transactions = predictions.map((pred) => ({
+            id: pred.id,
+            type: 'PREDICTION',
+            marketId: pred.market.id,
+            marketTitle: pred.market.title,
+            outcome: pred.outcome.name,
+            amount: parseFloat(pred.amount.toString()),
+            odds: parseFloat(pred.odds.toString()),
+            potential: parseFloat(pred.potential?.toString() || '0'),
+            timestamp: pred.createdAt.toISOString(),
+            status: pred.status,
+            txHash: pred.transactionHash
+        }));
         res.json({
             success: true,
-            data: filteredTransactions,
-            count: filteredTransactions.length,
+            data: transactions,
+            count: transactions.length,
             pagination: {
                 page: Number(page),
                 limit: Number(limit),
-                total: filteredTransactions.length
+                total: totalCount
             }
         });
     }
@@ -176,7 +260,8 @@ router.get('/transactions', async (req, res) => {
         logger_1.logger.error('Error fetching user transactions:', error);
         res.status(500).json({
             success: false,
-            error: 'Failed to fetch user transactions'
+            error: 'Failed to fetch user transactions',
+            message: error instanceof Error ? error.message : 'Unknown error'
         });
     }
 });
@@ -248,48 +333,76 @@ router.put('/notifications/:id/read', async (req, res) => {
 });
 router.get('/leaderboard', async (req, res) => {
     try {
-        const leaderboard = {
-            currentUser: {
-                rank: 15,
-                username: 'john_trader',
-                reputation: 85,
-                totalReturns: '350.75',
-                winRate: 0.67
-            },
-            topUsers: [
-                {
-                    rank: 1,
-                    username: 'crypto_oracle',
-                    reputation: 98,
-                    totalReturns: '2150.50',
-                    winRate: 0.89
-                },
-                {
-                    rank: 2,
-                    username: 'market_master',
-                    reputation: 95,
-                    totalReturns: '1890.25',
-                    winRate: 0.85
-                },
-                {
-                    rank: 3,
-                    username: 'prediction_pro',
-                    reputation: 92,
-                    totalReturns: '1675.75',
-                    winRate: 0.82
+        const { limit = 50, period = 'all' } = req.query;
+        let dateFilter;
+        if (period === 'week') {
+            dateFilter = new Date();
+            dateFilter.setDate(dateFilter.getDate() - 7);
+        }
+        else if (period === 'month') {
+            dateFilter = new Date();
+            dateFilter.setMonth(dateFilter.getMonth() - 1);
+        }
+        const users = await prisma.user.findMany({
+            select: {
+                id: true,
+                walletAddress: true,
+                reputation: true,
+                totalWinnings: true,
+                predictions: {
+                    where: dateFilter ? {
+                        createdAt: {
+                            gte: dateFilter
+                        }
+                    } : undefined,
+                    select: {
+                        status: true,
+                        amount: true,
+                        potential: true
+                    }
                 }
-            ]
-        };
+            }
+        });
+        const leaderboardData = users.map((user) => {
+            const predictions = user.predictions;
+            const totalPredictions = predictions.length;
+            const wonPredictions = predictions.filter((p) => p.status === 'WON').length;
+            const totalEarned = predictions
+                .filter((p) => p.status === 'WON')
+                .reduce((sum, p) => sum + parseFloat(p.potential?.toString() || '0'), 0);
+            const totalInvested = predictions.reduce((sum, p) => sum + parseFloat(p.amount.toString()), 0);
+            const winRate = totalPredictions > 0 ? wonPredictions / totalPredictions : 0;
+            const accuracy = winRate;
+            return {
+                userId: user.id,
+                walletAddress: user.walletAddress,
+                reputation: user.reputation,
+                totalEarned,
+                totalPredictions,
+                winRate: parseFloat((winRate * 100).toFixed(2)),
+                accuracyScore: parseFloat((accuracy * 100).toFixed(2)),
+                totalWinnings: parseFloat(user.totalWinnings.toString())
+            };
+        });
+        leaderboardData.sort((a, b) => b.totalEarned - a.totalEarned);
+        const rankedLeaderboard = leaderboardData
+            .slice(0, Number(limit))
+            .map((entry, index) => ({
+            rank: index + 1,
+            ...entry
+        }));
         res.json({
             success: true,
-            data: leaderboard
+            data: rankedLeaderboard,
+            count: rankedLeaderboard.length
         });
     }
     catch (error) {
         logger_1.logger.error('Error fetching user leaderboard:', error);
         res.status(500).json({
             success: false,
-            error: 'Failed to fetch user leaderboard'
+            error: 'Failed to fetch user leaderboard',
+            message: error instanceof Error ? error.message : 'Unknown error'
         });
     }
 });

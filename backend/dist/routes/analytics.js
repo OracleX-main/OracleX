@@ -1,21 +1,76 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const client_1 = require("@prisma/client");
 const logger_1 = require("../utils/logger");
 const router = (0, express_1.Router)();
+const prisma = new client_1.PrismaClient();
 router.get('/overview', async (req, res) => {
     try {
+        const [totalMarkets, activeMarkets, resolvedMarkets, totalUsers, totalVolumeResult, recentTransactions] = await Promise.all([
+            prisma.market.count(),
+            prisma.market.count({ where: { status: 'ACTIVE' } }),
+            prisma.market.count({ where: { status: 'RESOLVED' } }),
+            prisma.user.count(),
+            prisma.market.aggregate({ _sum: { totalVolume: true } }),
+            prisma.prediction.findMany({
+                where: {
+                    createdAt: {
+                        gte: new Date(Date.now() - 24 * 60 * 60 * 1000)
+                    }
+                },
+                select: {
+                    amount: true
+                }
+            })
+        ]);
+        const volume24h = recentTransactions.reduce((sum, pred) => sum + parseFloat(pred.amount.toString()), 0);
+        const activeUsers = await prisma.user.count({
+            where: {
+                predictions: {
+                    some: {
+                        createdAt: {
+                            gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+                        }
+                    }
+                }
+            }
+        });
+        const resolvedMarketsData = await prisma.market.findMany({
+            where: { status: 'RESOLVED', resolutionDate: { not: null } },
+            select: {
+                createdAt: true,
+                resolutionDate: true
+            }
+        });
+        const avgMarketDuration = resolvedMarketsData.length > 0
+            ? resolvedMarketsData.reduce((sum, m) => {
+                const duration = m.resolutionDate.getTime() - m.createdAt.getTime();
+                return sum + duration / (1000 * 60 * 60 * 24);
+            }, 0) / resolvedMarketsData.length
+            : 0;
+        const resolutions = await prisma.resolution.findMany({
+            select: {
+                humanVerified: true,
+                confidence: true
+            }
+        });
+        const resolutionAccuracy = resolutions.length > 0
+            ? resolutions.reduce((sum, r) => sum + r.confidence, 0) / resolutions.length
+            : 0;
+        const disputes = resolutions.filter((r) => !r.humanVerified).length;
+        const disputeRate = resolutions.length > 0 ? disputes / resolutions.length : 0;
         const overview = {
-            totalMarkets: 156,
-            activeMarkets: 89,
-            resolvedMarkets: 67,
-            totalUsers: 2345,
-            activeUsers: 1234,
-            totalVolume: '1250000.50',
-            volume24h: '45670.25',
-            avgMarketDuration: 15.5,
-            resolutionAccuracy: 0.94,
-            disputeRate: 0.03,
+            totalMarkets,
+            activeMarkets,
+            resolvedMarkets,
+            totalUsers,
+            activeUsers,
+            totalVolume: totalVolumeResult._sum.totalVolume?.toString() || '0',
+            volume24h: volume24h.toString(),
+            avgMarketDuration: parseFloat(avgMarketDuration.toFixed(2)),
+            resolutionAccuracy: parseFloat(resolutionAccuracy.toFixed(4)),
+            disputeRate: parseFloat(disputeRate.toFixed(4)),
             timestamp: new Date().toISOString()
         };
         res.json({
@@ -27,7 +82,8 @@ router.get('/overview', async (req, res) => {
         logger_1.logger.error('Error fetching analytics overview:', error);
         res.status(500).json({
             success: false,
-            error: 'Failed to fetch analytics overview'
+            error: 'Failed to fetch analytics overview',
+            message: error instanceof Error ? error.message : 'Unknown error'
         });
     }
 });

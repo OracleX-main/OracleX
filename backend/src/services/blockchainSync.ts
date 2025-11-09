@@ -40,7 +40,9 @@ export class BlockchainSyncService {
     
     const marketFactoryAddress = process.env.MARKET_FACTORY_ADDRESS;
     if (!marketFactoryAddress) {
-      throw new Error('MARKET_FACTORY_ADDRESS not set in environment');
+      logger.warn('⚠️ MARKET_FACTORY_ADDRESS not set - blockchain sync will be disabled');
+      logger.info('💡 Set MARKET_FACTORY_ADDRESS in environment to enable blockchain sync');
+      throw new Error('MARKET_FACTORY_ADDRESS not configured');
     }
 
     // Simplified ABI for just the events we need
@@ -475,5 +477,13 @@ export class BlockchainSyncService {
   }
 }
 
-// Export singleton instance
-export const blockchainSyncService = new BlockchainSyncService();
+// Export factory function instead of singleton to allow lazy initialization
+let blockchainSyncServiceInstance: BlockchainSyncService | null = null;
+
+export function getBlockchainSyncService(): BlockchainSyncService {
+  if (!blockchainSyncServiceInstance) {
+    blockchainSyncServiceInstance = new BlockchainSyncService();
+  }
+  return blockchainSyncServiceInstance;
+}
+
