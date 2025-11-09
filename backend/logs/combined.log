@@ -1057,3 +1057,29 @@ C:\Users\DELL\Desktop\OracleX\backend\src\services\blockchainSync.ts:491:9: ERRO
 2025-11-09 10:41:47 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
 2025-11-09 10:41:47 [info]: Listening for blockchain events...
 2025-11-09 10:41:47 [info]: ✅ Blockchain sync service started
+2025-11-09 11:05:42 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 11:05:42 [info]: 📊 Environment: development
+2025-11-09 11:05:42 [info]: 🔗 Database: Connected
+2025-11-09 11:05:42 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 11:05:42 [info]: Starting blockchain sync service...
+2025-11-09 11:05:42 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 11:05:42 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 11:05:42 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 11:05:42 [info]: Listening for blockchain events...
+2025-11-09 11:05:42 [info]: ✅ Blockchain sync service started
+2025-11-09 11:05:55 [info]: ::1 - - [09/Nov/2025:10:05:55 +0000] "GET /api/staking/overview HTTP/1.1" 200 125 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:05:56 [info]: ::1 - - [09/Nov/2025:10:05:56 +0000] "GET /api/staking/info/0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df HTTP/1.1" 200 131 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:06:36 [info]: ::1 - - [09/Nov/2025:10:06:36 +0000] "POST /api/api/faucet/claim HTTP/1.1" 404 58 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:07:14 [info]: ::1 - - [09/Nov/2025:10:07:14 +0000] "GET /api/staking/overview HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:07:15 [info]: ::1 - - [09/Nov/2025:10:07:15 +0000] "GET /api/staking/info/0x53A7E989Cd6AC04edACE214d192edAd7c7f350Df HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:07:25 [info]: ::1 - - [09/Nov/2025:10:07:25 +0000] "POST /api/api/faucet/claim HTTP/1.1" 404 58 "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-09 11:07:32 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-09 11:07:32 [info]: 📊 Environment: development
+2025-11-09 11:07:32 [info]: 🔗 Database: Connected
+2025-11-09 11:07:32 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-09 11:07:32 [info]: Starting blockchain sync service...
+2025-11-09 11:07:32 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-09 11:07:32 [info]: Historical sync disabled. Only listening for new events.
+2025-11-09 11:07:32 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-09 11:07:32 [info]: Listening for blockchain events...
+2025-11-09 11:07:32 [info]: ✅ Blockchain sync service started

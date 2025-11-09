@@ -66,7 +66,8 @@ const Faucet = () => {
 
     try {
       // Call backend faucet endpoint
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/faucet/claim`, {
+      const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+      const response = await fetch(`${apiBaseUrl}/faucet/claim`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
