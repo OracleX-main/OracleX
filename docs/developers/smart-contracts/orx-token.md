@@ -1,8 +1,8 @@
-# ORX Token Contract
+﻿# ORX Token Contract
 
 The ORX token is an ERC-20 utility token that powers the entire OracleX ecosystem.
 
-## 📝 Contract Details
+##  Contract Details
 
 | Property | Value |
 |----------|-------|
@@ -14,7 +14,7 @@ The ORX token is an ERC-20 utility token that powers the entire OracleX ecosyste
 | **Network** | BNB Chain Testnet (97) |
 | **Standard** | ERC-20 |
 
-## 🔧 Core Functions
+##  Core Functions
 
 ### Read Functions
 
@@ -101,7 +101,7 @@ console.log('Approval granted');
 
 **Gas Estimate:** ~46,000
 
-**💡 Pro Tip:** For unlimited approval, use `ethers.MaxUint256`:
+** Pro Tip:** For unlimited approval, use `ethers.MaxUint256`:
 ```typescript
 const tx = await orxToken.approve(
   stakingContractAddress,
@@ -133,7 +133,7 @@ await tx.wait();
 
 **Gas Estimate:** ~64,000
 
-## 📡 Events
+##  Events
 
 ### Transfer
 Emitted when tokens are transferred.
@@ -178,7 +178,7 @@ orxToken.on('Approval', (owner, spender, amount, event) => {
 });
 ```
 
-## 💼 Token Distribution
+##  Token Distribution
 
 ```mermaid
 pie title ORX Token Distribution
@@ -197,7 +197,7 @@ pie title ORX Token Distribution
 | **Community Treasury** | 150M | 15% | DAO controlled |
 | **Team & Advisors** | 100M | 10% | 4 years, 1 year cliff |
 
-## 🎯 Token Utilities
+##  Token Utilities
 
 ### 1. Prediction Markets
 - Create markets: 1,000 ORX
@@ -227,7 +227,7 @@ pie title ORX Token Distribution
 - Premium data: 10 ORX/query
 - Custom oracles: Stake required
 
-## 📊 Complete Interface
+##  Complete Interface
 
 ```typescript
 import { ethers } from 'ethers';
@@ -258,15 +258,15 @@ orxToken.on('Transfer', (from, to, amount) => {});
 orxToken.on('Approval', (owner, spender, amount) => {});
 ```
 
-## 🔒 Security Features
+##  Security Features
 
-- ✅ **OpenZeppelin Standard**: Uses battle-tested ERC-20 implementation
-- ✅ **Immutable**: No upgrade mechanism, code cannot change
-- ✅ **No Mint Function**: Fixed supply, no inflation
-- ✅ **No Pause Function**: Fully decentralized, always tradeable
-- ✅ **Audited**: Security audit by CertiK (see [Audits →](../../security/audits.md))
+-  **OpenZeppelin Standard**: Uses battle-tested ERC-20 implementation
+-  **Immutable**: No upgrade mechanism, code cannot change
+-  **No Mint Function**: Fixed supply, no inflation
+-  **No Pause Function**: Fully decentralized, always tradeable
+-  **Audited**: Security audit by CertiK (see [Audits ](../../security/audits.md))
 
-## 🧪 Testing
+##  Testing
 
 ```typescript
 // Test token functionality
@@ -291,7 +291,7 @@ describe('ORX Token', () => {
 });
 ```
 
-## 📈 On-Chain Metrics
+##  On-Chain Metrics
 
 Query token metrics from the blockchain:
 
@@ -311,7 +311,7 @@ const transfers24h = await getTransfers(ORX_TOKEN_ADDRESS, {
 });
 ```
 
-## 🌐 Integration Examples
+##  Integration Examples
 
 ### React Hook
 ```typescript
@@ -364,14 +364,14 @@ const TokenApproval = ({ spender, amount }) => {
       {!approved ? (
         <button onClick={approve}>Approve ORX</button>
       ) : (
-        <span>✅ Approved</span>
+        <span> Approved</span>
       )}
     </div>
   );
 };
 ```
 
-## 🔗 Resources
+##  Resources
 
 - **BSCScan**: https://testnet.bscscan.com/token/0x7eE4f73bab260C11c68e5560c46E3975E824ed79
 - **Source Code**: `/contracts/contracts/ORXToken.sol`
@@ -380,12 +380,13 @@ const TokenApproval = ({ spender, amount }) => {
 
 ## See Also
 
-- [Staking Contract →](staking-contract.md)
-- [Token Economics →](../../tokenomics/orx-token.md)
-- [How to Get ORX →](../../user-guides/getting-orx.md)
+- [Staking Contract ](staking-contract.md)
+- [Token Economics ](../../tokenomics/orx-token.md)
+- [How to Get ORX ](../../user-guides/getting-orx.md)
 
 ---
 
 <div style="background: linear-gradient(135deg, #FFD700, #9333EA); padding: 1.5rem; border-radius: 12px; color: white;">
-  <strong>💰 Get Test ORX:</strong> Visit our <a href="https://oraclex.com/faucet" style="color: white; text-decoration: underline;">faucet</a> to receive 1,000 test ORX tokens for development and testing.
+  <strong> Get Test ORX:</strong> Visit our <a href="https://oraclex.com/faucet" style="color: white; text-decoration: underline;">faucet</a> to receive 1,000 test ORX tokens for development and testing.
 </div>
+

@@ -1,94 +1,94 @@
-# Architecture Overview
+﻿# Architecture Overview
 
 This document provides a comprehensive overview of OracleX's technical architecture, covering all system components, their interactions, and design decisions.
 
-## 🏗️ System Architecture
+##  System Architecture
 
 ### High-Level Overview
 
 ```
-┌────────────────────────────────────────────────────────────────┐
-│                          Users                                  │
-│              (Web Browsers, Mobile Wallets)                     │
-└────────────────┬───────────────────────────────────────────────┘
-                 │
-                 │ HTTPS/WSS
-                 │
-┌────────────────▼───────────────────────────────────────────────┐
-│                     Frontend Layer                              │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │ React 18 + TypeScript + Vite                             │ │
-│  │ • Pages (Markets, Staking, Governance, Profile)          │ │
-│  │ • Components (Shadcn UI, Custom)                         │ │
-│  │ • State Management (React Context, Hooks)                │ │
-│  │ • Web3 Integration (ethers.js v6, MetaMask)              │ │
-│  └──────────────────────────────────────────────────────────┘ │
-└────────────────┬───────────────────────────────────────────────┘
-                 │
-        ┌────────┴────────┐
-        │                 │
-        │ REST/WSS        │ Web3 RPC
-        │                 │
-┌───────▼────────┐  ┌────▼──────────────────────────────────────┐
-│  Backend API   │  │    BNB Chain (Smart Contracts)            │
-│  (Node.js)     │  │  ┌────────────────────────────────────┐  │
-│                │  │  │ ORX Token (ERC-20)                  │  │
-│ ┌────────────┐ │  │  │ • Transfer, Approve, Allowance     │  │
-│ │PostgreSQL  │ │  │  └────────────────────────────────────┘  │
-│ │ Database   │ │  │  ┌────────────────────────────────────┐  │
-│ └────────────┘ │  │  │ Market Factory                      │  │
-│                │  │  │ • Create, List, Pause Markets       │  │
-│ ┌────────────┐ │  │  └────────────────────────────────────┘  │
-│ │   Redis    │ │  │  ┌────────────────────────────────────┐  │
-│ │   Cache    │ │  │  │ Prediction Market                   │  │
-│ └────────────┘ │  │  │ • Stake, Claim, Resolve             │  │
-│                │  │  └────────────────────────────────────┘  │
-│ ┌────────────┐ │  │  ┌────────────────────────────────────┐  │
-│ │ Blockchain │ │  │  │ Staking Contract                    │  │
-│ │  Sync      │◄─┼──┼──│ • Stake, Unstake, Rewards          │  │
-│ └────────────┘ │  │  └────────────────────────────────────┘  │
-└───────┬────────┘  │  ┌────────────────────────────────────┐  │
-        │           │  │ Governance DAO                      │  │
-        │           │  │ • Proposals, Voting, Execution      │  │
-        │           │  └────────────────────────────────────┘  │
-        │           │  ┌────────────────────────────────────┐  │
-        │           │  │ Dispute Resolution                  │  │
-        │           │  │ • Challenge, Vote, Resolve          │  │
-        │           │  └────────────────────────────────────┘  │
-        │           │  ┌────────────────────────────────────┐  │
-        │           │  │ Oracle Bridge                       │  │
-        │           │  │ • Register Oracles, Submit Data     │  │
-        │           │  └────────────┬───────────────────────┘  │
-        │           └───────────────┼──────────────────────────┘
-        │                           │
-        │                           │ Oracle Callbacks
-        │                           │
-┌───────▼──────────────────────────▼──────────────────────────────┐
-│              TruthMesh AI Oracle (Python)                        │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │ FastAPI Server                                           │   │
-│  │  • REST API endpoints                                    │   │
-│  │  • Webhook handlers                                      │   │
-│  └─────────────────────────────────────────────────────────┘   │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │ Agent System (LangChain + OpenAI)                       │   │
-│  │  • Data Fetcher Agent                                    │   │
-│  │  • Validator Agent                                       │   │
-│  │  • Arbiter Agent                                         │   │
-│  │  • Confidence Scorer                                     │   │
-│  └─────────────────────────────────────────────────────────┘   │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │ Data Sources                                             │   │
-│  │  • CoinGecko API (crypto prices)                        │   │
-│  │  • NewsAPI (news & events)                              │   │
-│  │  • Twitter API (social sentiment)                       │   │
-│  │  • Weather APIs (climate data)                          │   │
-│  │  • Custom scrapers                                       │   │
-│  └─────────────────────────────────────────────────────────┘   │
-└──────────────────────────────────────────────────────────────────┘
+
+                          Users                                  
+              (Web Browsers, Mobile Wallets)                     
+
+                 
+                  HTTPS/WSS
+                 
+
+                     Frontend Layer                              
+   
+   React 18 + TypeScript + Vite                              
+    Pages (Markets, Staking, Governance, Profile)           
+    Components (Shadcn UI, Custom)                          
+    State Management (React Context, Hooks)                 
+    Web3 Integration (ethers.js v6, MetaMask)               
+   
+
+                 
+        
+                         
+         REST/WSS         Web3 RPC
+                         
+  
+  Backend API         BNB Chain (Smart Contracts)            
+  (Node.js)           
+                     ORX Token (ERC-20)                    
+        Transfer, Approve, Allowance       
+ PostgreSQL         
+  Database          
+       Market Factory                        
+                      Create, List, Pause Markets         
+        
+    Redis           
+    Cache          Prediction Market                     
+        Stake, Claim, Resolve               
+                      
+        
+  Blockchain       Staking Contract                      
+   Sync        Stake, Unstake, Rewards            
+        
+      
+                      Governance DAO                        
+                       Proposals, Voting, Execution        
+                       
+                       
+                      Dispute Resolution                    
+                       Challenge, Vote, Resolve            
+                       
+                       
+                      Oracle Bridge                         
+                       Register Oracles, Submit Data       
+                       
+                   
+                                   
+                                    Oracle Callbacks
+                                   
+
+              TruthMesh AI Oracle (Python)                        
+     
+   FastAPI Server                                              
+     REST API endpoints                                       
+     Webhook handlers                                         
+     
+     
+   Agent System (LangChain + OpenAI)                          
+     Data Fetcher Agent                                       
+     Validator Agent                                          
+     Arbiter Agent                                            
+     Confidence Scorer                                        
+     
+     
+   Data Sources                                                
+     CoinGecko API (crypto prices)                           
+     NewsAPI (news & events)                                 
+     Twitter API (social sentiment)                          
+     Weather APIs (climate data)                             
+     Custom scrapers                                          
+     
+
 ```
 
-## 📦 Component Breakdown
+##  Component Breakdown
 
 ### 1. Frontend Layer
 
@@ -103,15 +103,15 @@ This document provides a comprehensive overview of OracleX's technical architect
 **Key Directories:**
 ```
 frontend/src/
-├── pages/           # Route pages (Markets, Staking, etc.)
-├── components/      # Reusable UI components
-│   ├── ui/          # Shadcn UI primitives
-│   └── [custom]/    # App-specific components
-├── services/        # API and Web3 services
-├── hooks/           # Custom React hooks
-├── lib/             # Utilities and helpers
-├── abis/            # Smart contract ABIs
-└── assets/          # Images, fonts, icons
+ pages/           # Route pages (Markets, Staking, etc.)
+ components/      # Reusable UI components
+    ui/          # Shadcn UI primitives
+    [custom]/    # App-specific components
+ services/        # API and Web3 services
+ hooks/           # Custom React hooks
+ lib/             # Utilities and helpers
+ abis/            # Smart contract ABIs
+ assets/          # Images, fonts, icons
 ```
 
 **Web3 Integration:**
@@ -149,24 +149,24 @@ try {
 
 **Architecture Pattern:**
 ```
-Routes → Controllers → Services → Models
-  ↓
+Routes  Controllers  Services  Models
+  
 Middleware (Auth, Validation, Error Handling)
 ```
 
 **Key Directories:**
 ```
 backend/src/
-├── routes/          # API route definitions
-├── controllers/     # Request handlers
-├── services/        # Business logic
-│   ├── blockchain/  # Blockchain interaction
-│   ├── oracle/      # Oracle communication
-│   └── analytics/   # Data aggregation
-├── models/          # Prisma schema & types
-├── middleware/      # Express middleware
-├── utils/           # Helper functions
-└── config/          # Configuration files
+ routes/          # API route definitions
+ controllers/     # Request handlers
+ services/        # Business logic
+    blockchain/  # Blockchain interaction
+    oracle/      # Oracle communication
+    analytics/   # Data aggregation
+ models/          # Prisma schema & types
+ middleware/      # Express middleware
+ utils/           # Helper functions
+ config/          # Configuration files
 ```
 
 **Database Schema:**
@@ -352,27 +352,27 @@ async def fetch_news_sentiment(query: str, date_range: tuple):
     return analyze_sentiment(articles)
 ```
 
-## 🔄 Data Flow
+##  Data Flow
 
 ### 1. Market Creation Flow
 
 ```
 User (Frontend)
-    ↓ AI generates market details
+     AI generates market details
 Frontend validates input
-    ↓ POST /api/markets
+     POST /api/markets
 Backend API
-    ↓ Store in database
-    ↓ Check wallet approval
+     Store in database
+     Check wallet approval
 Web3 Transaction
-    ↓ createMarket(title, outcomes, expiry)
+     createMarket(title, outcomes, expiry)
 Smart Contract
-    ↓ Emit MarketCreated event
+     Emit MarketCreated event
 Blockchain Sync Service
-    ↓ Listen for events
-    ↓ Update database status
+     Listen for events
+     Update database status
 Backend Database
-    ↓ Notify frontend via WebSocket
+     Notify frontend via WebSocket
 Frontend updates UI
 ```
 
@@ -380,22 +380,22 @@ Frontend updates UI
 
 ```
 User selects outcome + amount
-    ↓
+    
 Frontend calculates expected returns
-    ↓
+    
 Check/Request ORX approval
-    ↓ approve(stakingContract, amount)
+     approve(stakingContract, amount)
 ORX Token Contract
-    ↓ Approval granted
-    ↓ stakeTokens(marketId, outcome, amount)
+     Approval granted
+     stakeTokens(marketId, outcome, amount)
 Market Contract
-    ↓ Transfer ORX from user
-    ↓ Update stake info
-    ↓ Emit Prediction event
+     Transfer ORX from user
+     Update stake info
+     Emit Prediction event
 Blockchain Sync
-    ↓ Update prediction in DB
+     Update prediction in DB
 Backend Database
-    ↓ Update user portfolio
+     Update user portfolio
 Frontend refreshes UI
 ```
 
@@ -403,31 +403,31 @@ Frontend refreshes UI
 
 ```
 Market expires (expiryTime reached)
-    ↓
+    
 Cron job detects expired market
-    ↓ POST /oracle/resolve/{marketId}
+     POST /oracle/resolve/{marketId}
 Backend triggers Oracle
-    ↓
+    
 TruthMesh AI Oracle
-    ├─ Fetch data from sources
-    ├─ Cross-validate
-    ├─ Determine outcome
-    └─ Calculate confidence
-    ↓ Return resolution
+     Fetch data from sources
+     Cross-validate
+     Determine outcome
+     Calculate confidence
+     Return resolution
 Backend receives result
-    ↓ resolveMarket(marketId, winningOutcome)
+     resolveMarket(marketId, winningOutcome)
 Smart Contract
-    ↓ Set winner
-    ↓ Enable claims
-    ↓ Emit MarketResolved event
+     Set winner
+     Enable claims
+     Emit MarketResolved event
 Blockchain Sync
-    ↓ Update market status
+     Update market status
 Backend notifies winners
-    ↓ Push notifications
+     Push notifications
 Users claim rewards
 ```
 
-## 🔐 Security Architecture
+##  Security Architecture
 
 ### Smart Contract Security
 
@@ -501,7 +501,7 @@ async function verifySignature(address: string, signature: string, message: stri
 }
 ```
 
-## 📊 Performance Optimization
+##  Performance Optimization
 
 ### Frontend Optimization
 
@@ -619,30 +619,30 @@ for (let from = lastBlock; from < currentBlock; from += 1000) {
 }
 ```
 
-## 🚀 Deployment Architecture
+##  Deployment Architecture
 
 ### Production Infrastructure
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                  Cloudflare CDN                          │
-│                  (SSL, DDoS Protection)                  │
-└────────────────────┬────────────────────────────────────┘
-                     │
-        ┌────────────┴───────────┐
-        │                        │
-┌───────▼────────┐      ┌────────▼────────┐
-│  Vercel         │      │  Railway        │
-│  (Frontend)     │      │  (Backend API)  │
-│  • React build  │      │  • Node.js      │
-│  • Edge cache   │      │  • PostgreSQL   │
-│  • Auto-scale   │      │  • Redis        │
-└─────────────────┘      └─────────────────┘
-                               │
-                         ┌─────▼─────┐
-                         │  Docker    │
-                         │  (Oracle)  │
-                         └───────────┘
+
+                  Cloudflare CDN                          
+                  (SSL, DDoS Protection)                  
+
+                     
+        
+                                
+      
+  Vercel                 Railway        
+  (Frontend)             (Backend API)  
+   React build           Node.js      
+   Edge cache            PostgreSQL   
+   Auto-scale            Redis        
+      
+                               
+                         
+                           Docker    
+                           (Oracle)  
+                         
 ```
 
 ### CI/CD Pipeline
@@ -681,15 +681,16 @@ jobs:
           token: ${{ secrets.RAILWAY_TOKEN }}
 ```
 
-## 📚 Further Reading
+##  Further Reading
 
-- [Smart Contract Details →](../developers/smart-contracts/README.md)
-- [Backend API Documentation →](../developers/backend-api/README.md)
-- [AI Oracle System →](../developers/ai-oracle/README.md)
-- [Security Best Practices →](../security/best-practices.md)
+- [Smart Contract Details ](../developers/smart-contracts/README.md)
+- [Backend API Documentation ](../developers/backend-api/README.md)
+- [AI Oracle System ](../developers/ai-oracle/README.md)
+- [Security Best Practices ](../security/best-practices.md)
 
 ---
 
 <div style="background: linear-gradient(135deg, #FFD700, #9333EA); padding: 1.5rem; border-radius: 12px; color: white;">
-  <strong>🏗️ Architecture Note:</strong> This is a living document. As OracleX evolves, this architecture documentation will be updated to reflect the latest system design and best practices.
+  <strong> Architecture Note:</strong> This is a living document. As OracleX evolves, this architecture documentation will be updated to reflect the latest system design and best practices.
 </div>
+

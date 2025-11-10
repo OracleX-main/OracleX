@@ -1,8 +1,8 @@
-# Smart Contract Reference
+﻿# Smart Contract Reference
 
 Complete documentation for all OracleX smart contracts deployed on BNB Chain Testnet.
 
-## 📋 Contract Overview
+##  Contract Overview
 
 | Contract | Address | Purpose |
 |----------|---------|---------|
@@ -24,11 +24,11 @@ Complete documentation for all OracleX smart contracts deployed on BNB Chain Tes
 
 ## Quick Links
 
-- [ORX Token →](orx-token.md)
-- [Market Factory →](market-factory.md)
-- [Staking Contract →](staking-contract.md)
-- [Governance DAO →](governance-dao.md)
-- [Full API Reference →](../../reference/api-reference.md)
+- [ORX Token ](orx-token.md)
+- [Market Factory ](market-factory.md)
+- [Staking Contract ](staking-contract.md)
+- [Governance DAO ](governance-dao.md)
+- [Full API Reference ](../../reference/api-reference.md)
 
 ## Development Resources
 
@@ -105,14 +105,14 @@ const events = await contract.queryFilter(
 
 ## Security Considerations
 
-- ✅ Always verify contract addresses
-- ✅ Check allowance before approving
-- ✅ Validate transaction parameters
-- ✅ Test on testnet first
-- ✅ Use hardware wallet for large amounts
-- ⚠️ Never share private keys
-- ⚠️ Beware of phishing attempts
-- ⚠️ Double-check recipient addresses
+-  Always verify contract addresses
+-  Check allowance before approving
+-  Validate transaction parameters
+-  Test on testnet first
+-  Use hardware wallet for large amounts
+-  Never share private keys
+-  Beware of phishing attempts
+-  Double-check recipient addresses
 
 ## Upgradeability
 
@@ -158,12 +158,13 @@ npm run copy-abis
 
 ## See Also
 
-- [Token Economics →](../../tokenomics/orx-token.md)
-- [API Reference →](../../reference/api-reference.md)
-- [Security Audits →](../../security/audits.md)
+- [Token Economics ](../../tokenomics/orx-token.md)
+- [API Reference ](../../reference/api-reference.md)
+- [Security Audits ](../../security/audits.md)
 
 ---
 
 <div style="background: linear-gradient(135deg, #FFD700, #9333EA); padding: 1.5rem; border-radius: 12px; color: white;">
-  <strong>📖 Dive Deeper:</strong> Explore individual contract documentation for detailed function signatures, events, and usage examples.
+  <strong> Dive Deeper:</strong> Explore individual contract documentation for detailed function signatures, events, and usage examples.
 </div>
+

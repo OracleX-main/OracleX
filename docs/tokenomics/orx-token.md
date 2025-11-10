@@ -1,8 +1,8 @@
-# $ORX Token Economics
+﻿# $ORX Token Economics
 
 The ORX token is the lifeblood of the OracleX ecosystem, designed with sustainable tokenomics to reward participation and ensure long-term value growth.
 
-## 🪙 Token Overview
+##  Token Overview
 
 | Parameter | Value |
 |-----------|-------|
@@ -14,7 +14,7 @@ The ORX token is the lifeblood of the OracleX ecosystem, designed with sustainab
 | **Initial Circulating** | 300,000,000 ORX (30%) |
 | **Contract Address** | `0x7eE4f73bab260C11c68e5560c46E3975E824ed79` |
 
-## 📊 Token Distribution
+##  Token Distribution
 
 ```mermaid
 pie title Token Allocation
@@ -95,7 +95,7 @@ Year 3: 37.5M ORX (37.5% cumulative = 62.5%)
 Year 4: 37.5M ORX (100% cumulative)
 ```
 
-## 💎 Token Utilities
+##  Token Utilities
 
 ### 1. Market Creation
 **Cost**: 1,000 ORX per market
@@ -114,10 +114,10 @@ const tx = await marketFactory.createMarket(
 ```
 
 **Benefits**:
-- ✅ Prevents spam markets
-- ✅ Ensures creator commitment
-- ✅ Refunded after fair resolution
-- ⚠️ Slashed if market disputes arise
+-  Prevents spam markets
+-  Ensures creator commitment
+-  Refunded after fair resolution
+-  Slashed if market disputes arise
 
 ### 2. Prediction Staking
 **Amount**: Any amount from 10 ORX minimum
@@ -126,7 +126,7 @@ Stake ORX on prediction outcomes to earn from correct predictions.
 
 **Reward Formula**:
 ```
-Your Reward = (Your Stake / Total Correct Stakes) × Total Incorrect Stakes × (1 - Platform Fee)
+Your Reward = (Your Stake / Total Correct Stakes)  Total Incorrect Stakes  (1 - Platform Fee)
 ```
 
 **Example**:
@@ -193,7 +193,7 @@ Participate in protocol governance by voting on proposals:
 
 **Voting Power Calculation**:
 ```typescript
-// Voting power = staked tokens × time multiplier
+// Voting power = staked tokens  time multiplier
 const votingPower = stakedAmount * (1 + (lockTime / maxLockTime));
 
 // Example:
@@ -244,7 +244,7 @@ const tx = await aiOracle.subscribe(30 * 24 * 60 * 60, {
 });
 ```
 
-## 📈 Value Accrual Mechanisms
+##  Value Accrual Mechanisms
 
 ### 1. Buy & Burn
 **5% of platform fees** used to buy back and burn ORX tokens.
@@ -281,7 +281,7 @@ const stakingRatio = (totalStaked * 100n) / totalSupply;
 ```
 
 ### 3. Platform Growth
-More users → More markets → More predictions → More fees → More buybacks
+More users  More markets  More predictions  More fees  More buybacks
 
 **Growth Metrics**:
 ```typescript
@@ -294,7 +294,7 @@ const monthlyFeeRevenue = dailyActiveUsers * avgFeesPerUser;
 const circulatingSupplyReduction = dailyActiveUsers * avgStakePerUser;
 ```
 
-## 💰 Fee Structure
+##  Fee Structure
 
 ### Platform Fees
 | Activity | Fee | Destination |
@@ -322,7 +322,7 @@ graph LR
     D --> I[Staker Rewards]
 ```
 
-## 🔮 Token Metrics Projections
+##  Token Metrics Projections
 
 ### Year 1 Targets
 - **Circulating Supply**: 375M ORX (37.5%)
@@ -345,7 +345,7 @@ graph LR
 - **Daily Active Users**: 1,000,000
 - **Total Value Locked**: $5B
 
-## 📊 Supply Schedule
+##  Supply Schedule
 
 ```typescript
 // Circulating supply over time
@@ -370,7 +370,7 @@ const inflationRate = {
 };
 ```
 
-## 🎯 Token Utility Matrix
+##  Token Utility Matrix
 
 | Feature | ORX Required | Benefit | Lock Period |
 |---------|--------------|---------|-------------|
@@ -385,21 +385,22 @@ const inflationRate = {
 | **Submit Proposal** | 10,000+ | Propose changes | 7 days |
 | **AI Oracle (Premium)** | 1,000/month | Unlimited queries | 30 days |
 
-## 🔗 Resources
+##  Resources
 
-- **Token Contract**: [View on BSCScan →](https://testnet.bscscan.com/token/0x7eE4f73bab260C11c68e5560c46E3975E824ed79)
-- **Staking Dashboard**: [Stake ORX →](/staking)
-- **Governance Forum**: [Discuss Proposals →](https://forum.oraclex.com)
-- **Analytics**: [Token Metrics →](https://dune.com/oraclex/token-metrics)
+- **Token Contract**: [View on BSCScan ](https://testnet.bscscan.com/token/0x7eE4f73bab260C11c68e5560c46E3975E824ed79)
+- **Staking Dashboard**: [Stake ORX ](/staking)
+- **Governance Forum**: [Discuss Proposals ](https://forum.oraclex.com)
+- **Analytics**: [Token Metrics ](https://dune.com/oraclex/token-metrics)
 
 ## See Also
 
-- [How to Stake ORX →](../user-guides/staking-guide.md)
-- [Governance Guide →](../user-guides/governance.md)
-- [ORX Token Contract →](../developers/smart-contracts/orx-token.md)
+- [How to Stake ORX ](../user-guides/staking-guide.md)
+- [Governance Guide ](../user-guides/governance.md)
+- [ORX Token Contract ](../developers/smart-contracts/orx-token.md)
 
 ---
 
 <div style="background: linear-gradient(135deg, #FFD700, #9333EA); padding: 1.5rem; border-radius: 12px; color: white;">
-  <strong>🚀 Get Started:</strong> Claim your first 1,000 test ORX from our faucet and start predicting the future today!
+  <strong> Get Started:</strong> Claim your first 1,000 test ORX from our faucet and start predicting the future today!
 </div>
+

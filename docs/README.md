@@ -1,4 +1,4 @@
-# Welcome to OracleX Documentation
+﻿# Welcome to OracleX Documentation
 
 <div align="center">
 
@@ -13,20 +13,20 @@
 
 </div>
 
-## 🌟 What is OracleX?
+##  What is OracleX?
 
 OracleX is a revolutionary **decentralized prediction market platform** powered by artificial intelligence and built on BNB Chain. We combine the wisdom of crowds with cutting-edge AI technology to create a transparent, accurate, and engaging prediction ecosystem.
 
 ### Key Features
 
-🤖 **AI-Powered Predictions** - TruthMesh AI Oracle system with multi-agent consensus  
-💎 **$ORX Token Economy** - Stake, govern, and earn rewards with our native token  
-⛓️ **BNB Chain Integration** - Fast, cheap, and secure blockchain infrastructure  
-🎯 **Social Prediction Markets** - Create and trade on real-world events  
-🏆 **Gamification & Rewards** - Compete on leaderboards and earn for accuracy  
-🔐 **Decentralized Governance** - Community-driven decision making via DAO  
+ **AI-Powered Predictions** - TruthMesh AI Oracle system with multi-agent consensus  
+ **$ORX Token Economy** - Stake, govern, and earn rewards with our native token  
+ **BNB Chain Integration** - Fast, cheap, and secure blockchain infrastructure  
+ **Social Prediction Markets** - Create and trade on real-world events  
+ **Gamification & Rewards** - Compete on leaderboards and earn for accuracy  
+ **Decentralized Governance** - Community-driven decision making via DAO  
 
-## 📚 Documentation Structure
+##  Documentation Structure
 
 ### Getting Started
 - [Introduction](getting-started/introduction.md) - Learn about OracleX
@@ -76,7 +76,7 @@ OracleX is a revolutionary **decentralized prediction market platform** powered 
 - [Code of Conduct](contributing/code-of-conduct.md) - Community guidelines
 - [Development Setup](contributing/development-setup.md) - Local environment
 
-## 🚀 Quick Links
+##  Quick Links
 
 | Resource | Description | Link |
 |----------|-------------|------|
@@ -87,33 +87,33 @@ OracleX is a revolutionary **decentralized prediction market platform** powered 
 | **BSCScan** | Contract explorer | [View Contracts](https://testnet.bscscan.com/) |
 | **Faucet** | Get test tokens | [app.oraclex.ai/faucet](https://app.oraclex.ai/faucet) |
 
-## 💡 Popular Topics
+##  Popular Topics
 
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2rem 0;">
 
 <div style="padding: 1rem; border: 1px solid #FFD700; border-radius: 8px; background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(147,51,234,0.1));">
-  <h3>🎯 First Time User?</h3>
+  <h3> First Time User?</h3>
   <p>Start with our <a href="getting-started/quick-start.md">Quick Start Guide</a> to create your first prediction market in under 5 minutes!</p>
 </div>
 
 <div style="padding: 1rem; border: 1px solid #9333EA; border-radius: 8px; background: linear-gradient(135deg, rgba(147,51,234,0.1), rgba(255,215,0,0.1));">
-  <h3>👨‍💻 Developer?</h3>
+  <h3> Developer?</h3>
   <p>Check out our <a href="developers/smart-contracts/README.md">Smart Contract Documentation</a> and <a href="developers/backend-api/README.md">API Reference</a>.</p>
 </div>
 
 <div style="padding: 1rem; border: 1px solid #FFD700; border-radius: 8px; background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(147,51,234,0.1));">
-  <h3>💰 Want to Stake?</h3>
+  <h3> Want to Stake?</h3>
   <p>Learn about <a href="user-guides/staking.md">staking $ORX</a> and earning passive rewards through our validator system.</p>
 </div>
 
 <div style="padding: 1rem; border: 1px solid #9333EA; border-radius: 8px; background: linear-gradient(135deg, rgba(147,51,234,0.1), rgba(255,215,0,0.1));">
-  <h3>🤖 AI Enthusiast?</h3>
+  <h3> AI Enthusiast?</h3>
   <p>Explore our <a href="developers/ai-oracle/README.md">TruthMesh AI Oracle</a> system and learn how multi-agent consensus works.</p>
 </div>
 
 </div>
 
-## 🎓 Learn by Example
+##  Learn by Example
 
 ### Create a Prediction Market
 ```typescript
@@ -141,7 +141,7 @@ await stakeOnOutcome({
 curl https://api.oraclex.ai/markets?status=active&sort=trending
 ```
 
-## 📊 Platform Statistics
+##  Platform Statistics
 
 <div style="display: flex; justify-content: space-around; margin: 2rem 0; text-align: center;">
 
@@ -167,34 +167,34 @@ curl https://api.oraclex.ai/markets?status=active&sort=trending
 
 </div>
 
-## 🆘 Need Help?
+##  Need Help?
 
-- 💬 **Community Support**: Join our [Discord](https://discord.gg/oraclex) for real-time help
-- 📧 **Email**: support@oraclex.ai for technical issues
-- 🐛 **Bug Reports**: Open an issue on [GitHub](https://github.com/oraclex/issues)
-- 📖 **FAQs**: Check our [Frequently Asked Questions](reference/faq.md)
+-  **Community Support**: Join our [Discord](https://discord.gg/oraclex) for real-time help
+-  **Email**: support@oraclex.ai for technical issues
+-  **Bug Reports**: Open an issue on [GitHub](https://github.com/oraclex/issues)
+-  **FAQs**: Check our [Frequently Asked Questions](reference/faq.md)
 
-## 🗺️ Roadmap
+##  Roadmap
 
-### Phase 1: MVP (Q4 2025) ✅
-- ✅ Core prediction markets
-- ✅ $ORX token deployment
-- ✅ BNB testnet launch
-- ✅ Basic AI oracle integration
+### Phase 1: MVP (Q4 2025) 
+-  Core prediction markets
+-  $ORX token deployment
+-  BNB testnet launch
+-  Basic AI oracle integration
 
 ### Phase 2: Beta Launch (Q1 2026)
-- 🔄 TruthMesh multi-agent system
-- 🔄 Mobile app (React Native)
-- 🔄 Advanced analytics
-- 🔄 Social features
+-  TruthMesh multi-agent system
+-  Mobile app (React Native)
+-  Advanced analytics
+-  Social features
 
 ### Phase 3: Mainnet (Q2 2026)
-- ⏳ BNB mainnet deployment
-- ⏳ Cross-chain expansion
-- ⏳ Enterprise API
-- ⏳ Institutional tools
+-  BNB mainnet deployment
+-  Cross-chain expansion
+-  Enterprise API
+-  Institutional tools
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
 
@@ -202,8 +202,9 @@ This project is licensed under the MIT License - see the [LICENSE](../LICENSE) f
 
 <div align="center">
 
-**Built with ❤️ by the OracleX Team**
+**Built with  by the OracleX Team**
 
-[Website](https://oraclex.ai) • [Twitter](https://twitter.com/oraclex_official) • [Discord](https://discord.gg/oraclex) • [GitHub](https://github.com/oraclex)
+[Website](https://oraclex.ai)  [Twitter](https://twitter.com/oraclex_official)  [Discord](https://discord.gg/oraclex)  [GitHub](https://github.com/oraclex)
 
 </div>
+

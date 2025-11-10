@@ -1,18 +1,18 @@
-# Documentation Generation Guide
+﻿# Documentation Generation Guide
 
 This guide explains the OracleX documentation structure and how to generate/update documentation pages.
 
-## 📚 Documentation Structure
+##  Documentation Structure
 
 The documentation is organized into the following sections:
 
-###  Getting Started (✅ Complete)
-- ✅ `getting-started/introduction.md` - Overview of OracleX
-- ✅ `getting-started/quick-start.md` - 5-minute getting started guide
-- ✅ `getting-started/core-concepts.md` - Fundamental concepts
-- ✅ `getting-started/architecture.md` - System architecture overview
+###  Getting Started ( Complete)
+-  `getting-started/introduction.md` - Overview of OracleX
+-  `getting-started/quick-start.md` - 5-minute getting started guide
+-  `getting-started/core-concepts.md` - Fundamental concepts
+-  `getting-started/architecture.md` - System architecture overview
 
-### 📖 User Guides (To Create)
+###  User Guides (To Create)
 - `user-guides/wallet-setup.md` - Setting up MetaMask
 - `user-guides/getting-orx.md` - How to get ORX tokens
 - `user-guides/create-market.md` - Creating prediction markets
@@ -22,7 +22,7 @@ The documentation is organized into the following sections:
 - `user-guides/rewards.md` - Claiming rewards
 - `user-guides/profile.md` - Managing your profile
 
-### 👨‍💻 Smart Contract Documentation (To Create)
+###  Smart Contract Documentation (To Create)
 - `developers/smart-contracts/README.md` - Overview
 - `developers/smart-contracts/orx-token.md` - ORX Token contract
 - `developers/smart-contracts/market-factory.md` - Market Factory
@@ -33,7 +33,7 @@ The documentation is organized into the following sections:
 - `developers/smart-contracts/oracle-bridge.md` - Oracle integration
 - `developers/smart-contracts/ai-oracle.md` - AI Oracle contract
 
-### 🔌 Backend API (To Create)
+###  Backend API (To Create)
 - `developers/backend-api/README.md` - API overview
 - `developers/backend-api/authentication.md` - Auth methods
 - `developers/backend-api/markets.md` - Markets endpoints
@@ -44,7 +44,7 @@ The documentation is organized into the following sections:
 - `developers/backend-api/faucet.md` - Faucet endpoints
 - `developers/backend-api/websockets.md` - Real-time events
 
-### 🤖 AI Oracle System (To Create)
+###  AI Oracle System (To Create)
 - `developers/ai-oracle/README.md` - TruthMesh overview
 - `developers/ai-oracle/agent-architecture.md` - Agent system
 - `developers/ai-oracle/data-sources.md` - Data integration
@@ -53,7 +53,7 @@ The documentation is organized into the following sections:
 - `developers/ai-oracle/dispute-resolution.md` - Dispute handling
 - `developers/ai-oracle/custom-oracles.md` - Building custom oracles
 
-### 💎 Token Economics (To Create)
+###  Token Economics (To Create)
 - `tokenomics/orx-token.md` - ORX token details
 - `tokenomics/distribution.md` - Token distribution
 - `tokenomics/staking.md` - Staking mechanics
@@ -62,7 +62,7 @@ The documentation is organized into the following sections:
 - `tokenomics/fees.md` - Fee structure
 - `tokenomics/metrics.md` - Economic metrics
 
-### 📘 Reference (To Create)
+###  Reference (To Create)
 - `reference/contract-addresses.md` - Deployed contracts
 - `reference/network-config.md` - Network configuration
 - `reference/api-reference.md` - Complete API reference
@@ -71,7 +71,7 @@ The documentation is organized into the following sections:
 - `reference/glossary.md` - Terms and definitions
 - `reference/faq.md` - Frequently asked questions
 
-### 🎓 Tutorials (To Create)
+###  Tutorials (To Create)
 - `tutorials/deployment.md` - Deploy local instance
 - `tutorials/first-market.md` - Create first market tutorial
 - `tutorials/custom-oracle.md` - Build custom oracle
@@ -79,14 +79,14 @@ The documentation is organized into the following sections:
 - `tutorials/trading-strategies.md` - Trading strategies
 - `tutorials/bot-development.md` - Bot development guide
 
-### 🔐 Security (To Create)
+###  Security (To Create)
 - `security/overview.md` - Security overview
 - `security/best-practices.md` - Best practices
 - `security/audits.md` - Audit reports
 - `security/bug-bounty.md` - Bug bounty program
 - `security/incident-response.md` - Incident handling
 
-### 🤝 Contributing (To Create)
+###  Contributing (To Create)
 - `contributing/contributing-guide.md` - How to contribute
 - `contributing/code-of-conduct.md` - Community guidelines
 - `contributing/development-setup.md` - Local development
@@ -94,14 +94,14 @@ The documentation is organized into the following sections:
 - `contributing/pull-requests.md` - PR process
 - `contributing/testing.md` - Testing guidelines
 
-### 📦 Resources (To Create)
+###  Resources (To Create)
 - `resources/changelog.md` - Version history
 - `resources/roadmap.md` - Product roadmap
 - `resources/brand-assets.md` - Branding assets
 - `resources/community.md` - Community resources
 - `resources/legal.md` - Legal documents
 
-## 🎨 Documentation Style Guide
+##  Documentation Style Guide
 
 ### Colors & Branding
 
@@ -127,20 +127,20 @@ background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(147,51,234,0.1));
 
 Use consistent emojis for sections:
 
-- 🎯 Prediction markets
-- 💎 $ORX Token
-- 🤖 AI/Oracle system
-- 🏛️ Governance
-- 📊 Analytics
-- 🔐 Security
-- ⚡ Performance
-- 🚀 Deployment
-- 📚 Documentation
-- 💡 Tips/Pro-tips
-- ⚠️ Warnings
-- ✅ Success/Completed
-- ❌ Error/Failed
-- 🔄 In Progress
+-  Prediction markets
+-  $ORX Token
+-  AI/Oracle system
+-  Governance
+-  Analytics
+-  Security
+-  Performance
+-  Deployment
+-  Documentation
+-  Tips/Pro-tips
+-  Warnings
+-  Success/Completed
+-  Error/Failed
+-  In Progress
 
 ### Code Blocks
 
@@ -175,26 +175,26 @@ npm run dev
 ```html
 <!-- Info Box -->
 <div style="background: linear-gradient(135deg, #3B82F6, #1E40AF); padding: 1rem; border-radius: 8px; color: white; margin: 1rem 0;">
-  <strong>ℹ️ Info:</strong> Important information here
+  <strong> Info:</strong> Important information here
 </div>
 
 <!-- Warning Box -->
 <div style="background: linear-gradient(135deg, #F59E0B, #D97706); padding: 1rem; border-radius: 8px; color: white; margin: 1rem 0;">
-  <strong>⚠️ Warning:</strong> Caution message here
+  <strong> Warning:</strong> Caution message here
 </div>
 
 <!-- Success Box -->
 <div style="background: linear-gradient(135deg, #10B981, #059669); padding: 1rem; border-radius: 8px; color: white; margin: 1rem 0;">
-  <strong>✅ Success:</strong> Success message here
+  <strong> Success:</strong> Success message here
 </div>
 
 <!-- Pro Tip Box -->
 <div style="background: linear-gradient(135deg, #FFD700, #9333EA); padding: 1rem; border-radius: 8px; color: white; margin: 1rem 0;">
-  <strong>💡 Pro Tip:</strong> Expert advice here
+  <strong> Pro Tip:</strong> Expert advice here
 </div>
 ```
 
-## 📝 Page Template
+##  Page Template
 
 Use this template for new pages:
 
@@ -236,11 +236,11 @@ graph TD
 ---
 
 <div style="background: linear-gradient(135deg, #FFD700, #9333EA); padding: 1.5rem; border-radius: 12px; color: white;">
-  <strong>💡 Next Steps:</strong> Links to next recommended pages
+  <strong> Next Steps:</strong> Links to next recommended pages
 </div>
 ```
 
-## 🔨 Building the Documentation
+##  Building the Documentation
 
 ### Local Development
 
@@ -287,7 +287,7 @@ url: https://docs.oraclex.ai
 # CNAME docs.oraclex.ai -> your-space.gitbook.io
 ```
 
-## 📦 Assets
+##  Assets
 
 ### Images
 
@@ -295,12 +295,12 @@ Store images in `docs/assets/`:
 
 ```
 docs/assets/
-├── logo.png           # OracleX logo
-├── banner.png         # Hero banner
-├── favicon.ico        # Favicon
-├── screenshots/       # App screenshots
-├── diagrams/          # Architecture diagrams
-└── icons/             # UI icons
+ logo.png           # OracleX logo
+ banner.png         # Hero banner
+ favicon.ico        # Favicon
+ screenshots/       # App screenshots
+ diagrams/          # Architecture diagrams
+ icons/             # UI icons
 ```
 
 ### Using Images
@@ -310,7 +310,7 @@ docs/assets/
 ![Banner](assets/banner.png)
 ```
 
-## ✅ Documentation Checklist
+##  Documentation Checklist
 
 ### For Each Page
 
@@ -333,7 +333,7 @@ docs/assets/
 - [ ] Link from parent pages
 - [ ] Add to search keywords
 
-## 🚀 Next Steps
+##  Next Steps
 
 1. **Review existing pages** - Introduction, Quick Start, Core Concepts, Architecture
 2. **Create remaining pages** - Use the page list above
@@ -343,7 +343,7 @@ docs/assets/
 6. **Test locally** - Build and test with GitBook
 7. **Deploy** - Push to GitHub and deploy to GitBook.com
 
-## 📧 Questions?
+##  Questions?
 
 - Discord: [discord.gg/oraclex](https://discord.gg/oraclex)
 - Email: docs@oraclex.ai
@@ -354,3 +354,4 @@ docs/assets/
 **Status**: 4/150+ pages complete  
 **Last Updated**: November 9, 2025  
 **Contributors**: OracleX Team
+

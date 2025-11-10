@@ -1,4 +1,4 @@
-# Introduction to OracleX
+﻿# Introduction to OracleX
 
 ![OracleX Banner](../assets/banner.png)
 
@@ -6,25 +6,25 @@
 
 OracleX is a revolutionary **AI-powered decentralized prediction market platform** built on BNB Chain. We combine the collective intelligence of crowds with cutting-edge artificial intelligence to create the most accurate, transparent, and engaging prediction ecosystem in Web3.
 
-## 🎯 What Makes OracleX Unique?
+##  What Makes OracleX Unique?
 
 ### 1. AI-Powered Oracle System (TruthMesh)
 Unlike traditional prediction markets that rely solely on human arbitration, OracleX utilizes **TruthMesh** - a sophisticated multi-agent AI system that:
 
-- 🤖 Fetches data from multiple authoritative sources
-- ✅ Cross-validates information using advanced consensus algorithms
-- 📊 Assigns confidence scores to predictions
-- ⚖️ Resolves disputes through decentralized validation
-- 🔍 Provides real-time accuracy metrics
+-  Fetches data from multiple authoritative sources
+-  Cross-validates information using advanced consensus algorithms
+-  Assigns confidence scores to predictions
+-  Resolves disputes through decentralized validation
+-  Provides real-time accuracy metrics
 
 ### 2. Social Prediction Network
 OracleX isn't just a platform - it's a **community** where:
 
-- 👥 Users follow top predictors and copy their strategies
-- 💬 Real-time discussion and analysis on every market
-- 🏆 Leaderboards showcase the most accurate forecasters
-- 🎮 Gamification elements make predictions engaging
-- 📈 Social sentiment analysis influences market trends
+-  Users follow top predictors and copy their strategies
+-  Real-time discussion and analysis on every market
+-  Leaderboards showcase the most accurate forecasters
+-  Gamification elements make predictions engaging
+-  Social sentiment analysis influences market trends
 
 ### 3. Natural Language Market Creation
 Create complex prediction markets simply by describing them:
@@ -42,13 +42,13 @@ Our AI understands:
 ### 4. Transparent & Trustless
 Built on **BNB Chain**, OracleX ensures:
 
-- 🔐 Non-custodial - you always control your funds
-- 📜 Open-source smart contracts
-- 🔍 Fully auditable on-chain data
-- ⚡ Fast and cheap transactions
-- 🌐 Permissionless participation
+-  Non-custodial - you always control your funds
+-  Open-source smart contracts
+-  Fully auditable on-chain data
+-  Fast and cheap transactions
+-  Permissionless participation
 
-## 🌍 Real-World Use Cases
+##  Real-World Use Cases
 
 ### Financial Markets
 - Cryptocurrency price predictions
@@ -80,7 +80,7 @@ Built on **BNB Chain**, OracleX ensures:
 - Scientific discoveries
 - Technology advancement timelines
 
-## 💎 The $ORX Token
+##  The $ORX Token
 
 The **$ORX token** is the backbone of the OracleX ecosystem:
 
@@ -98,52 +98,52 @@ The **$ORX token** is the backbone of the OracleX ecosystem:
 - **Total Supply**: 1,000,000,000 ORX
 - **Contract**: `0x7eE4f73bab260C11c68e5560c46E3975E824ed79`
 
-## 🏗️ Architecture at a Glance
+##  Architecture at a Glance
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Frontend (React)                      │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐  │
-│  │ Markets  │ │ Staking  │ │Governance│ │ Profile  │  │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘  │
-└────────────────────┬────────────────────────────────────┘
-                     │
-┌────────────────────┴────────────────────────────────────┐
-│              Backend API (Node.js/Express)               │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐  │
-│  │PostgreSQL│ │  Cache   │ │  Events  │ │Analytics │  │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘  │
-└────────────────────┬────────────────────────────────────┘
-                     │
-┌────────────────────┴────────────────────────────────────┐
-│                  BNB Chain (Smart Contracts)             │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐  │
-│  │   ORX    │ │ Markets  │ │ Staking  │ │Governance│  │
-│  │  Token   │ │ Factory  │ │ Contract │ │   DAO    │  │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘  │
-└────────────────────┬────────────────────────────────────┘
-                     │
-┌────────────────────┴────────────────────────────────────┐
-│            TruthMesh AI Oracle (Python)                  │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐  │
-│  │  Data    │ │Validator │ │ Arbiter  │ │Confidence│  │
-│  │ Fetcher  │ │  Agent   │ │  Agent   │ │  Scorer  │  │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘  │
-└─────────────────────────────────────────────────────────┘
+
+                    Frontend (React)                      
+       
+   Markets    Staking   Governance  Profile    
+       
+
+                     
+
+              Backend API (Node.js/Express)               
+       
+  PostgreSQL   Cache      Events   Analytics   
+       
+
+                     
+
+                  BNB Chain (Smart Contracts)             
+       
+     ORX      Markets    Staking   Governance  
+    Token     Factory    Contract     DAO      
+       
+
+                     
+
+            TruthMesh AI Oracle (Python)                  
+       
+    Data     Validator   Arbiter   Confidence  
+   Fetcher     Agent      Agent      Scorer    
+       
+
 ```
 
-## 🚀 Why Build on BNB Chain?
+##  Why Build on BNB Chain?
 
 We chose **BNB Chain** for several key reasons:
 
-- **⚡ Speed**: ~3 second block times for near-instant transactions
-- **💰 Low Costs**: Transaction fees typically under $0.10
-- **🌐 Ecosystem**: Large DeFi and Web3 community
-- **🔒 Security**: Proven track record with billions in TVL
-- **🔗 Interoperability**: Easy cross-chain bridges
-- **👥 Adoption**: Wide wallet support (MetaMask, Trust Wallet, etc.)
+- ** Speed**: ~3 second block times for near-instant transactions
+- ** Low Costs**: Transaction fees typically under $0.10
+- ** Ecosystem**: Large DeFi and Web3 community
+- ** Security**: Proven track record with billions in TVL
+- ** Interoperability**: Easy cross-chain bridges
+- ** Adoption**: Wide wallet support (MetaMask, Trust Wallet, etc.)
 
-## 📊 Platform Statistics
+##  Platform Statistics
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
 
@@ -169,32 +169,32 @@ We chose **BNB Chain** for several key reasons:
 
 </div>
 
-## 🎓 Getting Started
+##  Getting Started
 
 Ready to dive in? Here's your path forward:
 
-1. **📖 [Quick Start Guide](quick-start.md)** - Get up and running in 5 minutes
-2. **🧠 [Core Concepts](core-concepts.md)** - Understand the fundamentals
-3. **🏗️ [Architecture](architecture.md)** - Deep dive into system design
-4. **👛 [Wallet Setup](../user-guides/wallet-setup.md)** - Connect your wallet
-5. **🎯 [Create Your First Market](../user-guides/create-market.md)** - Start predicting!
+1. ** [Quick Start Guide](quick-start.md)** - Get up and running in 5 minutes
+2. ** [Core Concepts](core-concepts.md)** - Understand the fundamentals
+3. ** [Architecture](architecture.md)** - Deep dive into system design
+4. ** [Wallet Setup](../user-guides/wallet-setup.md)** - Connect your wallet
+5. ** [Create Your First Market](../user-guides/create-market.md)** - Start predicting!
 
-## 🤝 Join the Community
+##  Join the Community
 
 OracleX is more than a platform - it's a movement toward better decision-making through collective intelligence and AI.
 
-- 💬 **Discord**: [discord.gg/oraclex](https://discord.gg/oraclex) - Chat with the community
-- 🐦 **Twitter**: [@oraclex_official](https://twitter.com/oraclex_official) - Latest updates
-- 📧 **Email**: support@oraclex.ai - Direct support
-- 🐙 **GitHub**: [github.com/oraclex](https://github.com/oraclex) - Contribute to the code
+-  **Discord**: [discord.gg/oraclex](https://discord.gg/oraclex) - Chat with the community
+-  **Twitter**: [@oraclex_official](https://twitter.com/oraclex_official) - Latest updates
+-  **Email**: support@oraclex.ai - Direct support
+-  **GitHub**: [github.com/oraclex](https://github.com/oraclex) - Contribute to the code
 
-## 📚 What's Next?
+##  What's Next?
 
 Continue your journey with:
 
-- [Quick Start Guide →](quick-start.md)
-- [Core Concepts →](core-concepts.md)
-- [User Guides →](../user-guides/wallet-setup.md)
+- [Quick Start Guide ](quick-start.md)
+- [Core Concepts ](core-concepts.md)
+- [User Guides ](../user-guides/wallet-setup.md)
 
 ---
 
@@ -203,3 +203,4 @@ Continue your journey with:
   <p style="margin: 0 0 1rem 0;">Join thousands of users making accurate predictions</p>
   <a href="https://app.oraclex.ai" style="display: inline-block; padding: 0.75rem 2rem; background: white; color: #9333EA; border-radius: 8px; text-decoration: none; font-weight: bold;">Launch App</a>
 </div>
+

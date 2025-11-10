@@ -1,8 +1,8 @@
-# User Guide: How to Get ORX Tokens
+﻿# User Guide: How to Get ORX Tokens
 
 Learn how to acquire ORX tokens for the OracleX platform on BNB Smart Chain Testnet.
 
-## 🎯 Quick Overview
+##  Quick Overview
 
 There are several ways to get ORX tokens:
 
@@ -12,14 +12,14 @@ There are several ways to get ORX tokens:
 4. **DEX Trading** - Buy/sell on decentralized exchanges
 5. **Liquidity Mining** - Provide liquidity for rewards
 
-## 🚰 Method 1: Faucet (Recommended for Beginners)
+##  Method 1: Faucet (Recommended for Beginners)
 
 The fastest way to get started with test ORX tokens.
 
 ### Prerequisites
-- ✅ MetaMask wallet installed
-- ✅ Connected to BNB Smart Chain Testnet
-- ✅ Small amount of test BNB for gas (~0.01 BNB)
+-  MetaMask wallet installed
+-  Connected to BNB Smart Chain Testnet
+-  Small amount of test BNB for gas (~0.01 BNB)
 
 ### Step-by-Step Instructions
 
@@ -83,7 +83,7 @@ if (timeUntilNext === 0) {
 | "Daily limit reached" | Try again tomorrow |
 | "Balance too high" | Use existing tokens or create new wallet |
 
-## 🎯 Method 2: Winning Predictions
+##  Method 2: Winning Predictions
 
 Earn ORX by making correct predictions on markets.
 
@@ -143,7 +143,7 @@ await tx.wait();
 console.log('Prediction placed! Market resolves:', market.endTime);
 ```
 
-## 💎 Method 3: Staking Rewards
+##  Method 3: Staking Rewards
 
 Earn passive income by staking ORX tokens.
 
@@ -212,7 +212,7 @@ await claimTx.wait();
 console.log('Claimed stake + rewards!');
 ```
 
-## 🔄 Method 4: DEX Trading
+##  Method 4: DEX Trading
 
 Buy or sell ORX on decentralized exchanges.
 
@@ -234,7 +234,7 @@ Buy or sell ORX on decentralized exchanges.
 
 1. Go to PancakeSwap: https://pancakeswap.finance/swap
 2. Connect wallet
-3. Select BNB → ORX
+3. Select BNB  ORX
 4. Enter amount of BNB to swap
 5. Check slippage (recommend 1-2%)
 6. Click **"Swap"**
@@ -290,7 +290,7 @@ const price = await getORXPrice();
 console.log('ORX Price:', price, 'USD');
 ```
 
-## 💧 Method 5: Liquidity Mining
+##  Method 5: Liquidity Mining
 
 Provide liquidity and earn trading fees + ORX rewards.
 
@@ -378,7 +378,7 @@ console.log('ORX Rewards APY:', rewardAPY, '%');
 console.log('Total APY:', totalAPY, '%');
 ```
 
-## 🎁 Special Events & Airdrops
+##  Special Events & Airdrops
 
 ### Community Rewards
 
@@ -420,7 +420,7 @@ const checkEligibility = async (address: string) => {
 };
 ```
 
-## 📊 Verify Your ORX Balance
+##  Verify Your ORX Balance
 
 ### In MetaMask
 
@@ -449,17 +449,17 @@ const total = balance + staked;
 console.log('Total ORX:', ethers.formatEther(total));
 ```
 
-## 🛡️ Security Tips
+##  Security Tips
 
-1. ✅ **Verify Addresses**: Always check contract addresses
-2. ✅ **Use Hardware Wallet**: For large amounts
-3. ✅ **Check Slippage**: Prevent MEV attacks
-4. ✅ **Start Small**: Test with small amounts first
-5. ⚠️ **Never Share Keys**: Keep private keys private
-6. ⚠️ **Beware Phishing**: Only use official links
-7. ⚠️ **Double-Check**: Verify transaction details before confirming
+1.  **Verify Addresses**: Always check contract addresses
+2.  **Use Hardware Wallet**: For large amounts
+3.  **Check Slippage**: Prevent MEV attacks
+4.  **Start Small**: Test with small amounts first
+5.  **Never Share Keys**: Keep private keys private
+6.  **Beware Phishing**: Only use official links
+7.  **Double-Check**: Verify transaction details before confirming
 
-## 🔗 Official Resources
+##  Official Resources
 
 - **Faucet**: https://oraclex.com/faucet
 - **Swap (PancakeSwap)**: https://pancakeswap.finance/swap?outputCurrency=0x7eE4f73bab260C11c68e5560c46E3975E824ed79
@@ -471,13 +471,14 @@ console.log('Total ORX:', ethers.formatEther(total));
 
 Now that you have ORX tokens:
 
-1. [Make Your First Prediction →](making-predictions.md)
-2. [Stake for Passive Income →](staking-guide.md)
-3. [Create Your Own Market →](creating-markets.md)
-4. [Participate in Governance →](governance.md)
+1. [Make Your First Prediction ](making-predictions.md)
+2. [Stake for Passive Income ](staking-guide.md)
+3. [Create Your Own Market ](creating-markets.md)
+4. [Participate in Governance ](governance.md)
 
 ---
 
 <div style="background: linear-gradient(135deg, #FFD700, #9333EA); padding: 1.5rem; border-radius: 12px; color: white;">
-  <strong>🎉 Welcome to OracleX!</strong> You're now ready to start predicting the future and earning rewards. Join our Discord community for tips and support!
+  <strong> Welcome to OracleX!</strong> You're now ready to start predicting the future and earning rewards. Join our Discord community for tips and support!
 </div>
+

@@ -1,4 +1,4 @@
-# Table of Contents
+﻿# Table of Contents
 
 ## Getting Started
 * [Introduction](getting-started/introduction.md)
@@ -103,3 +103,4 @@
 * [Brand Assets](resources/brand-assets.md)
 * [Community](resources/community.md)
 * [Legal](resources/legal.md)
+
