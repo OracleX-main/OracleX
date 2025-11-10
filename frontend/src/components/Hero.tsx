@@ -58,7 +58,7 @@ const Hero = () => {
           </div>
 
           {/* Stats - Enhanced and Distinct */}
-          <div className="grid grid-cols-3 gap-6 pt-16 max-w-4xl mx-auto animate-slide-up" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-16 max-w-4xl mx-auto animate-slide-up" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-gold opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
               <div className="relative bg-gradient-card backdrop-blur-sm border border-primary/30 rounded-2xl p-6 hover:border-primary transition-all duration-300 hover:shadow-glow-card hover:-translate-y-1">
