@@ -95,7 +95,7 @@ npm run dev:all
 
 ## Frontend Pages & Flows
 
-### Core Pages (40+ designed for Visily)
+### Core Pages 
 - Landing + Wallet Connection
 - Explore Markets + Categories
 - Market Details + Analytics
@@ -150,8 +150,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Links
 
-- **Website**: [oraclex.ai](https://oraclex.ai)
-- **App**: [app.oraclex.ai](https://app.oraclex.ai)
-- **Docs**: [docs.oraclex.ai](https://docs.oraclex.ai)
-- **Twitter**: [@oraclex_official](https://twitter.com/oraclex_official)
-- **Discord**: [discord.gg/oraclex](https://discord.gg/oraclex)
+- **Website**: [oraclex.ai](https://oracle-x.vercel.app)
+<!-- - **App**: [app.oraclex.ai](https://app.oraclex.ai) -->
+- **Docs**: [docs.oraclex.ai]
+- **Twitter**: [@oraclex_official](https://twitter.com/oraclex121)
+- **Discord**: [discord.gg/oraclex]
