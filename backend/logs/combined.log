@@ -1147,3 +1147,68 @@ C:\Users\DELL\Desktop\OracleX\backend\src\services\blockchainSync.ts:491:9: ERRO
 2025-11-09 11:44:14 [info]: ::1 - - [09/Nov/2025:10:44:14 +0000] "GET /api/markets?page=1&limit=12 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
 2025-11-09 11:44:16 [info]: ::1 - - [09/Nov/2025:10:44:16 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
 2025-11-10 13:35:21 [info]: ::1 - - [10/Nov/2025:12:35:21 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36"
+2025-11-13 20:16:40 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-13 20:16:40 [info]: 📊 Environment: development
+2025-11-13 20:16:40 [info]: 🔗 Database: Connected
+2025-11-13 20:16:40 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-13 20:16:40 [info]: Starting blockchain sync service...
+2025-11-13 20:16:40 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-13 20:16:40 [info]: Historical sync disabled. Only listening for new events.
+2025-11-13 20:16:40 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-13 20:16:40 [info]: Listening for blockchain events...
+2025-11-13 20:16:40 [info]: ✅ Blockchain sync service started
+2025-11-13 20:41:07 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-13 20:41:07 [info]: 📊 Environment: development
+2025-11-13 20:41:07 [info]: 🔗 Database: Connected
+2025-11-13 20:41:07 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-13 20:41:07 [info]: Starting blockchain sync service...
+2025-11-13 20:41:07 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-13 20:41:07 [info]: Historical sync disabled. Only listening for new events.
+2025-11-13 20:41:07 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-13 20:41:07 [info]: Listening for blockchain events...
+2025-11-13 20:41:07 [info]: ✅ Blockchain sync service started
+2025-11-13 20:41:33 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-13 20:41:33 [info]: 📊 Environment: development
+2025-11-13 20:41:33 [info]: 🔗 Database: Connected
+2025-11-13 20:41:33 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-13 20:41:33 [info]: Starting blockchain sync service...
+2025-11-13 20:41:33 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-13 20:41:33 [info]: Historical sync disabled. Only listening for new events.
+2025-11-13 20:41:33 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-13 20:41:33 [info]: Listening for blockchain events...
+2025-11-13 20:41:33 [info]: ✅ Blockchain sync service started
+2025-11-13 20:42:11 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-13 20:42:11 [info]: 📊 Environment: development
+2025-11-13 20:42:11 [info]: 🔗 Database: Connected
+2025-11-13 20:42:11 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-13 20:42:12 [info]: Starting blockchain sync service...
+2025-11-13 20:42:12 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-13 20:42:12 [info]: Historical sync disabled. Only listening for new events.
+2025-11-13 20:42:12 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-13 20:42:12 [info]: Listening for blockchain events...
+2025-11-13 20:42:12 [info]: ✅ Blockchain sync service started
+2025-11-13 20:44:17 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-13 20:44:17 [info]: 📊 Environment: development
+2025-11-13 20:44:17 [info]: 🔗 Database: Connected
+2025-11-13 20:44:17 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-13 20:44:17 [info]: Starting blockchain sync service...
+2025-11-13 20:44:17 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-13 20:44:17 [info]: Historical sync disabled. Only listening for new events.
+2025-11-13 20:44:17 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-13 20:44:17 [info]: Listening for blockchain events...
+2025-11-13 20:44:17 [info]: ✅ Blockchain sync service started
+2025-11-13 20:44:50 [info]: 🚀 OracleX Backend API running on port 3001
+2025-11-13 20:44:50 [info]: 📊 Environment: development
+2025-11-13 20:44:50 [info]: 🔗 Database: Connected
+2025-11-13 20:44:50 [info]: Using RPC endpoint: https://bsc-testnet-rpc.publicnode.com
+2025-11-13 20:44:50 [info]: Starting blockchain sync service...
+2025-11-13 20:44:50 [info]: Connected to network: bsc-testnet (Chain ID: 97)
+2025-11-13 20:44:50 [info]: Historical sync disabled. Only listening for new events.
+2025-11-13 20:44:50 [info]: Set ENABLE_HISTORICAL_SYNC=true in .env to enable historical sync.
+2025-11-13 20:44:50 [info]: Listening for blockchain events...
+2025-11-13 20:44:50 [info]: ✅ Blockchain sync service started
+2025-11-13 20:50:03 [info]: ::1 - - [13/Nov/2025:19:50:03 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-13 20:50:08 [info]: ::1 - - [13/Nov/2025:19:50:08 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-13 20:55:57 [info]: ::1 - - [13/Nov/2025:19:55:57 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-13 20:56:14 [info]: ::1 - - [13/Nov/2025:19:56:14 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+2025-11-13 20:56:16 [info]: ::1 - - [13/Nov/2025:19:56:16 +0000] "GET /api/markets/trending?limit=6 HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
