@@ -62,7 +62,7 @@ npm run dev:all
 
 | Layer | Technology | Purpose |
 |-------|------------|---------|
-| **Frontend** | Next.js 14, TypeScript, Tailwind CSS | User interface & Web3 integration |
+| **Frontend** | React, TypeScript, Tailwind CSS | User interface & Web3 integration |
 | **Backend** | Node.js, Express, TypeScript, Prisma | API services & business logic |
 | **AI Oracle** | Python, LangChain, OpenAI, FastAPI | Truth verification & data fetching |
 | **Blockchain** | Solidity, Hardhat, Thirdweb | Smart contracts on BNB Chain |
