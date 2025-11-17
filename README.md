@@ -6,7 +6,7 @@
 
 ```
 OracleX/
-├── frontend/           # Next.js 14 + TypeScript + Tailwind
+├── frontend/           # React + TypeScript + Tailwind
 ├── backend/            # Node.js + Express + TypeScript API
 ├── ai-oracle/          # Python AI Oracle System (TruthMesh)
 ├── contracts/          # Solidity Smart Contracts (BNB Chain)
