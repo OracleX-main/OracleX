@@ -150,8 +150,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Links
 
-- **Website**: [oraclex.ai](https://oracle-x.vercel.app)
+- **Website**: [oraclex](https://oracle-x.vercel.app)
 <!-- - **App**: [app.oraclex.ai](https://app.oraclex.ai) -->
 - **Docs**: [docs.oraclex.ai]
 - **Twitter**: [@oraclex_official](https://twitter.com/oraclex121)
-- **Discord**: [discord.gg/oraclex]
+
